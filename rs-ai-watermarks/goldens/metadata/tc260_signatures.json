@@ -1,0 +1,252 @@
+[
+ {
+  "name": "doubao-1.png",
+  "label": {
+   "Label": "1",
+   "ContentProducer": "001191110102MACQD9K64010000",
+   "ProduceID": "01bd0ec49a914dbbae9578829f1eb392",
+   "ReservedCode1": "",
+   "ContentPropagator": "",
+   "PropagateID": "",
+   "ReservedCode2": ""
+  },
+  "verdict": null
+ },
+ {
+  "name": "doubao-1.png#altered",
+  "label": {
+   "Label": "1",
+   "ContentProducer": "001191110102MACQD9K64010000",
+   "ProduceID": "01bd0ec49a914dbbae9578829f1eb390",
+   "ReservedCode1": "",
+   "ContentPropagator": "",
+   "PropagateID": "",
+   "ReservedCode2": ""
+  },
+  "verdict": null
+ },
+ {
+  "name": "higgsfield-cinema-studio-v2.mp4",
+  "label": {
+   "Label": "1",
+   "ContentProducer": "kling",
+   "ProduceID": "KLingMuse_b497b8ce-7738-42c5-bcc3-85ead5fb400c",
+   "ReservedCode1": "None",
+   "ContentPropagator": "kling",
+   "PropagateID": "KLingMuse_b497b8ce-7738-42c5-bcc3-85ead5fb400c",
+   "ReservedCode2": "None"
+  },
+  "verdict": null
+ },
+ {
+  "name": "higgsfield-cinema-studio-v2.mp4#altered",
+  "label": {
+   "Label": "1",
+   "ContentProducer": "kling",
+   "ProduceID": "KLingMuse_b497b8ce-7738-42c5-bcc3-85ead5fb4000",
+   "ReservedCode1": "None",
+   "ContentPropagator": "kling",
+   "PropagateID": "KLingMuse_b497b8ce-7738-42c5-bcc3-85ead5fb400c",
+   "ReservedCode2": "None"
+  },
+  "verdict": null
+ },
+ {
+  "name": "higgsfield-hailuo-2-3.mp4",
+  "label": {
+   "Label": "1",
+   "ContentProducer": "MiniMax",
+   "ProduceID": "0705d63b73526f8af1a6a0070124105f",
+   "ReservedCode1": "{\"SecurityData\":{\"Type\":\"TC260PG\",\"Version\":1,\"PubSD\":[{\"Type\":\"DS\",\"AlgID\":\"1.2.156.10197.1.501\",\"TBSData\":{\"Type\":\"LabelMataData\"},\"Signature\":\"a947a09941f0f4c4c6a5ba428d47cb798fcc7775b3407164f8d699c311fc3b442b4c5c06af19af05cc05db0dcef6d6e46a4fb1d4e0b78e855b942db5fcf3865c\"},{\"Type\":\"DS\",\"AlgID\":\"1.2.156.10197.1.501\",\"TBSData\":{\"Type\":\"Binding\",\"BType\":\"0\"},\"Signature\":\"b00803e72982407fe02e66f855ee553ad05206f4bb8f5c0a88c050653da3e4f062f4389e039bf9b9f45eac1c089ed9e865230046f154e3ff3700ed29726415ff\"},{\"Type\":\"PubKey\",\"AlgID\":\"1.2.156.10197.1.501\",\"TBSData\":{\"Type\":\"\"},\"KeyValue\":\"00a0b3b0b6a0c9b0c89cab328342af4e8221ec5b40799cbe835ab4251f7b47e4fd\"}],\"Bindings\":[{\"Type\":\"Hash\",\"AlgID\":\"1.2.156.10197.1.401\",\"TBSData\":{\"Type\":\"\"},\"Signature\":\"5e4fe385f50ccfe6b4dda8907d7bffabc9545af2d69ea2abe8e61cb7ec58d1c2\"}]}}",
+   "ContentPropagator": "MiniMax",
+   "PropagateID": "",
+   "ReservedCode2": ""
+  },
+  "verdict": {
+   "label": "verified",
+   "signer": "MiniMax",
+   "describe": "TC260 label signature verified (pinned MiniMax key)"
+  }
+ },
+ {
+  "name": "higgsfield-hailuo-2-3.mp4#altered",
+  "label": {
+   "Label": "1",
+   "ContentProducer": "MiniMax",
+   "ProduceID": "0705d63b73526f8af1a6a00701241050",
+   "ReservedCode1": "{\"SecurityData\":{\"Type\":\"TC260PG\",\"Version\":1,\"PubSD\":[{\"Type\":\"DS\",\"AlgID\":\"1.2.156.10197.1.501\",\"TBSData\":{\"Type\":\"LabelMataData\"},\"Signature\":\"a947a09941f0f4c4c6a5ba428d47cb798fcc7775b3407164f8d699c311fc3b442b4c5c06af19af05cc05db0dcef6d6e46a4fb1d4e0b78e855b942db5fcf3865c\"},{\"Type\":\"DS\",\"AlgID\":\"1.2.156.10197.1.501\",\"TBSData\":{\"Type\":\"Binding\",\"BType\":\"0\"},\"Signature\":\"b00803e72982407fe02e66f855ee553ad05206f4bb8f5c0a88c050653da3e4f062f4389e039bf9b9f45eac1c089ed9e865230046f154e3ff3700ed29726415ff\"},{\"Type\":\"PubKey\",\"AlgID\":\"1.2.156.10197.1.501\",\"TBSData\":{\"Type\":\"\"},\"KeyValue\":\"00a0b3b0b6a0c9b0c89cab328342af4e8221ec5b40799cbe835ab4251f7b47e4fd\"}],\"Bindings\":[{\"Type\":\"Hash\",\"AlgID\":\"1.2.156.10197.1.401\",\"TBSData\":{\"Type\":\"\"},\"Signature\":\"5e4fe385f50ccfe6b4dda8907d7bffabc9545af2d69ea2abe8e61cb7ec58d1c2\"}]}}",
+   "ContentPropagator": "MiniMax",
+   "PropagateID": "",
+   "ReservedCode2": ""
+  },
+  "verdict": {
+   "label": "failed",
+   "signer": null,
+   "describe": "TC260 label signature does not verify"
+  }
+ },
+ {
+  "name": "higgsfield-happyhorse.mp4",
+  "label": {
+   "Label": "1",
+   "ContentProducer": "001191330106MA2CFLDG4R10001",
+   "ProduceID": "R-nocScnXpSuWDFUSSLWoGcQ",
+   "ReservedCode1": "K-LBkc9peJ0GoxPECtYBct7vfZZgZvwy4FZrhe/DJovt3rGFEyBJ4z5WZYsl9yWMbL947T5LdNGMg3AvkmCXOm4t+cBWsw0D65wuAMv7ou7lm+r9xhRj59LWtnzsxIq8FsA6g7YeJHE9/or5BreiKQJ8Wr+IDFrWmbBbIPdAdj0FO+DTeZ6KDHNwvGO8SjiPC0xjPn9yiVh9KsGALv9ZivDxcaEp+fjj+kLWDV+iJRVqvJ9Lel9dw4BHXSUTE8j4RlVJilj2Fm/WQnJVdtQpP7jCgYbqjX6tBc0zUjK/nFHWw=",
+   "ContentPropagator": "001191330106MA2CFLDG4R10001",
+   "PropagateID": "R-nocScnXpSuWDFUSSLWoGcQ",
+   "ReservedCode2": "K-LBkc9peJ0GoxPECtYBct7vfZZgZvwy4FZrhe/DJovt3rGFEyBJ4z5WZYsl9yWMbL947T5LdNGMg3AvkmCXOm4t+cBWsw0D65wuAMv7ou7lm+r9xhRj59LWtnzsxIq8FsA6g7YeJHE9/or5BreiKQJ8Wr+IDFrWmbBbIPdAdj0FO+DTeZ6KDHNwvGO8SjiPC0xjPn9yiVh9KsGALv9ZivDxcaEp+fjj+kLWDV+iJRVqvJ9Lel9dw4BHXSUTE8j4RlVJilj2Fm/WQnJVdtQpP7jCgYbqjX6tBc0zUjK/nFHWw="
+  },
+  "verdict": null
+ },
+ {
+  "name": "higgsfield-happyhorse.mp4#altered",
+  "label": {
+   "Label": "1",
+   "ContentProducer": "001191330106MA2CFLDG4R10001",
+   "ProduceID": "R-nocScnXpSuWDFUSSLWoGc0",
+   "ReservedCode1": "K-LBkc9peJ0GoxPECtYBct7vfZZgZvwy4FZrhe/DJovt3rGFEyBJ4z5WZYsl9yWMbL947T5LdNGMg3AvkmCXOm4t+cBWsw0D65wuAMv7ou7lm+r9xhRj59LWtnzsxIq8FsA6g7YeJHE9/or5BreiKQJ8Wr+IDFrWmbBbIPdAdj0FO+DTeZ6KDHNwvGO8SjiPC0xjPn9yiVh9KsGALv9ZivDxcaEp+fjj+kLWDV+iJRVqvJ9Lel9dw4BHXSUTE8j4RlVJilj2Fm/WQnJVdtQpP7jCgYbqjX6tBc0zUjK/nFHWw=",
+   "ContentPropagator": "001191330106MA2CFLDG4R10001",
+   "PropagateID": "R-nocScnXpSuWDFUSSLWoGcQ",
+   "ReservedCode2": "K-LBkc9peJ0GoxPECtYBct7vfZZgZvwy4FZrhe/DJovt3rGFEyBJ4z5WZYsl9yWMbL947T5LdNGMg3AvkmCXOm4t+cBWsw0D65wuAMv7ou7lm+r9xhRj59LWtnzsxIq8FsA6g7YeJHE9/or5BreiKQJ8Wr+IDFrWmbBbIPdAdj0FO+DTeZ6KDHNwvGO8SjiPC0xjPn9yiVh9KsGALv9ZivDxcaEp+fjj+kLWDV+iJRVqvJ9Lel9dw4BHXSUTE8j4RlVJilj2Fm/WQnJVdtQpP7jCgYbqjX6tBc0zUjK/nFHWw="
+  },
+  "verdict": null
+ },
+ {
+  "name": "higgsfield-kling-3-0-turbo.mp4",
+  "label": {
+   "Label": "1",
+   "ContentProducer": "kling",
+   "ProduceID": "KLingMuse_3eb1f7bc-5bfa-4c65-a78e-28465c4a7ebc",
+   "ReservedCode1": "None",
+   "ContentPropagator": "kling",
+   "PropagateID": "KLingMuse_3eb1f7bc-5bfa-4c65-a78e-28465c4a7ebc",
+   "ReservedCode2": "None"
+  },
+  "verdict": null
+ },
+ {
+  "name": "higgsfield-kling-3-0-turbo.mp4#altered",
+  "label": {
+   "Label": "1",
+   "ContentProducer": "kling",
+   "ProduceID": "KLingMuse_3eb1f7bc-5bfa-4c65-a78e-28465c4a7eb0",
+   "ReservedCode1": "None",
+   "ContentPropagator": "kling",
+   "PropagateID": "KLingMuse_3eb1f7bc-5bfa-4c65-a78e-28465c4a7ebc",
+   "ReservedCode2": "None"
+  },
+  "verdict": null
+ },
+ {
+  "name": "higgsfield-kling-o1.png",
+  "label": {
+   "Label": "1",
+   "ContentProducer": "001191110108335469089C10100",
+   "ProduceID": "KLingMuse_011c2bb0-5cb3-4746-acc6-55f84c959ef4",
+   "ReservedCode1": "None",
+   "ContentPropagator": "001191110108335469089C10100",
+   "PropagateID": "KLingMuse_011c2bb0-5cb3-4746-acc6-55f84c959ef4",
+   "ReservedCode2": "None"
+  },
+  "verdict": null
+ },
+ {
+  "name": "higgsfield-kling-o1.png#altered",
+  "label": {
+   "Label": "1",
+   "ContentProducer": "001191110108335469089C10100",
+   "ProduceID": "KLingMuse_011c2bb0-5cb3-4746-acc6-55f84c959ef0",
+   "ReservedCode1": "None",
+   "ContentPropagator": "001191110108335469089C10100",
+   "PropagateID": "KLingMuse_011c2bb0-5cb3-4746-acc6-55f84c959ef4",
+   "ReservedCode2": "None"
+  },
+  "verdict": null
+ },
+ {
+  "name": "higgsfield-minimax-h3.mp4",
+  "label": {
+   "Label": "1",
+   "ContentProducer": "MiniMax",
+   "ProduceID": "0704dba7457b9e0e95dc73d1d98c2648",
+   "ReservedCode1": "{\"SecurityData\":{\"Type\":\"TC260PG\",\"Version\":1,\"PubSD\":[{\"Type\":\"DS\",\"AlgID\":\"1.2.156.10197.1.501\",\"TBSData\":{\"Type\":\"LabelMataData\"},\"Signature\":\"41abfed73b4abb083ce8c8af6ac5119f9b4cee77435688936cbc56ed503e88190d7e6b89ef6b2dd8800f3ecf027849c4506a55f1a2d9c39fd1d018ad01799221\"},{\"Type\":\"DS\",\"AlgID\":\"1.2.156.10197.1.501\",\"TBSData\":{\"Type\":\"Binding\",\"BType\":\"0\"},\"Signature\":\"d17e89001c9d3ff58e1f9d4a2c3dc1bcf04bd2d96631869992429cb8911f53703cc8b792cade825fe9de750373fdbcad6302eeb588059ff17682eac458470ba1\"},{\"Type\":\"PubKey\",\"AlgID\":\"1.2.156.10197.1.501\",\"TBSData\":{\"Type\":\"\"},\"KeyValue\":\"00a0b3b0b6a0c9b0c89cab328342af4e8221ec5b40799cbe835ab4251f7b47e4fd\"}],\"Bindings\":[{\"Type\":\"Hash\",\"AlgID\":\"1.2.156.10197.1.401\",\"TBSData\":{\"Type\":\"\"},\"Signature\":\"8e71c0b6b89307f4b4d0d78a59985ea58e2c49055150c0e712aa198a51bf6617\"}]}}",
+   "ContentPropagator": "MiniMax",
+   "PropagateID": "",
+   "ReservedCode2": ""
+  },
+  "verdict": {
+   "label": "verified",
+   "signer": "MiniMax",
+   "describe": "TC260 label signature verified (pinned MiniMax key)"
+  }
+ },
+ {
+  "name": "higgsfield-minimax-h3.mp4#altered",
+  "label": {
+   "Label": "1",
+   "ContentProducer": "MiniMax",
+   "ProduceID": "0704dba7457b9e0e95dc73d1d98c2640",
+   "ReservedCode1": "{\"SecurityData\":{\"Type\":\"TC260PG\",\"Version\":1,\"PubSD\":[{\"Type\":\"DS\",\"AlgID\":\"1.2.156.10197.1.501\",\"TBSData\":{\"Type\":\"LabelMataData\"},\"Signature\":\"41abfed73b4abb083ce8c8af6ac5119f9b4cee77435688936cbc56ed503e88190d7e6b89ef6b2dd8800f3ecf027849c4506a55f1a2d9c39fd1d018ad01799221\"},{\"Type\":\"DS\",\"AlgID\":\"1.2.156.10197.1.501\",\"TBSData\":{\"Type\":\"Binding\",\"BType\":\"0\"},\"Signature\":\"d17e89001c9d3ff58e1f9d4a2c3dc1bcf04bd2d96631869992429cb8911f53703cc8b792cade825fe9de750373fdbcad6302eeb588059ff17682eac458470ba1\"},{\"Type\":\"PubKey\",\"AlgID\":\"1.2.156.10197.1.501\",\"TBSData\":{\"Type\":\"\"},\"KeyValue\":\"00a0b3b0b6a0c9b0c89cab328342af4e8221ec5b40799cbe835ab4251f7b47e4fd\"}],\"Bindings\":[{\"Type\":\"Hash\",\"AlgID\":\"1.2.156.10197.1.401\",\"TBSData\":{\"Type\":\"\"},\"Signature\":\"8e71c0b6b89307f4b4d0d78a59985ea58e2c49055150c0e712aa198a51bf6617\"}]}}",
+   "ContentPropagator": "MiniMax",
+   "PropagateID": "",
+   "ReservedCode2": ""
+  },
+  "verdict": {
+   "label": "failed",
+   "signer": null,
+   "describe": "TC260 label signature does not verify"
+  }
+ },
+ {
+  "name": "kling-image-v3.png",
+  "label": {
+   "Label": "1",
+   "ContentProducer": "001191110108335469089C10100",
+   "ProduceID": "KLingMuse_c4b86d16-d7f0-461e-8242-856ec7b6d6aa",
+   "ReservedCode1": "None",
+   "ContentPropagator": "001191110108335469089C10100",
+   "PropagateID": "KLingMuse_c4b86d16-d7f0-461e-8242-856ec7b6d6aa",
+   "ReservedCode2": "None"
+  },
+  "verdict": null
+ },
+ {
+  "name": "kling-image-v3.png#altered",
+  "label": {
+   "Label": "1",
+   "ContentProducer": "001191110108335469089C10100",
+   "ProduceID": "KLingMuse_c4b86d16-d7f0-461e-8242-856ec7b6d6a0",
+   "ReservedCode1": "None",
+   "ContentPropagator": "001191110108335469089C10100",
+   "PropagateID": "KLingMuse_c4b86d16-d7f0-461e-8242-856ec7b6d6aa",
+   "ReservedCode2": "None"
+  },
+  "verdict": null
+ },
+ {
+  "name": "qwen-create-qwen-image-2.png",
+  "label": {
+   "ContentPropagator": "001191440101MA9Y9T4H7A00000",
+   "Label": "1",
+   "ReservedCode1": "S7Wr/Evf+Mq+T3SWymUoO7naAs0WPNLrahOqG9WzR+o=",
+   "ProduceID": "u:90000007849214/task:b439a30bfb7f42a2acbb25d322d58954",
+   "ReservedCode2": "S7Wr/Evf+Mq+T3SWymUoO7naAs0WPNLrahOqG9WzR+o=",
+   "PropagateID": "u:90000007849214/task:b439a30bfb7f42a2acbb25d322d58954",
+   "ContentProducer": "001191440101MA9Y9T4H7A00000"
+  },
+  "verdict": null
+ },
+ {
+  "name": "qwen-create-qwen-image-2.png#altered",
+  "label": {
+   "ContentPropagator": "001191440101MA9Y9T4H7A00000",
+   "Label": "1",
+   "ReservedCode1": "S7Wr/Evf+Mq+T3SWymUoO7naAs0WPNLrahOqG9WzR+o=",
+   "ProduceID": "u:90000007849214/task:b439a30bfb7f42a2acbb25d322d58950",
+   "ReservedCode2": "S7Wr/Evf+Mq+T3SWymUoO7naAs0WPNLrahOqG9WzR+o=",
+   "PropagateID": "u:90000007849214/task:b439a30bfb7f42a2acbb25d322d58954",
+   "ContentProducer": "001191440101MA9Y9T4H7A00000"
+  },
+  "verdict": null
+ }
+]

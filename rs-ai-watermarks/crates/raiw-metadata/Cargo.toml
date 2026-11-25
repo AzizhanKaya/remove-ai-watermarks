@@ -1,0 +1,27 @@
+[package]
+name = "raiw-metadata"
+description = "AI-generation metadata scanning, lossless stripping, forensic records and TC260 labels"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+raiw-core.workspace = true
+raiw-container.workspace = true
+raiw-c2pa.workspace = true
+thiserror.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+regex.workspace = true
+memchr.workspace = true
+hex.workspace = true
+sm2 = { version = "0.14.0", default-features = false, features = ["dsa", "std"] }
+
+[dev-dependencies]
+raiw-core = { workspace = true, features = ["testing"] }
+tempfile.workspace = true
+
+[lints]
+workspace = true

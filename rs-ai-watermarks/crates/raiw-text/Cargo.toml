@@ -1,0 +1,46 @@
+[package]
+name = "raiw-text"
+description = "Deterministic text provenance: C2PA text wrappers, VSRMark, Unicode steganography and token-watermark spans"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[features]
+default = ["api", "langid"]
+# Chat Completions transport (Ollama and explicitly configured endpoints).
+api = ["dep:ureq"]
+# py3langid 0.4.0 naive-Bayes language guard (model read from the published wheel).
+langid = ["dep:ureq", "dep:zip", "dep:lzma-rust2", "dep:half"]
+
+[dependencies]
+raiw-core.workspace = true
+thiserror.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+regex.workspace = true
+fancy-regex.workspace = true
+indexmap.workspace = true
+base64.workspace = true
+crc32fast.workspace = true
+flate2.workspace = true
+sha2.workspace = true
+hex.workspace = true
+tracing.workspace = true
+unicode-normalization.workspace = true
+sha3 = "0.10.8"
+blake2 = "0.10.6"
+libm = "0.2.16"
+num-bigint = "0.4.6"
+ureq = { version = "3.5.2", optional = true }
+zip = { version = "9.8.2", optional = true, default-features = false, features = ["deflate"] }
+lzma-rust2 = { version = "0.13.0", optional = true }
+half = { workspace = true, optional = true }
+
+[dev-dependencies]
+raiw-core = { workspace = true, features = ["testing"] }
+tempfile.workspace = true
+
+[lints]
+workspace = true

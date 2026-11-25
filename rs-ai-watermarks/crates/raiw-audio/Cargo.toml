@@ -1,0 +1,28 @@
+[package]
+name = "raiw-audio"
+description = "Audio provenance: decoding through ffmpeg, resampling, spectral processing, quality gates and decoder/codec orchestration"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[features]
+# Seam for the burn-backed decoders and codecs in raiw-gpu (wired by a later wave).
+gpu = []
+
+[dependencies]
+raiw-core.workspace = true
+thiserror.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+indexmap.workspace = true
+rayon.workspace = true
+realfft.workspace = true
+tempfile.workspace = true
+
+[dev-dependencies]
+raiw-core = { workspace = true, features = ["testing"] }
+
+[lints]
+workspace = true

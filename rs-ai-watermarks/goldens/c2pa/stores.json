@@ -1,0 +1,204 @@
+{
+ "full-chain": {
+  "store": "{\"active_manifest\": \"urn:a\", \"manifests\": {\"urn:a\": {\"claim_generator_info\": [{\"name\": \"Google Gemini\"}], \"signature_info\": {\"issuer\": \"Google LLC\", \"common_name\": \"Google C2PA\", \"time\": \"2025-01-01T00:00:00Z\"}, \"assertions\": [{\"label\": \"c2pa.actions.v2\", \"data\": {\"actions\": [{\"action\": \"c2pa.created\", \"digitalSourceType\": \"http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia\", \"softwareAgent\": {\"name\": \"GPT-4o via ChatGPT\"}}, {\"action\": \"c2pa.watermarked.bound\", \"description\": \"SynthID applied\"}, {\"action\": \"c2pa.color_adjustments\", \"parameters\": {\"com.adobe.digitalSourceType\": \"compositeWithTrainedAlgorithmicMedia\"}}, {\"action\": 7}, \"bad\"]}}, {\"label\": \"c2pa.soft-binding\", \"data\": {\"alg\": \"com.adobe.trustmark.Q\", \"blocks\": [{\"value\": \"abc\"}, {\"value\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"}]}}], \"ingredients\": [{\"active_manifest\": \"urn:b\", \"validation_results\": {\"activeManifest\": {\"success\": [{\"code\": \"claimSignature.insideValidity\"}, {\"code\": \"claimSignature.validated\"}, {\"code\": \"assertion.dataHash.match\"}], \"informational\": [], \"failure\": []}}}, {\"active_manifest\": \"urn:bad\", \"validation_results\": {\"activeManifest\": {\"success\": [], \"informational\": [], \"failure\": [{\"code\": \"assertion.dataHash.mismatch\"}]}}}, {\"digitalSourceType\": \"trainedAlgorithmicMedia\"}]}, \"urn:b\": {\"claim_generator\": \"Adobe Firefly\", \"signature_info\": {\"issuer\": \"Adobe Inc.\"}, \"assertions\": [{\"label\": \"c2pa.ai-disclosure\", \"data\": {\"modelName\": \"Gen-4\", \"contentProfile\": {\"humanOversightLevel\": \"human_validated\"}}}]}, \"urn:bad\": {\"claim_generator\": \"Midjourney\", \"signature_info\": {\"issuer\": \"Bria Artificial\"}}}, \"validation_results\": {\"activeManifest\": {\"success\": [{\"code\": \"claimSignature.insideValidity\"}, {\"code\": \"claimSignature.validated\"}, {\"code\": \"assertion.dataHash.match\"}], \"informational\": [], \"failure\": []}}, \"validation_state\": \"Valid\"}",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (2137 bytes)\", \"issuer\": \"Google LLC, Adobe\", \"ai_tool\": \"GPT-4o, ChatGPT, Firefly\", \"actions\": \"created, watermarked.bound, color_adjustments\", \"c2pa_identity_ai\": true, \"ai_disclosure\": \"Gen-4\", \"human_oversight\": \"human_validated\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\"], \"soft_binding\": \"Adobe TrustMark\", \"soft_binding_algorithm\": \"com.adobe.trustmark.Q\", \"soft_binding_value\": \"abc\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.dataHash.match\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Google Gemini\", \"timestamp\": \"2025-01-01T00:00:00Z\"}",
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Adobe Firefly",
+   "markers_claim_ai": true
+  }
+ },
+ "disclosure-only": {
+  "store": "{\"active_manifest\": \"urn:a\", \"manifests\": {\"urn:a\": {\"claim_generator\": \"Runway\", \"assertions\": [{\"label\": \"c2pa.ai-disclosure\", \"data\": {\"modelName\": \"Gen-4\", \"contentProfile\": {\"humanOversightLevel\": \"human_validated\"}}}, {\"label\": \"c2pa.ai-disclosure\", \"data\": {\"modelType\": \"diffusion\", \"contentProfile\": {\"humanOversightLevel\": \"prompt_guided\"}}}, {\"label\": \"c2pa.ingredient.v3\", \"data\": {\"digitalSourceType\": \"algorithmicMedia\"}}]}}, \"validation_results\": {\"activeManifest\": {\"success\": [{\"code\": \"claimSignature.insideValidity\"}, {\"code\": \"claimSignature.validated\"}, {\"code\": \"assertion.dataHash.match\"}], \"informational\": [{\"code\": \"timeStamp.untrusted\"}], \"failure\": []}}}",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (682 bytes)\", \"ai_disclosure\": \"Gen-4, diffusion\", \"human_oversight\": \"human_validated, prompt_guided\", \"source_type\": \"c2pa.ai-disclosure (generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.dataHash.match\", \"timeStamp.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Runway\"}",
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": null,
+   "markers_claim_ai": true
+  }
+ },
+ "disclosure-enhanced": {
+  "store": "{\"active_manifest\": \"urn:a\", \"manifests\": {\"urn:a\": {\"assertions\": [{\"label\": \"c2pa.ai-disclosure\", \"data\": {\"modelName\": \"Gen-4\", \"contentProfile\": {\"humanOversightLevel\": \"human_validated\"}}}]}}}",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (197 bytes)\", \"ai_disclosure\": \"Gen-4\", \"human_oversight\": \"human_validated\", \"source_type\": \"c2pa.ai-disclosure (enhanced)\", \"ai_source_kind\": \"enhanced\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "helpers": {
+   "credential_level": "unverified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": null,
+   "markers_claim_ai": true
+  }
+ },
+ "unknown-soft-binding": {
+  "store": "{\"active_manifest\": \"urn:a\", \"manifests\": {\"urn:a\": {\"signature_info\": {\"issuer\": \"Google LLC\"}, \"assertions\": [{\"label\": \"c2pa.soft-binding.v2\", \"data\": {\"alg\": \"org.unknown.mark\", \"blocks\": []}}, {\"label\": \"c2pa.actions.v2\", \"data\": {\"actions\": [{\"action\": \"c2pa.created\", \"digitalSourceType\": \"http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia\", \"softwareAgent\": {\"name\": \"GPT-4o via ChatGPT\"}}, {\"action\": \"c2pa.watermarked.bound\", \"description\": \"SynthID applied\"}, {\"action\": \"c2pa.color_adjustments\", \"parameters\": {\"com.adobe.digitalSourceType\": \"compositeWithTrainedAlgorithmicMedia\"}}, {\"action\": 7}, \"bad\"]}}]}}}",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (644 bytes)\", \"issuer\": \"Google LLC\", \"ai_tool\": \"GPT-4o, ChatGPT\", \"actions\": \"created, watermarked.bound, color_adjustments\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_algorithm\": \"org.unknown.mark\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "helpers": {
+   "credential_level": "unverified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Google (Gemini / Imagen)",
+   "markers_claim_ai": true
+  }
+ },
+ "youtube": {
+  "store": "{\"active_manifest\": \"urn:a\", \"manifests\": {\"urn:a\": {\"claim_generator\": \"YouTube Video Processing Services\", \"signature_info\": {\"issuer\": \"Google LLC\", \"common_name\": \"YouTube\"}, \"assertions\": [{\"label\": \"c2pa.actions\", \"data\": {\"actions\": [{\"action\": \"c2pa.opened\"}, {\"action\": \"c2pa.transcoded\", \"digitalSourceType\": \"trainedAlgorithmicMedia\"}]}}]}}, \"validation_results\": {\"activeManifest\": {\"success\": [{\"code\": \"claimSignature.insideValidity\"}, {\"code\": \"claimSignature.validated\"}, {\"code\": \"assertion.dataHash.match\"}], \"informational\": [], \"failure\": []}}}",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (564 bytes)\", \"issuer\": \"Google LLC\", \"actions\": \"opened, transcoded\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.dataHash.match\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"YouTube Video Processing Services\"}",
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Google (Gemini / Imagen)",
+   "markers_claim_ai": true
+  }
+ },
+ "invalid-binding": {
+  "store": "{\"active_manifest\": \"urn:a\", \"manifests\": {\"urn:a\": {\"claim_generator\": \"x\"}}, \"validation_results\": {\"activeManifest\": {\"success\": [{\"code\": \"claimSignature.validated\"}], \"informational\": [], \"failure\": [{\"code\": \"assertion.bmffHash.mismatch\"}, {\"code\": \"signingCredential.untrusted\"}, {\"code\": \"signingCredential.expired\"}]}}}",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (328 bytes)\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"invalid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"claimSignature.validated\", \"assertion.bmffHash.mismatch\", \"signingCredential.untrusted\", \"signingCredential.expired\"], \"c2pa_failed_codes\": [\"assertion.bmffHash.mismatch\"], \"claim_generator\": \"x\"}",
+  "helpers": {
+   "credential_level": "invalid",
+   "invalid_credential": true,
+   "invismark": false,
+   "removal_hint": false,
+   "claim_generator_platform": null,
+   "vendor_platform": null,
+   "markers_claim_ai": true
+  }
+ },
+ "invalid-signature": {
+  "store": "{\"active_manifest\": \"urn:a\", \"manifests\": {\"urn:a\": {}}, \"validation_results\": {\"activeManifest\": {\"success\": [], \"informational\": [], \"failure\": [{\"code\": \"claimSignature.mismatch\"}, {\"code\": \"signingCredential.ocsp.revoked\"}]}}}",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (230 bytes)\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"invalid\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"invalid\", \"c2pa_validation_codes\": [\"claimSignature.mismatch\", \"signingCredential.ocsp.revoked\"], \"c2pa_failed_codes\": [\"claimSignature.mismatch\", \"signingCredential.ocsp.revoked\"]}",
+  "helpers": {
+   "credential_level": "invalid",
+   "invalid_credential": true,
+   "invismark": false,
+   "removal_hint": false,
+   "claim_generator_platform": null,
+   "vendor_platform": null,
+   "markers_claim_ai": true
+  }
+ },
+ "trusted": {
+  "store": "{\"active_manifest\": \"urn:a\", \"manifests\": {\"urn:a\": {\"signature_info\": {\"issuer\": \"Ideogram, Inc\", \"time\": 12}}}, \"validation_results\": {\"activeManifest\": {\"success\": [{\"code\": \"signingCredential.trusted\"}, {\"code\": \"claimSignature.validated\"}, {\"code\": \"assertion.boxesHash.match\"}], \"informational\": [], \"failure\": []}}}",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (322 bytes)\", \"issuer\": \"Ideogram\", \"c2pa_identity_ai\": true, \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"trusted\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [\"signingCredential.trusted\", \"claimSignature.validated\", \"assertion.boxesHash.match\"], \"c2pa_failed_codes\": [], \"timestamp\": \"12\"}",
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Ideogram",
+   "markers_claim_ai": true
+  }
+ },
+ "flat-status": {
+  "store": "{\"active_manifest\": \"urn:a\", \"manifests\": {\"urn:a\": {\"claim_generator\": \"Canva\\u200b\"}}, \"validation_status\": [{\"code\": \"claimSignature.missing\"}, {\"code\": \"\"}, \"x\"]}",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (166 bytes)\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"invalid\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [\"claimSignature.missing\"], \"c2pa_failed_codes\": [\"claimSignature.missing\"]}",
+  "helpers": {
+   "credential_level": "invalid",
+   "invalid_credential": true,
+   "invismark": false,
+   "removal_hint": false,
+   "claim_generator_platform": null,
+   "vendor_platform": null,
+   "markers_claim_ai": true
+  }
+ },
+ "procedural": {
+  "store": "{\"active_manifest\": \"urn:a\", \"manifests\": {\"urn:a\": {\"assertions\": [{\"label\": \"c2pa.actions\", \"data\": {\"actions\": [{\"action\": \"c2pa.created\", \"digitalSourceType\": \"algorithmicMedia\"}]}}]}}}",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (189 bytes)\", \"actions\": \"created\", \"source_type\": \"algorithmicMedia\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "helpers": {
+   "credential_level": "unverified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": false,
+   "claim_generator_platform": null,
+   "vendor_platform": null,
+   "markers_claim_ai": true
+  }
+ },
+ "cycle": {
+  "store": "{\"active_manifest\": \"urn:a\", \"manifests\": {\"urn:a\": {\"ingredients\": [{\"active_manifest\": \"urn:a\"}, {\"active_manifest\": \"urn:c\"}]}, \"urn:c\": {\"ingredients\": [{\"active_manifest\": \"urn:a\"}], \"claim_generator\": \"Dreamina\"}}}",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (220 bytes)\", \"ai_tool\": \"Dreamina\", \"c2pa_identity_ai\": true, \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "helpers": {
+   "credential_level": "unverified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": null,
+   "markers_claim_ai": true
+  }
+ },
+ "no-active": {
+  "store": "{\"manifests\": {\"urn:a\": {}}}",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (28 bytes)\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "helpers": {
+   "credential_level": "unverified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": false,
+   "claim_generator_platform": null,
+   "vendor_platform": null,
+   "markers_claim_ai": true
+  }
+ },
+ "active-missing": {
+  "store": "{\"active_manifest\": \"urn:zzz\", \"manifests\": {}}",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (47 bytes)\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "helpers": {
+   "credential_level": "unverified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": false,
+   "claim_generator_platform": null,
+   "vendor_platform": null,
+   "markers_claim_ai": true
+  }
+ },
+ "error": {
+  "store": "{\"error\": \"boom\", \"manifests\": {}}",
+  "info_json": "{}",
+  "helpers": null
+ },
+ "empty": {
+  "store": "{}",
+  "info_json": "{}",
+  "helpers": null
+ },
+ "not-object": {
+  "store": "[1, 2]",
+  "info_json": "{}",
+  "helpers": null
+ },
+ "invalid-json": {
+  "store": "{not json",
+  "info_json": "{}",
+  "helpers": null
+ },
+ "unicode": {
+  "store": "{\"active_manifest\": \"urn:a\", \"manifests\": {\"urn:a\": {\"claim_generator\": \"Grok Imagine \\u2014 \\u5317\\u4eac\", \"signature_info\": {\"issuer\": \"xAI Grok Imagine\", \"time\": [1, \"a\"]}}}}",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (177 bytes)\", \"issuer\": \"xAI Grok Imagine\", \"c2pa_identity_ai\": true, \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"claim_generator\": \"Grok Imagine \\u2014 \\u5317\\u4eac\", \"timestamp\": \"[1, 'a']\"}",
+  "helpers": {
+   "credential_level": "unverified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": "xAI Grok Imagine",
+   "vendor_platform": "xAI Grok Imagine",
+   "markers_claim_ai": true
+  }
+ }
+}

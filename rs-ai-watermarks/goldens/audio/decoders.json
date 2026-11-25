@@ -1,0 +1,1400 @@
+{
+ "pattern": [
+  1,
+  1,
+  1,
+  1,
+  0,
+  0,
+  1,
+  0,
+  0,
+  1,
+  1,
+  1,
+  0,
+  1,
+  1,
+  0
+ ],
+ "audioseal": [
+  {
+   "probs": {
+    "seed": 1,
+    "count": 1,
+    "lo": 0.0,
+    "hi": 1.0
+   },
+   "message": {
+    "seed": 101,
+    "count": 16,
+    "lo": -1.0,
+    "hi": 2.0
+   },
+   "result": {
+    "ok": {
+     "mean_detect_prob": 0.5665615797042847,
+     "frac_above_threshold": 1.0,
+     "decoded_bits": [
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "probs": {
+    "seed": 2,
+    "count": 7,
+    "lo": 0.0,
+    "hi": 1.0
+   },
+   "message": {
+    "seed": 102,
+    "count": 16,
+    "lo": -1.0,
+    "hi": 2.0
+   },
+   "result": {
+    "ok": {
+     "mean_detect_prob": 0.5837087035179138,
+     "frac_above_threshold": 0.7142857142857143,
+     "decoded_bits": [
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "probs": {
+    "seed": 3,
+    "count": 100,
+    "lo": 0.0,
+    "hi": 1.0
+   },
+   "message": {
+    "seed": 103,
+    "count": 16,
+    "lo": -1.0,
+    "hi": 2.0
+   },
+   "result": {
+    "ok": {
+     "mean_detect_prob": 0.5084478259086609,
+     "frac_above_threshold": 0.51,
+     "decoded_bits": [
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "probs": {
+    "seed": 4,
+    "count": 16000,
+    "lo": 0.0,
+    "hi": 1.0
+   },
+   "message": {
+    "seed": 104,
+    "count": 16,
+    "lo": -1.0,
+    "hi": 2.0
+   },
+   "result": {
+    "ok": {
+     "mean_detect_prob": 0.49912866950035095,
+     "frac_above_threshold": 0.497,
+     "decoded_bits": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "probs": {
+    "seed": 5,
+    "count": 40000,
+    "lo": 0.0,
+    "hi": 1.0
+   },
+   "message": {
+    "seed": 105,
+    "count": 16,
+    "lo": -1.0,
+    "hi": 2.0
+   },
+   "result": {
+    "ok": {
+     "mean_detect_prob": 0.5002344846725464,
+     "frac_above_threshold": 0.5024,
+     "decoded_bits": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "probs": {
+    "seed": 6,
+    "count": 9000,
+    "lo": 0.0,
+    "hi": 0.6
+   },
+   "message": {
+    "seed": 106,
+    "count": 16,
+    "lo": -1.0,
+    "hi": 2.0
+   },
+   "result": {
+    "ok": {
+     "mean_detect_prob": 0.30011996626853943,
+     "frac_above_threshold": 0.17033333333333334,
+     "decoded_bits": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  }
+ ],
+ "wavmark": [
+  {
+   "length": 16000,
+   "every": 0,
+   "result": {
+    "ok": {
+     "payload": null,
+     "start_samples": []
+    }
+   }
+  },
+  {
+   "length": 16000,
+   "every": 1,
+   "result": {
+    "ok": {
+     "payload": [
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0
+     ],
+     "start_samples": [
+      0
+     ]
+    }
+   }
+  },
+  {
+   "length": 20001,
+   "every": 1600,
+   "result": {
+    "ok": {
+     "payload": [
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0
+     ],
+     "start_samples": [
+      0,
+      1600,
+      3200
+     ]
+    }
+   }
+  },
+  {
+   "length": 40000,
+   "every": 2400,
+   "result": {
+    "ok": {
+     "payload": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+     ],
+     "start_samples": [
+      0,
+      2400,
+      4800,
+      7200,
+      9600,
+      12000,
+      14400,
+      16800,
+      19200,
+      21600,
+      24000
+     ]
+    }
+   }
+  },
+  {
+   "length": 64123,
+   "every": 4000,
+   "result": {
+    "ok": {
+     "payload": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0
+     ],
+     "start_samples": [
+      0,
+      4000,
+      8000,
+      12000,
+      16000,
+      20000,
+      24000,
+      28000,
+      32000,
+      36000,
+      40000,
+      44000,
+      48000
+     ]
+    }
+   }
+  },
+  {
+   "length": 15999,
+   "every": 1,
+   "result": {
+    "error": {
+     "type": "ValueError",
+     "message": "WavMark requires at least 16000 finite mono samples at 16 kHz"
+    }
+   }
+  }
+ ],
+ "openvoice": [
+  {
+   "length": 16000,
+   "flips": [
+    0,
+    0
+   ],
+   "result": {
+    "whole": {
+     "start_samples": [
+      0
+     ],
+     "decoded_bits": [
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+     ],
+     "reference_hex": "64656661",
+     "matching_bits": 32,
+     "adjusted_binomial_tail": 2.3283064365386963e-10,
+     "framing": "openvoice-default"
+    },
+    "fragments": [
+     {
+      "start_samples": [
+       0
+      ],
+      "decoded_bits": [
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       0,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "reference_hex": "64656661",
+      "matching_bits": 32,
+      "adjusted_binomial_tail": 2.3283064365386963e-10,
+      "framing": "openvoice-default"
+     }
+    ]
+   }
+  },
+  {
+   "length": 16000,
+   "flips": [
+    5,
+    0
+   ],
+   "result": {
+    "whole": {
+     "start_samples": [
+      0
+     ],
+     "decoded_bits": [
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1
+     ],
+     "reference_hex": "64656661",
+     "matching_bits": 27,
+     "adjusted_binomial_tail": 5.653710104525089e-05,
+     "framing": "openvoice-default"
+    },
+    "fragments": [
+     {
+      "start_samples": [
+       0
+      ],
+      "decoded_bits": [
+       1,
+       1,
+       1,
+       0,
+       0,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       1,
+       1,
+       0,
+       1,
+       1,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0,
+       1,
+       1,
+       0,
+       1,
+       0,
+       0,
+       1
+      ],
+      "reference_hex": "64656661",
+      "matching_bits": 27,
+      "adjusted_binomial_tail": 5.653710104525089e-05,
+      "framing": "openvoice-default"
+     }
+    ]
+   }
+  },
+  {
+   "length": 48000,
+   "flips": [
+    0,
+    0
+   ],
+   "result": {
+    "whole": {
+     "start_samples": [
+      0,
+      32000
+     ],
+     "decoded_bits": [
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "reference_hex": "64656661756c7420",
+     "matching_bits": 64,
+     "adjusted_binomial_tail": 1.6263032587282567e-19,
+     "framing": "openvoice-default"
+    },
+    "fragments": [
+     {
+      "start_samples": [
+       0
+      ],
+      "decoded_bits": [
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       0,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "reference_hex": "64656661",
+      "matching_bits": 32,
+      "adjusted_binomial_tail": 6.984919309616089e-10,
+      "framing": "openvoice-default"
+     },
+     {
+      "start_samples": [
+       32000
+      ],
+      "decoded_bits": [
+       0,
+       1,
+       1,
+       1,
+       0,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0,
+       1,
+       1,
+       0,
+       0,
+       0,
+       1,
+       1,
+       1,
+       0,
+       1,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "reference_hex": "756c7420",
+      "matching_bits": 32,
+      "adjusted_binomial_tail": 6.984919309616089e-10,
+      "framing": "openvoice-default"
+     }
+    ]
+   }
+  },
+  {
+   "length": 48000,
+   "flips": [
+    3,
+    9
+   ],
+   "result": {
+    "whole": {
+     "start_samples": [
+      0,
+      32000
+     ],
+     "decoded_bits": [
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0
+     ],
+     "reference_hex": "64656661756c7420",
+     "matching_bits": 52,
+     "adjusted_binomial_tail": 6.849916050668116e-07,
+     "framing": "openvoice-default"
+    },
+    "fragments": [
+     {
+      "start_samples": [
+       0
+      ],
+      "decoded_bits": [
+       1,
+       1,
+       1,
+       0,
+       0,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       1,
+       1,
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "reference_hex": "64656661",
+      "matching_bits": 29,
+      "adjusted_binomial_tail": 3.834022209048271e-06,
+      "framing": "openvoice-default"
+     },
+     {
+      "start_samples": [
+       32000
+      ],
+      "decoded_bits": [
+       1,
+       1,
+       1,
+       0,
+       0,
+       1,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0,
+       1,
+       1,
+       1,
+       0,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0,
+       1,
+       0,
+       1,
+       0,
+       0,
+       0
+      ],
+      "reference_hex": "756c7420",
+      "matching_bits": 23,
+      "adjusted_binomial_tail": 0.030092410510405898,
+      "framing": "openvoice-default"
+     }
+    ]
+   }
+  },
+  {
+   "length": 48000,
+   "flips": [
+    12,
+    14
+   ],
+   "result": {
+    "whole": {
+     "start_samples": [
+      0,
+      32000
+     ],
+     "decoded_bits": [
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1
+     ],
+     "reference_hex": "64656661756c7420",
+     "matching_bits": 38,
+     "adjusted_binomial_tail": 0.25296436715955506,
+     "framing": "openvoice-default"
+    },
+    "fragments": [
+     {
+      "start_samples": [
+       0
+      ],
+      "decoded_bits": [
+       1,
+       1,
+       1,
+       1,
+       0,
+       1,
+       1,
+       1,
+       0,
+       1,
+       0,
+       0,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       0,
+       0,
+       0,
+       1,
+       0,
+       1,
+       1,
+       1,
+       0,
+       1,
+       0,
+       0,
+       0
+      ],
+      "reference_hex": "64656661",
+      "matching_bits": 20,
+      "adjusted_binomial_tail": 0.32299072458408773,
+      "framing": "openvoice-default"
+     },
+     {
+      "start_samples": [
+       32000
+      ],
+      "decoded_bits": [
+       1,
+       1,
+       1,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       0,
+       0,
+       1,
+       0,
+       1,
+       0,
+       0,
+       0,
+       1,
+       1,
+       1,
+       0,
+       0,
+       0,
+       1,
+       0,
+       1,
+       1,
+       1,
+       0,
+       0,
+       1
+      ],
+      "reference_hex": "756c7420",
+      "matching_bits": 18,
+      "adjusted_binomial_tail": 0.8949223437812179,
+      "framing": "openvoice-default"
+     }
+    ]
+   }
+  },
+  {
+   "length": 40000,
+   "flips": [
+    2,
+    0
+   ],
+   "result": {
+    "whole": {
+     "start_samples": [
+      0
+     ],
+     "decoded_bits": [
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+     ],
+     "reference_hex": "64656661",
+     "matching_bits": 30,
+     "adjusted_binomial_tail": 1.2316741049289703e-07,
+     "framing": "openvoice-default"
+    },
+    "fragments": [
+     {
+      "start_samples": [
+       0
+      ],
+      "decoded_bits": [
+       1,
+       1,
+       1,
+       0,
+       0,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0,
+       1,
+       1,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "reference_hex": "64656661",
+      "matching_bits": 30,
+      "adjusted_binomial_tail": 1.2316741049289703e-07,
+      "framing": "openvoice-default"
+     }
+    ]
+   }
+  }
+ ],
+ "perth": [
+  {
+   "raw": [
+    "0.3"
+   ],
+   "result": {
+    "ok": {
+     "confidence": 0.30000001192092896
+    }
+   }
+  },
+  {
+   "raw": [
+    "1.7"
+   ],
+   "result": {
+    "ok": {
+     "confidence": 1.0
+    }
+   }
+  },
+  {
+   "raw": [
+    "-0.2"
+   ],
+   "result": {
+    "ok": {
+     "confidence": 0.0
+    }
+   }
+  },
+  {
+   "raw": [
+    "nan"
+   ],
+   "result": {
+    "error": {
+     "type": "RuntimeError",
+     "message": "Perth returned an invalid presence confidence"
+    }
+   }
+  },
+  {
+   "raw": [
+    "0.1",
+    "0.2"
+   ],
+   "result": {
+    "error": {
+     "type": "RuntimeError",
+     "message": "Perth returned an invalid presence confidence"
+    }
+   }
+  },
+  {
+   "raw": [
+    "0.5"
+   ],
+   "result": {
+    "ok": {
+     "confidence": 0.5
+    }
+   }
+  },
+  {
+   "raw": [
+    "0.3"
+   ],
+   "short": true,
+   "result": {
+    "error": {
+     "type": "ValueError",
+     "message": "Perth requires at least one second of finite mono samples at 16 kHz"
+    }
+   }
+  }
+ ],
+ "silentcipher": [
+  {
+   "kind": "valid",
+   "seed": 10,
+   "frames": 63,
+   "scores_sum": 143.72419560818525,
+   "result": {
+    "payload": [
+     57,
+     57,
+     57,
+     57,
+     57
+    ],
+    "consistency": 1.0
+   }
+  },
+  {
+   "kind": "valid",
+   "seed": 11,
+   "frames": 70,
+   "scores_sum": 163.15056478668703,
+   "result": {
+    "payload": [
+     57,
+     57,
+     57,
+     57,
+     57
+    ],
+    "consistency": 0.9841269841269841
+   }
+  },
+  {
+   "kind": "valid",
+   "seed": 13,
+   "frames": 105,
+   "scores_sum": 248.02257744100643,
+   "result": {
+    "payload": [
+     57,
+     57,
+     57,
+     57,
+     57
+    ],
+    "consistency": 0.9714285714285714
+   }
+  },
+  {
+   "kind": "two_zeros",
+   "seed": 14,
+   "frames": 63,
+   "scores_sum": 149.55268992984202,
+   "result": {
+    "payload": null,
+    "consistency": 0.9365079365079365
+   }
+  },
+  {
+   "kind": "no_zero",
+   "seed": 15,
+   "frames": 84,
+   "scores_sum": 183.03075650520623,
+   "result": {
+    "payload": null,
+    "consistency": 1.0
+   }
+  },
+  {
+   "kind": "random",
+   "seed": 16,
+   "frames": 63,
+   "scores_sum": 144.1368250529622,
+   "result": {
+    "payload": null,
+    "consistency": 0.9841269841269841
+   }
+  },
+  {
+   "kind": "random",
+   "seed": 17,
+   "frames": 200,
+   "scores_sum": 444.5834843030316,
+   "result": {
+    "payload": null,
+    "consistency": 0.9894179894179894
+   }
+  },
+  {
+   "kind": "valid",
+   "seed": 18,
+   "frames": 62,
+   "scores_sum": 145.06413030414842,
+   "result": {
+    "error": "SilentCipher returned too few complete message repetitions"
+   }
+  }
+ ]
+}

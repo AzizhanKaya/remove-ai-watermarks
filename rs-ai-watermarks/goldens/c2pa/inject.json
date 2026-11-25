@@ -1,0 +1,15 @@
+{
+ "cabx": "5d5ed4f0d2e76d3792b37d90b262f43e8a8a5c81a9ce32635b0492aa747ee27c",
+ "cabx-not-c2pa": "5d5ed4f0d2e76d3792b37d90b262f43e8a8a5c81a9ce32635b0492aa747ee27c",
+ "cabx-after-idat": "5d5ed4f0d2e76d3792b37d90b262f43e8a8a5c81a9ce32635b0492aa747ee27c",
+ "cabx-truncated": "error:Target is not a well-formed PNG file",
+ "app11-text": "3cde64552044e73b1d81bb89899f9c5ac1ef6cc8b30e2d575b2bc9f8fc70a764",
+ "app11-ztxt": "d6f81d75beff2ae5d956d51b8032959e2e67df5b386715f7ee7fcbff2b524a96",
+ "app11-itxt": "c216b0ca95cfa100079fdc3b34f51bf913358194e95a411c5e0cd1b7187ac91a",
+ "app11-itxt-plain": "183f2929f186a63b81f65592787d0f99976460702a5f35dc2972754dc6b57f38",
+ "app11-then-cabx": "3cde64552044e73b1d81bb89899f9c5ac1ef6cc8b30e2d575b2bc9f8fc70a764",
+ "app11-bad-hex": "7802ccebd42b8a2d6e10d0393fd1269c9a4372d946efc18fb319cde94f15ffe7",
+ "no-iend": "error:Target is not a well-formed PNG file",
+ "ai-text": "5ce8c157668e66e2d27c62f5683dc453910cc15157c1e17bfff686fbd9cafdbf",
+ "not-png": "error:Target is not a well-formed PNG file"
+}

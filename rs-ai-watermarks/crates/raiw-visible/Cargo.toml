@@ -1,0 +1,39 @@
+[package]
+name = "raiw-visible"
+description = "Visible AI mark registry, provider engines, reverse alpha blending and region erasing"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[features]
+default = ["turbojpeg"]
+# libjpeg-turbo decoding (system libturbojpeg) so JPEG pixels match cv2's bundled decoder bit for bit.
+turbojpeg = ["dep:turbojpeg"]
+heif = ["dep:libheif-rs"]
+
+[dependencies]
+raiw-core.workspace = true
+raiw-cv.workspace = true
+raiw-container.workspace = true
+thiserror.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+rayon.workspace = true
+image.workspace = true
+png.workspace = true
+flate2.workspace = true
+crc32fast.workspace = true
+tracing.workspace = true
+turbojpeg = { version = "1.5.1", optional = true, default-features = false, features = ["pkg-config"] }
+libheif-rs = { version = "2.7.0", optional = true, default-features = false, features = ["v1_21"] }
+
+[dev-dependencies]
+raiw-core = { workspace = true, features = ["testing"] }
+sha2.workspace = true
+hex.workspace = true
+tempfile.workspace = true
+
+[lints]
+workspace = true

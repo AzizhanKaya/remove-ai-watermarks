@@ -1,0 +1,7981 @@
+[
+ {
+  "text": "The curator Maya sent 12 crates.",
+  "spans": [
+   [
+    "prose",
+    "The curator Maya sent 12 crates.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The crew counted 12 crates.\n\nStaff will record the seal number in the log.",
+  "spans": [
+   [
+    "prose",
+    "The crew counted 12 crates.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Staff will record the seal number in the log.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The crew counted 13 crates.\n\nStaff will enter the seal number in the log.",
+  "spans": [
+   [
+    "prose",
+    "The crew counted 13 crates.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Staff will enter the seal number in the log.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The crew counted 12 crates.\n\nStaff will enter the seal number in the log.",
+  "spans": [
+   [
+    "prose",
+    "The crew counted 12 crates.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Staff will enter the seal number in the log.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The crew tallied 12 crates.\n\nStaff will enter the seal number in the log.",
+  "spans": [
+   [
+    "prose",
+    "The crew tallied 12 crates.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Staff will enter the seal number in the log.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Maya sent 12 crates, tagged `x=1`.",
+  "spans": [
+   [
+    "prose",
+    "Maya sent 12 crates, tagged ",
+    false
+   ],
+   [
+    "inline_code",
+    "`x=1`",
+    true
+   ],
+   [
+    "prose",
+    ".",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Maya sent crates.",
+  "spans": [
+   [
+    "prose",
+    "Maya sent crates.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Tools sent crates.",
+  "spans": [
+   [
+    "prose",
+    "Tools sent crates.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Visitors used the room.\r\n\r\n`value = 12`\r\n\r\nReaders borrowed books.",
+  "spans": [
+   [
+    "prose",
+    "Visitors used the room.",
+    false
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "inline_code",
+    "`value = 12`",
+    true
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "prose",
+    "Readers borrowed books.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Visitors used the room.\n\n`value = 12`\n\nReaders borrowed books.",
+  "spans": [
+   [
+    "prose",
+    "Visitors used the room.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "inline_code",
+    "`value = 12`",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Readers borrowed books.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Staff used the room.\r\n\r\n`value = 12`\r\n\r\nGuests borrowed books.",
+  "spans": [
+   [
+    "prose",
+    "Staff used the room.",
+    false
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "inline_code",
+    "`value = 12`",
+    true
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "prose",
+    "Guests borrowed books.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Staff used the room.\n\n`value = 12`\n\nGuests borrowed books.",
+  "spans": [
+   [
+    "prose",
+    "Staff used the room.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "inline_code",
+    "`value = 12`",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Guests borrowed books.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Guests used the room.\r\n\r\n`value = 12`\r\n\r\nReaders checked out books.",
+  "spans": [
+   [
+    "prose",
+    "Guests used the room.",
+    false
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "inline_code",
+    "`value = 12`",
+    true
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "prose",
+    "Readers checked out books.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Guests used the room.\n\n`value = 12`\n\nReaders checked out books.",
+  "spans": [
+   [
+    "prose",
+    "Guests used the room.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "inline_code",
+    "`value = 12`",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Readers checked out books.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The team sent 12 files.",
+  "spans": [
+   [
+    "prose",
+    "The team sent 12 files.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The team shipped 19 files.",
+  "spans": [
+   [
+    "prose",
+    "The team shipped 19 files.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The team shipped 12 files.",
+  "spans": [
+   [
+    "prose",
+    "The team shipped 12 files.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Visitors used the room.\n\nReaders borrowed books.",
+  "spans": [
+   [
+    "prose",
+    "Visitors used the room.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Readers borrowed books.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Guests used the room.\n\nReaders borrowed books.",
+  "spans": [
+   [
+    "prose",
+    "Guests used the room.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Readers borrowed books.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Visitors used the room.",
+  "spans": [
+   [
+    "prose",
+    "Visitors used the room.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Guests used the room.",
+  "spans": [
+   [
+    "prose",
+    "Guests used the room.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Readers visit the library.\tIt closes at noon.\r\n",
+  "spans": [
+   [
+    "prose",
+    "Readers visit the library.\tIt closes at noon.\r\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Readers visit the library.\tIt closes at noon.\n",
+  "spans": [
+   [
+    "prose",
+    "Readers visit the library.\tIt closes at noon.\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "People visit the library.\tIt shuts at noon.\r\n",
+  "spans": [
+   [
+    "prose",
+    "People visit the library.\tIt shuts at noon.\r\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "People visit the library.\tIt shuts at noon.\n",
+  "spans": [
+   [
+    "prose",
+    "People visit the library.\tIt shuts at noon.\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Readers borrowed 12 books.",
+  "spans": [
+   [
+    "prose",
+    "Readers borrowed 12 books.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Readers checked out 19 books.",
+  "spans": [
+   [
+    "prose",
+    "Readers checked out 19 books.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Readers visit the library.\n\nIt closes at noon.",
+  "spans": [
+   [
+    "prose",
+    "Readers visit the library.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "It closes at noon.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "People visit the library.\n\nIt closes at noon.",
+  "spans": [
+   [
+    "prose",
+    "People visit the library.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "It closes at noon.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph לַ͏ִם; Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph לַ͏ִם; Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph לַ󠁭󠁥󠁭󠁯󠁿͏ִם; Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph לַ󠁭󠁥󠁭󠁯󠁿͏ִם; Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph לַ͏ִם; ⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph לַ͏ִם; ⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph לַ͏ִם; Me͏mo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph לַ͏ִם; Me͏mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph t͡͏́s; Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph t͡͏́s; Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph t͡󠁭󠁥󠁭󠁯󠁿͏́s; Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph t͡󠁭󠁥󠁭󠁯󠁿͏́s; Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph t͡͏́s; ⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph t͡͏́s; ⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph t͡͏́s; Me͏mo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph t͡͏́s; Me͏mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph بّ͏َ; Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph بّ͏َ; Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph بّ󠁭󠁥󠁭󠁯󠁿͏َ; Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph بّ󠁭󠁥󠁭󠁯󠁿͏َ; Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph بّ͏َ; ⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph بّ͏َ; ⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph بّ͏َ; Me͏mo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph بّ͏َ; Me͏mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph Ḋ͏̣; Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph Ḋ͏̣; Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph Ḋ󠁭󠁥󠁭󠁯󠁿͏̣; Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph Ḋ󠁭󠁥󠁭󠁯󠁿͏̣; Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph Ḋ͏̣; ⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph Ḋ͏̣; ⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph Ḋ͏̣; Me͏mo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph Ḋ͏̣; Me͏mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph q́̕͏̧̈; Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph q́̕͏̧̈; Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph q́̕󠁭󠁥󠁭󠁯󠁿͏̧̈; Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph q́̕󠁭󠁥󠁭󠁯󠁿͏̧̈; Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph q́̕͏̧̈; ⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph q́̕͏̧̈; ⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph q́̕͏̧̈; Me͏mo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph q́̕͏̧̈; Me͏mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me͏mo.",
+  "spans": [
+   [
+    "prose",
+    "Me͏mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo.",
+  "spans": [
+   [
+    "prose",
+    "Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me͏͏mo.",
+  "spans": [
+   [
+    "prose",
+    "Me͏͏mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "q́͏̈",
+  "spans": [
+   [
+    "prose",
+    "q́͏̈",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "q́̈",
+  "spans": [
+   [
+    "prose",
+    "q́̈",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "q̣͏́",
+  "spans": [
+   [
+    "prose",
+    "q̣͏́",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "q̣́",
+  "spans": [
+   [
+    "prose",
+    "q̣́",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ภาษาไทย​ทดสอบ",
+  "spans": [
+   [
+    "prose",
+    "ภาษาไทย​ทดสอบ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ภาษาไทย​ทดสอบ\n\nCheck dock​side.",
+  "spans": [
+   [
+    "prose",
+    "ภาษาไทย​ทดสอบ",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Check dock​side.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ภาษาไทย​ทดสอบ\n\nCheck dockside.",
+  "spans": [
+   [
+    "prose",
+    "ภาษาไทย​ทดสอบ",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Check dockside.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Example: `label = 'a​b'`.",
+  "spans": [
+   [
+    "prose",
+    "Example: ",
+    false
+   ],
+   [
+    "inline_code",
+    "`label = 'a​b'`",
+    true
+   ],
+   [
+    "prose",
+    ".",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Example: `label = 'a​b'`.\n\nCheck dock​side.",
+  "spans": [
+   [
+    "prose",
+    "Example: ",
+    false
+   ],
+   [
+    "inline_code",
+    "`label = 'a​b'`",
+    true
+   ],
+   [
+    "prose",
+    ".",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Check dock​side.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Example: `label = 'a​b'`.\n\nCheck dockside.",
+  "spans": [
+   [
+    "prose",
+    "Example: ",
+    false
+   ],
+   [
+    "inline_code",
+    "`label = 'a​b'`",
+    true
+   ],
+   [
+    "prose",
+    ".",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Check dockside.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Example:\r\n\r\n```python\r\nlabel = 'a​b'\r\n```\r\n",
+  "spans": [
+   [
+    "prose",
+    "Example:",
+    false
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "fenced_code",
+    "```python\r\nlabel = 'a​b'\r\n```",
+    true
+   ],
+   [
+    "whitespace",
+    "\r\n",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "Example:\n\n```python\nlabel = 'a​b'\n```\n",
+  "spans": [
+   [
+    "prose",
+    "Example:",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "fenced_code",
+    "```python\nlabel = 'a​b'\n```",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "Example:\r\n\r\n```python\r\nlabel = 'a​b'\r\n```\r\n\n\nCheck dock​side.",
+  "spans": [
+   [
+    "prose",
+    "Example:",
+    false
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "fenced_code",
+    "```python\r\nlabel = 'a​b'\r\n```",
+    true
+   ],
+   [
+    "whitespace",
+    "\r\n\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Check dock​side.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Example:\n\n```python\nlabel = 'a​b'\n```\n\n\nCheck dock​side.",
+  "spans": [
+   [
+    "prose",
+    "Example:",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "fenced_code",
+    "```python\nlabel = 'a​b'\n```",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Check dock​side.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Example:\r\n\r\n```python\r\nlabel = 'a​b'\r\n```\r\n\n\nCheck dockside.",
+  "spans": [
+   [
+    "prose",
+    "Example:",
+    false
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "fenced_code",
+    "```python\r\nlabel = 'a​b'\r\n```",
+    true
+   ],
+   [
+    "whitespace",
+    "\r\n\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Check dockside.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Example:\n\n```python\nlabel = 'a​b'\n```\n\n\nCheck dockside.",
+  "spans": [
+   [
+    "prose",
+    "Example:",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "fenced_code",
+    "```python\nlabel = 'a​b'\n```",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Check dockside.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ภาษาไทย​​ทดสอบ",
+  "spans": [
+   [
+    "prose",
+    "ภาษาไทย​​ทดสอบ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ภาษาไทยทดสอบ",
+  "spans": [
+   [
+    "prose",
+    "ภาษาไทยทดสอบ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Example: `x = 'a​⁣b'`.",
+  "spans": [
+   [
+    "prose",
+    "Example: ",
+    false
+   ],
+   [
+    "inline_code",
+    "`x = 'a​⁣b'`",
+    true
+   ],
+   [
+    "prose",
+    ".",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Example: `x = 'ab'`.",
+  "spans": [
+   [
+    "prose",
+    "Example: ",
+    false
+   ],
+   [
+    "inline_code",
+    "`x = 'ab'`",
+    true
+   ],
+   [
+    "prose",
+    ".",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ภาษาไทย​test",
+  "spans": [
+   [
+    "prose",
+    "ภาษาไทย​test",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ภาษาไทยtest",
+  "spans": [
+   [
+    "prose",
+    "ภาษาไทยtest",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Staffing costs $500 per week and updates cost $1,750 per phase.",
+  "spans": [
+   [
+    "prose",
+    "Staffing costs $500 per week and updates cost $1,750 per phase.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The estimates are $20,000 and $30,000.",
+  "spans": [
+   [
+    "prose",
+    "The estimates are $20,000 and $30,000.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Prices range from $5 to $10, with a $20 deposit.",
+  "spans": [
+   [
+    "prose",
+    "Prices range from $5 to $10, with a $20 deposit.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The price range is $5-$10.",
+  "spans": [
+   [
+    "prose",
+    "The price range is $5-$10.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "A closing delimiter followed by a digit, $x$2, is literal text.",
+  "spans": [
+   [
+    "prose",
+    "A closing delimiter followed by a digit, $x$2, is literal text.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The first item costs $5. The second item costs $10.",
+  "spans": [
+   [
+    "prose",
+    "The first item costs $5. The second item costs $10.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "An amount $ 5 and another $ 10 are recorded.",
+  "spans": [
+   [
+    "prose",
+    "An amount $ 5 and another $ 10 are recorded.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Literal delimiters $ x $ have spaces inside them.",
+  "spans": [
+   [
+    "prose",
+    "Literal delimiters $ x $ have spaces inside them.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "A spaced opening $ x$ is literal text.",
+  "spans": [
+   [
+    "prose",
+    "A spaced opening $ x$ is literal text.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "A spaced closing $x $ is literal text.",
+  "spans": [
+   [
+    "prose",
+    "A spaced closing $x $ is literal text.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Costs are $500\r\nper week and $1,750 per phase.",
+  "spans": [
+   [
+    "prose",
+    "Costs are $500\r\nper week and $1,750 per phase.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Costs are $500\nper week and $1,750 per phase.",
+  "spans": [
+   [
+    "prose",
+    "Costs are $500\nper week and $1,750 per phase.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "A $500 budget uses $x + 1$ as its formula.",
+  "spans": [
+   [
+    "prose",
+    "A $500 budget uses ",
+    false
+   ],
+   [
+    "math_inline",
+    "$x + 1$",
+    true
+   ],
+   [
+    "prose",
+    " as its formula.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Formula $x + 1$ precedes the $500 and $1,750 amounts.",
+  "spans": [
+   [
+    "prose",
+    "Formula ",
+    false
+   ],
+   [
+    "math_inline",
+    "$x + 1$",
+    true
+   ],
+   [
+    "prose",
+    " precedes the $500 and $1,750 amounts.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The value $5 + 2$ is seven.",
+  "spans": [
+   [
+    "prose",
+    "The value ",
+    false
+   ],
+   [
+    "math_inline",
+    "$5 + 2$",
+    true
+   ],
+   [
+    "prose",
+    " is seven.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The variable $x$ is positive.",
+  "spans": [
+   [
+    "prose",
+    "The variable ",
+    false
+   ],
+   [
+    "math_inline",
+    "$x$",
+    true
+   ],
+   [
+    "prose",
+    " is positive.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "A $500 budget uses \\(x + 1\\) as its formula.",
+  "spans": [
+   [
+    "prose",
+    "A $500 budget uses ",
+    false
+   ],
+   [
+    "math_inline",
+    "\\(x + 1\\)",
+    true
+   ],
+   [
+    "prose",
+    " as its formula.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press #︎ now.",
+  "spans": [
+   [
+    "prose",
+    "Press #︎ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press #︎ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press #︎ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press #️ now.",
+  "spans": [
+   [
+    "prose",
+    "Press #️ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press #️ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press #️ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press *︎ now.",
+  "spans": [
+   [
+    "prose",
+    "Press *︎ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press *︎ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press *︎ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press *️ now.",
+  "spans": [
+   [
+    "prose",
+    "Press *️ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press *️ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press *️ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 0︎ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 0︎ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 0︎ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 0︎ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 0️ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 0️ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 0️ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 0️ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 1︎ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 1︎ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 1︎ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 1︎ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 1️ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 1️ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 1️ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 1️ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 2︎ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 2︎ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 2︎ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 2︎ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 2️ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 2️ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 2️ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 2️ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 3︎ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 3︎ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 3︎ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 3︎ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 3️ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 3️ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 3️ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 3️ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 4︎ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 4︎ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 4︎ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 4︎ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 4️ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 4️ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 4️ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 4️ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 5︎ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 5︎ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 5︎ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 5︎ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 5️ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 5️ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 5️ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 5️ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 6︎ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 6︎ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 6︎ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 6︎ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 6️ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 6️ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 6️ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 6️ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 7︎ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 7︎ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 7︎ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 7︎ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 7️ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 7️ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 7️ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 7️ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 8︎ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 8︎ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 8︎ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 8︎ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 8️ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 8️ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 8️ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 8️ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 9︎ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 9︎ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 9︎ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 9︎ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 9️ now.",
+  "spans": [
+   [
+    "prose",
+    "Press 9️ now.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 9️ n​ow.",
+  "spans": [
+   [
+    "prose",
+    "Press 9️ n​ow.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ⌥︎ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ⌥︎ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ⌥ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ⌥ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ⌥️ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ⌥️ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph Ⓐ︎ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph Ⓐ︎ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph Ⓐ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph Ⓐ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph Ⓐ️ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph Ⓐ️ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph □︎ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph □︎ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph □ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph □ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph □️ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph □️ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ⚯︎ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ⚯︎ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ⚯ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ⚯ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ⚯️ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ⚯️ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ⚲︎ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ⚲︎ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ⚲ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ⚲ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ⚲️ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ⚲️ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ⬠︎ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ⬠︎ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ⬠ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ⬠ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ⬠️ in the sample.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ⬠️ in the sample.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 一󠄀 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 一󠄀 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 㐄󠄂 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 㐄󠄂 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 葛󠄉 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 葛󠄉 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 邊󠄔 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 邊󠄔 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 𠀀󠄂 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 𠀀󠄂 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 一󠄁 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 一󠄁 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 一 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 一 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 㐄󠄃 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 㐄󠄃 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 㐄 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 㐄 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 葛󠄊 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 葛󠄊 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 葛 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 葛 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 邊󠄕 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 邊󠄕 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 邊 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 邊 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 𠀀󠄃 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 𠀀󠄃 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 𠀀 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 𠀀 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 豈󠄀 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 豈󠄀 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 豈 を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 豈 を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press #️⃣ to con​tinue.",
+  "spans": [
+   [
+    "prose",
+    "Press #️⃣ to con​tinue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press #️⃣ to continue.",
+  "spans": [
+   [
+    "prose",
+    "Press #️⃣ to continue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press *️⃣ to con​tinue.",
+  "spans": [
+   [
+    "prose",
+    "Press *️⃣ to con​tinue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press *️⃣ to continue.",
+  "spans": [
+   [
+    "prose",
+    "Press *️⃣ to continue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 0️⃣ to con​tinue.",
+  "spans": [
+   [
+    "prose",
+    "Press 0️⃣ to con​tinue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 0️⃣ to continue.",
+  "spans": [
+   [
+    "prose",
+    "Press 0️⃣ to continue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 1️⃣ to con​tinue.",
+  "spans": [
+   [
+    "prose",
+    "Press 1️⃣ to con​tinue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 1️⃣ to continue.",
+  "spans": [
+   [
+    "prose",
+    "Press 1️⃣ to continue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 2️⃣ to con​tinue.",
+  "spans": [
+   [
+    "prose",
+    "Press 2️⃣ to con​tinue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 2️⃣ to continue.",
+  "spans": [
+   [
+    "prose",
+    "Press 2️⃣ to continue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 3️⃣ to con​tinue.",
+  "spans": [
+   [
+    "prose",
+    "Press 3️⃣ to con​tinue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 3️⃣ to continue.",
+  "spans": [
+   [
+    "prose",
+    "Press 3️⃣ to continue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 4️⃣ to con​tinue.",
+  "spans": [
+   [
+    "prose",
+    "Press 4️⃣ to con​tinue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 4️⃣ to continue.",
+  "spans": [
+   [
+    "prose",
+    "Press 4️⃣ to continue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 5️⃣ to con​tinue.",
+  "spans": [
+   [
+    "prose",
+    "Press 5️⃣ to con​tinue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 5️⃣ to continue.",
+  "spans": [
+   [
+    "prose",
+    "Press 5️⃣ to continue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 6️⃣ to con​tinue.",
+  "spans": [
+   [
+    "prose",
+    "Press 6️⃣ to con​tinue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 6️⃣ to continue.",
+  "spans": [
+   [
+    "prose",
+    "Press 6️⃣ to continue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 7️⃣ to con​tinue.",
+  "spans": [
+   [
+    "prose",
+    "Press 7️⃣ to con​tinue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 7️⃣ to continue.",
+  "spans": [
+   [
+    "prose",
+    "Press 7️⃣ to continue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 8️⃣ to con​tinue.",
+  "spans": [
+   [
+    "prose",
+    "Press 8️⃣ to con​tinue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 8️⃣ to continue.",
+  "spans": [
+   [
+    "prose",
+    "Press 8️⃣ to continue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 9️⃣ to con​tinue.",
+  "spans": [
+   [
+    "prose",
+    "Press 9️⃣ to con​tinue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Press 9️⃣ to continue.",
+  "spans": [
+   [
+    "prose",
+    "Press 9️⃣ to continue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "A️⃣ next",
+  "spans": [
+   [
+    "prose",
+    "A️⃣ next",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "A⃣ next",
+  "spans": [
+   [
+    "prose",
+    "A⃣ next",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Write 3⁠×⁠7 above the label.",
+  "spans": [
+   [
+    "prose",
+    "Write 3⁠×⁠7 above the label.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Write 3⁠×⁠7 above the la⁠bel.",
+  "spans": [
+   [
+    "prose",
+    "Write 3⁠×⁠7 above the la⁠bel.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Write 12⁠÷⁠3 above the label.",
+  "spans": [
+   [
+    "prose",
+    "Write 12⁠÷⁠3 above the label.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Write 12⁠÷⁠3 above the la⁠bel.",
+  "spans": [
+   [
+    "prose",
+    "Write 12⁠÷⁠3 above the la⁠bel.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Write ٣⁠×⁠٧ above the label.",
+  "spans": [
+   [
+    "prose",
+    "Write ٣⁠×⁠٧ above the label.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Write ٣⁠×⁠٧ above the la⁠bel.",
+  "spans": [
+   [
+    "prose",
+    "Write ٣⁠×⁠٧ above the la⁠bel.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a⁠×⁠b",
+  "spans": [
+   [
+    "prose",
+    "a⁠×⁠b",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a×b",
+  "spans": [
+   [
+    "prose",
+    "a×b",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "3⁠×⁠⁠7",
+  "spans": [
+   [
+    "prose",
+    "3⁠×⁠⁠7",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "3×7",
+  "spans": [
+   [
+    "prose",
+    "3×7",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "dock⁠side",
+  "spans": [
+   [
+    "prose",
+    "dock⁠side",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "dockside",
+  "spans": [
+   [
+    "prose",
+    "dockside",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The room served residents in Willow Creek.",
+  "spans": [
+   [
+    "prose",
+    "The room served residents in Willow Creek.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "An original passage.",
+  "spans": [
+   [
+    "prose",
+    "An original passage.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "This source has 20 units.",
+  "spans": [
+   [
+    "prose",
+    "This source has 20 units.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Use `safe()` carefully.",
+  "spans": [
+   [
+    "prose",
+    "Use ",
+    false
+   ],
+   [
+    "inline_code",
+    "`safe()`",
+    true
+   ],
+   [
+    "prose",
+    " carefully.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "This is the original passage.",
+  "spans": [
+   [
+    "prose",
+    "This is the original passage.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "This passage has fresh wording.",
+  "spans": [
+   [
+    "prose",
+    "This passage has fresh wording.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "```python\nvalue = 1\n```",
+  "spans": [
+   [
+    "fenced_code",
+    "```python\nvalue = 1\n```",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "Original prose.\r\n\r\n```python\r\nvalue = \"source\"\r\n```\r\n",
+  "spans": [
+   [
+    "prose",
+    "Original prose.",
+    false
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "fenced_code",
+    "```python\r\nvalue = \"source\"\r\n```",
+    true
+   ],
+   [
+    "whitespace",
+    "\r\n",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "Original prose.\n\n```python\nvalue = \"source\"\n```\n",
+  "spans": [
+   [
+    "prose",
+    "Original prose.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "fenced_code",
+    "```python\nvalue = \"source\"\n```",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "Original prose.\r\r```python\rvalue = \"source\"\r```\r",
+  "spans": [
+   [
+    "prose",
+    "Original prose.",
+    false
+   ],
+   [
+    "whitespace",
+    "\r\r",
+    true
+   ],
+   [
+    "fenced_code",
+    "```python\rvalue = \"source\"\r```",
+    true
+   ],
+   [
+    "whitespace",
+    "\r",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "This paragraph is rewritten.\n\nThis retained paragraph has `original()`.\n\nFinal paragraph is rewritten.",
+  "spans": [
+   [
+    "prose",
+    "This paragraph is rewritten.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "This retained paragraph has ",
+    false
+   ],
+   [
+    "inline_code",
+    "`original()`",
+    true
+   ],
+   [
+    "prose",
+    ".",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Final paragraph is rewritten.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "This paragraph is rewritten.\n\nThis paragraph stays original.",
+  "spans": [
+   [
+    "prose",
+    "This paragraph is rewritten.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "This paragraph stays original.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Retain every word.",
+  "spans": [
+   [
+    "prose",
+    "Retain every word.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Some ordinary prose.",
+  "spans": [
+   [
+    "prose",
+    "Some ordinary prose.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "This paragraph is rewritten.\n\nThis paragraph is retained.​",
+  "spans": [
+   [
+    "prose",
+    "This paragraph is rewritten.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "This paragraph is retained.​",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "This paragraph is rewritten.\n\nThis paragraph is retained.",
+  "spans": [
+   [
+    "prose",
+    "This paragraph is rewritten.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "This paragraph is retained.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "This paragraph is rephrased.\n\nThis paragraph is retained.",
+  "spans": [
+   [
+    "prose",
+    "This paragraph is rephrased.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "This paragraph is retained.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Explain `value = 12` precisely.",
+  "spans": [
+   [
+    "prose",
+    "Explain ",
+    false
+   ],
+   [
+    "inline_code",
+    "`value = 12`",
+    true
+   ],
+   [
+    "prose",
+    " precisely.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Explain `[[RAIW_SPAN_1]]` and `value` precisely.",
+  "spans": [
+   [
+    "prose",
+    "Explain ",
+    false
+   ],
+   [
+    "inline_code",
+    "`[[RAIW_SPAN_1]]`",
+    true
+   ],
+   [
+    "prose",
+    " and ",
+    false
+   ],
+   [
+    "inline_code",
+    "`value`",
+    true
+   ],
+   [
+    "prose",
+    " precisely.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Explain [[RAIW_SPAN_0]] and `value` precisely.",
+  "spans": [
+   [
+    "prose",
+    "Explain [[RAIW_SPAN_0]] and ",
+    false
+   ],
+   [
+    "inline_code",
+    "`value`",
+    true
+   ],
+   [
+    "prose",
+    " precisely.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Original prose.",
+  "spans": [
+   [
+    "prose",
+    "Original prose.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Visitors used the room.\r\n\r\n`value = 12`\r\n\r\nVisitors used the room.",
+  "spans": [
+   [
+    "prose",
+    "Visitors used the room.",
+    false
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "inline_code",
+    "`value = 12`",
+    true
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "prose",
+    "Visitors used the room.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Visitors used the room.\n\n`value = 12`\n\nVisitors used the room.",
+  "spans": [
+   [
+    "prose",
+    "Visitors used the room.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "inline_code",
+    "`value = 12`",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Visitors used the room.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Staff used the room.\r\n\r\n`value = 12`\r\n\r\nGuests used the room.",
+  "spans": [
+   [
+    "prose",
+    "Staff used the room.",
+    false
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "inline_code",
+    "`value = 12`",
+    true
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "prose",
+    "Guests used the room.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Staff used the room.\n\n`value = 12`\n\nGuests used the room.",
+  "spans": [
+   [
+    "prose",
+    "Staff used the room.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "inline_code",
+    "`value = 12`",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Guests used the room.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Old text.",
+  "spans": [
+   [
+    "prose",
+    "Old text.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Use `different`.",
+  "spans": [
+   [
+    "prose",
+    "Use ",
+    false
+   ],
+   [
+    "inline_code",
+    "`different`",
+    true
+   ],
+   [
+    "prose",
+    ".",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "`value = 12`",
+  "spans": [
+   [
+    "inline_code",
+    "`value = 12`",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "Staff used the room.\r\n\r\n`value = 12`\r\n\r\nReaders borrowed books.",
+  "spans": [
+   [
+    "prose",
+    "Staff used the room.",
+    false
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "inline_code",
+    "`value = 12`",
+    true
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "prose",
+    "Readers borrowed books.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Staff used the room.\n\n`value = 12`\n\nReaders borrowed books.",
+  "spans": [
+   [
+    "prose",
+    "Staff used the room.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "inline_code",
+    "`value = 12`",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Readers borrowed books.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Guests used the room.\r\n\r\n`value = 12`\r\n\r\nReaders borrowed books.",
+  "spans": [
+   [
+    "prose",
+    "Guests used the room.",
+    false
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "inline_code",
+    "`value = 12`",
+    true
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "prose",
+    "Readers borrowed books.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Guests used the room.\n\n`value = 12`\n\nReaders borrowed books.",
+  "spans": [
+   [
+    "prose",
+    "Guests used the room.",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "inline_code",
+    "`value = 12`",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Readers borrowed books.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Draft text.",
+  "spans": [
+   [
+    "prose",
+    "Draft text.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Repaired text.",
+  "spans": [
+   [
+    "prose",
+    "Repaired text.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "New `code`.",
+  "spans": [
+   [
+    "prose",
+    "New ",
+    false
+   ],
+   [
+    "inline_code",
+    "`code`",
+    true
+   ],
+   [
+    "prose",
+    ".",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "co­operate Memo.",
+  "spans": [
+   [
+    "prose",
+    "co­operate Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "co­operate Me⁣mo.",
+  "spans": [
+   [
+    "prose",
+    "co­operate Me⁣mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "tug­gummi Memo.",
+  "spans": [
+   [
+    "prose",
+    "tug­gummi Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "tug­gummi Me⁣mo.",
+  "spans": [
+   [
+    "prose",
+    "tug­gummi Me⁣mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ge­ërfde Memo.",
+  "spans": [
+   [
+    "prose",
+    "ge­ërfde Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ge­ërfde Me⁣mo.",
+  "spans": [
+   [
+    "prose",
+    "ge­ërfde Me⁣mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "café­ine Memo.",
+  "spans": [
+   [
+    "prose",
+    "café­ine Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "café­ine Me⁣mo.",
+  "spans": [
+   [
+    "prose",
+    "café­ine Me⁣mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "dispara­‑te Memo.",
+  "spans": [
+   [
+    "prose",
+    "dispara­‑te Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "dispara­‑te Me⁣mo.",
+  "spans": [
+   [
+    "prose",
+    "dispara­‑te Me⁣mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ин­формация Memo.",
+  "spans": [
+   [
+    "prose",
+    "ин­формация Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ин­формация Me⁣mo.",
+  "spans": [
+   [
+    "prose",
+    "ин­формация Me⁣mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "اس­تخدام Memo.",
+  "spans": [
+   [
+    "prose",
+    "اس­تخدام Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "اس­تخدام Me⁣mo.",
+  "spans": [
+   [
+    "prose",
+    "اس­تخدام Me⁣mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "co­op­erate Memo.",
+  "spans": [
+   [
+    "prose",
+    "co­op­erate Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "co­op­erate Me⁣mo.",
+  "spans": [
+   [
+    "prose",
+    "co­op­erate Me⁣mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "­Memo",
+  "spans": [
+   [
+    "prose",
+    "­Memo",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo",
+  "spans": [
+   [
+    "prose",
+    "Memo",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo­.",
+  "spans": [
+   [
+    "prose",
+    "Memo­.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "12­34",
+  "spans": [
+   [
+    "prose",
+    "12­34",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "1234",
+  "spans": [
+   [
+    "prose",
+    "1234",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "co­­operate",
+  "spans": [
+   [
+    "prose",
+    "co­­operate",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "cooperate",
+  "spans": [
+   [
+    "prose",
+    "cooperate",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a​b­c⁬d",
+  "spans": [
+   [
+    "prose",
+    "a​b­c⁬d",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "abcd",
+  "spans": [
+   [
+    "prose",
+    "abcd",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a­́bc",
+  "spans": [
+   [
+    "prose",
+    "a­́bc",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ábc",
+  "spans": [
+   [
+    "prose",
+    "ábc",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph 0︀. Read the note.",
+  "spans": [
+   [
+    "prose",
+    "Glyph 0︀. Read the note.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph 0︀. Read the no​te.",
+  "spans": [
+   [
+    "prose",
+    "Glyph 0︀. Read the no​te.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ∩︀. Read the note.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ∩︀. Read the note.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ∩︀. Read the no​te.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ∩︀. Read the no​te.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph က︀. Read the note.",
+  "spans": [
+   [
+    "prose",
+    "Glyph က︀. Read the note.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph က︀. Read the no​te.",
+  "spans": [
+   [
+    "prose",
+    "Glyph က︀. Read the no​te.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ꡖ︀. Read the note.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ꡖ︀. Read the note.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ꡖ︀. Read the no​te.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ꡖ︀. Read the no​te.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph 𓆠︂. Read the note.",
+  "spans": [
+   [
+    "prose",
+    "Glyph 𓆠︂. Read the note.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph 𓆠︂. Read the no​te.",
+  "spans": [
+   [
+    "prose",
+    "Glyph 𓆠︂. Read the no​te.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph 不︀. Read the note.",
+  "spans": [
+   [
+    "prose",
+    "Glyph 不︀. Read the note.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph 不︀. Read the no​te.",
+  "spans": [
+   [
+    "prose",
+    "Glyph 不︀. Read the no​te.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "A︀",
+  "spans": [
+   [
+    "prose",
+    "A︀",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "A",
+  "spans": [
+   [
+    "prose",
+    "A",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "0︁",
+  "spans": [
+   [
+    "prose",
+    "0︁",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "0",
+  "spans": [
+   [
+    "prose",
+    "0",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "一︆",
+  "spans": [
+   [
+    "prose",
+    "一︆",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "一",
+  "spans": [
+   [
+    "prose",
+    "一",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "0︀︁",
+  "spans": [
+   [
+    "prose",
+    "0︀︁",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo ग्‍",
+  "spans": [
+   [
+    "prose",
+    "Memo ग्‍",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo ग्󠁭󠁥󠁭󠁯󠁿‍",
+  "spans": [
+   [
+    "prose",
+    "Memo ग्󠁭󠁥󠁭󠁯󠁿‍",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo ग्‍",
+  "spans": [
+   [
+    "prose",
+    "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo ग्‍",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo ग्‍",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo ग्‍",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo र्‍.",
+  "spans": [
+   [
+    "prose",
+    "Memo र्‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo र्󠁭󠁥󠁭󠁯󠁿‍.",
+  "spans": [
+   [
+    "prose",
+    "Memo र्󠁭󠁥󠁭󠁯󠁿‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo र्‍.",
+  "spans": [
+   [
+    "prose",
+    "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo र्‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo र्‍.",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo र्‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo क़्‍ Notes.",
+  "spans": [
+   [
+    "prose",
+    "Memo क़्‍ Notes.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo क़्󠁭󠁥󠁭󠁯󠁿‍ Notes.",
+  "spans": [
+   [
+    "prose",
+    "Memo क़्󠁭󠁥󠁭󠁯󠁿‍ Notes.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo क़्‍ Notes.",
+  "spans": [
+   [
+    "prose",
+    "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo क़्‍ Notes.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo क़्‍ Notes.",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo क़्‍ Notes.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo क़्‍!",
+  "spans": [
+   [
+    "prose",
+    "Memo क़्‍!",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo क़्󠁭󠁥󠁭󠁯󠁿‍!",
+  "spans": [
+   [
+    "prose",
+    "Memo क़्󠁭󠁥󠁭󠁯󠁿‍!",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo क़्‍!",
+  "spans": [
+   [
+    "prose",
+    "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo क़्‍!",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo क़्‍!",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo क़्‍!",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo ॸ्‍\nNotes.",
+  "spans": [
+   [
+    "prose",
+    "Memo ॸ्‍\nNotes.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo ॸ्󠁭󠁥󠁭󠁯󠁿‍\nNotes.",
+  "spans": [
+   [
+    "prose",
+    "Memo ॸ्󠁭󠁥󠁭󠁯󠁿‍\nNotes.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo ॸ्‍\nNotes.",
+  "spans": [
+   [
+    "prose",
+    "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo ॸ्‍\nNotes.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo ॸ्‍\nNotes.",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo ॸ्‍\nNotes.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo അണ്‍.",
+  "spans": [
+   [
+    "prose",
+    "Memo അണ്‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo അണ്󠁭󠁥󠁭󠁯󠁿‍.",
+  "spans": [
+   [
+    "prose",
+    "Memo അണ്󠁭󠁥󠁭󠁯󠁿‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo അണ്‍.",
+  "spans": [
+   [
+    "prose",
+    "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo അണ്‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo അണ്‍.",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo അണ്‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo അന്‍",
+  "spans": [
+   [
+    "prose",
+    "Memo അന്‍",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo അന്󠁭󠁥󠁭󠁯󠁿‍",
+  "spans": [
+   [
+    "prose",
+    "Memo അന്󠁭󠁥󠁭󠁯󠁿‍",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo അന്‍",
+  "spans": [
+   [
+    "prose",
+    "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo അന്‍",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo അന്‍",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo അന്‍",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo അര്‍ Notes.",
+  "spans": [
+   [
+    "prose",
+    "Memo അര്‍ Notes.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo അര്󠁭󠁥󠁭󠁯󠁿‍ Notes.",
+  "spans": [
+   [
+    "prose",
+    "Memo അര്󠁭󠁥󠁭󠁯󠁿‍ Notes.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo അര്‍ Notes.",
+  "spans": [
+   [
+    "prose",
+    "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo അര്‍ Notes.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo അര്‍ Notes.",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo അര്‍ Notes.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo അല്‍.",
+  "spans": [
+   [
+    "prose",
+    "Memo അല്‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo അല്󠁭󠁥󠁭󠁯󠁿‍.",
+  "spans": [
+   [
+    "prose",
+    "Memo അല്󠁭󠁥󠁭󠁯󠁿‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo അല്‍.",
+  "spans": [
+   [
+    "prose",
+    "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo അല്‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo അല്‍.",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo അല്‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo അള്‍",
+  "spans": [
+   [
+    "prose",
+    "Memo അള്‍",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo അള്󠁭󠁥󠁭󠁯󠁿‍",
+  "spans": [
+   [
+    "prose",
+    "Memo അള്󠁭󠁥󠁭󠁯󠁿‍",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo അള്‍",
+  "spans": [
+   [
+    "prose",
+    "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo അള്‍",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo അള്‍",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo അള്‍",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo ꢒ꣄‍ꢰ",
+  "spans": [
+   [
+    "prose",
+    "Memo ꢒ꣄‍ꢰ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo ꢒ꣄󠁭󠁥󠁭󠁯󠁿‍ꢰ",
+  "spans": [
+   [
+    "prose",
+    "Memo ꢒ꣄󠁭󠁥󠁭󠁯󠁿‍ꢰ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo ꢒ꣄‍ꢰ",
+  "spans": [
+   [
+    "prose",
+    "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo ꢒ꣄‍ꢰ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo ꢒ꣄‍ꢰ",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo ꢒ꣄‍ꢰ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo ꢠ꣄‍ꢒ",
+  "spans": [
+   [
+    "prose",
+    "Memo ꢠ꣄‍ꢒ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo ꢠ꣄󠁭󠁥󠁭󠁯󠁿‍ꢒ",
+  "spans": [
+   [
+    "prose",
+    "Memo ꢠ꣄󠁭󠁥󠁭󠁯󠁿‍ꢒ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo ꢠ꣄‍ꢒ",
+  "spans": [
+   [
+    "prose",
+    "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo ꢠ꣄‍ꢒ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo ꢠ꣄‍ꢒ",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo ꢠ꣄‍ꢒ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo क्‍ष",
+  "spans": [
+   [
+    "prose",
+    "Memo क्‍ष",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo क्󠁭󠁥󠁭󠁯󠁿‍ष",
+  "spans": [
+   [
+    "prose",
+    "Memo क्󠁭󠁥󠁭󠁯󠁿‍ष",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo क्‍ष",
+  "spans": [
+   [
+    "prose",
+    "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo क्‍ष",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo क्‍ष",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo क्‍ष",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo क्‌ष",
+  "spans": [
+   [
+    "prose",
+    "Memo क्‌ष",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo क्󠁭󠁥󠁭󠁯󠁿‌ष",
+  "spans": [
+   [
+    "prose",
+    "Memo क्󠁭󠁥󠁭󠁯󠁿‌ष",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo क्‌ष",
+  "spans": [
+   [
+    "prose",
+    "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo क्‌ष",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo क्‌ष",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo क्‌ष",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo କ‍୍ଷ",
+  "spans": [
+   [
+    "prose",
+    "Memo କ‍୍ଷ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo କ󠁭󠁥󠁭󠁯󠁿‍୍ଷ",
+  "spans": [
+   [
+    "prose",
+    "Memo କ󠁭󠁥󠁭󠁯󠁿‍୍ଷ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo କ‍୍ଷ",
+  "spans": [
+   [
+    "prose",
+    "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo କ‍୍ଷ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo କ‍୍ଷ",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo କ‍୍ଷ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo କ୍‌ଷ",
+  "spans": [
+   [
+    "prose",
+    "Memo କ୍‌ଷ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo କ୍󠁭󠁥󠁭󠁯󠁿‌ଷ",
+  "spans": [
+   [
+    "prose",
+    "Memo କ୍󠁭󠁥󠁭󠁯󠁿‌ଷ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo କ୍‌ଷ",
+  "spans": [
+   [
+    "prose",
+    "⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢⁡⁢Memo କ୍‌ଷ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo କ୍‌ଷ",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo କ୍‌ଷ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "A्‍.",
+  "spans": [
+   [
+    "prose",
+    "A्‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "A्.",
+  "spans": [
+   [
+    "prose",
+    "A्.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "अ्‍.",
+  "spans": [
+   [
+    "prose",
+    "अ्‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "अ्.",
+  "spans": [
+   [
+    "prose",
+    "अ्.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "അ്‍.",
+  "spans": [
+   [
+    "prose",
+    "അ്‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "അ്.",
+  "spans": [
+   [
+    "prose",
+    "അ്.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ꢒ꣄‍.",
+  "spans": [
+   [
+    "prose",
+    "ꢒ꣄‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ꢒ꣄.",
+  "spans": [
+   [
+    "prose",
+    "ꢒ꣄.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ꢒ꣄‍A.",
+  "spans": [
+   [
+    "prose",
+    "ꢒ꣄‍A.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ꢒ꣄A.",
+  "spans": [
+   [
+    "prose",
+    "ꢒ꣄A.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "क‍.",
+  "spans": [
+   [
+    "prose",
+    "क‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "क.",
+  "spans": [
+   [
+    "prose",
+    "क.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "क्‍A.",
+  "spans": [
+   [
+    "prose",
+    "क्‍A.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "क्A.",
+  "spans": [
+   [
+    "prose",
+    "क्A.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me‍mo.",
+  "spans": [
+   [
+    "prose",
+    "Me‍mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "aaaaa♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "aaaaa♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿aaaaa♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿aaaaa♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "aaaaaaaaaaa♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "aaaaaaaaaaa♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿aaaaaaaaaaa♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿aaaaaaaaaaa♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "aaaaaaaaaaaa♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "aaaaaaaaaaaa♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿aaaaaaaaaaaa♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿aaaaaaaaaaaa♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "aaaaa葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "aaaaa葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿aaaaa葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿aaaaa葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "aaaaaaaaaaa葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "aaaaaaaaaaa葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿aaaaaaaaaaa葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿aaaaaaaaaaa葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "aaaaaaaaaaaa葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "aaaaaaaaaaaa葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿aaaaaaaaaaaa葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿aaaaaaaaaaaa葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "aaaaa4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "aaaaa4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿aaaaa4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿aaaaa4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "aaaaaaaaaaa4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "aaaaaaaaaaa4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿aaaaaaaaaaa4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿aaaaaaaaaaa4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "aaaaaaaaaaaa4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "aaaaaaaaaaaa4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿aaaaaaaaaaaa4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿aaaaaaaaaaaa4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "aaaaa≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "aaaaa≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿aaaaa≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿aaaaa≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "aaaaaaaaaaa≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "aaaaaaaaaaa≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿aaaaaaaaaaa≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿aaaaaaaaaaa≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "aaaaaaaaaaaa≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "aaaaaaaaaaaa≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿aaaaaaaaaaaa≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿aaaaaaaaaaaa≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "♥️葛󠄀a4️b≨︀payload carrierpayload carrierpayload carrierpayload carrierpayload carrierpayload carrier",
+  "spans": [
+   [
+    "prose",
+    "♥️葛󠄀a4️b≨︀payload carrierpayload carrierpayload carrierpayload carrierpayload carrierpayload carrier",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Use 38 mm to check the archive gauge and keep 2⁠×⁠3 on the same line.",
+  "spans": [
+   [
+    "prose",
+    "Use 38 mm to check the archive gauge and keep 2⁠×⁠3 on the same line.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Ordinary prose needs actual rewording.",
+  "spans": [
+   [
+    "prose",
+    "Ordinary prose needs actual rewording.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Unchanged source prose.",
+  "spans": [
+   [
+    "prose",
+    "Unchanged source prose.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "1. Libraries help readers.\n2) Libraries host workshops.\n- Libraries lend books.",
+  "spans": [
+   [
+    "list_marker",
+    "1. ",
+    true
+   ],
+   [
+    "prose",
+    "Libraries help readers.\n",
+    false
+   ],
+   [
+    "list_marker",
+    "2) ",
+    true
+   ],
+   [
+    "prose",
+    "Libraries host workshops.\n",
+    false
+   ],
+   [
+    "list_marker",
+    "- ",
+    true
+   ],
+   [
+    "prose",
+    "Libraries lend books.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Generated analysis paragraph with ❤️ and 👩‍💻 emoji.\n",
+  "spans": [
+   [
+    "prose",
+    "Generated analysis paragraph with ❤️ and 👩‍💻 emoji.\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Plain text body.",
+  "spans": [
+   [
+    "prose",
+    "Plain text body.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "# Heading\n\nBody paragraph.\n",
+  "spans": [
+   [
+    "markdown_structure",
+    "# Heading",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Body paragraph.\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Hello, World!\n",
+  "spans": [
+   [
+    "prose",
+    "Hello, World!\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "<root/>\n",
+  "spans": [
+   [
+    "prose",
+    "<root/>\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "café ☕\r\nsecond line\r\n",
+  "spans": [
+   [
+    "prose",
+    "café ☕\r\nsecond line\r\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "café ☕\nsecond line\n",
+  "spans": [
+   [
+    "prose",
+    "café ☕\nsecond line\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a {}\n",
+  "spans": [
+   [
+    "prose",
+    "a {}\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "<root/>\r\n",
+  "spans": [
+   [
+    "prose",
+    "<root/>\r\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Document the syntax -----BEGIN C2PA MANIFEST----- https://example.com/m.c2pa -----END C2PA MANIFEST----- in this guide.\n<!-- -----BEGIN C2PA MANIFEST----- https://example.com/m.c2pa -----END C2PA MANIFEST----- */\n# -----BEGIN C2PA MANIFEST----- data:application/c2pa;base64,??? -----END C2PA MANIFEST-----\n",
+  "spans": [
+   [
+    "prose",
+    "Document the syntax -----BEGIN C2PA MANIFEST----- ",
+    false
+   ],
+   [
+    "url",
+    "https://example.com/m.c2pa",
+    true
+   ],
+   [
+    "prose",
+    " -----END C2PA MANIFEST----- in this guide.\n<!-- -----BEGIN C2PA MANIFEST----- ",
+    false
+   ],
+   [
+    "url",
+    "https://example.com/m.c2pa",
+    true
+   ],
+   [
+    "prose",
+    " -----END C2PA MANIFEST----- */\n",
+    false
+   ],
+   [
+    "markdown_structure",
+    "# -----BEGIN C2PA MANIFEST----- data:application/c2pa;base64,??? -----END C2PA MANIFEST-----",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "<?xml version=\"1.0\"?>\r\n<root/>\r\n",
+  "spans": [
+   [
+    "prose",
+    "<?xml version=\"1.0\"?>\r\n<root/>\r\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "<?xml version=\"1.0\"?>\n<root/>\n",
+  "spans": [
+   [
+    "prose",
+    "<?xml version=\"1.0\"?>\n<root/>\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Document both forms below.\n```text\n# -----BEGIN C2PA MANIFEST----- https://example.com/example.c2pa -----END C2PA MANIFEST-----\n-----BEGIN C2PA MANIFEST-----\nhttps://example.com/example.c2pa\n-----END C2PA MANIFEST-----\n```\n",
+  "spans": [
+   [
+    "prose",
+    "Document both forms below.\n",
+    false
+   ],
+   [
+    "fenced_code",
+    "```text\n# -----BEGIN C2PA MANIFEST----- https://example.com/example.c2pa -----END C2PA MANIFEST-----\n-----BEGIN C2PA MANIFEST-----\nhttps://example.com/example.c2pa\n-----END C2PA MANIFEST-----\n```",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "# -----BEGIN C2PA MANIFEST----- https://example.com/real.c2pa -----END C2PA MANIFEST-----\nDocument both forms below.\n```text\n# -----BEGIN C2PA MANIFEST----- https://example.com/example.c2pa -----END C2PA MANIFEST-----\n-----BEGIN C2PA MANIFEST-----\nhttps://example.com/example.c2pa\n-----END C2PA MANIFEST-----\n```\n",
+  "spans": [
+   [
+    "markdown_structure",
+    "# -----BEGIN C2PA MANIFEST----- https://example.com/real.c2pa -----END C2PA MANIFEST-----",
+    true
+   ],
+   [
+    "prose",
+    "\nDocument both forms below.\n",
+    false
+   ],
+   [
+    "fenced_code",
+    "```text\n# -----BEGIN C2PA MANIFEST----- https://example.com/example.c2pa -----END C2PA MANIFEST-----\n-----BEGIN C2PA MANIFEST-----\nhttps://example.com/example.c2pa\n-----END C2PA MANIFEST-----\n```",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "Document both forms below.\r\n```text\r\n# -----BEGIN C2PA MANIFEST----- https://example.com/example.c2pa -----END C2PA MANIFEST-----\r\n-----BEGIN C2PA MANIFEST-----\r\nhttps://example.com/example.c2pa\r\n-----END C2PA MANIFEST-----\r\n```\r\n",
+  "spans": [
+   [
+    "prose",
+    "Document both forms below.\r\n",
+    false
+   ],
+   [
+    "fenced_code",
+    "```text\r\n# -----BEGIN C2PA MANIFEST----- https://example.com/example.c2pa -----END C2PA MANIFEST-----\r\n-----BEGIN C2PA MANIFEST-----\r\nhttps://example.com/example.c2pa\r\n-----END C2PA MANIFEST-----\r\n```",
+    true
+   ],
+   [
+    "whitespace",
+    "\r\n",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "# -----BEGIN C2PA MANIFEST----- https://example.com/real.c2pa -----END C2PA MANIFEST-----\r\nDocument both forms below.\r\n```text\r\n# -----BEGIN C2PA MANIFEST----- https://example.com/example.c2pa -----END C2PA MANIFEST-----\r\n-----BEGIN C2PA MANIFEST-----\r\nhttps://example.com/example.c2pa\r\n-----END C2PA MANIFEST-----\r\n```\r\n",
+  "spans": [
+   [
+    "markdown_structure",
+    "# -----BEGIN C2PA MANIFEST----- https://example.com/real.c2pa -----END C2PA MANIFEST-----",
+    true
+   ],
+   [
+    "prose",
+    "\r\nDocument both forms below.\r\n",
+    false
+   ],
+   [
+    "fenced_code",
+    "```text\r\n# -----BEGIN C2PA MANIFEST----- https://example.com/example.c2pa -----END C2PA MANIFEST-----\r\n-----BEGIN C2PA MANIFEST-----\r\nhttps://example.com/example.c2pa\r\n-----END C2PA MANIFEST-----\r\n```",
+    true
+   ],
+   [
+    "whitespace",
+    "\r\n",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "<!doctype html>\n<html>\n<head>\n  <title>Test</title>\n</head>\n<body><p>Hello world.</p></body>\n</html>\n",
+  "spans": [
+   [
+    "prose",
+    "<!doctype html>\n",
+    false
+   ],
+   [
+    "html_tag",
+    "<html>",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ],
+   [
+    "html_block",
+    "<head>\n  <title>Test</title>\n</head>",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ],
+   [
+    "html_tag",
+    "<body>",
+    true
+   ],
+   [
+    "html_tag",
+    "<p>",
+    true
+   ],
+   [
+    "prose",
+    "Hello world.",
+    false
+   ],
+   [
+    "html_tag",
+    "</p>",
+    true
+   ],
+   [
+    "html_tag",
+    "</body>",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ],
+   [
+    "html_tag",
+    "</html>",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "This carrier sentence has enough visible characters to hold a VSRMark claim.",
+  "spans": [
+   [
+    "prose",
+    "This carrier sentence has enough visible characters to hold a VSRMark claim.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁰󠁵󠁤󠁿This carrier sentence has enough visible characters to hold a VSRMark claim.",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁰󠁵󠁤󠁿This carrier sentence has enough visible characters to hold a VSRMark claim.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "This carrier se󠅆󠅃󠅂󠄡︁︀︄󠅤󠅕󠅣󠅤󠇙󠅏󠅂󠄸ntence has enough visible characters to hold a VSRMark claim.",
+  "spans": [
+   [
+    "prose",
+    "This carrier se󠅆󠅃󠅂󠄡︁︀︄󠅤󠅕󠅣󠅤󠇙󠅏󠅂󠄸ntence has enough visible characters to hold a VSRMark claim.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": " Shipping ❤️ and 👩‍💻 with zero steganography.",
+  "spans": [
+   [
+    "prose",
+    " Shipping ❤️ and 👩‍💻 with zero steganography.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Hello​‌ world ❤️ 👩‍💻!󠀁󠁁󠁓󠁔󠁒󠁁󠀭󠁔󠁅󠁘󠁔󠁇󠁒󠁁󠁉󠁎󠁿",
+  "spans": [
+   [
+    "prose",
+    "Hello​‌ world ❤️ 👩‍💻!󠀁󠁁󠁓󠁔󠁒󠁁󠀭󠁔󠁅󠁘󠁔󠁇󠁒󠁁󠁉󠁎󠁿",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Hello​‌ world ❤️ 👩‍💻!",
+  "spans": [
+   [
+    "prose",
+    "Hello​‌ world ❤️ 👩‍💻!",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Hello world ❤️ 👩‍💻!",
+  "spans": [
+   [
+    "prose",
+    "Hello world ❤️ 👩‍💻!",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ❤️.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ❤️.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ❤󠀁󠁰󠁵󠁤󠁿️.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ❤󠀁󠁰󠁵󠁤󠁿️.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph 👩‍💻.",
+  "spans": [
+   [
+    "prose",
+    "Glyph 👩‍💻.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph 👩‍󠀁󠁰󠁵󠁤󠁿💻.",
+  "spans": [
+   [
+    "prose",
+    "Glyph 👩‍󠀁󠁰󠁵󠁤󠁿💻.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph 1️⃣.",
+  "spans": [
+   [
+    "prose",
+    "Glyph 1️⃣.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph 1️󠀁󠁰󠁵󠁤󠁿⃣.",
+  "spans": [
+   [
+    "prose",
+    "Glyph 1️󠀁󠁰󠁵󠁤󠁿⃣.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ∩︀.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ∩︀.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ∩󠀁󠁰󠁵󠁤󠁿︀.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ∩󠀁󠁰󠁵󠁤󠁿︀.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph م‌ی.",
+  "spans": [
+   [
+    "prose",
+    "Glyph م‌ی.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph م󠀁󠁰󠁵󠁤󠁿‌ی.",
+  "spans": [
+   [
+    "prose",
+    "Glyph م󠀁󠁰󠁵󠁤󠁿‌ی.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ก​ข.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ก​ข.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph ก󠀁󠁰󠁵󠁤󠁿​ข.",
+  "spans": [
+   [
+    "prose",
+    "Glyph ก󠀁󠁰󠁵󠁤󠁿​ข.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph 2⁠×⁠3.",
+  "spans": [
+   [
+    "prose",
+    "Glyph 2⁠×⁠3.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph 2⁠󠀁󠁰󠁵󠁤󠁿×⁠3.",
+  "spans": [
+   [
+    "prose",
+    "Glyph 2⁠󠀁󠁰󠁵󠁤󠁿×⁠3.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+  "spans": [
+   [
+    "prose",
+    "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "🏴󠁵󠁳󠁣󠁡󠁿",
+  "spans": [
+   [
+    "prose",
+    "🏴󠁵󠁳󠁣󠁡󠁿",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "🏴󠁡󠁬󠁢󠁲󠁿",
+  "spans": [
+   [
+    "prose",
+    "🏴󠁡󠁬󠁢󠁲󠁿",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "🏴󠀰󠀰󠀱󠁿",
+  "spans": [
+   [
+    "prose",
+    "🏴󠀰󠀰󠀱󠁿",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "🏴󠁵󠁳󠁨󠁵󠁨󠁿",
+  "spans": [
+   [
+    "prose",
+    "🏴󠁵󠁳󠁨󠁵󠁨󠁿",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "🏴",
+  "spans": [
+   [
+    "prose",
+    "🏴",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "🏴󠁵󠁳󠁿",
+  "spans": [
+   [
+    "prose",
+    "🏴󠁵󠁳󠁿",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "🏴󠁰󠁵󠁤󠁿‍☠️",
+  "spans": [
+   [
+    "prose",
+    "🏴󠁰󠁵󠁤󠁿‍☠️",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "🏴‍☠️",
+  "spans": [
+   [
+    "prose",
+    "🏴‍☠️",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "# Architecture Overview\n\nThe model computes `y = f(x)` using threshold $\\alpha = 0.01$ and publishes results to https://raiw.cc/docs/spec from ./src/runner.py.\n\n```python\ndef compute(x: int) -> int:\n    return x * 2\n```\n\n$$\\sum_{i=1}^{n} x_i = 1$$\n\nA second prose paragraph explains the deployment parameters in detail.\n",
+  "spans": [
+   [
+    "markdown_structure",
+    "# Architecture Overview",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "The model computes ",
+    false
+   ],
+   [
+    "inline_code",
+    "`y = f(x)`",
+    true
+   ],
+   [
+    "prose",
+    " using threshold ",
+    false
+   ],
+   [
+    "math_inline",
+    "$\\alpha = 0.01$",
+    true
+   ],
+   [
+    "prose",
+    " and publishes results to ",
+    false
+   ],
+   [
+    "url",
+    "https://raiw.cc/docs/spec",
+    true
+   ],
+   [
+    "prose",
+    " from ",
+    false
+   ],
+   [
+    "path",
+    "./src/runner.py",
+    true
+   ],
+   [
+    "prose",
+    ".",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "fenced_code",
+    "```python\ndef compute(x: int) -> int:\n    return x * 2\n```",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "math_block",
+    "$$\\sum_{i=1}^{n} x_i = 1$$",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "A second prose paragraph explains the deployment parameters in detail.\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Sample prose with ❤️.\n",
+  "spans": [
+   [
+    "prose",
+    "Sample prose with ❤️.\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The team wrote the report.\r\n",
+  "spans": [
+   [
+    "prose",
+    "The team wrote the report.\r\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The team wrote the report.\n",
+  "spans": [
+   [
+    "prose",
+    "The team wrote the report.\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The team drafted the report.\r\n",
+  "spans": [
+   [
+    "prose",
+    "The team drafted the report.\r\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The team drafted the report.\n",
+  "spans": [
+   [
+    "prose",
+    "The team drafted the report.\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Flag 🏴󠁧󠁢󠁥󠁮󠁧󠁿, emoji 👨🏻‍❤️‍👨🏻, and Persian می‌شود.",
+  "spans": [
+   [
+    "prose",
+    "Flag 🏴󠁧󠁢󠁥󠁮󠁧󠁿, emoji 👨🏻‍❤️‍👨🏻, and Persian می‌شود.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Flag 🏴󠁧󠁢󠁥󠁮󠁧󠁿 󠀁󠁣󠁬󠁡󠁵󠁤󠁥󠀭󠁦󠁡󠁢󠁬󠁥󠀭󠀵󠀭󠀲󠁿 H‍e‌l­l⁬ociteturn0search0 emoji 👨🏻‍❤️‍👨🏻, and Persian می‌شود.",
+  "spans": [
+   [
+    "prose",
+    "Flag 🏴󠁧󠁢󠁥󠁮󠁧󠁿 󠀁󠁣󠁬󠁡󠁵󠁤󠁥󠀭󠁦󠁡󠁢󠁬󠁥󠀭󠀵󠀭󠀲󠁿 H‍e‌l­l⁬ociteturn0search0 emoji 👨🏻‍❤️‍👨🏻, and Persian می‌شود.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Flag 🏴󠁧󠁢󠁥󠁮󠁧󠁿  Hello emoji 👨🏻‍❤️‍👨🏻, and Persian می‌شود.",
+  "spans": [
+   [
+    "prose",
+    "Flag 🏴󠁧󠁢󠁥󠁮󠁧󠁿  Hello emoji 👨🏻‍❤️‍👨🏻, and Persian می‌شود.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "word0 word1 word2 word3 word4 word5 word6 word7 word8 word9 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31 word32 word33 word34 word35 word36 word37 word38 word39 word40 word41 word42 word43 word44 word45 word46 word47 word48 word49 word50 word51 word52 word53 word54 word55 word56 word57 word58 word59 word60 word61 word62 word63 word64 word65 word66 word67 word68 word69 word70 word71 word72 word73 word74 word75 word76 word77 word78 word79 word80 word81 word82 word83 word84 word85 word86 word87 word88 word89 word90 word91 word92 word93 word94 word95 word96 word97 word98 word99 word100 word101 word102 word103 word104 word105 word106 word107 word108 word109 word110 word111 word112 word113 word114 word115 word116 word117 word118 word119",
+  "spans": [
+   [
+    "prose",
+    "word0 word1 word2 word3 word4 word5 word6 word7 word8 word9 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31 word32 word33 word34 word35 word36 word37 word38 word39 word40 word41 word42 word43 word44 word45 word46 word47 word48 word49 word50 word51 word52 word53 word54 word55 word56 word57 word58 word59 word60 word61 word62 word63 word64 word65 word66 word67 word68 word69 word70 word71 word72 word73 word74 word75 word76 word77 word78 word79 word80 word81 word82 word83 word84 word85 word86 word87 word88 word89 word90 word91 word92 word93 word94 word95 word96 word97 word98 word99 word100 word101 word102 word103 word104 word105 word106 word107 word108 word109 word110 word111 word112 word113 word114 word115 word116 word117 word118 word119",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "word0 word1 word2 word3 word4 word5 word6 word7 word8 word9 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31 word32 word33 word34 word35 word36 word37 word38 word39 word40 word41 word42 word43 word44 word45 word46 word47 word48 word49 word50 word51 word52 word53 word54 word55 word56 word57 word58 word59 word60 word61 word62 word63 word64 word65 word66 word67 word68 word69 word70 word71 word72 word73 word74 word75 word76 word77 word78 word79 word80 word81 word82 word83 word84 word85 word86 word87 word88 word89 word90 word91 word92 word93 word94 word95 word96 word97 word98 word99 word100 word101 word102 word103 word104 word105 word106 word107 word108 word109 word110 word111 word112 word113 word114 word115 word116 word117 word118 word119",
+  "spans": [
+   [
+    "prose",
+    "word0 word1 word2 word3 word4 word5 word6 word7 word8 word9 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31 word32 word33 word34 word35 word36 word37 word38 word39 word40 word41 word42 word43 word44 word45 word46 word47 word48 word49 word50 word51 word52 word53 word54 word55 word56 word57 word58 word59 word60 word61 word62 word63 word64 word65 word66 word67 word68 word69 word70 word71 word72 word73 word74 word75 word76 word77 word78 word79 word80 word81 word82 word83 word84 word85 word86 word87 word88 word89 word90 word91 word92 word93 word94 word95 word96 word97 word98 word99 word100 word101 word102 word103 word104 word105 word106 word107 word108 word109 word110 word111 word112 word113 word114 word115 word116 word117 word118 word119",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Normal ‌⁡⁡‍⁣⁡‍‍‌ sentence.",
+  "spans": [
+   [
+    "prose",
+    "Normal ‌⁡⁡‍⁣⁡‍‍‌ sentence.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Normal  sentence.",
+  "spans": [
+   [
+    "prose",
+    "Normal  sentence.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "First line\n⁢⁢⁡⁡⁢⁡⁢⁡⁢⁢⁢⁢⁢⁢⁢⁡⁢⁡⁢⁢⁢⁡⁢⁡⁢⁡⁢⁢⁢⁢⁢⁡⁡⁡⁡⁢⁡⁡⁢⁡⁡⁡⁢⁢⁡⁢⁡⁡⁡⁢⁡⁢⁡⁢⁢⁡⁡⁢⁢⁢⁢⁡⁡⁡Second line.",
+  "spans": [
+   [
+    "prose",
+    "First line\n⁢⁢⁡⁡⁢⁡⁢⁡⁢⁢⁢⁢⁢⁢⁢⁡⁢⁡⁢⁢⁢⁡⁢⁡⁢⁡⁢⁢⁢⁢⁢⁡⁡⁡⁡⁢⁡⁡⁢⁡⁡⁡⁢⁢⁡⁢⁡⁡⁡⁢⁡⁢⁡⁢⁢⁡⁡⁢⁢⁢⁢⁡⁡⁡Second line.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "First line\nSecond line.",
+  "spans": [
+   [
+    "prose",
+    "First line\nSecond line.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Carrier󠆛󠆽︀︀︀︄ ︁︀︁󠅘󠅙󠄑 text.",
+  "spans": [
+   [
+    "prose",
+    "Carrier󠆛󠆽︀︀︀︄ ︁︀︁󠅘󠅙󠄑 text.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Carrier text.",
+  "spans": [
+   [
+    "prose",
+    "Carrier text.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Emoji︎︎︎︎︎︎︎︎︎️︎︎︎︎︎️︎️︎︎️︎︎️ carrier.",
+  "spans": [
+   [
+    "prose",
+    "Emoji︎︎︎︎︎︎︎︎︎️︎︎︎︎︎️︎️︎︎️︎︎️ carrier.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Emoji carrier.",
+  "spans": [
+   [
+    "prose",
+    "Emoji carrier.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "See the result citeturn0search0 and continue.",
+  "spans": [
+   [
+    "prose",
+    "See the result citeturn0search0 and continue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "See the result and continue.",
+  "spans": [
+   [
+    "prose",
+    "See the result and continue.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "It is ready citeturn0search0.",
+  "spans": [
+   [
+    "prose",
+    "It is ready citeturn0search0.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "It is ready.",
+  "spans": [
+   [
+    "prose",
+    "It is ready.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Read\tciteturn0search0 citeturn1view2\tthen proceed.",
+  "spans": [
+   [
+    "prose",
+    "Read\tciteturn0search0 citeturn1view2\tthen proceed.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Read\tthen proceed.",
+  "spans": [
+   [
+    "prose",
+    "Read\tthen proceed.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Ready citeturn0search0 ?",
+  "spans": [
+   [
+    "prose",
+    "Ready citeturn0search0 ?",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Ready ?",
+  "spans": [
+   [
+    "prose",
+    "Ready ?",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Read citeturn0search0 and keep `citeturn0search0`.",
+  "spans": [
+   [
+    "prose",
+    "Read citeturn0search0 and keep ",
+    false
+   ],
+   [
+    "inline_code",
+    "`citeturn0search0`",
+    true
+   ],
+   [
+    "prose",
+    ".",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Read and keep `citeturn0search0`.",
+  "spans": [
+   [
+    "prose",
+    "Read and keep ",
+    false
+   ],
+   [
+    "inline_code",
+    "`citeturn0search0`",
+    true
+   ],
+   [
+    "prose",
+    ".",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The door closed. citeturn0view1",
+  "spans": [
+   [
+    "prose",
+    "The door closed. citeturn0view1",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The door closed.",
+  "spans": [
+   [
+    "prose",
+    "The door closed.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Wait citeturn2view0…",
+  "spans": [
+   [
+    "prose",
+    "Wait citeturn2view0…",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Wait…",
+  "spans": [
+   [
+    "prose",
+    "Wait…",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Read citeturn0search0 `limit`.",
+  "spans": [
+   [
+    "prose",
+    "Read citeturn0search0 ",
+    false
+   ],
+   [
+    "inline_code",
+    "`limit`",
+    true
+   ],
+   [
+    "prose",
+    ".",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Read `limit`.",
+  "spans": [
+   [
+    "prose",
+    "Read ",
+    false
+   ],
+   [
+    "inline_code",
+    "`limit`",
+    true
+   ],
+   [
+    "prose",
+    ".",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Keep these two words together.",
+  "spans": [
+   [
+    "prose",
+    "Keep these two words together.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "漢字葛󠄀と100 km\nمرحبا ⁧عالم⁩ جميل",
+  "spans": [
+   [
+    "prose",
+    "漢字葛󠄀と100 km\nمرحبا ⁧عالم⁩ جميل",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁸 ا‌ب ‮alert passw&#x200B;оrd &ZeroWidthSpace; `code &#x200B; passwоrd` пароль",
+  "spans": [
+   [
+    "prose",
+    "🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁸 ا‌ب ‮alert passw&#x200B;оrd &ZeroWidthSpace; ",
+    false
+   ],
+   [
+    "inline_code",
+    "`code &#x200B; passwоrd`",
+    true
+   ],
+   [
+    "prose",
+    " пароль",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 ا‌ب ‮alert passw​ord ​ `code &#x200B; passwоrd` пароль",
+  "spans": [
+   [
+    "prose",
+    "🏴󠁧󠁢󠁥󠁮󠁧󠁿 ا‌ب ‮alert passw​ord ​ ",
+    false
+   ],
+   [
+    "inline_code",
+    "`code &#x200B; passwоrd`",
+    true
+   ],
+   [
+    "prose",
+    " пароль",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 اب alert password  `code &#x200B; passwоrd` пароль",
+  "spans": [
+   [
+    "prose",
+    "🏴󠁧󠁢󠁥󠁮󠁧󠁿 اب alert password  ",
+    false
+   ],
+   [
+    "inline_code",
+    "`code &#x200B; passwоrd`",
+    true
+   ],
+   [
+    "prose",
+    " пароль",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "пaрoль cоус pａssword",
+  "spans": [
+   [
+    "prose",
+    "пaрoль cоус pａssword",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "пароль соус password",
+  "spans": [
+   [
+    "prose",
+    "пароль соус password",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Hello world.",
+  "spans": [
+   [
+    "prose",
+    "Hello world.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Hello",
+  "spans": [
+   [
+    "prose",
+    "Hello",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "{\"count\":12}",
+  "spans": [
+   [
+    "prose",
+    "{\"count\":12}",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "`variablename`",
+  "spans": [
+   [
+    "inline_code",
+    "`variablename`",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "https://example.com/path",
+  "spans": [
+   [
+    "url",
+    "https://example.com/path",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "👩‍💻",
+  "spans": [
+   [
+    "prose",
+    "👩‍💻",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ب‍ت",
+  "spans": [
+   [
+    "prose",
+    "ب‍ت",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "אבגד",
+  "spans": [
+   [
+    "prose",
+    "אבגד",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "The published marker is \\u200b\\u034f\\u2060\\u200b.",
+  "spans": [
+   [
+    "prose",
+    "The published marker is \\u200b\\u034f\\u2060\\u200b.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "♥󠅆️b󠅃b󠅂b󠄡b︁b︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "♥󠅆️b󠅃b󠅂b󠄡b︁b︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a󠅆a󠅃a󠅂a󠄡a︁♥︀️b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "a󠅆a󠅃a󠅂a󠄡a︁♥︀️b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱♥󠇒️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱♥󠇒️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱a󠇒♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱a󠇒♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "葛󠅆󠄀b󠅃b󠅂b󠄡b︁b︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "葛󠅆󠄀b󠅃b󠅂b󠄡b︁b︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a󠅆a󠅃a󠅂a󠄡a︁葛︀󠄀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "a󠅆a󠅃a󠅂a󠄡a︁葛︀󠄀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱葛󠇒󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱葛󠇒󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱a󠇒葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱a󠇒葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "4󠅆️b󠅃b󠅂b󠄡b︁b︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "4󠅆️b󠅃b󠅂b󠄡b︁b︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a󠅆a󠅃a󠅂a󠄡a︁4︀️b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "a󠅆a󠅃a󠅂a󠄡a︁4︀️b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱4󠇒️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱4󠇒️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱a󠇒4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱a󠇒4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "≨󠅆︀b󠅃b󠅂b󠄡b︁b︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "≨󠅆︀b󠅃b󠅂b󠄡b︁b︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a󠅆a󠅃a󠅂a󠄡a︁≨︀︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "a󠅆a󠅃a󠅂a󠄡a︁≨︀︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱≨󠇒︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱≨󠇒︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱a󠇒≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱a󠇒≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "♥󠅆️葛󠅃󠄀a󠅂4󠄡️b︁≨︀︀p︄a󠅤y󠅕l󠅣o󠅤a󠄆d󠆐 c󠆝a󠆧rrierpayload carrierpayload carrierpayload carrierpayload carrierpayload carrier",
+  "spans": [
+   [
+    "prose",
+    "♥󠅆️葛󠅃󠄀a󠅂4󠄡️b︁≨︀︀p︄a󠅤y󠅕l󠅣o󠅤a󠄆d󠆐 c󠆝a󠆧rrierpayload carrierpayload carrierpayload carrierpayload carrierpayload carrier",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "U󠅆s󠅃e󠅂 3󠄡8︁ m︀m︊ t󠅣o󠅘 c󠅑h󠅠e󠅕c󠄐k󠅤 t󠅕h󠅣e󠅤 a󠅰r󠅽c󠆺h󠄎ive gauge and keep 2⁠×⁠3 on the same line.",
+  "spans": [
+   [
+    "prose",
+    "U󠅆s󠅃e󠅂 3󠄡8︁ m︀m︊ t󠅣o󠅘 c󠅑h󠅠e󠅕c󠄐k󠅤 t󠅕h󠅣e󠅤 a󠅰r󠅽c󠆺h󠄎ive gauge and keep 2⁠×⁠3 on the same line.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Generated analysis paragraph with ❤️ and 👩‍💻 emoji.\n﻿󠄳󠄢󠅀󠄱󠅄󠅈󠅄︀︁︀︀︀󠆉󠅚󠅥󠅝󠅒󠅓󠄢󠅠󠅑︀︀︀︁󠅘󠅤󠅤󠅠󠄪󠄟󠄟󠅓󠅦󠄞󠅙󠅠󠅤󠅓󠄞󠅟󠅢󠅗󠄟󠅞󠅕󠅧󠅣󠅓󠅟󠅔󠅕󠅣󠄟󠅔󠅙󠅗󠅙󠅤󠅑󠅜󠅣󠅟󠅥󠅢󠅓󠅕󠅤󠅩󠅠󠅕󠄟󠅤󠅢󠅑󠅙󠅞󠅕󠅔󠄱󠅜󠅗󠅟󠅢󠅙󠅤󠅘󠅝󠅙󠅓󠄽󠅕󠅔󠅙󠅑󠄿󠅠󠅕󠅞󠄱󠄹󠄐󠄳󠅘󠅑󠅤󠄷󠅀󠅄󠄐󠄷󠅀󠅄󠄝󠄦󠄐󠄱󠅣󠅤󠅢󠅑󠄐󠅓󠅟󠅝󠄞󠅓󠅟󠅗󠅞󠅙󠅤󠅙󠅦󠅕󠄝󠅠󠅢󠅟󠅟󠅖󠄞󠅦󠅣󠅢󠅝󠅑󠅢󠅛󠄞󠄡󠄢󠄠󠄢󠄦󠄡󠄡󠄠󠄩󠄡󠄢󠄠󠄠󠄠󠄠󠅊︀︀︀︀︀︀︀︀",
+  "spans": [
+   [
+    "prose",
+    "Generated analysis paragraph with ❤️ and 👩‍💻 emoji.\n﻿󠄳󠄢󠅀󠄱󠅄󠅈󠅄︀︁︀︀︀󠆉󠅚󠅥󠅝󠅒󠅓󠄢󠅠󠅑︀︀︀︁󠅘󠅤󠅤󠅠󠄪󠄟󠄟󠅓󠅦󠄞󠅙󠅠󠅤󠅓󠄞󠅟󠅢󠅗󠄟󠅞󠅕󠅧󠅣󠅓󠅟󠅔󠅕󠅣󠄟󠅔󠅙󠅗󠅙󠅤󠅑󠅜󠅣󠅟󠅥󠅢󠅓󠅕󠅤󠅩󠅠󠅕󠄟󠅤󠅢󠅑󠅙󠅞󠅕󠅔󠄱󠅜󠅗󠅟󠅢󠅙󠅤󠅘󠅝󠅙󠅓󠄽󠅕󠅔󠅙󠅑󠄿󠅠󠅕󠅞󠄱󠄹󠄐󠄳󠅘󠅑󠅤󠄷󠅀󠅄󠄐󠄷󠅀󠅄󠄝󠄦󠄐󠄱󠅣󠅤󠅢󠅑󠄐󠅓󠅟󠅝󠄞󠅓󠅟󠅗󠅞󠅙󠅤󠅙󠅦󠅕󠄝󠅠󠅢󠅟󠅟󠅖󠄞󠅦󠅣󠅢󠅝󠅑󠅢󠅛󠄞󠄡󠄢󠄠󠄢󠄦󠄡󠄡󠄠󠄩󠄡󠄢󠄠󠄠󠄠󠄠󠅊︀︀︀︀︀︀︀︀",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Plain text body.󠄳󠄢󠅀󠄱󠅄󠅈󠅄︀︁︀︀︀󠆉󠅚󠅥󠅝󠅒󠅓󠄢󠅠󠅑︀︀︀︁󠅘󠅤󠅤󠅠󠄪󠄟󠄟󠅓󠅦󠄞󠅙󠅠󠅤󠅓󠄞󠅟󠅢󠅗󠄟󠅞󠅕󠅧󠅣󠅓󠅟󠅔󠅕󠅣󠄟󠅔󠅙󠅗󠅙󠅤󠅑󠅜󠅣󠅟󠅥󠅢󠅓󠅕󠅤󠅩󠅠󠅕󠄟󠅤󠅢󠅑󠅙󠅞󠅕󠅔󠄱󠅜󠅗󠅟󠅢󠅙󠅤󠅘󠅝󠅙󠅓󠄽󠅕󠅔󠅙󠅑󠄿󠅠󠅕󠅞󠄱󠄹󠄐󠄳󠅘󠅑󠅤󠄷󠅀󠅄󠄐󠄷󠅀󠅄󠄝󠄦󠄐󠄱󠅣󠅤󠅢󠅑󠄐󠅓󠅟󠅝󠄞󠅓󠅟󠅗󠅞󠅙󠅤󠅙󠅦󠅕󠄝󠅠󠅢󠅟󠅟󠅖󠄞󠅦󠅣󠅢󠅝󠅑󠅢󠅛󠄞󠄡󠄢󠄠󠄢󠄦󠄡󠄡󠄠󠄩󠄡󠄢󠄠󠄠󠄠󠄠󠅊",
+  "spans": [
+   [
+    "prose",
+    "Plain text body.󠄳󠄢󠅀󠄱󠅄󠅈󠅄︀︁︀︀︀󠆉󠅚󠅥󠅝󠅒󠅓󠄢󠅠󠅑︀︀︀︁󠅘󠅤󠅤󠅠󠄪󠄟󠄟󠅓󠅦󠄞󠅙󠅠󠅤󠅓󠄞󠅟󠅢󠅗󠄟󠅞󠅕󠅧󠅣󠅓󠅟󠅔󠅕󠅣󠄟󠅔󠅙󠅗󠅙󠅤󠅑󠅜󠅣󠅟󠅥󠅢󠅓󠅕󠅤󠅩󠅠󠅕󠄟󠅤󠅢󠅑󠅙󠅞󠅕󠅔󠄱󠅜󠅗󠅟󠅢󠅙󠅤󠅘󠅝󠅙󠅓󠄽󠅕󠅔󠅙󠅑󠄿󠅠󠅕󠅞󠄱󠄹󠄐󠄳󠅘󠅑󠅤󠄷󠅀󠅄󠄐󠄷󠅀󠅄󠄝󠄦󠄐󠄱󠅣󠅤󠅢󠅑󠄐󠅓󠅟󠅝󠄞󠅓󠅟󠅗󠅞󠅙󠅤󠅙󠅦󠅕󠄝󠅠󠅢󠅟󠅟󠅖󠄞󠅦󠅣󠅢󠅝󠅑󠅢󠅛󠄞󠄡󠄢󠄠󠄢󠄦󠄡󠄡󠄠󠄩󠄡󠄢󠄠󠄠󠄠󠄠󠅊",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "<!--\n-----BEGIN C2PA MANIFEST-----\ndata:application/c2pa;base64,anVtYmMycGEAAAABaHR0cDovL2N2LmlwdGMub3JnL25ld3Njb2Rlcy9kaWdpdGFsc291cmNldHlwZS90cmFpbmVkQWxnb3JpdGhtaWNNZWRpYU9wZW5BSSBDaGF0R1BUIEdQVC02IEFzdHJhIGNvbS5jb2duaXRpdmUtcHJvb2YudnNybWFyay4xMjAyNjExMDkxMjAwMDBa\n-----END C2PA MANIFEST-----\n-->\n# Heading\n\nBody paragraph.\n",
+  "spans": [
+   [
+    "prose",
+    "<!--\n-----BEGIN C2PA MANIFEST-----\ndata:application/c2pa;base64,anVtYmMycGEAAAABaHR0cDovL2N2LmlwdGMub3JnL25ld3Njb2Rlcy9kaWdpdGFsc291cmNldHlwZS90cmFpbmVkQWxnb3JpdGhtaWNNZWRpYU9wZW5BSSBDaGF0R1BUIEdQVC02IEFzdHJhIGNvbS5jb2duaXRpdmUtcHJvb2YudnNybWFyay4xMjAyNjExMDkxMjAwMDBa\n-----END C2PA MANIFEST-----\n-->\n",
+    false
+   ],
+   [
+    "markdown_structure",
+    "# Heading",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Body paragraph.\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "# -----BEGIN C2PA MANIFEST-----\n# https://example.com/manifests/123.c2pa\n# -----END C2PA MANIFEST-----\n# Heading\n\nBody paragraph.\n",
+  "spans": [
+   [
+    "markdown_structure",
+    "# -----BEGIN C2PA MANIFEST-----",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ],
+   [
+    "markdown_structure",
+    "# https://example.com/manifests/123.c2pa",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ],
+   [
+    "markdown_structure",
+    "# -----END C2PA MANIFEST-----",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ],
+   [
+    "markdown_structure",
+    "# Heading",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "Body paragraph.\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "# -----BEGIN C2PA MANIFEST----- https://example.com/m.c2pa -----END C2PA MANIFEST-----\nHello, World!\n",
+  "spans": [
+   [
+    "markdown_structure",
+    "# -----BEGIN C2PA MANIFEST----- https://example.com/m.c2pa -----END C2PA MANIFEST-----",
+    true
+   ],
+   [
+    "prose",
+    "\nHello, World!\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "<root/>\n\n<!-- -----BEGIN C2PA MANIFEST----- https://example.com/m.c2pa -----END C2PA MANIFEST----- -->",
+  "spans": [
+   [
+    "prose",
+    "<root/>",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "<!-- -----BEGIN C2PA MANIFEST----- ",
+    false
+   ],
+   [
+    "url",
+    "https://example.com/m.c2pa",
+    true
+   ],
+   [
+    "prose",
+    " -----END C2PA MANIFEST----- -->",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "// -----BEGIN C2PA MANIFEST----- data:application/c2pa;base64,3q2+7w== -----END C2PA MANIFEST-----\r\ncafé ☕\r\nsecond line\r\n",
+  "spans": [
+   [
+    "prose",
+    "// -----BEGIN C2PA MANIFEST----- data:application/c2pa;base64,3q2+7w== -----END C2PA MANIFEST-----\r\ncafé ☕\r\nsecond line\r\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "a {}\n\n/* -----BEGIN C2PA MANIFEST----- https://example.com/m.c2pa -----END C2PA MANIFEST----- */",
+  "spans": [
+   [
+    "prose",
+    "a {}",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "/* -----BEGIN C2PA MANIFEST----- ",
+    false
+   ],
+   [
+    "url",
+    "https://example.com/m.c2pa",
+    true
+   ],
+   [
+    "prose",
+    " -----END C2PA MANIFEST----- */",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "<root/>\r\n\r\n<!-- -----BEGIN C2PA MANIFEST----- https://example.com/m.c2pa -----END C2PA MANIFEST----- -->",
+  "spans": [
+   [
+    "prose",
+    "<root/>",
+    false
+   ],
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ],
+   [
+    "prose",
+    "<!-- -----BEGIN C2PA MANIFEST----- ",
+    false
+   ],
+   [
+    "url",
+    "https://example.com/m.c2pa",
+    true
+   ],
+   [
+    "prose",
+    " -----END C2PA MANIFEST----- -->",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "<!doctype html>\n<html>\n<head>\n  <title>Test</title>\n  <script type=\"application/c2pa\">data:application/c2pa;base64,anVtYmMycGEAAAABaHR0cDovL2N2LmlwdGMub3JnL25ld3Njb2Rlcy9kaWdpdGFsc291cmNldHlwZS90cmFpbmVkQWxnb3JpdGhtaWNNZWRpYU9wZW5BSSBDaGF0R1BUIEdQVC02IEFzdHJhIGNvbS5jb2duaXRpdmUtcHJvb2YudnNybWFyay4xMjAyNjExMDkxMjAwMDBa</script>\n  <link rel=\"c2pa-manifest\" href=\"https://example.com/manifest.c2pa\">\n</head>\n<body><p>Hello world.</p></body>\n</html>\n",
+  "spans": [
+   [
+    "prose",
+    "<!doctype html>\n",
+    false
+   ],
+   [
+    "html_tag",
+    "<html>",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ],
+   [
+    "html_block",
+    "<head>\n  <title>Test</title>\n  <script type=\"application/c2pa\">data:application/c2pa;base64,anVtYmMycGEAAAABaHR0cDovL2N2LmlwdGMub3JnL25ld3Njb2Rlcy9kaWdpdGFsc291cmNldHlwZS90cmFpbmVkQWxnb3JpdGhtaWNNZWRpYU9wZW5BSSBDaGF0R1BUIEdQVC02IEFzdHJhIGNvbS5jb2duaXRpdmUtcHJvb2YudnNybWFyay4xMjAyNjExMDkxMjAwMDBa</script>",
+    true
+   ],
+   [
+    "whitespace",
+    "\n  ",
+    true
+   ],
+   [
+    "html_tag",
+    "<link rel=\"c2pa-manifest\" href=\"https://example.com/manifest.c2pa\">",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ],
+   [
+    "html_tag",
+    "</head>",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ],
+   [
+    "html_tag",
+    "<body>",
+    true
+   ],
+   [
+    "html_tag",
+    "<p>",
+    true
+   ],
+   [
+    "prose",
+    "Hello world.",
+    false
+   ],
+   [
+    "html_tag",
+    "</p>",
+    true
+   ],
+   [
+    "html_tag",
+    "</body>",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ],
+   [
+    "html_tag",
+    "</html>",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "T󠅆h󠅃i󠅂s󠄡 c︁a︀r󠄘r󠅫i󠄒e󠅓r󠅜 s󠅑e󠅙n󠅝t󠄒e󠄪n󠄒c󠅓e󠅜 h󠅑a󠅥s󠅔 e󠅕n󠄝o󠅖u󠅑g󠅒h󠅜 v󠅕i󠄝s󠄥i󠄝b󠄢l󠄒e󠄜 c󠄒h󠅙a󠅔r󠄒a󠄪c󠄒t󠄩e󠅖r󠄨s󠅑 t󠄒o󠅭 h󠆏o󠄯l󠇤d󠆄 a VSRMark claim.",
+  "spans": [
+   [
+    "prose",
+    "T󠅆h󠅃i󠅂s󠄡 c︁a︀r󠄘r󠅫i󠄒e󠅓r󠅜 s󠅑e󠅙n󠅝t󠄒e󠄪n󠄒c󠅓e󠅜 h󠅑a󠅥s󠅔 e󠅕n󠄝o󠅖u󠅑g󠅒h󠅜 v󠅕i󠄝s󠄥i󠄝b󠄢l󠄒e󠄜 c󠄒h󠅙a󠅔r󠄒a󠄪c󠄒t󠄩e󠅖r󠄨s󠅑 t󠄒o󠅭 h󠆏o󠄯l󠇤d󠆄 a VSRMark claim.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁰󠁵󠁤󠁿T󠅆h󠅃i󠅂s󠄡 c︁a︀r󠄘r󠅫i󠄒e󠅓r󠅜 s󠅑e󠅙n󠅝t󠄒e󠄪n󠄒c󠅓e󠅜 h󠅑a󠅥s󠅔 e󠅕n󠄝o󠅖u󠅑g󠅒h󠅜 v󠅕i󠄝s󠄥i󠄝b󠄢l󠄒e󠄜 c󠄒h󠅙a󠅔r󠄒a󠄪c󠄒t󠄩e󠅖r󠄨s󠅑 t󠄒o󠅭 h󠆏o󠄯l󠇤d󠆄 a VSRMark claim.",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁰󠁵󠁤󠁿T󠅆h󠅃i󠅂s󠄡 c︁a︀r󠄘r󠅫i󠄒e󠅓r󠅜 s󠅑e󠅙n󠅝t󠄒e󠄪n󠄒c󠅓e󠅜 h󠅑a󠅥s󠅔 e󠅕n󠄝o󠅖u󠅑g󠅒h󠅜 v󠅕i󠄝s󠄥i󠄝b󠄢l󠄒e󠄜 c󠄒h󠅙a󠅔r󠄒a󠄪c󠄒t󠄩e󠅖r󠄨s󠅑 t󠄒o󠅭 h󠆏o󠄯l󠇤d󠆄 a VSRMark claim.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Hello​͏⁠​ world.",
+  "spans": [
+   [
+    "prose",
+    "Hello​͏⁠​ world.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "​͏⁠​Hello​͏⁠​",
+  "spans": [
+   [
+    "prose",
+    "​͏⁠​Hello​͏⁠​",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "{\"count\":​͏⁠​12}",
+  "spans": [
+   [
+    "prose",
+    "{\"count\":​͏⁠​12}",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "`variable​͏⁠​name`",
+  "spans": [
+   [
+    "inline_code",
+    "`variable​͏⁠​name`",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "https://example.com/​͏⁠​path",
+  "spans": [
+   [
+    "url",
+    "https://example.com/​͏⁠​path",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "👩​͏⁠​‍💻",
+  "spans": [
+   [
+    "prose",
+    "👩​͏⁠​‍💻",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ب​͏⁠​‍ت",
+  "spans": [
+   [
+    "prose",
+    "ب​͏⁠​‍ت",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "אב​͏⁠​גד",
+  "spans": [
+   [
+    "prose",
+    "אב​͏⁠​גד",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph לַ͏​͏⁠​ִם; Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph לַ͏​͏⁠​ִם; Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph t͡͏​͏⁠​́s; Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph t͡͏​͏⁠​́s; Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph بّ͏​͏⁠​َ; Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph بّ͏​͏⁠​َ; Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph Ḋ͏​͏⁠​̣; Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph Ḋ͏​͏⁠​̣; Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph q́̕͏​͏⁠​̧̈; Memo.",
+  "spans": [
+   [
+    "prose",
+    "Glyph q́̕͏​͏⁠​̧̈; Memo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Me​͏⁠​mo.",
+  "spans": [
+   [
+    "prose",
+    "Me​͏⁠​mo.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Example: `x = 'a​͏⁠​b'`.",
+  "spans": [
+   [
+    "prose",
+    "Example: ",
+    false
+   ],
+   [
+    "inline_code",
+    "`x = 'a​͏⁠​b'`",
+    true
+   ],
+   [
+    "prose",
+    ".",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 一󠄀​͏⁠​ を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 一󠄀​͏⁠​ を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 㐄󠄂​͏⁠​ を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 㐄󠄂​͏⁠​ を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 葛󠄉​͏⁠​ を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 葛󠄉​͏⁠​ を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 邊󠄔​͏⁠​ を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 邊󠄔​͏⁠​ を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "字形 𠀀󠄂​͏⁠​ を確認します。",
+  "spans": [
+   [
+    "prose",
+    "字形 𠀀󠄂​͏⁠​ を確認します。",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo ग्​͏⁠​‍",
+  "spans": [
+   [
+    "prose",
+    "Memo ग्​͏⁠​‍",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo र्​͏⁠​‍.",
+  "spans": [
+   [
+    "prose",
+    "Memo र्​͏⁠​‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo क़्​͏⁠​‍ Notes.",
+  "spans": [
+   [
+    "prose",
+    "Memo क़्​͏⁠​‍ Notes.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo क़्​͏⁠​‍!",
+  "spans": [
+   [
+    "prose",
+    "Memo क़्​͏⁠​‍!",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo ॸ्​͏⁠​‍\nNotes.",
+  "spans": [
+   [
+    "prose",
+    "Memo ॸ्​͏⁠​‍\nNotes.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo അണ്​͏⁠​‍.",
+  "spans": [
+   [
+    "prose",
+    "Memo അണ്​͏⁠​‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo അന്​͏⁠​‍",
+  "spans": [
+   [
+    "prose",
+    "Memo അന്​͏⁠​‍",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo അര്​͏⁠​‍ Notes.",
+  "spans": [
+   [
+    "prose",
+    "Memo അര്​͏⁠​‍ Notes.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo അല്​͏⁠​‍.",
+  "spans": [
+   [
+    "prose",
+    "Memo അല്​͏⁠​‍.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo അള്​͏⁠​‍",
+  "spans": [
+   [
+    "prose",
+    "Memo അള്​͏⁠​‍",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo ꢒ꣄​͏⁠​‍ꢰ",
+  "spans": [
+   [
+    "prose",
+    "Memo ꢒ꣄​͏⁠​‍ꢰ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo ꢠ꣄​͏⁠​‍ꢒ",
+  "spans": [
+   [
+    "prose",
+    "Memo ꢠ꣄​͏⁠​‍ꢒ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo क्​͏⁠​‍ष",
+  "spans": [
+   [
+    "prose",
+    "Memo क्​͏⁠​‍ष",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo क्​͏⁠​‌ष",
+  "spans": [
+   [
+    "prose",
+    "Memo क्​͏⁠​‌ष",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo କ​͏⁠​‍୍ଷ",
+  "spans": [
+   [
+    "prose",
+    "Memo କ​͏⁠​‍୍ଷ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Memo କ୍​͏⁠​‌ଷ",
+  "spans": [
+   [
+    "prose",
+    "Memo କ୍​͏⁠​‌ଷ",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿♥󠅆️b󠅃b󠅂b󠄡b︁b︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿♥󠅆️b󠅃b󠅂b󠄡b︁b︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁♥︀️b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁♥︀️b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱♥󠇒️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱♥󠇒️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱a󠇒♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱a󠇒♥️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿葛󠅆󠄀b󠅃b󠅂b󠄡b︁b︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿葛󠅆󠄀b󠅃b󠅂b󠄡b︁b︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁葛︀󠄀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁葛︀󠄀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱葛󠇒󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱葛󠇒󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱a󠇒葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱a󠇒葛󠄀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿4󠅆️b󠅃b󠅂b󠄡b︁b︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿4󠅆️b󠅃b󠅂b󠄡b︁b︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁4︀️b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁4︀️b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱4󠇒️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱4󠇒️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱a󠇒4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱a󠇒4️bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿≨󠅆︀b󠅃b󠅂b󠄡b︁b︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿≨󠅆︀b󠅃b󠅂b󠄡b︁b︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁≨︀︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁≨︀︀b︁b󠅨b󠆶b󠄘b󠄱b󠇒bbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱≨󠇒︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱≨󠇒︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱a󠇒≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁴󠁡󠁧󠁿a󠅆a󠅃a󠅂a󠄡a︁a︀a︁a󠅨a󠆶a󠄘a󠄱a󠇒≨︀bbbbbbbbbbbbbbbbbbbbbbbbb",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "<?xml version=\"1.0\"?>\r\n<!-- -----BEGIN C2PA MANIFEST----- https://example.com/m.c2pa -----END C2PA MANIFEST----- -->\r\n<root/>\r\n",
+  "spans": [
+   [
+    "prose",
+    "<?xml version=\"1.0\"?>\r\n<!-- -----BEGIN C2PA MANIFEST----- ",
+    false
+   ],
+   [
+    "url",
+    "https://example.com/m.c2pa",
+    true
+   ],
+   [
+    "prose",
+    " -----END C2PA MANIFEST----- -->\r\n<root/>\r\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "",
+  "spans": []
+ },
+ {
+  "text": " ",
+  "spans": [
+   [
+    "whitespace",
+    " ",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "\n",
+  "spans": [
+   [
+    "whitespace",
+    "\n",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "\r\n\r\n",
+  "spans": [
+   [
+    "whitespace",
+    "\r\n\r\n",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "﻿",
+  "spans": [
+   [
+    "prose",
+    "﻿",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "﻿BOM-prefixed document.\r\nSecond line.\r\n",
+  "spans": [
+   [
+    "prose",
+    "﻿BOM-prefixed document.\r\nSecond line.\r\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Plain ASCII prose without any marks.",
+  "spans": [
+   [
+    "prose",
+    "Plain ASCII prose without any marks.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Mixed scripts: English, русский, ελληνικά, العربية, עברית, 日本語, 한국어, हिन्दी.",
+  "spans": [
+   [
+    "prose",
+    "Mixed scripts: English, русский, ελληνικά, العربية, עברית, 日本語, 한국어, हिन्दी.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Astral 𝔘𝔫𝔦𝔠𝔬𝔡𝔢 and 𝟘𝟙𝟚 digits.",
+  "spans": [
+   [
+    "prose",
+    "Astral 𝔘𝔫𝔦𝔠𝔬𝔡𝔢 and 𝟘𝟙𝟚 digits.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "CR only line\rendings\rhere\r",
+  "spans": [
+   [
+    "prose",
+    "CR only line\rendings\rhere\r",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Text﻿󠄳󠄢󠅀󠄱󠅄󠅈󠅄︀︁︀︀︀︀",
+  "spans": [
+   [
+    "prose",
+    "Text﻿󠄳󠄢󠅀󠄱󠅄󠅈󠅄︀︁︀︀︀︀",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Body\r\n﻿󠄳󠄢󠅀󠄱󠅄󠅈󠅄︀︁︀︀︀󠆉󠅚󠅥󠅝󠅒󠅓󠄢󠅠󠅑︀︀︀︁󠅘󠅤󠅤󠅠󠄪󠄟󠄟󠅓󠅦󠄞󠅙󠅠󠅤󠅓󠄞󠅟󠅢󠅗󠄟󠅞󠅕󠅧󠅣󠅓󠅟󠅔󠅕󠅣󠄟󠅔󠅙󠅗󠅙󠅤󠅑󠅜󠅣󠅟󠅥󠅢󠅓󠅕󠅤󠅩󠅠󠅕󠄟󠅤󠅢󠅑󠅙󠅞󠅕󠅔󠄱󠅜󠅗󠅟󠅢󠅙󠅤󠅘󠅝󠅙󠅓󠄽󠅕󠅔󠅙󠅑󠄿󠅠󠅕󠅞󠄱󠄹󠄐󠄳󠅘󠅑󠅤󠄷󠅀󠅄󠄐󠄷󠅀󠅄󠄝󠄦󠄐󠄱󠅣󠅤󠅢󠅑󠄐󠅓󠅟󠅝󠄞󠅓󠅟󠅗󠅞󠅙󠅤󠅙󠅦󠅕󠄝󠅠󠅢󠅟󠅟󠅖󠄞󠅦󠅣󠅢󠅝󠅑󠅢󠅛󠄞󠄡󠄢󠄠󠄢󠄦󠄡󠄡󠄠󠄩󠄡󠄢󠄠󠄠󠄠󠄠󠅊\r\n",
+  "spans": [
+   [
+    "prose",
+    "Body\r\n﻿󠄳󠄢󠅀󠄱󠅄󠅈󠅄︀︁︀︀︀󠆉󠅚󠅥󠅝󠅒󠅓󠄢󠅠󠅑︀︀︀︁󠅘󠅤󠅤󠅠󠄪󠄟󠄟󠅓󠅦󠄞󠅙󠅠󠅤󠅓󠄞󠅟󠅢󠅗󠄟󠅞󠅕󠅧󠅣󠅓󠅟󠅔󠅕󠅣󠄟󠅔󠅙󠅗󠅙󠅤󠅑󠅜󠅣󠅟󠅥󠅢󠅓󠅕󠅤󠅩󠅠󠅕󠄟󠅤󠅢󠅑󠅙󠅞󠅕󠅔󠄱󠅜󠅗󠅟󠅢󠅙󠅤󠅘󠅝󠅙󠅓󠄽󠅕󠅔󠅙󠅑󠄿󠅠󠅕󠅞󠄱󠄹󠄐󠄳󠅘󠅑󠅤󠄷󠅀󠅄󠄐󠄷󠅀󠅄󠄝󠄦󠄐󠄱󠅣󠅤󠅢󠅑󠄐󠅓󠅟󠅝󠄞󠅓󠅟󠅗󠅞󠅙󠅤󠅙󠅦󠅕󠄝󠅠󠅢󠅟󠅟󠅖󠄞󠅦󠅣󠅢󠅝󠅑󠅢󠅛󠄞󠄡󠄢󠄠󠄢󠄦󠄡󠄡󠄠󠄩󠄡󠄢󠄠󠄠󠄠󠄠󠅊\r\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Short 󠄳󠄢󠅀󠄱󠅄󠅈󠅄",
+  "spans": [
+   [
+    "prose",
+    "Short 󠄳󠄢󠅀󠄱󠅄󠅈󠅄",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "# -----BEGIN C2PA MANIFEST-----\n# https://example.com/manifests/123.c2pa\n# -----END C2PA MANIFEST-----\nBody\n",
+  "spans": [
+   [
+    "markdown_structure",
+    "# -----BEGIN C2PA MANIFEST-----",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ],
+   [
+    "markdown_structure",
+    "# https://example.com/manifests/123.c2pa",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ],
+   [
+    "markdown_structure",
+    "# -----END C2PA MANIFEST-----",
+    true
+   ],
+   [
+    "prose",
+    "\nBody\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "-----BEGIN C2PA MANIFEST-----\ndata:application/c2pa;base64,!!!\n-----END C2PA MANIFEST-----\nBody\n",
+  "spans": [
+   [
+    "prose",
+    "-----BEGIN C2PA MANIFEST-----\ndata:application/c2pa;base64,!!!\n-----END C2PA MANIFEST-----\nBody\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Intro\n-----BEGIN C2PA MANIFEST-----\ndata:application/c2pa;base64,anVtYmMycGEAAAABaHR0cDovL2N2LmlwdGMub3JnL25ld3Njb2Rlcy9kaWdpdGFsc291cmNldHlwZS90cmFpbmVkQWxnb3JpdGhtaWNNZWRpYU9wZW5BSSBDaGF0R1BUIEdQVC02IEFzdHJhIGNvbS5jb2duaXRpdmUtcHJvb2YudnNybWFyay4xMjAyNjExMDkxMjAwMDBa\n-----END C2PA MANIFEST-----\nOutro\n",
+  "spans": [
+   [
+    "prose",
+    "Intro\n-----BEGIN C2PA MANIFEST-----\ndata:application/c2pa;base64,anVtYmMycGEAAAABaHR0cDovL2N2LmlwdGMub3JnL25ld3Njb2Rlcy9kaWdpdGFsc291cmNldHlwZS90cmFpbmVkQWxnb3JpdGhtaWNNZWRpYU9wZW5BSSBDaGF0R1BUIEdQVC02IEFzdHJhIGNvbS5jb2duaXRpdmUtcHJvb2YudnNybWFyay4xMjAyNjExMDkxMjAwMDBa\n-----END C2PA MANIFEST-----\nOutro\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "```text\n-----BEGIN C2PA MANIFEST-----\nhttps://example.com/x\n-----END C2PA MANIFEST-----\n```\n",
+  "spans": [
+   [
+    "fenced_code",
+    "```text\n-----BEGIN C2PA MANIFEST-----\nhttps://example.com/x\n-----END C2PA MANIFEST-----\n```",
+    true
+   ],
+   [
+    "whitespace",
+    "\n",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "<html><head></head><body><link rel=\"c2pa-manifest\" href=\"https://example.com/m.c2pa\"></body></html>",
+  "spans": [
+   [
+    "html_tag",
+    "<html>",
+    true
+   ],
+   [
+    "html_block",
+    "<head></head>",
+    true
+   ],
+   [
+    "html_tag",
+    "<body>",
+    true
+   ],
+   [
+    "html_tag",
+    "<link rel=\"c2pa-manifest\" href=\"https://example.com/m.c2pa\">",
+    true
+   ],
+   [
+    "html_tag",
+    "</body>",
+    true
+   ],
+   [
+    "html_tag",
+    "</html>",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "<html><head>é<script type='application/c2pa'>anVtYmMycGEAAAABaHR0cDovL2N2LmlwdGMub3JnL25ld3Njb2Rlcy9kaWdpdGFsc291cmNldHlwZS90cmFpbmVkQWxnb3JpdGhtaWNNZWRpYU9wZW5BSSBDaGF0R1BUIEdQVC02IEFzdHJhIGNvbS5jb2duaXRpdmUtcHJvb2YudnNybWFyay4xMjAyNjExMDkxMjAwMDBa</script></head></html>",
+  "spans": [
+   [
+    "html_tag",
+    "<html>",
+    true
+   ],
+   [
+    "html_block",
+    "<head>é<script type='application/c2pa'>anVtYmMycGEAAAABaHR0cDovL2N2LmlwdGMub3JnL25ld3Njb2Rlcy9kaWdpdGFsc291cmNldHlwZS90cmFpbmVkQWxnb3JpdGhtaWNNZWRpYU9wZW5BSSBDaGF0R1BUIEdQVC02IEFzdHJhIGNvbS5jb2duaXRpdmUtcHJvb2YudnNybWFyay4xMjAyNjExMDkxMjAwMDBa</script>",
+    true
+   ],
+   [
+    "html_tag",
+    "</head>",
+    true
+   ],
+   [
+    "html_tag",
+    "</html>",
+    true
+   ]
+  ]
+ },
+ {
+  "text": "󠀁󠁰󠁵󠁤󠁿T󠅆h󠅃i󠅂s󠄡 c︁a︀r︁r󠅨i󠆶e󠄘r󠄱 s󠇒entence has enough visible characters to hold a VSRMark claim.",
+  "spans": [
+   [
+    "prose",
+    "󠀁󠁰󠁵󠁤󠁿T󠅆h󠅃i󠅂s󠄡 c︁a︀r︁r󠅨i󠆶e󠄘r󠄱 s󠇒entence has enough visible characters to hold a VSRMark claim.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "U󠅆s󠅃e󠅂 5󠄡 k︁g︀ o︁f󠅡 f󠆯l󠇤o󠇩u󠄶r and the ❤️ emoji carefully in this sentence.",
+  "spans": [
+   [
+    "prose",
+    "U󠅆s󠅃e󠅂 5󠄡 k︁g︀ o︁f󠅡 f󠆯l󠇤o󠇩u󠄶r and the ❤️ emoji carefully in this sentence.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "word0 word1 word2 word3 word4 word5 word6 word7 word8 word9 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31 word32 word33 word34 word35 word36 word37 word38 word39 word40 word41 word42 word43 word44 word45 word46 word47 word48 word49 word50 word51 word52 word53 word54 word55 word56 word57 word58 word59 word60 word61 word62 word63 word64 word65 word66 word67 word68 word69 word70 word71 word72 word73 word74 word75 word76 word77 word78 word79 word80 word81 word82 word83 word84 word85 word86 word87 word88 word89 word90 word91 word92 word93 word94 word95 word96 word97 word98 word99 word100 word101 word102 word103 word104 word105 word106 word107 word108 word109 word110 word111 word112 word113 word114 word115 word116 word117 word118 word119",
+  "spans": [
+   [
+    "prose",
+    "word0 word1 word2 word3 word4 word5 word6 word7 word8 word9 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31 word32 word33 word34 word35 word36 word37 word38 word39 word40 word41 word42 word43 word44 word45 word46 word47 word48 word49 word50 word51 word52 word53 word54 word55 word56 word57 word58 word59 word60 word61 word62 word63 word64 word65 word66 word67 word68 word69 word70 word71 word72 word73 word74 word75 word76 word77 word78 word79 word80 word81 word82 word83 word84 word85 word86 word87 word88 word89 word90 word91 word92 word93 word94 word95 word96 word97 word98 word99 word100 word101 word102 word103 word104 word105 word106 word107 word108 word109 word110 word111 word112 word113 word114 word115 word116 word117 word118 word119",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "word0 word1 word2 word3 word4 word5 word6 word7 word8 word9 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31 word32 word33 word34 word35 word36 word37 word38 word39 word40 word41 word42 word43 word44 word45 word46 word47 word48 word49 word50 word51 word52 word53 word54 word55 word56 word57 word58 word59 word60 word61 word62 word63 word64 word65 word66 word67 word68 word69 word70 word71 word72 word73 word74 word75 word76 word77 word78 word79 word80 word81 word82 word83 word84 word85 word86 word87 word88 word89 word90 word91 word92 word93 word94 word95 word96 word97 word98 word99 word100 word101 word102 word103 word104 word105 word106 word107 word108 word109 word110 word111 word112 word113 word114 word115 word116 word117 word118 word119",
+  "spans": [
+   [
+    "prose",
+    "word0 word1 word2 word3 word4 word5 word6 word7 word8 word9 word10 word11 word12 word13 word14 word15 word16 word17 word18 word19 word20 word21 word22 word23 word24 word25 word26 word27 word28 word29 word30 word31 word32 word33 word34 word35 word36 word37 word38 word39 word40 word41 word42 word43 word44 word45 word46 word47 word48 word49 word50 word51 word52 word53 word54 word55 word56 word57 word58 word59 word60 word61 word62 word63 word64 word65 word66 word67 word68 word69 word70 word71 word72 word73 word74 word75 word76 word77 word78 word79 word80 word81 word82 word83 word84 word85 word86 word87 word88 word89 word90 word91 word92 word93 word94 word95 word96 word97 word98 word99 word100 word101 word102 word103 word104 word105 word106 word107 word108 word109 word110 word111 word112 word113 word114 word115 word116 word117 word118 word119",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Hidden󠅕󠅝󠅟󠅚󠅙󠄝󠅕󠅞󠅓󠅟󠅔󠅕󠅢󠄐󠅠󠅑󠅩󠅜󠅟󠅑󠅔 text.",
+  "spans": [
+   [
+    "prose",
+    "Hidden󠅕󠅝󠅟󠅚󠅙󠄝󠅕󠅞󠅓󠅟󠅔󠅕󠅢󠄐󠅠󠅑󠅩󠅜󠅟󠅑󠅔 text.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Zero​‌‌​‌​​​​‌‌​‌​​‌width.",
+  "spans": [
+   [
+    "prose",
+    "Zero​‌‌​‌​​​​‌‌​‌​​‌width.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Delimited ‌​​​​​‌‍‌​​‌​​‌ zw.",
+  "spans": [
+   [
+    "prose",
+    "Delimited ‌​​​​​‌‍‌​​‌​​‌ zw.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Gemini [cite_start]claim[cite: 1, 2] and [span_3](start_span) grok_render_citation_card_json={\"id\":1} done.",
+  "spans": [
+   [
+    "prose",
+    "Gemini [cite_start]claim[cite: 1, 2] and [span_3](start_span) grok_render_citation_card_json={\"id\":1} done.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "ChatGPT citeturn0search0 marker.",
+  "spans": [
+   [
+    "prose",
+    "ChatGPT citeturn0search0 marker.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Keep these two words together and 10 000 units « bonjour ».",
+  "spans": [
+   [
+    "prose",
+    "Keep these two words together and 10 000 units « bonjour ».",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Thin spaces and　ideographic gaps.",
+  "spans": [
+   [
+    "prose",
+    "Thin spaces and　ideographic gaps.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Glyph 2⁠×⁠3 and 4⁠÷⁠2.",
+  "spans": [
+   [
+    "prose",
+    "Glyph 2⁠×⁠3 and 4⁠÷⁠2.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Thai ก​ข word break and `code​space` literal.",
+  "spans": [
+   [
+    "prose",
+    "Thai ก​ข word break and ",
+    false
+   ],
+   [
+    "inline_code",
+    "`code​space`",
+    true
+   ],
+   [
+    "prose",
+    " literal.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Soft hy­phen and co­‑op and x­​y.",
+  "spans": [
+   [
+    "prose",
+    "Soft hy­phen and co­‑op and x­​y.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Hebrew אָ͏ַ and plain a͏b.",
+  "spans": [
+   [
+    "prose",
+    "Hebrew אָ͏ַ and plain a͏b.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Devanagari क्‍ and Malayalam ണ്‍. Saurashtra ꢒ꣄‍ꢓ.",
+  "spans": [
+   [
+    "prose",
+    "Devanagari क्‍ and Malayalam ണ്‍. Saurashtra ꢒ꣄‍ꢓ.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Mongolian ᠠ᠋ and Khmer ក឴ and Hangul ᄀᅠ.",
+  "spans": [
+   [
+    "prose",
+    "Mongolian ᠠ᠋ and Khmer ក឴ and Hangul ᄀᅠ.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "PUA  and noncharacter ﷐ and 󠂀 reserved.",
+  "spans": [
+   [
+    "prose",
+    "PUA  and noncharacter ﷐ and 󠂀 reserved.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Bidi ‫שלום‬ and ⁦text⁩ and ‏עברית.",
+  "spans": [
+   [
+    "prose",
+    "Bidi ‫שלום‬ and ⁦text⁩ and ‏עברית.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Entities &#8203; &#x200C; &zwj; &shy; &amp; &#65;.",
+  "spans": [
+   [
+    "prose",
+    "Entities &#8203; &#x200C; &zwj; &shy; &amp; &#65;.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Fullwidth ＡＢＣ and Greek Αθήνα and Cherokee ᎠᎡ.",
+  "spans": [
+   [
+    "prose",
+    "Fullwidth ＡＢＣ and Greek Αθήνα and Cherokee ᎠᎡ.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "# Title\n\n| a | b |\n\n[ref]: https://example.com\n\n1. item\n- other\n",
+  "spans": [
+   [
+    "markdown_structure",
+    "# Title",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "markdown_structure",
+    "| a | b |",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "markdown_structure",
+    "[ref]: https://example.com",
+    true
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "list_marker",
+    "1. ",
+    true
+   ],
+   [
+    "prose",
+    "item\n",
+    false
+   ],
+   [
+    "list_marker",
+    "- ",
+    true
+   ],
+   [
+    "prose",
+    "other\n",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Math $x$ and $5 and $10, $$\\sum_i x_i$$ and \\(a+b\\) and \\[c\\].",
+  "spans": [
+   [
+    "prose",
+    "Math ",
+    false
+   ],
+   [
+    "math_inline",
+    "$x$",
+    true
+   ],
+   [
+    "prose",
+    " and $5 and $10, ",
+    false
+   ],
+   [
+    "math_block",
+    "$$\\sum_i x_i$$",
+    true
+   ],
+   [
+    "prose",
+    " and ",
+    false
+   ],
+   [
+    "math_inline",
+    "\\(a+b\\)",
+    true
+   ],
+   [
+    "prose",
+    " and ",
+    false
+   ],
+   [
+    "math_block",
+    "\\[c\\]",
+    true
+   ],
+   [
+    "prose",
+    ".",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "<script>alert(1)</script> and <pre>code</pre> and <prefix> tag.",
+  "spans": [
+   [
+    "html_block",
+    "<script>alert(1)</script>",
+    true
+   ],
+   [
+    "prose",
+    " and ",
+    false
+   ],
+   [
+    "html_block",
+    "<pre>code</pre>",
+    true
+   ],
+   [
+    "prose",
+    " and ",
+    false
+   ],
+   [
+    "html_tag",
+    "<prefix>",
+    true
+   ],
+   [
+    "prose",
+    " tag.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Path ./src/runner.py and ../a/b.txt and /usr/bin/env.sh here.",
+  "spans": [
+   [
+    "prose",
+    "Path ",
+    false
+   ],
+   [
+    "path",
+    "./src/runner.py",
+    true
+   ],
+   [
+    "prose",
+    " and ",
+    false
+   ],
+   [
+    "path",
+    "../a/b.txt",
+    true
+   ],
+   [
+    "prose",
+    " and ",
+    false
+   ],
+   [
+    "path",
+    "/usr/bin/env.sh",
+    true
+   ],
+   [
+    "prose",
+    " here.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "URL https://raiw.cc/docs/spec) and http://x.y]z.",
+  "spans": [
+   [
+    "prose",
+    "URL ",
+    false
+   ],
+   [
+    "url",
+    "https://raiw.cc/docs/spec",
+    true
+   ],
+   [
+    "prose",
+    ") and ",
+    false
+   ],
+   [
+    "url",
+    "http://x.y",
+    true
+   ],
+   [
+    "prose",
+    "]z.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "~~~\ncode\n~~~\nAfter fence\n\n```\nunterminated",
+  "spans": [
+   [
+    "fenced_code",
+    "~~~\ncode\n~~~",
+    true
+   ],
+   [
+    "prose",
+    "\nAfter fence",
+    false
+   ],
+   [
+    "whitespace",
+    "\n\n",
+    true
+   ],
+   [
+    "prose",
+    "```\nunterminated",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Tabs\tand\u001cfile\u001dseparators\u001e\u001f.",
+  "spans": [
+   [
+    "prose",
+    "Tabs\tand\u001cfile\u001dseparators\u001e\u001f.",
+    false
+   ]
+  ]
+ },
+ {
+  "text": "Line separator paragraphnext.",
+  "spans": [
+   [
+    "prose",
+    "Line separator paragraphnext.",
+    false
+   ]
+  ]
+ }
+]

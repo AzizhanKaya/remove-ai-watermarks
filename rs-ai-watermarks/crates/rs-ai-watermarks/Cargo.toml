@@ -1,0 +1,62 @@
+[package]
+name = "rs-ai-watermarks"
+description = "AI watermark remover for visible, invisible, and provenance marks in images, video, audio, and text"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+readme = "../../README.md"
+keywords = ["ai-watermark", "c2pa", "synthid", "provenance", "metadata"]
+categories = ["command-line-utilities", "multimedia::images"]
+
+[lib]
+name = "rs_ai_watermarks"
+path = "src/lib.rs"
+
+[[bin]]
+name = "rs-ai-watermarks"
+path = "src/main.rs"
+
+# Subsystems mirror the Python extras; `default` builds everything.
+[features]
+default = ["metadata", "text", "image", "audio", "video", "classify", "gpu"]
+metadata = ["dep:raiw-container", "dep:raiw-c2pa", "dep:raiw-metadata"]
+text = ["dep:raiw-text"]
+image = ["metadata", "dep:raiw-cv", "dep:raiw-visible", "dep:raiw-pixel", "dep:raiw-identify"]
+audio = ["metadata", "dep:raiw-audio"]
+video = ["image", "audio", "dep:raiw-video"]
+classify = ["dep:raiw-cv", "dep:raiw-classify"]
+gpu = ["dep:raiw-gpu", "dep:raiw-regen", "raiw-pixel?/gpu", "raiw-audio?/gpu", "raiw-video?/gpu"]
+
+[dependencies]
+raiw-core.workspace = true
+raiw-mcp.workspace = true
+raiw-container = { workspace = true, optional = true }
+raiw-c2pa = { workspace = true, optional = true }
+raiw-metadata = { workspace = true, optional = true }
+raiw-text = { workspace = true, optional = true }
+raiw-cv = { workspace = true, optional = true }
+raiw-visible = { workspace = true, optional = true }
+raiw-pixel = { workspace = true, optional = true }
+raiw-identify = { workspace = true, optional = true }
+raiw-audio = { workspace = true, optional = true }
+raiw-video = { workspace = true, optional = true }
+raiw-classify = { workspace = true, optional = true }
+raiw-gpu = { workspace = true, optional = true }
+raiw-regen = { workspace = true, optional = true }
+anyhow.workspace = true
+clap.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+
+[dev-dependencies]
+raiw-core = { workspace = true, features = ["testing"] }
+tempfile.workspace = true
+
+[lints]
+workspace = true

@@ -1,0 +1,25 @@
+[package]
+name = "raiw-classify"
+description = "Source-pipeline classifier: forensic features and the published Regime-FiLM inference"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+raiw-core.workspace = true
+raiw-cv.workspace = true
+thiserror.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+rayon.workspace = true
+rustfft.workspace = true
+num-complex.workspace = true
+image.workspace = true
+
+[dev-dependencies]
+raiw-core = { workspace = true, features = ["testing"] }
+
+[lints]
+workspace = true

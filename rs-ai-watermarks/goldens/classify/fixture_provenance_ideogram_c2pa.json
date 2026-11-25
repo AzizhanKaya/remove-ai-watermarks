@@ -1,0 +1,24 @@
+{
+ "fixture": "provenance/ideogram-c2pa.png",
+ "size": [
+  64,
+  64
+ ],
+ "mode": "RGB",
+ "decode_sha256": "dce4a1c2f0a72769ebb8a41a5aada9ebfd692acaa130d658bb9d997b6adb2582",
+ "result": {
+  "label": "unknown",
+  "version_subfamily": null,
+  "fine_subfamily": null,
+  "reason": "feature_unavailable",
+  "confidence": 0.0,
+  "pooled_scores": {},
+  "margins": {},
+  "thresholds": {},
+  "watermark_truth": "unknown",
+  "claim": "Identifies the likely AI generation/export pixel pipeline across 10 provider families with decoupled regime-aware acceptance, threshold-invariant attribution, and stacked Stage-2 version attribution. This is not provenance verification and does not detect or verify SynthID or any invisible watermark.",
+  "model_revision": "multi-provider-source-v10",
+  "synthetic_detected": false,
+  "synthetic_probability": 0.0
+ }
+}

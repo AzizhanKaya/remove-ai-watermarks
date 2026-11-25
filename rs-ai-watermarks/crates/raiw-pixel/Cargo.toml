@@ -1,0 +1,29 @@
+[package]
+name = "raiw-pixel"
+description = "Invisible pixel watermark decoders: DWT-DCT, Microsoft InvisMark, Adobe TrustMark and pixel evidence"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[features]
+gpu = ["dep:raiw-gpu"]
+
+[dependencies]
+raiw-core.workspace = true
+raiw-cv.workspace = true
+raiw-gpu = { workspace = true, optional = true }
+thiserror.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+rayon.workspace = true
+image.workspace = true
+
+[dev-dependencies]
+raiw-core = { workspace = true, features = ["testing"] }
+base64.workspace = true
+flate2.workspace = true
+
+[lints]
+workspace = true

@@ -1,0 +1,2516 @@
+{
+ "vendors": [
+  {
+   "issuer": "Microsoft",
+   "org": "Microsoft",
+   "platform": "Microsoft (Copilot / Designer)",
+   "needle": "Microsoft",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Adobe",
+   "org": "Adobe",
+   "platform": "Adobe Firefly",
+   "needle": "Adobe",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "OpenAI",
+   "org": "OpenAI",
+   "platform": "OpenAI (ChatGPT / GPT Image / DALL·E / Sora)",
+   "needle": "OpenAI",
+   "synthid": true,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": true,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Google",
+   "org": "Google LLC",
+   "platform": "Google (Gemini / Imagen)",
+   "needle": "Google",
+   "synthid": true,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Stability AI",
+   "org": "Stability AI",
+   "platform": "Stability AI (Stable Image / DreamStudio)",
+   "needle": "Stability AI",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Black Forest Labs",
+   "org": "Black Forest Labs",
+   "platform": "Black Forest Labs (FLUX)",
+   "needle": "Black Forest Labs",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "volcengine",
+   "org": "ByteDance (Volcano Engine)",
+   "platform": "ByteDance Volcano Engine",
+   "needle": "Volcano Engine",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "北京火山引擎科技有限公司",
+   "org": "ByteDance (Volcano Engine)",
+   "platform": "ByteDance Volcano Engine",
+   "needle": "Volcano Engine",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Byteplus",
+   "org": "BytePlus (ByteDance)",
+   "platform": "BytePlus (ByteDance)",
+   "needle": "BytePlus",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Dreamina",
+   "org": "ByteDance (Dreamina)",
+   "platform": "ByteDance Dreamina",
+   "needle": "Dreamina",
+   "synthid": false,
+   "asserts_ai": true,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Amazon Web Services",
+   "org": "Amazon",
+   "platform": "Amazon Bedrock (Nova)",
+   "needle": "Amazon",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Canva",
+   "org": "Canva",
+   "platform": "Canva (Magic Media)",
+   "needle": "Canva",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Eleven Labs",
+   "org": "ElevenLabs",
+   "platform": "ElevenLabs",
+   "needle": "ElevenLabs",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Features & Labels",
+   "org": "fal.ai",
+   "platform": "fal.ai",
+   "needle": "fal.ai",
+   "synthid": false,
+   "asserts_ai": true,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "fal-ai",
+   "org": "fal.ai",
+   "platform": "fal.ai",
+   "needle": "fal.ai",
+   "synthid": false,
+   "asserts_ai": true,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Bria",
+   "org": "Bria Artificial Intelligence",
+   "platform": "Bria AI",
+   "needle": "Bria",
+   "synthid": false,
+   "asserts_ai": true,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Ideogram",
+   "org": "Ideogram",
+   "platform": "Ideogram",
+   "needle": "Ideogram",
+   "synthid": false,
+   "asserts_ai": true,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "xAI Grok Imagine",
+   "org": "xAI Grok Imagine",
+   "platform": "xAI Grok Imagine",
+   "needle": "xAI",
+   "synthid": false,
+   "asserts_ai": true,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Producer.ai",
+   "org": "Producer.ai",
+   "platform": "Producer.ai",
+   "needle": "Producer.ai",
+   "synthid": false,
+   "asserts_ai": true,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Synchronicity Labs",
+   "org": "Sync Labs",
+   "platform": "Sync Labs",
+   "needle": "Sync Labs",
+   "synthid": false,
+   "asserts_ai": true,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "PixVerse",
+   "org": "PixVerse",
+   "platform": "PixVerse",
+   "needle": "PixVerse",
+   "synthid": false,
+   "asserts_ai": true,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Suno Inc",
+   "org": "Suno",
+   "platform": "Suno",
+   "needle": "Suno",
+   "synthid": false,
+   "asserts_ai": true,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "pixelbin.io",
+   "org": "PixelBin.io",
+   "platform": "PixelBin.io",
+   "needle": "PixelBin.io",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "SPRING (SG) PTE. LTD.",
+   "org": "SPRING (SG) PTE. LTD.",
+   "platform": "SPRING (SG) PTE. LTD.",
+   "needle": "SPRING",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "TikTok Inc.",
+   "org": "TikTok",
+   "platform": null,
+   "needle": null,
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": "TikTok (C2PA signer)",
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Bytedance Pte",
+   "org": "ByteDance",
+   "platform": null,
+   "needle": null,
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": "ByteDance (C2PA signer)",
+   "raw_signer_platforms": [
+    [
+     "Bytedance Pte. Ltd.",
+     "ByteDance (C2PA signer)"
+    ],
+    [
+     "CapCut/",
+     "CapCut (C2PA signer)"
+    ],
+    [
+     "capcut c2pa-rs",
+     "CapCut (C2PA signer)"
+    ]
+   ]
+  },
+  {
+   "issuer": "Anthropic Claude Content Signing",
+   "org": "Anthropic Claude",
+   "platform": null,
+   "needle": null,
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": "Anthropic Claude (C2PA signer)",
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Samsung Galaxy",
+   "org": "Samsung Galaxy",
+   "platform": null,
+   "needle": null,
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": "Samsung Galaxy (C2PA)",
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "com.asus.gallery",
+   "org": "ASUS Gallery",
+   "platform": null,
+   "needle": null,
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": "ASUS Gallery (C2PA signer)",
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Google Photos",
+   "org": "Google Photos",
+   "platform": null,
+   "needle": null,
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "RUNWAY AI, INC.",
+   "org": "Runway",
+   "platform": "Runway",
+   "needle": "Runway",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Runway AI, Inc",
+   "org": "Runway",
+   "platform": "Runway",
+   "needle": "Runway",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Pruna AI",
+   "org": "Pruna AI",
+   "platform": "Pruna AI",
+   "needle": "Pruna AI",
+   "synthid": false,
+   "asserts_ai": true,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Kling AI",
+   "org": "Kuaishou (Kling AI)",
+   "platform": "Kuaishou Kling AI",
+   "needle": "Kling AI",
+   "synthid": false,
+   "asserts_ai": true,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Topaz Labs",
+   "org": "Topaz Labs",
+   "platform": "Topaz Labs",
+   "needle": "Topaz",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "CyberLink",
+   "org": "CyberLink PhotoDirector",
+   "platform": "CyberLink PhotoDirector",
+   "needle": "CyberLink",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "PhotoDirector",
+   "org": "CyberLink PhotoDirector",
+   "platform": "CyberLink PhotoDirector",
+   "needle": "PhotoDirector",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "AUTOENHANCE.AI",
+   "org": "Autoenhance.ai",
+   "platform": "Autoenhance.ai",
+   "needle": "Autoenhance.ai",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "vivo Mobile Communication",
+   "org": "vivo",
+   "platform": "vivo",
+   "needle": "vivo",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Pixelcut",
+   "org": "Pixelcut",
+   "platform": "Pixelcut",
+   "needle": "Pixelcut",
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  },
+  {
+   "issuer": "Truepic",
+   "org": "Truepic",
+   "platform": null,
+   "needle": null,
+   "synthid": false,
+   "asserts_ai": false,
+   "synthid_requires_watermark_action": false,
+   "signer_platform": null,
+   "raw_signer_platforms": []
+  }
+ ],
+ "issuers": [
+  [
+   "Microsoft",
+   "Microsoft"
+  ],
+  [
+   "Adobe",
+   "Adobe"
+  ],
+  [
+   "OpenAI",
+   "OpenAI"
+  ],
+  [
+   "Google",
+   "Google LLC"
+  ],
+  [
+   "Stability AI",
+   "Stability AI"
+  ],
+  [
+   "Black Forest Labs",
+   "Black Forest Labs"
+  ],
+  [
+   "volcengine",
+   "ByteDance (Volcano Engine)"
+  ],
+  [
+   "北京火山引擎科技有限公司",
+   "ByteDance (Volcano Engine)"
+  ],
+  [
+   "Byteplus",
+   "BytePlus (ByteDance)"
+  ],
+  [
+   "Dreamina",
+   "ByteDance (Dreamina)"
+  ],
+  [
+   "Amazon Web Services",
+   "Amazon"
+  ],
+  [
+   "Canva",
+   "Canva"
+  ],
+  [
+   "Eleven Labs",
+   "ElevenLabs"
+  ],
+  [
+   "Features & Labels",
+   "fal.ai"
+  ],
+  [
+   "fal-ai",
+   "fal.ai"
+  ],
+  [
+   "Bria",
+   "Bria Artificial Intelligence"
+  ],
+  [
+   "Ideogram",
+   "Ideogram"
+  ],
+  [
+   "xAI Grok Imagine",
+   "xAI Grok Imagine"
+  ],
+  [
+   "Producer.ai",
+   "Producer.ai"
+  ],
+  [
+   "Synchronicity Labs",
+   "Sync Labs"
+  ],
+  [
+   "PixVerse",
+   "PixVerse"
+  ],
+  [
+   "Suno Inc",
+   "Suno"
+  ],
+  [
+   "pixelbin.io",
+   "PixelBin.io"
+  ],
+  [
+   "SPRING (SG) PTE. LTD.",
+   "SPRING (SG) PTE. LTD."
+  ],
+  [
+   "TikTok Inc.",
+   "TikTok"
+  ],
+  [
+   "Bytedance Pte",
+   "ByteDance"
+  ],
+  [
+   "Anthropic Claude Content Signing",
+   "Anthropic Claude"
+  ],
+  [
+   "Samsung Galaxy",
+   "Samsung Galaxy"
+  ],
+  [
+   "com.asus.gallery",
+   "ASUS Gallery"
+  ],
+  [
+   "Google Photos",
+   "Google Photos"
+  ],
+  [
+   "RUNWAY AI, INC.",
+   "Runway"
+  ],
+  [
+   "Runway AI, Inc",
+   "Runway"
+  ],
+  [
+   "Pruna AI",
+   "Pruna AI"
+  ],
+  [
+   "Kling AI",
+   "Kuaishou (Kling AI)"
+  ],
+  [
+   "Topaz Labs",
+   "Topaz Labs"
+  ],
+  [
+   "CyberLink",
+   "CyberLink PhotoDirector"
+  ],
+  [
+   "PhotoDirector",
+   "CyberLink PhotoDirector"
+  ],
+  [
+   "AUTOENHANCE.AI",
+   "Autoenhance.ai"
+  ],
+  [
+   "vivo Mobile Communication",
+   "vivo"
+  ],
+  [
+   "Pixelcut",
+   "Pixelcut"
+  ],
+  [
+   "Truepic",
+   "Truepic"
+  ]
+ ],
+ "synthid_edit_signers": [
+  "YouTube"
+ ],
+ "identity_ai_orgs": [
+  "Bria Artificial Intelligence",
+  "ByteDance (Dreamina)",
+  "Ideogram",
+  "Kuaishou (Kling AI)",
+  "PixVerse",
+  "Producer.ai",
+  "Pruna AI",
+  "Suno",
+  "Sync Labs",
+  "fal.ai",
+  "xAI Grok Imagine"
+ ],
+ "signer_platform_by_org": {
+  "TikTok": "TikTok (C2PA signer)",
+  "ByteDance": "ByteDance (C2PA signer)",
+  "Anthropic Claude": "Anthropic Claude (C2PA signer)",
+  "Samsung Galaxy": "Samsung Galaxy (C2PA)",
+  "ASUS Gallery": "ASUS Gallery (C2PA signer)"
+ },
+ "signer_platforms": [
+  [
+   "TikTok Inc.",
+   "TikTok (C2PA signer)"
+  ],
+  [
+   "Bytedance Pte. Ltd.",
+   "ByteDance (C2PA signer)"
+  ],
+  [
+   "CapCut/",
+   "CapCut (C2PA signer)"
+  ],
+  [
+   "capcut c2pa-rs",
+   "CapCut (C2PA signer)"
+  ],
+  [
+   "Anthropic Claude Content Signing",
+   "Anthropic Claude (C2PA signer)"
+  ],
+  [
+   "Samsung Galaxy",
+   "Samsung Galaxy (C2PA)"
+  ],
+  [
+   "com.asus.gallery",
+   "ASUS Gallery (C2PA signer)"
+  ]
+ ],
+ "claim_generator_platforms": [
+  [
+   "grok imagine",
+   "xAI Grok Imagine"
+  ],
+  [
+   "suno",
+   "Suno"
+  ],
+  [
+   "adobe_firefly",
+   "Adobe Firefly"
+  ],
+  [
+   "firefly",
+   "Adobe Firefly"
+  ],
+  [
+   "dreamina",
+   "ByteDance Dreamina"
+  ],
+  [
+   "pippit",
+   "ByteDance Pippit AI"
+  ],
+  [
+   "dola",
+   "ByteDance Dola"
+  ],
+  [
+   "sync labs",
+   "Sync Labs"
+  ],
+  [
+   "pixelbin.io",
+   "PixelBin.io"
+  ],
+  [
+   "higgsfield ai",
+   "Higgsfield AI"
+  ],
+  [
+   "recraft.ai",
+   "Recraft"
+  ],
+  [
+   "topaz labs image api",
+   "Topaz Labs"
+  ],
+  [
+   "tiktok ad creative toolbox",
+   "TikTok Ad Creative Toolbox"
+  ],
+  [
+   "fastvid",
+   "FastVid"
+  ],
+  [
+   "ks-c2pa-service",
+   "Kuaishou Kling AI"
+  ],
+  [
+   "pruna ai",
+   "Pruna AI"
+  ],
+  [
+   "capcut",
+   "CapCut (C2PA signer)"
+  ]
+ ],
+ "ai_tools": [
+  [
+   "GPT-4o",
+   "GPT-4o"
+  ],
+  [
+   "ChatGPT",
+   "ChatGPT"
+  ],
+  [
+   "Sora",
+   "Sora"
+  ],
+  [
+   "DALL-E",
+   "DALL·E"
+  ],
+  [
+   "DALL",
+   "DALL·E"
+  ],
+  [
+   "Imagen",
+   "Imagen"
+  ],
+  [
+   "Firefly",
+   "Firefly"
+  ],
+  [
+   "Dreamina",
+   "Dreamina"
+  ],
+  [
+   "Pippit",
+   "Pippit"
+  ],
+  [
+   "Dola",
+   "Dola"
+  ],
+  [
+   "TIKTOK AD Creative Toolbox",
+   "TikTok Ad Creative Toolbox"
+  ]
+ ],
+ "actions": [
+  [
+   "c2pa.created",
+   "created"
+  ],
+  [
+   "c2pa.converted",
+   "converted"
+  ],
+  [
+   "c2pa.edited",
+   "edited"
+  ],
+  [
+   "c2pa.filtered",
+   "filtered"
+  ],
+  [
+   "c2pa.cropped",
+   "cropped"
+  ],
+  [
+   "c2pa.resized",
+   "resized"
+  ],
+  [
+   "c2pa.opened",
+   "opened"
+  ],
+  [
+   "c2pa.placed",
+   "placed"
+  ],
+  [
+   "c2pa.watermarked.unbound",
+   "watermarked.unbound"
+  ]
+ ],
+ "ai_generator_tokens": [
+  "aphrodite ai",
+  "apple image playground",
+  "apple photos clean up",
+  "apple photos generative edit",
+  "automatic1111",
+  "comfyui",
+  "dall-e",
+  "dalle",
+  "dreamstudio",
+  "fal-ai",
+  "firefly",
+  "flux",
+  "gpt image",
+  "gpt-image",
+  "ideogram",
+  "imagen",
+  "invokeai",
+  "leonardo",
+  "luma ai",
+  "lumalabs",
+  "midjourney",
+  "nano banana",
+  "nightcafe",
+  "novelai",
+  "reve.com",
+  "stable diffusion",
+  "stable-diffusion",
+  "stablediffusion"
+ ],
+ "label_overrides": [
+  [
+   "com.adobe.trustmark",
+   "Adobe TrustMark"
+  ],
+  [
+   "com.adobe.icn",
+   "Adobe Image Comparator Network"
+  ],
+  [
+   "com.digimarc",
+   "Digimarc Validate"
+  ],
+  [
+   "com.imatag.lamark",
+   "Imatag (Lamark)"
+  ],
+  [
+   "ai.steg",
+   "Steg.AI"
+  ],
+  [
+   "com.microsoft.invismark",
+   "Microsoft InvisMark"
+  ],
+  [
+   "com.microsoft.wavmark",
+   "Microsoft WavMark"
+  ],
+  [
+   "com.verimatrix",
+   "Verimatrix"
+  ],
+  [
+   "com.nagra.nexguard",
+   "NAGRA NexGuard"
+  ],
+  [
+   "com.aiwatermark.pixelseal",
+   "AIWatermark PixelSeal"
+  ],
+  [
+   "com.aiwatermark.videoseal",
+   "AIWatermark VideoSeal"
+  ],
+  [
+   "com.aiwatermark.audioseal",
+   "AIWatermark AudioSeal"
+  ],
+  [
+   "ai.trufo",
+   "Trufo PawPrint"
+  ],
+  [
+   "app.overlai",
+   "Overlai"
+  ],
+  [
+   "com.markany",
+   "MarkAny"
+  ],
+  [
+   "com.mentaport",
+   "Mentaport"
+  ],
+  [
+   "es.lumatrace",
+   "LumaTrace"
+  ],
+  [
+   "ai.verda",
+   "VerdaAI"
+  ],
+  [
+   "ai.contentlens",
+   "ContentLens"
+  ],
+  [
+   "io.iscc",
+   "ISCC (content code)"
+  ]
+ ],
+ "vendor_prefixes": [
+  [
+   0,
+   "com.suno.fingerprint",
+   "fingerprint",
+   [
+    "audio/*"
+   ],
+   [
+    "audio/*"
+   ],
+   "Suno Audio Fingerprint",
+   "",
+   [],
+   false
+  ]
+ ],
+ "soft_binding_rows": [
+  [
+   1,
+   "com.digimarc.validate.1",
+   "watermark",
+   [
+    "audio",
+    "video",
+    "text",
+    "image"
+   ],
+   [],
+   "Digimarc Validate Digital Watermarking algorithm",
+   "2024-05-17T17:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   2,
+   "org.atsc.a336",
+   "watermark",
+   [
+    "audio",
+    "video",
+    "image"
+   ],
+   [],
+   "ATSC watermarking (A/334, A/335, A/336)",
+   "2024-05-17T15:43:00.000Z",
+   [],
+   false
+  ],
+  [
+   3,
+   "io.iscc.v0",
+   "fingerprint",
+   [
+    "text",
+    "image",
+    "audio",
+    "video",
+    "application"
+   ],
+   [],
+   "ISO 24138 - International Standard Content Code (ISCC) V0 algorithm",
+   "2024-05-17T16:00:00Z",
+   [],
+   false
+  ],
+  [
+   4,
+   "com.adobe.trustmark.Q",
+   "watermark",
+   [
+    "image"
+   ],
+   [],
+   "Adobe Trustmark variant Q",
+   "2024-05-17T17:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   5,
+   "com.adobe.trustmark.C",
+   "watermark",
+   [
+    "image"
+   ],
+   [],
+   "Adobe Trustmark variant C",
+   "2024-05-17T17:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   6,
+   "com.adobe.icn.dense",
+   "fingerprint",
+   [
+    "image"
+   ],
+   [],
+   "Adobe Image Comparator Network Dense Fingerprint",
+   "2024-05-17T17:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   7,
+   "ai.steg.api",
+   "watermark",
+   [
+    "image",
+    "video",
+    "application"
+   ],
+   [],
+   "Steg.AI invisible watermarking",
+   "2024-05-20T10:50:00.000Z",
+   [],
+   false
+  ],
+  [
+   8,
+   "ai.trufo.pawprint.watermark",
+   "watermark",
+   [
+    "image",
+    "audio",
+    "video"
+   ],
+   [],
+   "PawPrint neural watermarking for images, audio, and video",
+   "2024-08-14T15:00:00.000Z",
+   [
+    "https://c2pa.trufo.ai/v1"
+   ],
+   false
+  ],
+  [
+   9,
+   "ai.trufo.pawprint.fingerprint",
+   "fingerprint",
+   [
+    "image",
+    "audio",
+    "video"
+   ],
+   [],
+   "PawPrint neural fingerprinting for images, audio, and video",
+   "2024-08-14T15:00:00.000Z",
+   [
+    "https://c2pa.trufo.ai/v1"
+   ],
+   false
+  ],
+  [
+   10,
+   "app.overlai.watermark.1",
+   "watermark",
+   [
+    "image"
+   ],
+   [],
+   "Overlai Watermark version 1",
+   "2024-08-14T16:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   11,
+   "tv.kinetiq.watercast.48.1",
+   "watermark",
+   [
+    "video"
+   ],
+   [],
+   "Teletrax Watermarking algorithm",
+   "2024-10-16T17:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   12,
+   "castLabs.watermark.1",
+   "watermark",
+   [
+    "video",
+    "image",
+    "audio"
+   ],
+   [],
+   "castLabs Single Frame Forensic Watermarking",
+   "2024-11-13T12:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   13,
+   "com.adobe.trustmark.P",
+   "watermark",
+   [
+    "image"
+   ],
+   [],
+   "Adobe Trustmark variant P",
+   "2025-02-05T17:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   14,
+   "com.imatag.lamark.v1",
+   "watermark",
+   [
+    "image"
+   ],
+   [],
+   "Imatag invisible watermarking for images",
+   "2025-02-26T15:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   15,
+   "com.nagra.nexguard.watermark.1",
+   "watermark",
+   [
+    "video",
+    "audio",
+    "image"
+   ],
+   [],
+   "NAGRA NexGuard Watermarking with Single Frame Detection Capability",
+   "2025-02-26T13:53:25.000Z",
+   [],
+   false
+  ],
+  [
+   16,
+   "com.mentaport.watermark.1",
+   "watermark",
+   [
+    "video",
+    "audio",
+    "image"
+   ],
+   [],
+   "Mentaport Watermarking Engine",
+   "2025-03-12T13:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   17,
+   "com.digicaps.fingerprint.1",
+   "fingerprint",
+   [
+    "image"
+   ],
+   [],
+   "DigiCAP Fingerprint Engine",
+   "2025-06-16T17:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   18,
+   "com.sonicorigin.watermark.1",
+   "watermark",
+   [
+    "audio",
+    "video"
+   ],
+   [],
+   "SonicOrigin Watermarking Engine",
+   "2025-08-13T18:25:00.000Z",
+   [],
+   false
+  ],
+  [
+   19,
+   "com.microsoft.invismark.1",
+   "watermark",
+   [
+    "image",
+    "video"
+   ],
+   [],
+   "Microsoft Responsible AI InvisMark",
+   "2025-10-12T18:25:00.000Z",
+   [],
+   false
+  ],
+  [
+   20,
+   "com.microsoft.wavmark.1",
+   "watermark",
+   [
+    "audio",
+    "video"
+   ],
+   [],
+   "Microsoft Responsible AI WavMark",
+   "2025-10-12T15:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   21,
+   "ai.contentlens.image.basewmk",
+   "watermark",
+   [
+    "image"
+   ],
+   [],
+   "ContentLens Image Watermarking (Base)",
+   "2025-11-26T14:30:00.000Z",
+   [],
+   false
+  ],
+  [
+   22,
+   "ai.contentlens.image.ensemblewmk",
+   "watermark",
+   [
+    "image"
+   ],
+   [],
+   "ContentLens Image Watermarking (Ensemble)",
+   "2025-11-26T14:30:00.000Z",
+   [],
+   false
+  ],
+  [
+   23,
+   "ai.contentlens.image.customwmk",
+   "watermark",
+   [
+    "image"
+   ],
+   [],
+   "ContentLens Image Watermarking (Custom)",
+   "2025-11-26T14:30:00.000Z",
+   [],
+   false
+  ],
+  [
+   24,
+   "ai.contentlens.audio.mono",
+   "watermark",
+   [
+    "audio"
+   ],
+   [],
+   "ContentLens Audio Watermarking (Mono)",
+   "2025-11-26T14:30:00.000Z",
+   [],
+   false
+  ],
+  [
+   25,
+   "ai.contentlens.audio.stereo",
+   "watermark",
+   [
+    "audio"
+   ],
+   [],
+   "ContentLens Audio Watermarking (Stereo)",
+   "2025-11-26T14:30:00.000Z",
+   [],
+   false
+  ],
+  [
+   26,
+   "es.lumatrace",
+   "watermark",
+   [
+    "image"
+   ],
+   [],
+   "Java-native Adaptive Spatial Watermarking using Blue-channel injection",
+   "2026-01-26T17:30:00.000Z",
+   [],
+   false
+  ],
+  [
+   27,
+   "com.markany.watermark.1",
+   "watermark",
+   [
+    "image",
+    "video",
+    "audio"
+   ],
+   [],
+   "MarkAny invisible watermarking with robustness against cropping, resizing, and compression",
+   "2026-02-25T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   28,
+   "com.verimatrix.watermark.1",
+   "watermark",
+   [
+    "video"
+   ],
+   [],
+   "Verimatrix watermarking algorithm: provides an essence-based forensic watermarking mechanism that may be used as a C2PA soft-binding technology",
+   "2026-02-26T14:16:00.000Z",
+   [],
+   false
+  ],
+  [
+   29,
+   "com.writerslogic.zwc-watermark.1",
+   "watermark",
+   [],
+   [
+    "text/plain",
+    "text/markdown",
+    "text/html"
+   ],
+   "WritersLogic CPOP zero-width character (ZWC) watermark for text content",
+   "2026-03-18T20:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   30,
+   "com.aiwatermark.videoseal.1",
+   "watermark",
+   [
+    "video"
+   ],
+   [
+    "video/mp4",
+    "video/webm"
+   ],
+   "Neural video watermarking using Meta FAIR's VideoSeal model, providing perceptually invisible soft-binding watermarks in video content",
+   "2026-03-08T00:00:00.000Z",
+   [
+    "https://aiwatermark.com/api/v1"
+   ],
+   false
+  ],
+  [
+   31,
+   "com.aiwatermark.pixelseal.1",
+   "watermark",
+   [
+    "image"
+   ],
+   [
+    "image/png",
+    "image/jpeg",
+    "image/webp"
+   ],
+   "Neural image watermarking using Meta FAIR's PixelSeal model, providing perceptually invisible soft-binding watermarks in image content",
+   "2026-03-08T00:00:00.000Z",
+   [
+    "https://aiwatermark.com/api/v1"
+   ],
+   false
+  ],
+  [
+   32,
+   "com.aiwatermark.audioseal.1",
+   "watermark",
+   [
+    "audio"
+   ],
+   [
+    "audio/mpeg",
+    "audio/wav",
+    "audio/flac",
+    "audio/mp4"
+   ],
+   "Neural audio watermarking using Meta FAIR's AudioSeal model, providing imperceptible soft-binding watermarks in audio content",
+   "2026-03-08T00:00:00.000Z",
+   [
+    "https://aiwatermark.com/api/v1"
+   ],
+   false
+  ],
+  [
+   33,
+   "eu.sasha.softbinding.v1",
+   "watermark",
+   [
+    "image"
+   ],
+   [
+    "image/jpeg",
+    "image/png",
+    "image/webp"
+   ],
+   "Invisible watermarking technology for image and video assets, enabling C2PA manifest recovery and content provenance verification after metadata stripping or transcoding",
+   "2026-04-16T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   34,
+   "ai.verda.watermark.image.1",
+   "watermark",
+   [
+    "image"
+   ],
+   [
+    "image/png",
+    "image/jpeg",
+    "image/avif"
+   ],
+   "VerdaAI invisible image watermarking",
+   "2026-04-16T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   35,
+   "ai.verda.watermark.video.1",
+   "watermark",
+   [
+    "video"
+   ],
+   [
+    "video/mp4",
+    "video/webm",
+    "video/quicktime"
+   ],
+   "VerdaAI invisible video watermarking",
+   "2026-04-16T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   36,
+   "ai.verda.watermark.audio.1",
+   "watermark",
+   [
+    "audio"
+   ],
+   [
+    "audio/mpeg",
+    "audio/wav",
+    "audio/aac",
+    "audio/ogg",
+    "audio/flac"
+   ],
+   "VerdaAI invisible audio watermarking",
+   "2026-04-16T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   37,
+   "com.evixar.eaw.1",
+   "watermark",
+   [
+    "audio",
+    "video"
+   ],
+   [],
+   "EAW (Evixar Audio Watermark) is an audible-range audio watermarking algorithm developed by Evixar Inc",
+   "2026-04-24T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   38,
+   "com.evixar.efp.type3.1",
+   "fingerprint",
+   [
+    "audio",
+    "video"
+   ],
+   [],
+   "EFP Type 3 (Evixar Finger Print Type 3) is an audio fingerprinting algorithm developed by Evixar Inc",
+   "2026-04-24T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   39,
+   "com.cognitive-proof.vsrmark.1",
+   "watermark",
+   [
+    "text"
+   ],
+   [],
+   "VSRMark hides a structured byte payload inside visible Unicode text by appending invisible Variation Selectors after visible characters",
+   "2026-06-04T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   40,
+   "me.deepmark.audio.vigil.128",
+   "watermark",
+   [
+    "audio"
+   ],
+   [],
+   "Vigil is a 128-bit-per-second neural audio watermarking algorithm developed by DeepMark Inc",
+   "2026-06-05T00:00:00Z",
+   [
+    "https://resolution-api.deepmark.me"
+   ],
+   false
+  ],
+  [
+   41,
+   "com.writerslogic.text-fingerprint.1",
+   "fingerprint",
+   [],
+   [
+    "text/plain",
+    "text/markdown",
+    "text/html"
+   ],
+   "WritersLogic CPoE robust text fingerprint",
+   "2026-06-22T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   42,
+   "com.writerslogic.zwc-watermark.2",
+   "watermark",
+   [],
+   [
+    "text/plain",
+    "text/markdown",
+    "text/html"
+   ],
+   "Revision of com.writerslogic.zwc-watermark.1",
+   "2026-07-07T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   43,
+   "com.writerslogic.text-structure.1",
+   "fingerprint",
+   [],
+   [
+    "text/plain",
+    "text/markdown",
+    "text/html"
+   ],
+   "WritersLogic CPoE structural text fingerprint",
+   "2026-07-07T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   44,
+   "com.writerslogic.text-minhash.1",
+   "fingerprint",
+   [],
+   [
+    "text/plain",
+    "text/markdown",
+    "text/html"
+   ],
+   "WritersLogic CPoE lexical MinHash text fingerprint for excerpt and quotation matching",
+   "2026-07-07T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   45,
+   "io.blockfact.audio.watermark.32",
+   "watermark",
+   [
+    "image"
+   ],
+   [],
+   "BlockFact invisible image watermarking for provenance",
+   "2026-07-10T16:00:00.000Z",
+   [
+    "https://api.blockfact.io/api/soft-binding/v1"
+   ],
+   false
+  ],
+  [
+   46,
+   "com.doverunner.watermark.1",
+   "watermark",
+   [
+    "video"
+   ],
+   [],
+   "DoveRunner's forensic watermarking solution delivers invisible, tamper-resilient traceability into video content — from enterprise distribution pipelines to end-consumer playback",
+   "2026-07-27T14:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   47,
+   "com.writerslogic.text-watermark-semantic.1",
+   "watermark",
+   [],
+   [
+    "text/plain",
+    "text/markdown",
+    "text/html"
+   ],
+   "WritersLogic CPoE post-hoc semantic embedding watermark for paraphrase- and translation-robust manuscript identification",
+   "2026-07-28T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   48,
+   "com.joinmonolith.sha256",
+   "fingerprint",
+   [
+    "image",
+    "video",
+    "audio",
+    "text",
+    "application"
+   ],
+   [],
+   "Monolith SHA-256 content fingerprint for C2PA manifest recovery",
+   "2026-07-29T00:00:00.000Z",
+   [
+    "https://api.joinmonolith.com/api/c2pa"
+   ],
+   false
+  ],
+  [
+   49,
+   "com.museblossom.contentsdefence.1",
+   "watermark",
+   [
+    "audio",
+    "image",
+    "video"
+   ],
+   [],
+   "Contents Defence invisible image watermark, used to recover the associated C2PA manifest when embedded metadata is absent",
+   "2026-08-10T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   50,
+   "me.reconize.videoseal.1",
+   "watermark",
+   [
+    "image",
+    "video"
+   ],
+   [],
+   "Reconize deployment of the VideoSeal invisible watermark (Meta AI open research), embedding a 256-bit identity payload into image and video pixels via on-device Core ML",
+   "2026-08-10T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   51,
+   "io.diker.sigi.v1",
+   "watermark",
+   [
+    "image"
+   ],
+   [],
+   "Sigi invisible watermarking engine by Okeanos B.V",
+   "2026-08-11T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   52,
+   "com.adobe.hiermark.A",
+   "watermark",
+   [
+    "audio"
+   ],
+   [],
+   "Adobe Hierarchical Audio watermark (HierMark) variant A",
+   "2026-08-13T12:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   53,
+   "com.adobe.flowmark.A",
+   "watermark",
+   [
+    "video"
+   ],
+   [],
+   "Adobe FlowMark video watermarking variant A",
+   "2026-08-13T12:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   54,
+   "be.immostory.videoseal.1",
+   "watermark",
+   [
+    "video"
+   ],
+   [
+    "video/mp4"
+   ],
+   "ImmoStory AI deployment of Meta FAIR's Video Seal 1.0 invisible video watermark",
+   "2026-10-12T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   55,
+   "com.adobe.trustmark.F",
+   "watermark",
+   [
+    "image"
+   ],
+   [],
+   "Adobe FiLMCAM Conditional Access Watermarking / Trustmark variant F",
+   "2026-10-14T14:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   56,
+   "com.quatvision.quatmark.1",
+   "watermark",
+   [
+    "image"
+   ],
+   [
+    "image/jpeg",
+    "image/png",
+    "image/tiff",
+    "image/webp"
+   ],
+   "QuatMark keyed invisible image watermark",
+   "2026-10-16T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   57,
+   "com.encypher.text.watermark.1",
+   "watermark",
+   [
+    "text"
+   ],
+   [],
+   "Encypher text watermark",
+   "2026-10-19T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   58,
+   "com.encypher.text.fingerprint.1",
+   "fingerprint",
+   [
+    "text"
+   ],
+   [],
+   "Encypher text content fingerprint",
+   "2026-10-19T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   60,
+   "studio.aidr.silentcipher.1",
+   "watermark",
+   [
+    "audio"
+   ],
+   [
+    "audio/wav"
+   ],
+   "AIDR Studio deployment of Sony Research's open SilentCipher 44.1 kHz audio watermark (silentcipher 1.0.5, MIT), used without retraining",
+   "2026-10-28T00:00:00.000Z",
+   [
+    "https://aidr.studio/api/c2pa/v1"
+   ],
+   false
+  ],
+  [
+   61,
+   "com.etchv.watermark.1",
+   "watermark",
+   [
+    "image"
+   ],
+   [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "image/tiff",
+    "image/gif"
+   ],
+   "Etchv invisible image watermark carrying a 256-bit per-file identifier, embedded before C2PA signing",
+   "2026-10-28T20:00:00.000Z",
+   [
+    "https://api.etchv.com/c2pa/v1"
+   ],
+   false
+  ],
+  [
+   62,
+   "com.ottxp.koltheia.photonote.1",
+   "fingerprint",
+   [
+    "image"
+   ],
+   [],
+   "KolTheia photo note: spread ORB keypoints plus secret-pattern colour squares, matched with turn-and-resize or perspective fits, to recover the C2PA Manifest of a sealed photo from a recompressed, cropped, slanted or partly drawn-over copy",
+   "2026-10-31T00:00:00.000Z",
+   [
+    "https://koltheia.ottxp.com/api/softbinding/v1"
+   ],
+   false
+  ],
+  [
+   63,
+   "ai.label4.watermark.walrus",
+   "watermark",
+   [
+    "image",
+    "video"
+   ],
+   [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "video/mp4",
+    "video/x-matroska"
+   ],
+   "Label4.ai invisible image/video watermark carrying a secret-keyed content identifier for C2PA soft binding",
+   "2026-11-04T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   64,
+   "ai.label4.watermark.phaseal",
+   "watermark",
+   [
+    "audio"
+   ],
+   [
+    "audio/x-wav",
+    "audio/mpeg",
+    "audio/mp4",
+    "audio/flac"
+   ],
+   "Label4.ai imperceptible audio watermark carrying a secret-keyed content identifier for C2PA soft binding",
+   "2026-11-04T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   65,
+   "ai.label4.watermark.fastermax",
+   "watermark",
+   [
+    "text"
+   ],
+   [],
+   "Label4.ai text watermark detector identifying watermarks used for C2PA soft binding",
+   "2026-11-04T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   66,
+   "com.dreamartfields.signature.2",
+   "watermark",
+   [
+    "image",
+    "video"
+   ],
+   [],
+   "Dream Art Fields invisible signature, version 2 (tile), by YambaCode AB",
+   "2026-11-08T00:00:00.000Z",
+   [],
+   false
+  ],
+  [
+   67,
+   "com.art-koffee.phash.1",
+   "fingerprint",
+   [
+    "image"
+   ],
+   [],
+   "ArtKoffee perceptual fingerprint: 64-bit DCT pHash of artwork images (EXIF-oriented, alpha over white, ITU-R 601 grayscale, 32x32 Lanczos, unnormalized 8x8 low-frequency DCT-II vs",
+   "2026-11-10T00:00:00.000Z",
+   [
+    "https://www.art-koffee.com/c2pa/v1"
+   ],
+   false
+  ],
+  [
+   68,
+   "com.originalpictures.pixelseal.1",
+   "watermark",
+   [
+    "image"
+   ],
+   [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "image/tiff",
+    "image/avif"
+   ],
+   "Original Pictures' invisible image watermark built on Meta FAIR's PixelSeal model (facebookresearch/videoseal at 870ca7fb, pixelseal.pth)",
+   "2026-11-09T08:37:03.355Z",
+   [],
+   false
+  ],
+  [
+   69,
+   "com.originalpictures.pixelseal-video.1",
+   "watermark",
+   [
+    "video"
+   ],
+   [
+    "video/mp4"
+   ],
+   "Original Pictures' invisible video watermark built on Meta FAIR's PixelSeal model (facebookresearch/videoseal at 870ca7fb, pixelseal.pth) applied in video mode",
+   "2026-11-09T08:37:03.355Z",
+   [],
+   false
+  ],
+  [
+   70,
+   "com.originalpictures.audioseal.1",
+   "watermark",
+   [
+    "audio"
+   ],
+   [
+    "audio/wav",
+    "audio/mpeg"
+   ],
+   "Original Pictures' invisible audio watermark built on Meta FAIR's AudioSeal 0.2.0 streaming generator and detector (Hugging Face facebook/audioseal at 3c19eba)",
+   "2026-11-09T08:37:03.355Z",
+   [],
+   false
+  ],
+  [
+   71,
+   "com.originalpictures.videoseal.1",
+   "watermark",
+   [
+    "video"
+   ],
+   [
+    "video/mp4"
+   ],
+   "Original Pictures' invisible video watermark built on Meta FAIR's VideoSeal 1.0 (videoseal 1.0.1, TorchScript model y_256b_img.jit)",
+   "2026-11-09T08:37:03.355Z",
+   [],
+   false
+  ],
+  [
+   72,
+   "com.originalpictures.videoseal-image.1",
+   "watermark",
+   [
+    "image"
+   ],
+   [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "image/tiff",
+    "image/avif"
+   ],
+   "Original Pictures' invisible image watermark built on Meta FAIR's VideoSeal 1.0 model in image mode (facebookresearch/videoseal at 870ca7fb, y_256b_img.pth)",
+   "2026-11-09T08:37:03.355Z",
+   [],
+   false
+  ],
+  [
+   73,
+   "com.originalpictures.dinov2.1",
+   "fingerprint",
+   [
+    "image"
+   ],
+   [
+    "image/avif",
+    "image/jpeg",
+    "image/png",
+    "image/tiff",
+    "image/webp"
+   ],
+   "Original Pictures' image descriptor built on Meta FAIR's DINOv2 ViT-S/14 model (Hugging Face facebook/dinov2-small at ed25f3a3; Apache-2.0 code and weights)",
+   "2026-11-09T08:37:03.355Z",
+   [],
+   false
+  ],
+  [
+   74,
+   "com.originalpictures.pdq.1",
+   "fingerprint",
+   [
+    "image"
+   ],
+   [
+    "image/avif",
+    "image/jpeg",
+    "image/png",
+    "image/tiff",
+    "image/webp"
+   ],
+   "Original Pictures' deployment of Meta's PDQ perceptual image hash (facebook/ThreatExchange at baefb4ed, BSD), computed on luma by a float32 port of ThreatExchange pdq/cpp checked against the pdqhash 0.2.8 reference",
+   "2026-11-09T08:37:03.355Z",
+   [],
+   false
+  ],
+  [
+   75,
+   "com.originalpictures.dinov2-lsh256.1",
+   "fingerprint",
+   [
+    "image"
+   ],
+   [
+    "image/avif",
+    "image/jpeg",
+    "image/png",
+    "image/tiff",
+    "image/webp"
+   ],
+   "Original Pictures' keyed 256-bit hash of Meta FAIR's DINOv2 ViT-S/14 image descriptor (Hugging Face facebook/dinov2-small at ed25f3a3; Apache-2.0)",
+   "2026-11-09T08:37:03.355Z",
+   [],
+   false
+  ],
+  [
+   76,
+   "com.originalpictures.chromaprint.1",
+   "fingerprint",
+   [
+    "audio"
+   ],
+   [
+    "audio/mp4",
+    "audio/mpeg",
+    "audio/wav"
+   ],
+   "Original Pictures' deployment of Chromaprint 1.6.1 (AcoustID; fpcalc, fingerprint algorithm 2; MIT core, the shipped fpcalc binary LGPL-2.1)",
+   "2026-11-09T08:37:03.355Z",
+   [],
+   false
+  ],
+  [
+   77,
+   "com.originalpictures.audfprint.1",
+   "fingerprint",
+   [
+    "audio"
+   ],
+   [
+    "audio/mp4",
+    "audio/mpeg",
+    "audio/wav"
+   ],
+   "Original Pictures' deployment of Dan Ellis' audfprint landmark fingerprint (dpwe/audfprint at cb03ba99, MIT)",
+   "2026-11-09T08:37:03.355Z",
+   [],
+   false
+  ],
+  [
+   78,
+   "com.originalpictures.tmk-pdqf.1",
+   "fingerprint",
+   [
+    "video"
+   ],
+   [
+    "video/mp4"
+   ],
+   "Original Pictures' deployment of TMK+PDQF from Meta's ThreatExchange (facebook/ThreatExchange tmk at baefb4ed, BSD), with ThreatExchange's default configuration: PDQF frame features of frames sampled at 15 fps and 64x64 pixels, combined by the Temporal Match Kernel into a whole-clip descriptor with a 256-dimension level-1 vector",
+   "2026-11-09T08:37:03.355Z",
+   [],
+   false
+  ],
+  [
+   79,
+   "com.originalpictures.vpdq.1",
+   "fingerprint",
+   [
+    "video"
+   ],
+   [
+    "video/mp4"
+   ],
+   "Original Pictures' deployment of vPDQ from Meta's ThreatExchange (facebook/ThreatExchange at baefb4ed, BSD), run on the same PDQ port as com.originalpictures.pdq.1: the 256-bit PDQ hash, with its 0-100 quality, of one decoded frame per second of video at full resolution",
+   "2026-11-09T08:37:03.355Z",
+   [],
+   false
+  ],
+  [
+   80,
+   "castLabs.watermark.1.session-v1",
+   "watermark",
+   [
+    "video"
+   ],
+   [],
+   "castLabs forensic watermarking session-v1 variant for video manifest recovery",
+   "2026-11-10T00:00:00.000Z",
+   [],
+   false
+  ]
+ ],
+ "soft_binding_labels": [
+  [
+   "com.digimarc.validate.1",
+   "Digimarc Validate"
+  ],
+  [
+   "org.atsc.a336",
+   "ATSC watermarking (A/334, A/335, A/336)"
+  ],
+  [
+   "io.iscc.v0",
+   "ISCC (content code)"
+  ],
+  [
+   "com.adobe.trustmark.Q",
+   "Adobe TrustMark"
+  ],
+  [
+   "com.adobe.trustmark.C",
+   "Adobe TrustMark"
+  ],
+  [
+   "com.adobe.icn.dense",
+   "Adobe Image Comparator Network"
+  ],
+  [
+   "ai.steg.api",
+   "Steg.AI"
+  ],
+  [
+   "ai.trufo.pawprint.watermark",
+   "Trufo PawPrint"
+  ],
+  [
+   "ai.trufo.pawprint.fingerprint",
+   "Trufo PawPrint"
+  ],
+  [
+   "app.overlai.watermark.1",
+   "Overlai"
+  ],
+  [
+   "tv.kinetiq.watercast.48.1",
+   "Teletrax Watermarking algorithm"
+  ],
+  [
+   "castLabs.watermark.1",
+   "castLabs Single Frame Forensic Watermarking"
+  ],
+  [
+   "com.adobe.trustmark.P",
+   "Adobe TrustMark"
+  ],
+  [
+   "com.imatag.lamark.v1",
+   "Imatag (Lamark)"
+  ],
+  [
+   "com.nagra.nexguard.watermark.1",
+   "NAGRA NexGuard"
+  ],
+  [
+   "com.mentaport.watermark.1",
+   "Mentaport"
+  ],
+  [
+   "com.digicaps.fingerprint.1",
+   "DigiCAP Fingerprint Engine"
+  ],
+  [
+   "com.sonicorigin.watermark.1",
+   "SonicOrigin Watermarking Engine"
+  ],
+  [
+   "com.microsoft.invismark.1",
+   "Microsoft InvisMark"
+  ],
+  [
+   "com.microsoft.wavmark.1",
+   "Microsoft WavMark"
+  ],
+  [
+   "ai.contentlens.image.basewmk",
+   "ContentLens"
+  ],
+  [
+   "ai.contentlens.image.ensemblewmk",
+   "ContentLens"
+  ],
+  [
+   "ai.contentlens.image.customwmk",
+   "ContentLens"
+  ],
+  [
+   "ai.contentlens.audio.mono",
+   "ContentLens"
+  ],
+  [
+   "ai.contentlens.audio.stereo",
+   "ContentLens"
+  ],
+  [
+   "es.lumatrace",
+   "LumaTrace"
+  ],
+  [
+   "com.markany.watermark.1",
+   "MarkAny"
+  ],
+  [
+   "com.verimatrix.watermark.1",
+   "Verimatrix"
+  ],
+  [
+   "com.writerslogic.zwc-watermark.1",
+   "WritersLogic CPOP zero-width character (ZWC) watermark for text content"
+  ],
+  [
+   "com.aiwatermark.videoseal.1",
+   "AIWatermark VideoSeal"
+  ],
+  [
+   "com.aiwatermark.pixelseal.1",
+   "AIWatermark PixelSeal"
+  ],
+  [
+   "com.aiwatermark.audioseal.1",
+   "AIWatermark AudioSeal"
+  ],
+  [
+   "eu.sasha.softbinding.v1",
+   "Invisible watermarking technology for image and video assets, enabling C2PA manifest recovery and content provenance verification after metadata stripping or transcoding"
+  ],
+  [
+   "ai.verda.watermark.image.1",
+   "VerdaAI"
+  ],
+  [
+   "ai.verda.watermark.video.1",
+   "VerdaAI"
+  ],
+  [
+   "ai.verda.watermark.audio.1",
+   "VerdaAI"
+  ],
+  [
+   "com.evixar.eaw.1",
+   "EAW (Evixar Audio Watermark) is an audible-range audio watermarking algorithm developed by Evixar Inc"
+  ],
+  [
+   "com.evixar.efp.type3.1",
+   "EFP Type 3 (Evixar Finger Print Type 3) is an audio fingerprinting algorithm developed by Evixar Inc"
+  ],
+  [
+   "com.cognitive-proof.vsrmark.1",
+   "VSRMark hides a structured byte payload inside visible Unicode text by appending invisible Variation Selectors after visible characters"
+  ],
+  [
+   "me.deepmark.audio.vigil.128",
+   "Vigil is a 128-bit-per-second neural audio watermarking algorithm developed by DeepMark Inc"
+  ],
+  [
+   "com.writerslogic.text-fingerprint.1",
+   "WritersLogic CPoE robust text fingerprint"
+  ],
+  [
+   "com.writerslogic.zwc-watermark.2",
+   "Revision of com.writerslogic.zwc-watermark.1"
+  ],
+  [
+   "com.writerslogic.text-structure.1",
+   "WritersLogic CPoE structural text fingerprint"
+  ],
+  [
+   "com.writerslogic.text-minhash.1",
+   "WritersLogic CPoE lexical MinHash text fingerprint for excerpt and quotation matching"
+  ],
+  [
+   "io.blockfact.audio.watermark.32",
+   "BlockFact invisible image watermarking for provenance"
+  ],
+  [
+   "com.doverunner.watermark.1",
+   "DoveRunner's forensic watermarking solution delivers invisible, tamper-resilient traceability into video content — from enterprise distribution pipelines to end-consumer playback"
+  ],
+  [
+   "com.writerslogic.text-watermark-semantic.1",
+   "WritersLogic CPoE post-hoc semantic embedding watermark for paraphrase- and translation-robust manuscript identification"
+  ],
+  [
+   "com.joinmonolith.sha256",
+   "Monolith SHA-256 content fingerprint for C2PA manifest recovery"
+  ],
+  [
+   "com.museblossom.contentsdefence.1",
+   "Contents Defence invisible image watermark, used to recover the associated C2PA manifest when embedded metadata is absent"
+  ],
+  [
+   "me.reconize.videoseal.1",
+   "Reconize deployment of the VideoSeal invisible watermark (Meta AI open research), embedding a 256-bit identity payload into image and video pixels via on-device Core ML"
+  ],
+  [
+   "io.diker.sigi.v1",
+   "Sigi invisible watermarking engine by Okeanos B.V"
+  ],
+  [
+   "com.adobe.hiermark.A",
+   "Adobe Hierarchical Audio watermark (HierMark) variant A"
+  ],
+  [
+   "com.adobe.flowmark.A",
+   "Adobe FlowMark video watermarking variant A"
+  ],
+  [
+   "be.immostory.videoseal.1",
+   "ImmoStory AI deployment of Meta FAIR's Video Seal 1.0 invisible video watermark"
+  ],
+  [
+   "com.adobe.trustmark.F",
+   "Adobe TrustMark"
+  ],
+  [
+   "com.quatvision.quatmark.1",
+   "QuatMark keyed invisible image watermark"
+  ],
+  [
+   "com.encypher.text.watermark.1",
+   "Encypher text watermark"
+  ],
+  [
+   "com.encypher.text.fingerprint.1",
+   "Encypher text content fingerprint"
+  ],
+  [
+   "studio.aidr.silentcipher.1",
+   "AIDR Studio deployment of Sony Research's open SilentCipher 44.1 kHz audio watermark (silentcipher 1.0.5, MIT), used without retraining"
+  ],
+  [
+   "com.etchv.watermark.1",
+   "Etchv invisible image watermark carrying a 256-bit per-file identifier, embedded before C2PA signing"
+  ],
+  [
+   "com.ottxp.koltheia.photonote.1",
+   "KolTheia photo note: spread ORB keypoints plus secret-pattern colour squares, matched with turn-and-resize or perspective fits, to recover the C2PA Manifest of a sealed photo from a recompressed, cropped, slanted or partly drawn-over copy"
+  ],
+  [
+   "ai.label4.watermark.walrus",
+   "Label4.ai invisible image/video watermark carrying a secret-keyed content identifier for C2PA soft binding"
+  ],
+  [
+   "ai.label4.watermark.phaseal",
+   "Label4.ai imperceptible audio watermark carrying a secret-keyed content identifier for C2PA soft binding"
+  ],
+  [
+   "ai.label4.watermark.fastermax",
+   "Label4.ai text watermark detector identifying watermarks used for C2PA soft binding"
+  ],
+  [
+   "com.dreamartfields.signature.2",
+   "Dream Art Fields invisible signature, version 2 (tile), by YambaCode AB"
+  ],
+  [
+   "com.art-koffee.phash.1",
+   "ArtKoffee perceptual fingerprint: 64-bit DCT pHash of artwork images (EXIF-oriented, alpha over white, ITU-R 601 grayscale, 32x32 Lanczos, unnormalized 8x8 low-frequency DCT-II vs"
+  ],
+  [
+   "com.originalpictures.pixelseal.1",
+   "Original Pictures' invisible image watermark built on Meta FAIR's PixelSeal model (facebookresearch/videoseal at 870ca7fb, pixelseal.pth)"
+  ],
+  [
+   "com.originalpictures.pixelseal-video.1",
+   "Original Pictures' invisible video watermark built on Meta FAIR's PixelSeal model (facebookresearch/videoseal at 870ca7fb, pixelseal.pth) applied in video mode"
+  ],
+  [
+   "com.originalpictures.audioseal.1",
+   "Original Pictures' invisible audio watermark built on Meta FAIR's AudioSeal 0.2.0 streaming generator and detector (Hugging Face facebook/audioseal at 3c19eba)"
+  ],
+  [
+   "com.originalpictures.videoseal.1",
+   "Original Pictures' invisible video watermark built on Meta FAIR's VideoSeal 1.0 (videoseal 1.0.1, TorchScript model y_256b_img.jit)"
+  ],
+  [
+   "com.originalpictures.videoseal-image.1",
+   "Original Pictures' invisible image watermark built on Meta FAIR's VideoSeal 1.0 model in image mode (facebookresearch/videoseal at 870ca7fb, y_256b_img.pth)"
+  ],
+  [
+   "com.originalpictures.dinov2.1",
+   "Original Pictures' image descriptor built on Meta FAIR's DINOv2 ViT-S/14 model (Hugging Face facebook/dinov2-small at ed25f3a3; Apache-2.0 code and weights)"
+  ],
+  [
+   "com.originalpictures.pdq.1",
+   "Original Pictures' deployment of Meta's PDQ perceptual image hash (facebook/ThreatExchange at baefb4ed, BSD), computed on luma by a float32 port of ThreatExchange pdq/cpp checked against the pdqhash 0.2.8 reference"
+  ],
+  [
+   "com.originalpictures.dinov2-lsh256.1",
+   "Original Pictures' keyed 256-bit hash of Meta FAIR's DINOv2 ViT-S/14 image descriptor (Hugging Face facebook/dinov2-small at ed25f3a3; Apache-2.0)"
+  ],
+  [
+   "com.originalpictures.chromaprint.1",
+   "Original Pictures' deployment of Chromaprint 1.6.1 (AcoustID; fpcalc, fingerprint algorithm 2; MIT core, the shipped fpcalc binary LGPL-2.1)"
+  ],
+  [
+   "com.originalpictures.audfprint.1",
+   "Original Pictures' deployment of Dan Ellis' audfprint landmark fingerprint (dpwe/audfprint at cb03ba99, MIT)"
+  ],
+  [
+   "com.originalpictures.tmk-pdqf.1",
+   "Original Pictures' deployment of TMK+PDQF from Meta's ThreatExchange (facebook/ThreatExchange tmk at baefb4ed, BSD), with ThreatExchange's default configuration: PDQF frame features of frames sampled at 15 fps and 64x64 pixels, combined by the Temporal Match Kernel into a whole-clip descriptor with a 256-dimension level-1 vector"
+  ],
+  [
+   "com.originalpictures.vpdq.1",
+   "Original Pictures' deployment of vPDQ from Meta's ThreatExchange (facebook/ThreatExchange at baefb4ed, BSD), run on the same PDQ port as com.originalpictures.pdq.1: the 256-bit PDQ hash, with its 0-100 quality, of one decoded frame per second of video at full resolution"
+  ],
+  [
+   "castLabs.watermark.1.session-v1",
+   "castLabs forensic watermarking session-v1 variant for video manifest recovery"
+  ]
+ ],
+ "soft_binding_source": [
+  "https://raw.githubusercontent.com/c2pa-org/softbinding-algorithm-list/main/softbinding-algorithm-list.json",
+  "529093be86d6b6dad6f0fb912a138740f2b5d2b4"
+ ],
+ "structural_markers": [
+  "actions",
+  "ai_tool",
+  "c2pa_integrity",
+  "c2pa_manifest",
+  "c2pa_signature",
+  "c2pa_signer_trust",
+  "c2pa_signer_validity",
+  "c2pa_spec",
+  "c2pa_validation_source",
+  "c2pa_validation_state",
+  "claim_generator",
+  "issuer",
+  "soft_binding",
+  "soft_binding_algorithm",
+  "soft_binding_value"
+ ]
+}

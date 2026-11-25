@@ -1,0 +1,22 @@
+[package]
+name = "raiw-regen"
+description = "Invisible watermark regeneration profiles (diffusion pipelines) on the burn runtime"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+raiw-core.workspace = true
+raiw-cv.workspace = true
+raiw-gpu.workspace = true
+thiserror.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+raiw-core = { workspace = true, features = ["testing"] }
+
+[lints]
+workspace = true

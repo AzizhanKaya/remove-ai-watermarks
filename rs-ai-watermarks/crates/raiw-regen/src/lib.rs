@@ -1,0 +1,1 @@
+//! Invisible watermark regeneration.

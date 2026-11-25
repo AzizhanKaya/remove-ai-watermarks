@@ -1,0 +1,24 @@
+[package]
+name = "raiw-identify"
+description = "Provenance report assembly: metadata, visible and invisible evidence into one verdict"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+raiw-core.workspace = true
+raiw-metadata.workspace = true
+raiw-c2pa.workspace = true
+raiw-visible.workspace = true
+raiw-pixel.workspace = true
+thiserror.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+raiw-core = { workspace = true, features = ["testing"] }
+
+[lints]
+workspace = true

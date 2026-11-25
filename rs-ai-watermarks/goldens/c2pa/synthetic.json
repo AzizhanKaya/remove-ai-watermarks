@@ -1,0 +1,396 @@
+{
+ "cabx": {
+  "sha256": "5d5ed4f0d2e76d3792b37d90b262f43e8a8a5c81a9ce32635b0492aa747ee27c",
+  "reader": "error:_C2paVerify",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "raw": [
+   339,
+   "119e60e39e16880c6a88c3cf5d845e5d6064131b196a69b2c90ef3ae17296b7c"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "soft_binding_vendors_in": [
+   "Adobe TrustMark",
+   "ISCC (content code)",
+   "Suno Audio Fingerprint"
+  ],
+  "soft_binding_entries": [
+   "io.iscc.v0",
+   "com.adobe.trustmark.Q",
+   "com.suno.fingerprint"
+  ],
+  "synthid_vendors_in": [
+   "Google LLC",
+   "OpenAI"
+  ],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "af65746d70c5a0ccda8d99eed151035ed6c604f4b2c38f4bcea9456bd169b508",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "unverified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Adobe Firefly",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+   "c2pa_chunk": "af65746d70c5a0ccda8d99eed151035ed6c604f4b2c38f4bcea9456bd169b508"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest (339 bytes)\n  c2pa_validation_source: fallback\n  c2pa_validation_state: unknown\n  c2pa_integrity: unknown\n  c2pa_signature: unknown\n  c2pa_signer_trust: unknown\n  c2pa_signer_validity: unknown\n  c2pa_validation_codes: []\n  c2pa_failed_codes: []\n  issuer: Adobe, OpenAI, Google LLC\n  ai_tool: GPT-4o, DALL·E, Firefly\n  actions: created, edited, watermarked.unbound\n  source_type: trainedAlgorithmicMedia (AI-generated)\n  ai_source_kind: generated\n  watermarked: True\n  soft_binding_vendors: ['Adobe TrustMark', 'ISCC (content code)', 'Suno Audio Fingerprint']\n  soft_binding: Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\n  soft_binding_algorithm: io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\n  c2pa_spec: 2.1\n  timestamp: 20240517170000Z\n  timestamps: ['20240517170000Z', '20240518170000Z', '20240519170000Z']",
+  "has_ai_metadata": true,
+  "input_b64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAABU2NhQlgAAAEAanVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQBjMnBhLmNsYWlto2RuYW1leBpBZG9iZSBGaXJlZmx5IDMuMCAodGVzdCkLc3BlY1ZlcnNpb25jMi4xIGlzc3VlciBHb29nbGUgTExDIEFkb2JlIE9wZW5BSSBjMnBhLmNyZWF0ZWQgYzJwYS5lZGl0ZWQgYzJwYS53YXRlcm1hcmtlZC51bmJvdW5kIHRyYWluZWRBbGdvcml0aG1pY01lZGlhIGNvbS5hZG9iZS50cnVzdG1hcmsuUSBpby5pc2NjLnYwIGNvbS5zdW5vLmZpbmdlcnByaW50LnYyIEdQVC00byBEQUxMLUUgRmlyZWZseSAyMDI0MDUxNzE3MDAwMFogMjAyNDA1MTgxNzAwMDBaIDIwMjQwNTE5MTcwMDAwWiAyMDI0MDUyMDE3MDAwMFoOp2uJAAAACklEQVR4nGNgAAAAAgABSK+kcQAAAABJRU5ErkJggg=="
+ },
+ "cabx-not-c2pa": {
+  "sha256": "f7ce39e5984d0d0402176a49c6afaef9265bb4579122ccc1cd052e9c22d64831",
+  "reader": "error:_C2paVerify",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false,
+  "input_b64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAAC2NhQlhwbGFpbiBieXRlc2g/VBcAAAAKSURBVHicY2AAAAACAAFIr6RxAAAAAElFTkSuQmCC"
+ },
+ "cabx-after-idat": {
+  "sha256": "ec56d60215349e06a553e17d557836cd21a52e1a777b5877d8746c884ff2503b",
+  "reader": "error:_C2paVerify",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "raw": [
+   339,
+   "119e60e39e16880c6a88c3cf5d845e5d6064131b196a69b2c90ef3ae17296b7c"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "soft_binding_vendors_in": [
+   "Adobe TrustMark",
+   "ISCC (content code)",
+   "Suno Audio Fingerprint"
+  ],
+  "soft_binding_entries": [
+   "io.iscc.v0",
+   "com.adobe.trustmark.Q",
+   "com.suno.fingerprint"
+  ],
+  "synthid_vendors_in": [
+   "Google LLC",
+   "OpenAI"
+  ],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "af65746d70c5a0ccda8d99eed151035ed6c604f4b2c38f4bcea9456bd169b508",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "unverified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Adobe Firefly",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+   "c2pa_chunk": "af65746d70c5a0ccda8d99eed151035ed6c604f4b2c38f4bcea9456bd169b508"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest (339 bytes)\n  c2pa_validation_source: fallback\n  c2pa_validation_state: unknown\n  c2pa_integrity: unknown\n  c2pa_signature: unknown\n  c2pa_signer_trust: unknown\n  c2pa_signer_validity: unknown\n  c2pa_validation_codes: []\n  c2pa_failed_codes: []\n  issuer: Adobe, OpenAI, Google LLC\n  ai_tool: GPT-4o, DALL·E, Firefly\n  actions: created, edited, watermarked.unbound\n  source_type: trainedAlgorithmicMedia (AI-generated)\n  ai_source_kind: generated\n  watermarked: True\n  soft_binding_vendors: ['Adobe TrustMark', 'ISCC (content code)', 'Suno Audio Fingerprint']\n  soft_binding: Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\n  soft_binding_algorithm: io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\n  c2pa_spec: 2.1\n  timestamp: 20240517170000Z\n  timestamps: ['20240517170000Z', '20240518170000Z', '20240519170000Z']",
+  "has_ai_metadata": true,
+  "input_b64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVR4nGNgAAAAAgABSK+kcQAAAVNjYUJYAAABAGp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EAYzJwYS5jbGFpbaNkbmFtZXgaQWRvYmUgRmlyZWZseSAzLjAgKHRlc3QpC3NwZWNWZXJzaW9uYzIuMSBpc3N1ZXIgR29vZ2xlIExMQyBBZG9iZSBPcGVuQUkgYzJwYS5jcmVhdGVkIGMycGEuZWRpdGVkIGMycGEud2F0ZXJtYXJrZWQudW5ib3VuZCB0cmFpbmVkQWxnb3JpdGhtaWNNZWRpYSBjb20uYWRvYmUudHJ1c3RtYXJrLlEgaW8uaXNjYy52MCBjb20uc3Vuby5maW5nZXJwcmludC52MiBHUFQtNG8gREFMTC1FIEZpcmVmbHkgMjAyNDA1MTcxNzAwMDBaIDIwMjQwNTE4MTcwMDAwWiAyMDI0MDUxOTE3MDAwMFogMjAyNDA1MjAxNzAwMDBaDqdriQAAAABJRU5ErkJggg=="
+ },
+ "cabx-truncated": {
+  "sha256": "fcd7ace470beb19281d48b518b2192d6c24365d05408c1c0e3fe0279cc1e1dab",
+  "reader": "error:_C2paOther",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:OSError",
+  "input_b64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAABU2NhQlgAAAEAanVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQBjMnBhLmNsYWlto2RuYW1leBpBZG9iZSBGaXJlZmx5IDMuMCAodGVzdCkLc3Bl"
+ },
+ "app11-text": {
+  "sha256": "a5f22e18d705f86b3ba0327cb45a8dcf7dfa3863802902763e4abea7a34a4a16",
+  "reader": "none",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "unverified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Adobe Firefly",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false,
+  "input_b64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAC03RFWHRSYXcgcHJvZmlsZSB0eXBlIGFwcDExAAogYXBwMTEgMzM5CjAwMDAwMTAwNmE3NTZkNjIwMDAwMDAxZTZhNzU2ZDY0NjMzMjcwNjEwMDExMDAxMDgwMDAwMGFhMDAzODliNzEwMDYzMzI3MAo2MTJlNjM2YzYxNjk2ZGEzNjQ2ZTYxNmQ2NTc4MWE0MTY0NmY2MjY1MjA0NjY5NzI2NTY2NmM3OTIwMzMyZTMwMjAyODc0NjUKNzM3NDI5MGI3MzcwNjU2MzU2NjU3MjczNjk2ZjZlNjMzMjJlMzEyMDY5NzM3Mzc1NjU3MjIwNDc2ZjZmNjc2YzY1MjA0YzRjCjQzMjA0MTY0NmY2MjY1MjA0ZjcwNjU2ZTQxNDkyMDYzMzI3MDYxMmU2MzcyNjU2MTc0NjU2NDIwNjMzMjcwNjEyZTY1NjQ2OQo3NDY1NjQyMDYzMzI3MDYxMmU3NzYxNzQ2NTcyNmQ2MTcyNmI2NTY0MmU3NTZlNjI2Zjc1NmU2NDIwNzQ3MjYxNjk2ZTY1NjQKNDE2YzY3NmY3MjY5NzQ2ODZkNjk2MzRkNjU2NDY5NjEyMDYzNmY2ZDJlNjE2NDZmNjI2NTJlNzQ3Mjc1NzM3NDZkNjE3MjZiCjJlNTEyMDY5NmYyZTY5NzM2MzYzMmU3NjMwMjA2MzZmNmQyZTczNzU2ZTZmMmU2NjY5NmU2NzY1NzI3MDcyNjk2ZTc0MmU3NgozMjIwNDc1MDU0MmQzNDZmMjA0NDQxNGM0YzJkNDUyMDQ2Njk3MjY1NjY2Yzc5MjAzMjMwMzIzNDMwMzUzMTM3MzEzNzMwMzAKMzAzMDVhMjAzMjMwMzIzNDMwMzUzMTM4MzEzNzMwMzAzMDMwNWEyMDMyMzAzMjM0MzAzNTMxMzkzMTM3MzAzMDMwMzA1YTIwCjMyMzAzMjM0MzAzNTMyMzAzMTM3MzAzMDMwMzA1YQoIk6d9AAAACklEQVR4nGNgAAAAAgABSK+kcQAAAABJRU5ErkJggg=="
+ },
+ "app11-ztxt": {
+  "sha256": "b0517c438dfbe8a34b10b2e2935b125a2d04fad09eae7d42ab648301db3beaa1",
+  "reader": "none",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "unverified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Adobe Firefly",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false,
+  "input_b64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAABTHpUWHRSYXcgcHJvZmlsZSB0eXBlIGFwcDExAAB4nHVRQXKEMAy75xX7BMd2ZPIcloTz/v9UOZSZbreFSXCwLAlRHvvrVevDrBfJq4pgj4YBlevF/D47zDQERNRcsq3+vovY1p+RkwtRUHXCcKCiY+zG0cl6oMVWd688n1A0FQd6sAJwRFfh/DRR0S0crYSFa5cnn0KQEddCw0h7kpJowqsKSYx3yy5Jg90TQQMpcfhR3Fj81D0X4fTqVL0/LF0vNzXV4W8dntHLZyPignNwsFI8F2LSzaTYuZ6cCGcvA1lUhW4OWjz5snN843CH+bh0kB9ldDs0k7t9zySJlrHcYkVnWwngJJQ5cIwhBjLGm2JlMxcCy0GsHCXFQdLEF1vRNWmuw6jIkzMfxqfD//pXarmce7PK/HOJScmt7R+A7Qb80++/++UNkPUboHwBjs6aV8rpbE8AAAAKSURBVHicY2AAAAACAAFIr6RxAAAAAElFTkSuQmCC"
+ },
+ "app11-itxt": {
+  "sha256": "5b946dc83de42833a0811c78ac957df733f80dbfb403626cdd130b24ced5f82e",
+  "reader": "none",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "unverified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Adobe Firefly",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false,
+  "input_b64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAABT2lUWHRSYXcgcHJvZmlsZSB0eXBlIGFwcDExAAEAAAB4nHVRQXKEMAy75xX7BMd2ZPIcloTz/v9UOZSZbreFSXCwLAlRHvvrVevDrBfJq4pgj4YBlevF/D47zDQERNRcsq3+vovY1p+RkwtRUHXCcKCiY+zG0cl6oMVWd688n1A0FQd6sAJwRFfh/DRR0S0crYSFa5cnn0KQEddCw0h7kpJowqsKSYx3yy5Jg90TQQMpcfhR3Fj81D0X4fTqVL0/LF0vNzXV4W8dntHLZyPignNwsFI8F2LSzaTYuZ6cCGcvA1lUhW4OWjz5snN843CH+bh0kB9ldDs0k7t9zySJlrHcYkVnWwngJJQ5cIwhBjLGm2JlMxcCy0GsHCXFQdLEF1vRNWmuw6jIkzMfxqfD//pXarmce7PK/HOJScmt7R+A7Qb80++/++UNkPUboHwBjs6aV6wpZ10AAAAKSURBVHicY2AAAAACAAFIr6RxAAAAAElFTkSuQmCC"
+ },
+ "app11-itxt-plain": {
+  "sha256": "91934b9957c9bb2f62a541242bf02c2f4c13a1f95a17afca211376c7a4ec8335",
+  "reader": "none",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "unverified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Adobe Firefly",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false,
+  "input_b64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAC2WlUWHRSYXcgcHJvZmlsZSB0eXBlIGFwcDExAAAAZW4AAAogYXBwMTEgMzM5CjAwMDAwMTAwNmE3NTZkNjIwMDAwMDAxZTZhNzU2ZDY0NjMzMjcwNjEwMDExMDAxMDgwMDAwMGFhMDAzODliNzEwMDYzMzI3MAo2MTJlNjM2YzYxNjk2ZGEzNjQ2ZTYxNmQ2NTc4MWE0MTY0NmY2MjY1MjA0NjY5NzI2NTY2NmM3OTIwMzMyZTMwMjAyODc0NjUKNzM3NDI5MGI3MzcwNjU2MzU2NjU3MjczNjk2ZjZlNjMzMjJlMzEyMDY5NzM3Mzc1NjU3MjIwNDc2ZjZmNjc2YzY1MjA0YzRjCjQzMjA0MTY0NmY2MjY1MjA0ZjcwNjU2ZTQxNDkyMDYzMzI3MDYxMmU2MzcyNjU2MTc0NjU2NDIwNjMzMjcwNjEyZTY1NjQ2OQo3NDY1NjQyMDYzMzI3MDYxMmU3NzYxNzQ2NTcyNmQ2MTcyNmI2NTY0MmU3NTZlNjI2Zjc1NmU2NDIwNzQ3MjYxNjk2ZTY1NjQKNDE2YzY3NmY3MjY5NzQ2ODZkNjk2MzRkNjU2NDY5NjEyMDYzNmY2ZDJlNjE2NDZmNjI2NTJlNzQ3Mjc1NzM3NDZkNjE3MjZiCjJlNTEyMDY5NmYyZTY5NzM2MzYzMmU3NjMwMjA2MzZmNmQyZTczNzU2ZTZmMmU2NjY5NmU2NzY1NzI3MDcyNjk2ZTc0MmU3NgozMjIwNDc1MDU0MmQzNDZmMjA0NDQxNGM0YzJkNDUyMDQ2Njk3MjY1NjY2Yzc5MjAzMjMwMzIzNDMwMzUzMTM3MzEzNzMwMzAKMzAzMDVhMjAzMjMwMzIzNDMwMzUzMTM4MzEzNzMwMzAzMDMwNWEyMDMyMzAzMjM0MzAzNTMxMzkzMTM3MzAzMDMwMzA1YTIwCjMyMzAzMjM0MzAzNTMyMzAzMTM3MzAzMDMwMzA1YQpXwpQDAAAACklEQVR4nGNgAAAAAgABSK+kcQAAAABJRU5ErkJggg=="
+ },
+ "app11-then-cabx": {
+  "sha256": "d8fa8b340a89b9cf15ca06920bac0a35f82c8e11d6d1c959abb6c2712c014ea9",
+  "reader": "error:_C2paVerify",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (49 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Microsoft\"}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (49 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Microsoft\"}",
+  "raw": [
+   49,
+   "d26d31e3255d9539655e51faa26a205d0cab05ef8b7eb53594fe36f8aa3e6b09"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (49 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Microsoft\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "facb03b2255c969de7300fe35092583269c8560855d7fd7c40b606303b6546be",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "unverified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": false,
+   "claim_generator_platform": null,
+   "vendor_platform": "Microsoft (Copilot / Designer)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (49 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Microsoft\"}",
+   "c2pa_chunk": "facb03b2255c969de7300fe35092583269c8560855d7fd7c40b606303b6546be"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest (49 bytes)\n  c2pa_validation_source: fallback\n  c2pa_validation_state: unknown\n  c2pa_integrity: unknown\n  c2pa_signature: unknown\n  c2pa_signer_trust: unknown\n  c2pa_signer_validity: unknown\n  c2pa_validation_codes: []\n  c2pa_failed_codes: []\n  issuer: Microsoft",
+  "has_ai_metadata": true,
+  "input_b64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAC03RFWHRSYXcgcHJvZmlsZSB0eXBlIGFwcDExAAogYXBwMTEgMzM5CjAwMDAwMTAwNmE3NTZkNjIwMDAwMDAxZTZhNzU2ZDY0NjMzMjcwNjEwMDExMDAxMDgwMDAwMGFhMDAzODliNzEwMDYzMzI3MAo2MTJlNjM2YzYxNjk2ZGEzNjQ2ZTYxNmQ2NTc4MWE0MTY0NmY2MjY1MjA0NjY5NzI2NTY2NmM3OTIwMzMyZTMwMjAyODc0NjUKNzM3NDI5MGI3MzcwNjU2MzU2NjU3MjczNjk2ZjZlNjMzMjJlMzEyMDY5NzM3Mzc1NjU3MjIwNDc2ZjZmNjc2YzY1MjA0YzRjCjQzMjA0MTY0NmY2MjY1MjA0ZjcwNjU2ZTQxNDkyMDYzMzI3MDYxMmU2MzcyNjU2MTc0NjU2NDIwNjMzMjcwNjEyZTY1NjQ2OQo3NDY1NjQyMDYzMzI3MDYxMmU3NzYxNzQ2NTcyNmQ2MTcyNmI2NTY0MmU3NTZlNjI2Zjc1NmU2NDIwNzQ3MjYxNjk2ZTY1NjQKNDE2YzY3NmY3MjY5NzQ2ODZkNjk2MzRkNjU2NDY5NjEyMDYzNmY2ZDJlNjE2NDZmNjI2NTJlNzQ3Mjc1NzM3NDZkNjE3MjZiCjJlNTEyMDY5NmYyZTY5NzM2MzYzMmU3NjMwMjA2MzZmNmQyZTczNzU2ZTZmMmU2NjY5NmU2NzY1NzI3MDcyNjk2ZTc0MmU3NgozMjIwNDc1MDU0MmQzNDZmMjA0NDQxNGM0YzJkNDUyMDQ2Njk3MjY1NjY2Yzc5MjAzMjMwMzIzNDMwMzUzMTM3MzEzNzMwMzAKMzAzMDVhMjAzMjMwMzIzNDMwMzUzMTM4MzEzNzMwMzAzMDMwNWEyMDMyMzAzMjM0MzAzNTMxMzkzMTM3MzAzMDMwMzA1YTIwCjMyMzAzMjM0MzAzNTMyMzAzMTM3MzAzMDMwMzA1YQoIk6d9AAAAMWNhQlgAAAEAanVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQBjMnBhLmNsTWljcm9zb2Z0n5KvGQAAAApJREFUeJxjYAAAAAIAAUivpHEAAAAASUVORK5CYII="
+ },
+ "app11-bad-hex": {
+  "sha256": "b51dc5b994182db83f9fb8ad7890d6d65d57ec13f1e508e994ff85af54515a90",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false,
+  "input_b64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAAJXRFWHRSYXcgcHJvZmlsZSB0eXBlIGFwcDExAAphcHAxMSAxMgp6ejAwcTfFQAAAAApJREFUeJxjYAAAAAIAAUivpHEAAAAASUVORK5CYII="
+ },
+ "no-iend": {
+  "sha256": "fb0b3aed5d79cd4e2cdbf8f72a789c9653e6dc02efec0d9bebf885a16ffb4e38",
+  "reader": "error:_C2paOther",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false,
+  "input_b64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAACklEQVR4nGNgAAAAAgABSK+kcQ=="
+ },
+ "ai-text": {
+  "sha256": "5ce8c157668e66e2d27c62f5683dc453910cc15157c1e17bfff686fbd9cafdbf",
+  "reader": "error:_C2paVerify",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "raw": [
+   339,
+   "119e60e39e16880c6a88c3cf5d845e5d6064131b196a69b2c90ef3ae17296b7c"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+  "soft_binding_vendors_in": [
+   "Adobe TrustMark",
+   "ISCC (content code)",
+   "Suno Audio Fingerprint"
+  ],
+  "soft_binding_entries": [
+   "io.iscc.v0",
+   "com.adobe.trustmark.Q",
+   "com.suno.fingerprint"
+  ],
+  "synthid_vendors_in": [
+   "Google LLC",
+   "OpenAI"
+  ],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "af65746d70c5a0ccda8d99eed151035ed6c604f4b2c38f4bcea9456bd169b508",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "unverified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Adobe Firefly",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "parameters": "steps: 20",
+   "prompt": "a cat",
+   "workflow": "{}",
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}",
+   "c2pa_chunk": "af65746d70c5a0ccda8d99eed151035ed6c604f4b2c38f4bcea9456bd169b508"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nparameters: steps: 20\nprompt: a cat\nworkflow: {}\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest (339 bytes)\n  c2pa_validation_source: fallback\n  c2pa_validation_state: unknown\n  c2pa_integrity: unknown\n  c2pa_signature: unknown\n  c2pa_signer_trust: unknown\n  c2pa_signer_validity: unknown\n  c2pa_validation_codes: []\n  c2pa_failed_codes: []\n  issuer: Adobe, OpenAI, Google LLC\n  ai_tool: GPT-4o, DALL·E, Firefly\n  actions: created, edited, watermarked.unbound\n  source_type: trainedAlgorithmicMedia (AI-generated)\n  ai_source_kind: generated\n  watermarked: True\n  soft_binding_vendors: ['Adobe TrustMark', 'ISCC (content code)', 'Suno Audio Fingerprint']\n  soft_binding: Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\n  soft_binding_algorithm: io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\n  c2pa_spec: 2.1\n  timestamp: 20240517170000Z\n  timestamps: ['20240517170000Z', '20240518170000Z', '20240519170000Z']",
+  "has_ai_metadata": true,
+  "input_b64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAAFHRFWHRwYXJhbWV0ZXJzAHN0ZXBzOiAyMLdaivoAAAAIdEVYdFRpdGxlAG9ry8R0NAAAABBpVFh0cHJvbXB0AAAAAABhIGNhdBZopUsAAAAUelRYdHdvcmtmbG93AAB4nKuuBQABdQD5wIl77wAAAVNjYUJYAAABAGp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EAYzJwYS5jbGFpbaNkbmFtZXgaQWRvYmUgRmlyZWZseSAzLjAgKHRlc3QpC3NwZWNWZXJzaW9uYzIuMSBpc3N1ZXIgR29vZ2xlIExMQyBBZG9iZSBPcGVuQUkgYzJwYS5jcmVhdGVkIGMycGEuZWRpdGVkIGMycGEud2F0ZXJtYXJrZWQudW5ib3VuZCB0cmFpbmVkQWxnb3JpdGhtaWNNZWRpYSBjb20uYWRvYmUudHJ1c3RtYXJrLlEgaW8uaXNjYy52MCBjb20uc3Vuby5maW5nZXJwcmludC52MiBHUFQtNG8gREFMTC1FIEZpcmVmbHkgMjAyNDA1MTcxNzAwMDBaIDIwMjQwNTE4MTcwMDAwWiAyMDI0MDUxOTE3MDAwMFogMjAyNDA1MjAxNzAwMDBaDqdriQAAAApJREFUeJxjYAAAAAIAAUivpHEAAAAUdEVYdG5lZ2F0aXZlX3Byb21wdABsYXRlBEvkagAAAABJRU5ErkJggg=="
+ },
+ "not-png": {
+  "sha256": "5cb6abc0a37fdf4344965946e408954fcfbfe99a6e6d738c902abd1db8a095d3",
+  "reader": "error:_C2paOther",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError",
+  "input_b64": "R0lGODlhAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+ }
+}

@@ -1,0 +1,28 @@
+[package]
+name = "raiw-container"
+description = "Container walkers for ISOBMFF, EBML, RIFF, FLV, AV1 OBU, TIFF, PNG, JPEG and GIF"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+raiw-core.workspace = true
+memchr.workspace = true
+regex.workspace = true
+base64.workspace = true
+hex.workspace = true
+indexmap.workspace = true
+crc32fast.workspace = true
+
+[dev-dependencies]
+raiw-core = { workspace = true, features = ["testing"] }
+serde_json.workspace = true
+base64.workspace = true
+flate2.workspace = true
+sha2.workspace = true
+tempfile.workspace = true
+
+[lints]
+workspace = true

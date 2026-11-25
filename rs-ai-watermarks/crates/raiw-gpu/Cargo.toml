@@ -1,0 +1,40 @@
+[package]
+name = "raiw-gpu"
+description = "Burn runtime for every neural path: device selection across Vulkan, Metal, DX12 (AMD, NVIDIA, Intel, Apple) and CPU, plus shared layers and weight loading"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[features]
+default = ["wgpu"]
+# Portable wgpu: Vulkan on Linux/Windows, Metal on macOS, DX12 on Windows (WGSL shaders)
+wgpu = ["burn/wgpu", "burn/fusion", "burn/autotune"]
+# Pin wgpu to Vulkan with native SPIR-V kernels
+vulkan = ["wgpu", "burn/vulkan"]
+# Pin wgpu to Metal with native MSL kernels
+metal = ["wgpu", "burn/metal"]
+cuda = ["burn/cuda", "burn/fusion", "burn/autotune"]
+rocm = ["burn/rocm", "burn/fusion", "burn/autotune"]
+
+[dependencies]
+raiw-core.workspace = true
+thiserror.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tracing.workspace = true
+burn = { workspace = true, features = ["std", "flex"] }
+burn-store = { workspace = true, features = ["std", "pytorch", "safetensors"] }
+half.workspace = true
+realfft.workspace = true
+ureq = "3.5.2"
+zip = { version = "9.8.2", default-features = false, features = ["deflate-flate2-zlib-rs"] }
+
+[dev-dependencies]
+raiw-core = { workspace = true, features = ["testing"] }
+tempfile.workspace = true
+base64.workspace = true
+
+[lints]
+workspace = true

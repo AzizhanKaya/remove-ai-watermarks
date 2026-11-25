@@ -1,0 +1,43 @@
+[package]
+name = "raiw-c2pa"
+description = "C2PA manifest reading, JUMBF/CBOR fallback scanning and the soft-binding registry"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[features]
+default = ["reader"]
+# The validating manifest reader (c2pa-rs); without it only the raw JUMBF/CBOR fallback runs.
+reader = ["dep:c2pa"]
+# The registry refresh tool's HTTP client.
+sync = ["dep:ureq"]
+
+[dependencies]
+raiw-core.workspace = true
+raiw-container.workspace = true
+thiserror.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+regex.workspace = true
+memchr.workspace = true
+flate2.workspace = true
+indexmap.workspace = true
+unicode-general-category = "1.1.0"
+# Same c2pa-rs line as c2pa-python 0.38.
+c2pa = { version = "=0.91.0", default-features = false, features = ["rust_native_crypto"], optional = true }
+ureq = { version = "3.5.1", optional = true }
+
+[dev-dependencies]
+raiw-core = { workspace = true, features = ["testing"] }
+tempfile.workspace = true
+base64.workspace = true
+
+[[bin]]
+name = "sync-c2pa-soft-bindings"
+path = "src/bin/sync_c2pa_soft_bindings.rs"
+required-features = ["sync"]
+
+[lints]
+workspace = true

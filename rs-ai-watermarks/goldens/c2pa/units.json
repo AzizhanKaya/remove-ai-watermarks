@@ -1,0 +1,586 @@
+{
+ "cbor_text_after": [
+  [
+   "78786e616d656568656c6c6f",
+   "6e616d65",
+   "hello"
+  ],
+  [
+   "6e616d6578056162636465",
+   "6e616d65",
+   "abcde"
+  ],
+  [
+   "6e616d65790003616263",
+   "6e616d65",
+   "abc"
+  ],
+  [
+   "6e616d65790009616263",
+   "6e616d65",
+   null
+  ],
+  [
+   "6e616d6561ff",
+   "6e616d65",
+   "ÿ"
+  ],
+  [
+   "6e616d6540",
+   "6e616d65",
+   null
+  ],
+  [
+   "6e616d65",
+   "6e616d65",
+   null
+  ],
+  [
+   "6e6f7065",
+   "6e616d65",
+   null
+  ],
+  [
+   "6e616d6578",
+   "6e616d65",
+   null
+  ]
+ ],
+ "raw_app11": [
+  [
+   "\n app11 339\n000001006a756d620000001e6a756d646332706100110010800000aa00389b7100633270\n612e636c61696da3646e616d65781a41646f62652046697265666c7920332e3020287465\n7374290b7370656356657273696f6e63322e312069737375657220476f6f676c65204c4c\n432041646f6265204f70656e414920633270612e6372656174656420633270612e656469\n74656420633270612e77617465726d61726b65642e756e626f756e6420747261696e6564\n416c676f726974686d69634d6564696120636f6d2e61646f62652e74727573746d61726b\n2e5120696f2e697363632e763020636f6d2e73756e6f2e66696e6765727072696e742e76\n32204750542d346f2044414c4c2d452046697265666c7920323032343035313731373030\n30305a2032303234303531383137303030305a2032303234303531393137303030305a20\n32303234303532303137303030305a\n",
+   "000001006a756d620000001e6a756d646332706100110010800000aa00389b7100633270612e636c61696da3646e616d65781a41646f62652046697265666c7920332e30202874657374290b7370656356657273696f6e63322e312069737375657220476f6f676c65204c4c432041646f6265204f70656e414920633270612e6372656174656420633270612e65646974656420633270612e77617465726d61726b65642e756e626f756e6420747261696e6564416c676f726974686d69634d6564696120636f6d2e61646f62652e74727573746d61726b2e5120696f2e697363632e763020636f6d2e73756e6f2e66696e6765727072696e742e7632204750542d346f2044414c4c2d452046697265666c792032303234303531373137303030305a2032303234303531383137303030305a2032303234303531393137303030305a2032303234303532303137303030305a"
+  ],
+  [
+   "app11 4 6a756d62",
+   null
+  ],
+  [
+   "  app11\t12 \n000000006a756d6200000000",
+   "000000006a756d6200000000"
+  ],
+  [
+   "app11 12 0000",
+   null
+  ],
+  [
+   "app11 x 00",
+   null
+  ],
+  [
+   "app1112 00",
+   null
+  ],
+  [
+   "app11 4 0g",
+   null
+  ],
+  [
+   "",
+   null
+  ],
+  [
+   "app11 4\n000000106a756d6263327061",
+   "000000106a756d6263327061"
+  ],
+  [
+   "app11 4\n30313233343536373839",
+   null
+  ]
+ ],
+ "raw_app11_info": [
+  [
+   "\n app11 339\n000001006a756d620000001e6a756d646332706100110010800000aa00389b7100633270\n612e636c61696da3646e616d65781a41646f62652046697265666c7920332e3020287465\n7374290b7370656356657273696f6e63322e312069737375657220476f6f676c65204c4c\n432041646f6265204f70656e414920633270612e6372656174656420633270612e656469\n74656420633270612e77617465726d61726b65642e756e626f756e6420747261696e6564\n416c676f726974686d69634d6564696120636f6d2e61646f62652e74727573746d61726b\n2e5120696f2e697363632e763020636f6d2e73756e6f2e66696e6765727072696e742e76\n32204750542d346f2044414c4c2d452046697265666c7920323032343035313731373030\n30305a2032303234303531383137303030305a2032303234303531393137303030305a20\n32303234303532303137303030305a\n",
+   "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}"
+  ],
+  [
+   "app11 4 6a756d62",
+   "{}"
+  ],
+  [
+   "  app11\t12 \n000000006a756d6200000000",
+   "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}"
+  ],
+  [
+   "app11 12 0000",
+   "{}"
+  ],
+  [
+   "app11 x 00",
+   "{}"
+  ],
+  [
+   "app1112 00",
+   "{}"
+  ],
+  [
+   "app11 4 0g",
+   "{}"
+  ],
+  [
+   "",
+   "{}"
+  ],
+  [
+   "app11 4\n000000106a756d6263327061",
+   "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}"
+  ],
+  [
+   "app11 4\n30313233343536373839",
+   "{}"
+  ]
+ ],
+ "soft_binding_entries_in": [
+  [
+   "636f6d2e61646f62652e74727573746d61726b2e51",
+   [
+    "com.adobe.trustmark.Q"
+   ]
+  ],
+  [
+   "78636f6d2e61646f62652e74727573746d61726b2e51",
+   []
+  ],
+  [
+   "636f6d2e61646f62652e74727573746d61726b2e5178",
+   []
+  ],
+  [
+   "636f6d2e61646f62652e74727573746d61726b2e512e7632",
+   []
+  ],
+  [
+   "28636f6d2e61646f62652e74727573746d61726b2e5129",
+   [
+    "com.adobe.trustmark.Q"
+   ]
+  ],
+  [
+   "636f6d2e73756e6f2e66696e6765727072696e74",
+   [
+    "com.suno.fingerprint"
+   ]
+  ],
+  [
+   "636f6d2e73756e6f2e66696e6765727072696e742e7631",
+   [
+    "com.suno.fingerprint"
+   ]
+  ],
+  [
+   "636f6d2e73756e6f2e66696e6765727072696e742e76312e",
+   []
+  ],
+  [
+   "636f6d2e73756e6f2e66696e6765727072696e742e2e7631",
+   []
+  ],
+  [
+   "636f6d2e73756e6f2e66696e6765727072696e7478",
+   []
+  ],
+  [
+   "2d636f6d2e73756e6f2e66696e6765727072696e74",
+   []
+  ],
+  [
+   "696f2e697363632e763020636f6d2e646967696d6172632e76616c69646174652e3120636f6d2e6d6963726f736f66742e696e7669736d61726b2e31",
+   [
+    "com.digimarc.validate.1",
+    "io.iscc.v0",
+    "com.microsoft.invismark.1"
+   ]
+  ],
+  [
+   "",
+   []
+  ]
+ ],
+ "soft_binding_vendors_in": [
+  [
+   "636f6d2e61646f62652e74727573746d61726b2e51",
+   [
+    "Adobe TrustMark"
+   ]
+  ],
+  [
+   "78636f6d2e61646f62652e74727573746d61726b2e51",
+   []
+  ],
+  [
+   "636f6d2e61646f62652e74727573746d61726b2e5178",
+   []
+  ],
+  [
+   "636f6d2e61646f62652e74727573746d61726b2e512e7632",
+   []
+  ],
+  [
+   "28636f6d2e61646f62652e74727573746d61726b2e5129",
+   [
+    "Adobe TrustMark"
+   ]
+  ],
+  [
+   "636f6d2e73756e6f2e66696e6765727072696e74",
+   [
+    "Suno Audio Fingerprint"
+   ]
+  ],
+  [
+   "636f6d2e73756e6f2e66696e6765727072696e742e7631",
+   [
+    "Suno Audio Fingerprint"
+   ]
+  ],
+  [
+   "636f6d2e73756e6f2e66696e6765727072696e742e76312e",
+   []
+  ],
+  [
+   "636f6d2e73756e6f2e66696e6765727072696e742e2e7631",
+   []
+  ],
+  [
+   "636f6d2e73756e6f2e66696e6765727072696e7478",
+   []
+  ],
+  [
+   "2d636f6d2e73756e6f2e66696e6765727072696e74",
+   []
+  ],
+  [
+   "696f2e697363632e763020636f6d2e646967696d6172632e76616c69646174652e3120636f6d2e6d6963726f736f66742e696e7669736d61726b2e31",
+   [
+    "Digimarc Validate",
+    "ISCC (content code)",
+    "Microsoft InvisMark"
+   ]
+  ],
+  [
+   "",
+   []
+  ]
+ ],
+ "issuer_words": [
+  [
+   "Nova Canvas by Canva",
+   [
+    "Canva"
+   ]
+  ],
+  [
+   "Nova Canvas",
+   []
+  ],
+  [
+   "Made with DALL-E 3",
+   []
+  ],
+  [
+   "DALL·E",
+   []
+  ],
+  [
+   "GPT-4o mini",
+   []
+  ],
+  [
+   "Firefly2",
+   []
+  ],
+  [
+   "CHATGPT",
+   []
+  ],
+  [
+   "Google LLC",
+   [
+    "Google LLC"
+   ]
+  ]
+ ],
+ "tool_words": [
+  [
+   "Nova Canvas by Canva",
+   []
+  ],
+  [
+   "Nova Canvas",
+   []
+  ],
+  [
+   "Made with DALL-E 3",
+   [
+    "DALL·E"
+   ]
+  ],
+  [
+   "DALL·E",
+   [
+    "DALL·E"
+   ]
+  ],
+  [
+   "GPT-4o mini",
+   [
+    "GPT-4o"
+   ]
+  ],
+  [
+   "Firefly2",
+   []
+  ],
+  [
+   "CHATGPT",
+   []
+  ],
+  [
+   "Google LLC",
+   []
+  ]
+ ],
+ "claim_generator_platform": [
+  [
+   "Suno/1.0",
+   "Suno"
+  ],
+  [
+   "STRASSE suno",
+   "Suno"
+  ],
+  [
+   "ﬁrefly 3",
+   "Adobe Firefly"
+  ],
+  [
+   "Adobe_Firefly",
+   "Adobe Firefly"
+  ],
+  [
+   "dreamina",
+   "ByteDance Dreamina"
+  ],
+  [
+   "dolar",
+   null
+  ],
+  [
+   "capcut c2pa-rs",
+   "CapCut (C2PA signer)"
+  ],
+  [
+   "",
+   null
+  ],
+  [
+   null,
+   null
+  ],
+  [
+   "Grok Imagine",
+   "xAI Grok Imagine"
+  ]
+ ],
+ "vendor_platform": [
+  [
+   "Google LLC",
+   "Google (Gemini / Imagen)"
+  ],
+  [
+   "google",
+   "Google (Gemini / Imagen)"
+  ],
+  [
+   "Volcano Engine Inc",
+   "ByteDance Volcano Engine"
+  ],
+  [
+   "fal.ai",
+   "fal.ai"
+  ],
+  [
+   "xAI",
+   "xAI Grok Imagine"
+  ],
+  [
+   "OpenAI, Truepic",
+   "OpenAI (ChatGPT / GPT Image / DALL·E / Sora)"
+  ],
+  [
+   "Runway",
+   "Runway"
+  ],
+  [
+   "nobody",
+   null
+  ],
+  [
+   "Bria AI",
+   "Bria AI"
+  ]
+ ],
+ "synthid": [
+  [
+   "476f6f676c65204c4c43",
+   null,
+   null,
+   [
+    "Google LLC"
+   ]
+  ],
+  [
+   "476f6f676c65204c4c4320596f7554756265",
+   null,
+   null,
+   []
+  ],
+  [
+   "476f6f676c65204c4c4320596f75547562652053796e74684944",
+   null,
+   null,
+   [
+    "Google LLC"
+   ]
+  ],
+  [
+   "4f70656e4149",
+   null,
+   null,
+   []
+  ],
+  [
+   "4f70656e414920633270612e77617465726d61726b6564",
+   null,
+   null,
+   [
+    "OpenAI"
+   ]
+  ],
+  [
+   "4f70656e414920476f6f676c65",
+   true,
+   false,
+   [
+    "Google LLC",
+    "OpenAI"
+   ]
+  ],
+  [
+   "476f6f676c6520596f7554756265",
+   false,
+   true,
+   [
+    "Google LLC"
+   ]
+  ]
+ ],
+ "markers_claim_ai": [
+  [
+   {
+    "issuer": "Google LLC",
+    "actions": "opened"
+   },
+   false
+  ],
+  [
+   {
+    "issuer": "Ideogram"
+   },
+   true
+  ],
+  [
+   {
+    "source_type": "algorithmicMedia"
+   },
+   false
+  ],
+  [
+   {
+    "source_type": "compositeSynthetic"
+   },
+   true
+  ],
+  [
+   {
+    "source_type": "c2pa.ai-disclosure (generated)"
+   },
+   true
+  ],
+  [
+   {
+    "claim_generator": "Suno/2"
+   },
+   true
+  ],
+  [
+   {
+    "claim_generator": "YouTube"
+   },
+   false
+  ],
+  [
+   {
+    "ai_tool": "Sora"
+   },
+   true
+  ],
+  [
+   {
+    "ai_generator": "Midjourney"
+   },
+   true
+  ],
+  [
+   {},
+   false
+  ]
+ ],
+ "is_ai_field": [
+  [
+   "parameters",
+   true
+  ],
+  [
+   "PROMPT",
+   true
+  ],
+  [
+   "Model hash",
+   true
+  ],
+  [
+   "negative_prompt",
+   true
+  ],
+  [
+   "sd:mode",
+   true
+  ],
+  [
+   "Title",
+   false
+  ],
+  [
+   "Software",
+   false
+  ],
+  [
+   "comfy_workflow",
+   true
+  ],
+  [
+   "ß",
+   false
+  ],
+  [
+   "seed",
+   true
+  ],
+  [
+   "Seed",
+   true
+  ]
+ ],
+ "parse_c2pa_chunk": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (339 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe, OpenAI, Google LLC\", \"ai_tool\": \"GPT-4o, DALL\\u00b7E, Firefly\", \"actions\": \"created, edited, watermarked.unbound\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Adobe TrustMark\", \"ISCC (content code)\", \"Suno Audio Fingerprint\"], \"soft_binding\": \"Adobe TrustMark, ISCC (content code), Suno Audio Fingerprint\", \"soft_binding_algorithm\": \"io.iscc.v0, com.adobe.trustmark.Q, com.suno.fingerprint\", \"c2pa_spec\": \"2.1\", \"timestamp\": \"20240517170000Z\", \"timestamps\": [\"20240517170000Z\", \"20240518170000Z\", \"20240519170000Z\"]}"
+}

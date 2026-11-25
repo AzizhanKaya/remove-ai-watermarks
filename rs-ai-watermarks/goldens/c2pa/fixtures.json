@@ -1,0 +1,2427 @@
+{
+ "provenance/adobe-trustmark-p.png": {
+  "sha256": "e58c5825ed7e5d9fb04710ea541b61bd55879cad65554c0d46260aa24b3d0755",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/amazon-bedrock-nova-canvas.png": {
+  "sha256": "b2d38079222ca8499f2cbe3adca3f5521add6b383c99bf28d61021503bb3b7c1",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (3665 bytes)\", \"issuer\": \"Amazon\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"timeStamp.trusted\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Amazon_Bedrock\", \"timestamp\": \"2025-08-01T22:53:51+00:00\"}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (26528 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Amazon, Canva\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"jumbf manifest\", \"timestamp\": \"20250801225351Z\", \"timestamps\": [\"20250801225351Z\", \"20250801033701Z\", \"20250801032101Z\"]}",
+  "raw": [
+   26528,
+   "4b0da3236d087e0628c18cfdc0d8fbc47c2bb90a207b8db2f00ee8b64f4617fd"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (26528 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Amazon, Canva\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"jumbf manifest\", \"timestamp\": \"20250801225351Z\", \"timestamps\": [\"20250801225351Z\", \"20250801033701Z\", \"20250801032101Z\"]}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "9b0a156be4aa30e9e21d2ccfdcdc9178a394250a7d764ece7b7661920c040227",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Amazon Bedrock (Nova)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (3665 bytes)\", \"issuer\": \"Amazon\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"timeStamp.trusted\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Amazon_Bedrock\", \"timestamp\": \"2025-08-01T22:53:51+00:00\"}",
+   "c2pa_chunk": "9b0a156be4aa30e9e21d2ccfdcdc9178a394250a7d764ece7b7661920c040227"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest store (3665 bytes)\n  issuer: Amazon\n  actions: created\n  source_type: trainedAlgorithmicMedia (AI-generated)\n  ai_source_kind: generated\n  c2pa_validation_source: reader\n  c2pa_validation_state: Valid\n  c2pa_integrity: valid\n  c2pa_signature: valid\n  c2pa_signer_trust: untrusted\n  c2pa_signer_validity: valid\n  c2pa_validation_codes: ['timeStamp.validated', 'timeStamp.trusted', 'claimSignature.insideValidity', 'claimSignature.valida...\n  c2pa_failed_codes: []\n  claim_generator: Amazon_Bedrock\n  timestamp: 2025-08-01T22:53:51+00:00",
+  "has_ai_metadata": true
+ },
+ "provenance/amazon-bedrock-nova-reel.mp4": {
+  "sha256": "36d2d68f9be53d9f123bd16127c6fbcbd838faa57cfdb28af44a515458a3cf64",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (4855 bytes)\", \"issuer\": \"Amazon\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"timeStamp.trusted\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.bmffHash.match\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Amazon_Bedrock\", \"timestamp\": \"2025-11-12T21:34:10+00:00\"}",
+  "png_info_json": "{}",
+  "raw": [
+   26761,
+   "f5b002749e8a30a72d2feaea3b5d6ba8054a0dae49ee55278c3ef77df8194c8b"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (26761 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Amazon\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"jumbf manifest\", \"timestamp\": \"20251112213410Z\", \"timestamps\": [\"20251112213410Z\", \"20251112103109Z\", \"20251112101500Z\"]}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Amazon Bedrock (Nova)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "provenance/apple-image-playground.png": {
+  "sha256": "5ade61fc4cd869e2487745af61c7e23d008a3e9c2b5c440d2ffe16c2d3a32315",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/chatgpt-1.png": {
+  "sha256": "11509a36db9075dc4229fa6d4966b20290d5c55908d4b4293bc068a760880b97",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (8785 bytes)\", \"issuer\": \"OpenAI, Truepic\", \"ai_tool\": \"ChatGPT, GPT-4o\", \"actions\": \"opened, created, converted\", \"c2pa_identity_ai\": true, \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"signingCredential.untrusted\", \"signingCredential.expired\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"ChatGPT\"}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (80458 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"OpenAI, Truepic\", \"ai_tool\": \"GPT-4o, ChatGPT, Sora\", \"actions\": \"created, converted, opened\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"GPT-4o\"}",
+  "raw": [
+   80458,
+   "98545a69e499e1e51e478fa37046546f585aca063b15d6f351096529081371be"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (80458 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"OpenAI, Truepic\", \"ai_tool\": \"GPT-4o, ChatGPT, Sora\", \"actions\": \"created, converted, opened\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"GPT-4o\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "759f928733823519c149c6e7de040271048af8b714860a8dedebf31d9c82f9e5",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "OpenAI (ChatGPT / GPT Image / DALL·E / Sora)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (8785 bytes)\", \"issuer\": \"OpenAI, Truepic\", \"ai_tool\": \"ChatGPT, GPT-4o\", \"actions\": \"opened, created, converted\", \"c2pa_identity_ai\": true, \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"signingCredential.untrusted\", \"signingCredential.expired\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"ChatGPT\"}",
+   "c2pa_chunk": "759f928733823519c149c6e7de040271048af8b714860a8dedebf31d9c82f9e5"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest store (8785 bytes)\n  issuer: OpenAI, Truepic\n  ai_tool: ChatGPT, GPT-4o\n  actions: opened, created, converted\n  c2pa_identity_ai: True\n  source_type: trainedAlgorithmicMedia (AI-generated)\n  ai_source_kind: generated\n  c2pa_validation_source: reader\n  c2pa_validation_state: Invalid\n  c2pa_integrity: valid\n  c2pa_signature: valid\n  c2pa_signer_trust: untrusted\n  c2pa_signer_validity: expired\n  c2pa_validation_codes: ['claimSignature.insideValidity', 'claimSignature.validated', 'assertion.hashedURI.match', 'assertio...\n  c2pa_failed_codes: []\n  claim_generator: ChatGPT",
+  "has_ai_metadata": true
+ },
+ "provenance/chatgpt-2.png": {
+  "sha256": "ab14ae046a8917fae1831d8b42bb6b7300d267409cfe4610dd2a215cc97579a5",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (8785 bytes)\", \"issuer\": \"OpenAI, Truepic\", \"ai_tool\": \"ChatGPT, GPT-4o\", \"actions\": \"opened, created, converted\", \"c2pa_identity_ai\": true, \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"signingCredential.untrusted\", \"signingCredential.expired\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"ChatGPT\"}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (84033 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"OpenAI, Truepic\", \"ai_tool\": \"GPT-4o, ChatGPT, Sora\", \"actions\": \"created, converted, opened\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"GPT-4o\"}",
+  "raw": [
+   84033,
+   "2c07e777cf8a28a781a8e2545665a39790a2d3ab501aea02a255e6a322b47653"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (84033 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"OpenAI, Truepic\", \"ai_tool\": \"GPT-4o, ChatGPT, Sora\", \"actions\": \"created, converted, opened\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"GPT-4o\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "5f292b4fb711a93f871a5800f56f90fc3d42f0ee55bdf4dbcd1273552c88ea57",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "OpenAI (ChatGPT / GPT Image / DALL·E / Sora)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (8785 bytes)\", \"issuer\": \"OpenAI, Truepic\", \"ai_tool\": \"ChatGPT, GPT-4o\", \"actions\": \"opened, created, converted\", \"c2pa_identity_ai\": true, \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"signingCredential.untrusted\", \"signingCredential.expired\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"ChatGPT\"}",
+   "c2pa_chunk": "5f292b4fb711a93f871a5800f56f90fc3d42f0ee55bdf4dbcd1273552c88ea57"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest store (8785 bytes)\n  issuer: OpenAI, Truepic\n  ai_tool: ChatGPT, GPT-4o\n  actions: opened, created, converted\n  c2pa_identity_ai: True\n  source_type: trainedAlgorithmicMedia (AI-generated)\n  ai_source_kind: generated\n  c2pa_validation_source: reader\n  c2pa_validation_state: Invalid\n  c2pa_integrity: valid\n  c2pa_signature: valid\n  c2pa_signer_trust: untrusted\n  c2pa_signer_validity: expired\n  c2pa_validation_codes: ['claimSignature.insideValidity', 'claimSignature.validated', 'assertion.hashedURI.match', 'assertio...\n  c2pa_failed_codes: []\n  claim_generator: ChatGPT",
+  "has_ai_metadata": true
+ },
+ "provenance/doubao-1.png": {
+  "sha256": "961c0f21c99f0e35443e2f2f4ee0803111be393b832481f7d13f9465d872883a",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/dreamina-seedance-2-mini.mp4": {
+  "sha256": "d2712d4804074ac08e28fc77ff1c1ff986e6c4bbaf3ae9737f743719e51a59de",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (10181 bytes)\", \"issuer\": \"ByteDance\", \"ai_tool\": \"Dreamina\", \"actions\": \"opened, transcoded, created\", \"c2pa_identity_ai\": true, \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.bmffHash.match\", \"signingCredential.ocsp.skipped\", \"assertion.bmffHash.additionalExclusionsPresent\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"c2patool\"}",
+  "png_info_json": "{}",
+  "raw": [
+   44629,
+   "47b582230da078a271c77853719c3b5d757352e7c26fd7ef13002e21a3f447c1"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (44629 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"ByteDance (Dreamina), ByteDance\", \"ai_tool\": \"Dreamina\", \"actions\": \"created, opened\", \"claim_generator\": \"jumbf manifest\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": null,
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "provenance/dreamina-seedream-5-pro.jpg": {
+  "sha256": "2393cb470dc7c69de4c421f338aeb08192ed916515bc095a3afcd2ef4af89c90",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (9446 bytes)\", \"issuer\": \"ByteDance\", \"ai_tool\": \"Dreamina\", \"actions\": \"opened, transcoded, created\", \"c2pa_identity_ai\": true, \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"ByteDance Media Transcode Service\"}",
+  "png_info_json": "{}",
+  "raw": [
+   226588,
+   "04271f2b9b8eb728df68026a559e023bb8262a4b383ff927a5c1c50e88c2bfed"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (226588 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"ByteDance (Dreamina), ByteDance\", \"ai_tool\": \"Dreamina\", \"actions\": \"created, opened\", \"claim_generator\": \"jumbf manifest\", \"c2pa_spec\": \"2.2.0\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": null,
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/firefly-1.png": {
+  "sha256": "a4421ef0454d3016aa1e2df13f9ee3812529e74705487c239d8a09f6f7ebf515",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (4408 bytes)\", \"issuer\": \"Adobe\", \"ai_tool\": \"Firefly\", \"actions\": \"created\", \"c2pa_identity_ai\": true, \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"timeStamp.trusted\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Adobe_Firefly\", \"timestamp\": \"2026-03-26T00:14:26+00:00\"}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (68637 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe\", \"ai_tool\": \"Firefly\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"jumbf manifest\", \"timestamp\": \"20260326001426Z\", \"timestamps\": [\"20260326001426Z\", \"20260325185914Z\", \"20260325185914Z\"]}",
+  "raw": [
+   68637,
+   "5dbfccc54b4245f3c5998f5d7537c7aaae43281de8455f82fa18d8b25a6ae770"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (68637 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Adobe\", \"ai_tool\": \"Firefly\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"jumbf manifest\", \"timestamp\": \"20260326001426Z\", \"timestamps\": [\"20260326001426Z\", \"20260325185914Z\", \"20260325185914Z\"]}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "5166f49faedd9a63b75b06d69e67cd082beaf08e91a89985acf9c6a07116e911",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": "Adobe Firefly",
+   "vendor_platform": "Adobe Firefly",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (4408 bytes)\", \"issuer\": \"Adobe\", \"ai_tool\": \"Firefly\", \"actions\": \"created\", \"c2pa_identity_ai\": true, \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"timeStamp.trusted\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Adobe_Firefly\", \"timestamp\": \"2026-03-26T00:14:26+00:00\"}",
+   "c2pa_chunk": "5166f49faedd9a63b75b06d69e67cd082beaf08e91a89985acf9c6a07116e911"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest store (4408 bytes)\n  issuer: Adobe\n  ai_tool: Firefly\n  actions: created\n  c2pa_identity_ai: True\n  source_type: trainedAlgorithmicMedia (AI-generated)\n  ai_source_kind: generated\n  c2pa_validation_source: reader\n  c2pa_validation_state: Valid\n  c2pa_integrity: valid\n  c2pa_signature: valid\n  c2pa_signer_trust: untrusted\n  c2pa_signer_validity: valid\n  c2pa_validation_codes: ['timeStamp.validated', 'timeStamp.trusted', 'claimSignature.insideValidity', 'claimSignature.valida...\n  c2pa_failed_codes: []\n  claim_generator: Adobe_Firefly\n  timestamp: 2026-03-26T00:14:26+00:00",
+  "has_ai_metadata": true
+ },
+ "provenance/flux-1.jpg": {
+  "sha256": "c3b39b2ac958bb80ea0b5e2fd81e87cca32c9fde54f585864533e243ae68a64c",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (6013 bytes)\", \"issuer\": \"Black Forest Labs\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"signingCredential.untrusted\", \"signingCredential.expired\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Black Forest Labs API\", \"timestamp\": \"2026-06-19T16:29:47+00:00\"}",
+  "png_info_json": "{}",
+  "raw": [
+   24454,
+   "2ebcecdc06cbe7e36b02d8c48e6e162c9ba35418925b2c06c2538adc5c7ed1d7"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (24454 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Black Forest Labs\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"jumbf manifest\", \"timestamp\": \"20260619162947Z\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Black Forest Labs (FLUX)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/flux-1.png": {
+  "sha256": "5caf54dde34f67d67e3f59e05e3da8970a76e2d4dfc01cf7c25944b9a99a6661",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (6012 bytes)\", \"issuer\": \"Black Forest Labs\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"signingCredential.untrusted\", \"signingCredential.expired\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Black Forest Labs API\", \"timestamp\": \"2026-06-19T16:30:11+00:00\"}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (24559 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Black Forest Labs\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"jumbf manifest\", \"timestamp\": \"20260619163011Z\"}",
+  "raw": [
+   24559,
+   "8efe86bb222702a8240abfd07b3b19ea3736d4d3e340223c9fc3f12cf821b165"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (24559 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Black Forest Labs\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"jumbf manifest\", \"timestamp\": \"20260619163011Z\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "062091368ae728957b39bec7b6e7c33475b777d543bebd8703e5f97615569f05",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Black Forest Labs (FLUX)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (6012 bytes)\", \"issuer\": \"Black Forest Labs\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"signingCredential.untrusted\", \"signingCredential.expired\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Black Forest Labs API\", \"timestamp\": \"2026-06-19T16:30:11+00:00\"}",
+   "c2pa_chunk": "062091368ae728957b39bec7b6e7c33475b777d543bebd8703e5f97615569f05"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest store (6012 bytes)\n  issuer: Black Forest Labs\n  actions: created\n  source_type: trainedAlgorithmicMedia (AI-generated)\n  ai_source_kind: generated\n  c2pa_validation_source: reader\n  c2pa_validation_state: Invalid\n  c2pa_integrity: valid\n  c2pa_signature: valid\n  c2pa_signer_trust: untrusted\n  c2pa_signer_validity: expired\n  c2pa_validation_codes: ['timeStamp.validated', 'claimSignature.insideValidity', 'claimSignature.validated', 'assertion.hash...\n  c2pa_failed_codes: []\n  claim_generator: Black Forest Labs API\n  timestamp: 2026-06-19T16:30:11+00:00",
+  "has_ai_metadata": true
+ },
+ "provenance/google-gemini-omni-app.mp4": {
+  "sha256": "f11595c6a9c0a72d4712d228354f589078d6940e529538cb009c799d8b8410d7",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (5059 bytes)\", \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.bmffHash.match\", \"timeStamp.untrusted\", \"assertion.bmffHash.additionalExclusionsPresent\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"2026-09-24T02:24:12+00:00\"}",
+  "png_info_json": "{}",
+  "raw": [
+   6272,
+   "86abef528d63d9f5662933415c28317ecd5f907e7910fa92d5d0d702d628d501"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (6272 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"20260924022413Z\", \"timestamps\": [\"20260924022413Z\", \"20260923161600Z\", \"20260923161644Z\"]}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [
+   "Google LLC"
+  ],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Google (Gemini / Imagen)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "provenance/google-gemini-omni-flash-api.mp4": {
+  "sha256": "fb034e94e4cbca9e0b56d82389d361fda0d6191f7e16f37ac6c55cd62a3621f7",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (4824 bytes)\", \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.bmffHash.match\", \"timeStamp.untrusted\", \"assertion.bmffHash.additionalExclusionsPresent\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"2026-09-24T17:40:00+00:00\"}",
+  "png_info_json": "{}",
+  "raw": [
+   6133,
+   "9876cee3c1f3f4dbdbe1b1a7446abf702a4ac9cdfe428d720b1e07fe496dede5"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (6133 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"20260924174001Z\", \"timestamps\": [\"20260924174001Z\", \"20260923161600Z\", \"20260923161644Z\"]}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [
+   "Google LLC"
+  ],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Google (Gemini / Imagen)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "provenance/google-nano-banana-2-lite.jpg": {
+  "sha256": "df4f422b9e77d6b08d3e6d095299f0cdf6d48f6c770632bb042a6c7b09627334",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (3816 bytes)\", \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"timeStamp.untrusted\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"2026-09-24T17:39:12+00:00\"}",
+  "png_info_json": "{}",
+  "raw": [
+   6020,
+   "f7fca42eb987485f940fa7db6119afb80346e1efc30baf961c6a4ba15ba31e83"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (6020 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"20260924173913Z\", \"timestamps\": [\"20260924173913Z\", \"20260924151900Z\", \"20260924151900Z\"]}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [
+   "Google LLC"
+  ],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Google (Gemini / Imagen)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/google-nano-banana-2.jpg": {
+  "sha256": "977110ac48678627d907d635ac1b110b930044c350b669fb5f927a500e7d95ac",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (3814 bytes)\", \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"timeStamp.untrusted\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"2026-09-24T17:58:40+00:00\"}",
+  "png_info_json": "{}",
+  "raw": [
+   6020,
+   "46d734938758d33de265d51e8637464ef946f166344c77b7cb2eeb5e1603b9a5"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (6020 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"20260924175841Z\", \"timestamps\": [\"20260924175841Z\", \"20260924151900Z\", \"20260924151900Z\"]}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [
+   "Google LLC"
+  ],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Google (Gemini / Imagen)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/google-nano-banana-pro.jpg": {
+  "sha256": "5fd14ce6d32f3806f0128f952eb30d36f7dad384a9eec728e5efbdb46ebca7db",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (3814 bytes)\", \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"timeStamp.untrusted\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"2026-09-24T17:58:53+00:00\"}",
+  "png_info_json": "{}",
+  "raw": [
+   6020,
+   "21a860ac3f91381ebf2d8d883590f87a063279eb43641426f62ee99991f389a0"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (6020 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"20260924175854Z\", \"timestamps\": [\"20260924175854Z\", \"20260924151900Z\", \"20260924151900Z\"]}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [
+   "Google LLC"
+  ],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Google (Gemini / Imagen)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/google-nano-banana.png": {
+  "sha256": "1fd7cccffb25f18e74fa5ebc639672f1361db6137e6b9e848bc33fc1f583c0fe",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (3816 bytes)\", \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"timeStamp.untrusted\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"2026-09-24T17:59:17+00:00\"}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (6012 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"20260924175918Z\", \"timestamps\": [\"20260924175918Z\", \"20260924151900Z\", \"20260924151900Z\"]}",
+  "raw": [
+   6012,
+   "7fa2427598224cc0d6290481c61333f7f093bea7a93e1725524790b0d4acb5d2"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (6012 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"20260924175918Z\", \"timestamps\": [\"20260924175918Z\", \"20260924151900Z\", \"20260924151900Z\"]}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [
+   "Google LLC"
+  ],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "3fb8e890e599ce41418299ea2e64c11d2fd4006c81524ad246ce0313e5c4cb05",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Google (Gemini / Imagen)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (3816 bytes)\", \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"timeStamp.untrusted\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"2026-09-24T17:59:17+00:00\"}",
+   "c2pa_chunk": "3fb8e890e599ce41418299ea2e64c11d2fd4006c81524ad246ce0313e5c4cb05"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest store (3816 bytes)\n  issuer: Google LLC\n  actions: created, edited\n  source_type: trainedAlgorithmicMedia (AI-generated)\n  ai_source_kind: generated\n  synthid_vendors: ['Google LLC']\n  synthid_watermark: present according to Google LLC provenance\n  c2pa_validation_source: reader\n  c2pa_validation_state: Valid\n  c2pa_integrity: valid\n  c2pa_signature: valid\n  c2pa_signer_trust: untrusted\n  c2pa_signer_validity: valid\n  c2pa_validation_codes: ['timeStamp.validated', 'claimSignature.insideValidity', 'claimSignature.validated', 'assertion.hash...\n  c2pa_failed_codes: []\n  claim_generator: Google C2PA Core Generator Library\n  timestamp: 2026-09-24T17:59:17+00:00",
+  "has_ai_metadata": true
+ },
+ "provenance/google-photos-ios-edit.jpg": {
+  "sha256": "d32a9ddb07f6902262246ec380b04e1e7016ef40bbffe6e8d82f4dc48e84ba23",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (5482 bytes)\", \"issuer\": \"Google LLC, Google Photos\", \"actions\": \"opened, deleted\", \"source_type\": \"compositeWithTrainedAlgorithmicMedia (AI-enhanced)\", \"ai_source_kind\": \"enhanced\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"signingCredential.untrusted\", \"signingCredential.expired\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Google C2PA SDK for iOS\", \"timestamp\": \"2026-09-24T04:26:10+00:00\"}",
+  "png_info_json": "{}",
+  "raw": [
+   5061,
+   "c2077618728ceb9a4ef799d32066ec79b0fa79ef6c9dc56304af6c81e471d003"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (5061 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Google LLC, Google Photos\", \"actions\": \"opened\", \"source_type\": \"compositeWithTrainedAlgorithmicMedia (AI-enhanced)\", \"ai_source_kind\": \"enhanced\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"claim_generator\": \"Google C2PA SDK for iOS\", \"timestamp\": \"20260924042611Z\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [
+   "Google LLC"
+  ],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Google (Gemini / Imagen)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/grok-1.jpg": {
+  "sha256": "2df3a34019bdf7fc2dacd979b2bcb5ee2425d910818e47bca10c15b7fd3fabcb",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/higgsfield-cinema-studio-v2.mp4": {
+  "sha256": "485449b69f1013a97970aabc5429327db1ff88559c81e3430c536fab108db7dc",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   269,
+   "b155ac69e30c07eaaf26e4e08dd101f035f774fba18f5b90f2c2c5e6193bdfea"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (269 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "provenance/higgsfield-flux-2-pro.png": {
+  "sha256": "4382b0c2a5f3d2b2c52f070ba9a12ffa259b4e0bad2446a65134cd700a06cb0a",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (6114 bytes)\", \"issuer\": \"Black Forest Labs\", \"actions\": \"created\", \"ai_disclosure\": \"FLUX.2\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"invalid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"signingCredential.untrusted\", \"signingCredential.expired\", \"assertion.dataHash.mismatch\"], \"c2pa_failed_codes\": [\"assertion.dataHash.mismatch\", \"assertion.dataHash.mismatch\"], \"claim_generator\": \"Black Forest Labs API\", \"timestamp\": \"2026-09-24T22:07:55+00:00\"}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (20721 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Black Forest Labs\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"FLUX.2\", \"timestamp\": \"20260924220755Z\"}",
+  "raw": [
+   20721,
+   "37af539eb6d36207c52c673c3e92ef449b43d524eeec14e8c04d9e2293259043"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (20721 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Black Forest Labs\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"FLUX.2\", \"timestamp\": \"20260924220755Z\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "8e93f29fdd1f5fe055d8587fc5e6f6c653fe4e70663ce60cbe42266e9766b4f3",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "invalid",
+   "invalid_credential": true,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Black Forest Labs (FLUX)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (6114 bytes)\", \"issuer\": \"Black Forest Labs\", \"actions\": \"created\", \"ai_disclosure\": \"FLUX.2\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"invalid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"signingCredential.untrusted\", \"signingCredential.expired\", \"assertion.dataHash.mismatch\"], \"c2pa_failed_codes\": [\"assertion.dataHash.mismatch\", \"assertion.dataHash.mismatch\"], \"claim_generator\": \"Black Forest Labs API\", \"timestamp\": \"2026-09-24T22:07:55+00:00\"}",
+   "c2pa_chunk": "8e93f29fdd1f5fe055d8587fc5e6f6c653fe4e70663ce60cbe42266e9766b4f3"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest store (6114 bytes)\n  issuer: Black Forest Labs\n  actions: created\n  ai_disclosure: FLUX.2\n  source_type: trainedAlgorithmicMedia (AI-generated)\n  ai_source_kind: generated\n  c2pa_validation_source: reader\n  c2pa_validation_state: Invalid\n  c2pa_integrity: invalid\n  c2pa_signature: valid\n  c2pa_signer_trust: untrusted\n  c2pa_signer_validity: expired\n  c2pa_validation_codes: ['timeStamp.validated', 'claimSignature.insideValidity', 'claimSignature.validated', 'assertion.hash...\n  c2pa_failed_codes: ['assertion.dataHash.mismatch', 'assertion.dataHash.mismatch']\n  claim_generator: Black Forest Labs API\n  timestamp: 2026-09-24T22:07:55+00:00",
+  "has_ai_metadata": true
+ },
+ "provenance/higgsfield-genjutsu-motion-control.mp4": {
+  "sha256": "a3c2e8c506327ff0bdee078372be8d89fb913672f61efc66a4791771026ec0fc",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   13,
+   "ab1fc7ec85b60ea9f7c14b3dcc137d66bfe72e3939a80f2efafff3db14fe8dad"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (13 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "provenance/higgsfield-gpt-image.jpg": {
+  "sha256": "4cb06b2084f2f1907421fbab38ccc459ea2cb33859005e69c07c3ea524dc0f6d",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (4322 bytes)\", \"issuer\": \"OpenAI\", \"actions\": \"created, converted\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"timeStamp.untrusted\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"OpenAI Media Service API\", \"timestamp\": \"2026-09-24T22:25:37.672555+00:00\"}",
+  "png_info_json": "{}",
+  "raw": [
+   21816,
+   "665a2682d97a820398470d640c06827854b6e6bcb47f2f03accbd08e0108e543"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (21816 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"OpenAI\", \"actions\": \"created, converted\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"API\", \"c2pa_spec\": \"2.2.0\", \"timestamp\": \"21260409174626Z\", \"timestamps\": [\"21260409174626Z\", \"21260409174625Z\", \"20260923220825Z\"]}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "OpenAI (ChatGPT / GPT Image / DALL·E / Sora)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/higgsfield-hailuo-2-3.mp4": {
+  "sha256": "67f4b6c49f6b93485fd47c457f64d3f721ec326ec57a9fb39488d6b9023528b7",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   1114,
+   "ad1f205cab59770c2a7f3b2e932adf6bc71a432d373cbab75b170a2ec606288c"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (1114 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "provenance/higgsfield-happyhorse.mp4": {
+  "sha256": "967dcb6022e19f55639ff705a58e5252a62a24405f247dcffefcc0f610149c30",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   875,
+   "7a689080edcca391d2fc6b15ea378a05e2819ec9576ea5dc0d0af70565683154"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (875 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "provenance/higgsfield-kling-3-0-turbo.mp4": {
+  "sha256": "7011c92d52ec624da12600f24a4abb8d997f26cdea62d6f5a8d1940bc7ffcc9c",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   269,
+   "a1413437abd3b759fad1f1fb167640bbd8e4656102ee883a4ebe1855fde0728c"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (269 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "provenance/higgsfield-kling-o1.png": {
+  "sha256": "6ad75936db0bb172423564dd24d27bddb992917263555ecb5697cd2f354deeac",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/higgsfield-minimax-h3.mp4": {
+  "sha256": "5fe5b9d08b9fb41a4d3eea470d443eb5df520235300e65134090338701215a43",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   1114,
+   "eac9a66b8f95c6c0acb31552cdac15ed7233d84c1cfb6eb8c3f9be1d5fd60423"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (1114 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "provenance/higgsfield-veo-3-1-lite.mp4": {
+  "sha256": "7d4ffa63755d605538c9a73059b4f6354a57e4f21100a92497aebc3c19dc3485",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (4827 bytes)\", \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.bmffHash.match\", \"timeStamp.untrusted\", \"assertion.bmffHash.additionalExclusionsPresent\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"2026-09-24T22:45:59+00:00\"}",
+  "png_info_json": "{}",
+  "raw": [
+   7727,
+   "8052223aa3b6ee0d755c0557031b78eca935a361d075ced8d7c8e2d5289720d3"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (7727 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"20260924161800Z\", \"timestamps\": [\"20260924161800Z\", \"20260924161802Z\", \"20261001161802Z\"]}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [
+   "Google LLC"
+  ],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Google (Gemini / Imagen)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "provenance/hunyuan-image-3.png": {
+  "sha256": "6ae2ac073ac79b02b0934c905364f200420c2ff60fea232bd9e0a5fca785cc09",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (3783 bytes)\", \"issuer\": \"fal.ai\", \"actions\": \"created\", \"c2pa_identity_ai\": true, \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"fal-ai/hunyuan-image\"}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (13016 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"fal.ai\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"fal-ai/hunyuan-image\"}",
+  "raw": [
+   13016,
+   "fcd0dd7f1896d9941a9c22d97232b057eda20e8dbc4759c471593aa587f4de0d"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (13016 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"fal.ai\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"fal-ai/hunyuan-image\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "3aa9182eee8fd648cf3013f064c051bf2b2c7b2c66ae1e33de272702f9427a8e",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "fal.ai",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (3783 bytes)\", \"issuer\": \"fal.ai\", \"actions\": \"created\", \"c2pa_identity_ai\": true, \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"fal-ai/hunyuan-image\"}",
+   "c2pa_chunk": "3aa9182eee8fd648cf3013f064c051bf2b2c7b2c66ae1e33de272702f9427a8e"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest store (3783 bytes)\n  issuer: fal.ai\n  actions: created\n  c2pa_identity_ai: True\n  source_type: trainedAlgorithmicMedia (AI-generated)\n  ai_source_kind: generated\n  c2pa_validation_source: reader\n  c2pa_validation_state: Valid\n  c2pa_integrity: valid\n  c2pa_signature: valid\n  c2pa_signer_trust: untrusted\n  c2pa_signer_validity: valid\n  c2pa_validation_codes: ['claimSignature.insideValidity', 'claimSignature.validated', 'assertion.hashedURI.match', 'assertio...\n  c2pa_failed_codes: []\n  claim_generator: fal-ai/hunyuan-image",
+  "has_ai_metadata": true
+ },
+ "provenance/ideogram-c2pa.png": {
+  "sha256": "343a5c78bca7bd8a61eb4b73518fbb2321b473d31d219d5a5212b8e5fa5b28bd",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (5626 bytes)\", \"issuer\": \"Ideogram\", \"actions\": \"created, placed\", \"c2pa_identity_ai\": true, \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"signingCredential.untrusted\", \"assertion.action.malformed\", \"assertion.action.ingredientMismatch\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"c2pa-rs\"}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (43603 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Ideogram\", \"actions\": \"created, placed\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\"}",
+  "raw": [
+   43603,
+   "a71dcac023b425819fbf5a2c53f34f9b8c03cfc63102d394ff689a9c3031943f"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (43603 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Ideogram\", \"actions\": \"created, placed\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "fe8dbe29cc1c499b5777bbaa006c9c6a32492e273bff0328a7b119bf0d3c0302",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Ideogram",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (5626 bytes)\", \"issuer\": \"Ideogram\", \"actions\": \"created, placed\", \"c2pa_identity_ai\": true, \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"signingCredential.untrusted\", \"assertion.action.malformed\", \"assertion.action.ingredientMismatch\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"c2pa-rs\"}",
+   "c2pa_chunk": "fe8dbe29cc1c499b5777bbaa006c9c6a32492e273bff0328a7b119bf0d3c0302"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest store (5626 bytes)\n  issuer: Ideogram\n  actions: created, placed\n  c2pa_identity_ai: True\n  c2pa_validation_source: reader\n  c2pa_validation_state: Invalid\n  c2pa_integrity: valid\n  c2pa_signature: valid\n  c2pa_signer_trust: untrusted\n  c2pa_signer_validity: valid\n  c2pa_validation_codes: ['claimSignature.insideValidity', 'claimSignature.validated', 'assertion.hashedURI.match', 'assertio...\n  c2pa_failed_codes: []\n  claim_generator: c2pa-rs",
+  "has_ai_metadata": true
+ },
+ "provenance/kling-image-v3.png": {
+  "sha256": "501ab865b47ba59b64bc0f68118300744b0d5c7be2fa4e2ecbb3a78de5d8a82b",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/krea-2-medium-turbo.png": {
+  "sha256": "ee1302c01e8da8e316e6563b0f9d36d511b9048fb2f70b8851eeeda98c5fb6a0",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/microsoft-bing-image-creator.jpg": {
+  "sha256": "55cad5355b6eeeb25f84ea074f85c0ea55b82d63c27f43e3429bb75f28734ac7",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (6294 bytes)\", \"issuer\": \"Microsoft\", \"actions\": \"created, watermarked\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Microsoft InvisMark\"], \"soft_binding\": \"Microsoft InvisMark\", \"soft_binding_algorithm\": \"com.microsoft.invismark.1\", \"soft_binding_value\": \"aec9a34e-665f-4549-9c02-9d29337a5de6\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"signingCredential.untrusted\", \"signingCredential.expired\", \"claim.malformed\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Microsoft\", \"timestamp\": \"2026-09-03T17:46:32+00:00\"}",
+  "png_info_json": "{}",
+  "raw": [
+   18908,
+   "6bb7e836f8a01e451630287f9d3b515785237c6b6cd1e125844ad11827a478e5"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (18908 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Microsoft\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"claim_generator\": \"Bing Image Creator\", \"timestamp\": \"20260903174632Z\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": true,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Microsoft (Copilot / Designer)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/microsoft-invismark.png": {
+  "sha256": "be27ac7c351e7f381dc69e140ca3611ecd9db81e40926c68050ceffdd0ce6c04",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (6391 bytes)\", \"issuer\": \"Microsoft\", \"actions\": \"created, watermarked\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Microsoft InvisMark\"], \"soft_binding\": \"Microsoft InvisMark\", \"soft_binding_algorithm\": \"com.microsoft.invismark.1\", \"soft_binding_value\": \"19b070a1-23f0-40eb-826c-cade306337eb\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"signingCredential.untrusted\", \"signingCredential.expired\", \"claim.malformed\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Microsoft Responsible AI Provenance\", \"timestamp\": \"2026-09-03T04:13:27+00:00\"}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (18977 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Microsoft\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"claim_generator\": \"Microsoft AI ImageGen\", \"timestamp\": \"20260903041327Z\"}",
+  "raw": [
+   18977,
+   "a5761d3ab42b6c309dec4a428c5b4cb7294b521284cdbf0d322884d51d69ceeb"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (18977 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Microsoft\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"claim_generator\": \"Microsoft AI ImageGen\", \"timestamp\": \"20260903041327Z\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "917636e8c808e4faa383ea4772538f6d3f9bbf48d4ee6887b44e9306d2b543be",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": true,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Microsoft (Copilot / Designer)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (6391 bytes)\", \"issuer\": \"Microsoft\", \"actions\": \"created, watermarked\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Microsoft InvisMark\"], \"soft_binding\": \"Microsoft InvisMark\", \"soft_binding_algorithm\": \"com.microsoft.invismark.1\", \"soft_binding_value\": \"19b070a1-23f0-40eb-826c-cade306337eb\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"signingCredential.untrusted\", \"signingCredential.expired\", \"claim.malformed\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Microsoft Responsible AI Provenance\", \"timestamp\": \"2026-09-03T04:13:27+00:00\"}",
+   "c2pa_chunk": "917636e8c808e4faa383ea4772538f6d3f9bbf48d4ee6887b44e9306d2b543be"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest store (6391 bytes)\n  issuer: Microsoft\n  actions: created, watermarked\n  source_type: trainedAlgorithmicMedia (AI-generated)\n  ai_source_kind: generated\n  watermarked: True\n  soft_binding_vendors: ['Microsoft InvisMark']\n  soft_binding: Microsoft InvisMark\n  soft_binding_algorithm: com.microsoft.invismark.1\n  soft_binding_value: 19b070a1-23f0-40eb-826c-cade306337eb\n  c2pa_validation_source: reader\n  c2pa_validation_state: Invalid\n  c2pa_integrity: valid\n  c2pa_signature: valid\n  c2pa_signer_trust: untrusted\n  c2pa_signer_validity: expired\n  c2pa_validation_codes: ['timeStamp.validated', 'claimSignature.insideValidity', 'claimSignature.validated', 'assertion.hash...\n  c2pa_failed_codes: []\n  claim_generator: Microsoft Responsible AI Provenance\n  timestamp: 2026-09-03T04:13:27+00:00",
+  "has_ai_metadata": true
+ },
+ "provenance/microsoft-paint-invismark.png": {
+  "sha256": "74eda22d210d534fcb5b75bedf8acd3bd110b48a95f4b9e546cd34f546effc05",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (6393 bytes)\", \"issuer\": \"Microsoft\", \"actions\": \"created, watermarked\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Microsoft InvisMark\"], \"soft_binding\": \"Microsoft InvisMark\", \"soft_binding_algorithm\": \"com.microsoft.invismark.1\", \"soft_binding_value\": \"a4ed421e-7c37-4409-998e-f8788c564572\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"signingCredential.untrusted\", \"signingCredential.expired\", \"claim.malformed\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Microsoft Responsible AI Provenance\", \"timestamp\": \"2026-08-23T13:17:10+00:00\"}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (18979 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Microsoft, OpenAI\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"synthid_vendors\": [\"OpenAI\"], \"synthid_watermark\": \"present according to OpenAI provenance\", \"claim_generator\": \"Azure OpenAI ImageGen\", \"timestamp\": \"20260823131710Z\"}",
+  "raw": [
+   18979,
+   "09efebd4c36a8000a58f3858b21490fb3e9d004ebb1a5cf7a35f71ecf9dbaf2f"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (18979 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Microsoft, OpenAI\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"synthid_vendors\": [\"OpenAI\"], \"synthid_watermark\": \"present according to OpenAI provenance\", \"claim_generator\": \"Azure OpenAI ImageGen\", \"timestamp\": \"20260823131710Z\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [
+   "OpenAI"
+  ],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "c4be9ed3939fce15ebc60194a88672864d8116033fe010a4793c5f379b6b33b8",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": true,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Microsoft (Copilot / Designer)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (6393 bytes)\", \"issuer\": \"Microsoft\", \"actions\": \"created, watermarked\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Microsoft InvisMark\"], \"soft_binding\": \"Microsoft InvisMark\", \"soft_binding_algorithm\": \"com.microsoft.invismark.1\", \"soft_binding_value\": \"a4ed421e-7c37-4409-998e-f8788c564572\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"signingCredential.untrusted\", \"signingCredential.expired\", \"claim.malformed\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Microsoft Responsible AI Provenance\", \"timestamp\": \"2026-08-23T13:17:10+00:00\"}",
+   "c2pa_chunk": "c4be9ed3939fce15ebc60194a88672864d8116033fe010a4793c5f379b6b33b8"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest store (6393 bytes)\n  issuer: Microsoft\n  actions: created, watermarked\n  source_type: trainedAlgorithmicMedia (AI-generated)\n  ai_source_kind: generated\n  watermarked: True\n  soft_binding_vendors: ['Microsoft InvisMark']\n  soft_binding: Microsoft InvisMark\n  soft_binding_algorithm: com.microsoft.invismark.1\n  soft_binding_value: a4ed421e-7c37-4409-998e-f8788c564572\n  c2pa_validation_source: reader\n  c2pa_validation_state: Invalid\n  c2pa_integrity: valid\n  c2pa_signature: valid\n  c2pa_signer_trust: untrusted\n  c2pa_signer_validity: expired\n  c2pa_validation_codes: ['timeStamp.validated', 'claimSignature.insideValidity', 'claimSignature.validated', 'assertion.hash...\n  c2pa_failed_codes: []\n  claim_generator: Microsoft Responsible AI Provenance\n  timestamp: 2026-08-23T13:17:10+00:00",
+  "has_ai_metadata": true
+ },
+ "provenance/mj-1.png": {
+  "sha256": "f36ebeba25139c4992fe31dfaba42eb72a2a70a84c7ff64d1b715bdf343f558a",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/qwen-create-qwen-image-2.png": {
+  "sha256": "60c39ed8aedb081193c62289be549785e74d31fc8d071961003fabd74712429d",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/qwen-image.png": {
+  "sha256": "5b6d832834397498d0587b9b2536f88c75e923195c43c2b71d9f7f3c5422b4f1",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/recraft-v3.webp": {
+  "sha256": "e94c99ab50410092dbb601c8269ce812879e2271e18c7880021d2118666542ae",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (3257 bytes)\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"recraft.ai\"}",
+  "png_info_json": "{}",
+  "raw": [
+   3177,
+   "bda006673540384f5304f8ea0e97029d59a1ba8fd5d7c09357f630765e89207a"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (3177 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"jumbf manifest\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": "Recraft",
+   "vendor_platform": null,
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/runway-gen4-image.png": {
+  "sha256": "12262d853760b4e6dab7a896b833331ee5af43cd6e9467b899b7de76c7361d8d",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (4385 bytes)\", \"issuer\": \"Runway\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"c2pa-rs\", \"timestamp\": \"2026-09-24T21:26:52+00:00\"}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (78095 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Runway\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"Runway Image Generation\", \"timestamp\": \"20260924212652Z\"}",
+  "raw": [
+   78095,
+   "962be85d4a6235916cfc4fa59c11f17d95a6636e9ee1f66ad9f5d5799ed6283d"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (78095 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Runway\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"Runway Image Generation\", \"timestamp\": \"20260924212652Z\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "8cfd813138c3fda2fadf0b834887f2c4b955693feaa918d940aa8993bf9dbe25",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Runway",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (4385 bytes)\", \"issuer\": \"Runway\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"c2pa-rs\", \"timestamp\": \"2026-09-24T21:26:52+00:00\"}",
+   "c2pa_chunk": "8cfd813138c3fda2fadf0b834887f2c4b955693feaa918d940aa8993bf9dbe25"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest store (4385 bytes)\n  issuer: Runway\n  actions: created\n  source_type: trainedAlgorithmicMedia (AI-generated)\n  ai_source_kind: generated\n  c2pa_validation_source: reader\n  c2pa_validation_state: Valid\n  c2pa_integrity: valid\n  c2pa_signature: valid\n  c2pa_signer_trust: untrusted\n  c2pa_signer_validity: valid\n  c2pa_validation_codes: ['timeStamp.validated', 'claimSignature.insideValidity', 'claimSignature.validated', 'assertion.hash...\n  c2pa_failed_codes: []\n  claim_generator: c2pa-rs\n  timestamp: 2026-09-24T21:26:52+00:00",
+  "has_ai_metadata": true
+ },
+ "provenance/runway-gen45-video.mp4": {
+  "sha256": "98c0040b60aad1187c45df5fd4d6e8a11762950329b1a89183d6a58d5b947ad2",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (4991 bytes)\", \"issuer\": \"Runway\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.bmffHash.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"assertion.bmffHash.additionalExclusionsPresent\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"c2pa-rs\", \"timestamp\": \"2026-09-24T21:31:22+00:00\"}",
+  "png_info_json": "{}",
+  "raw": [
+   14000,
+   "d1cc8e3f0f87ec13376837c320c14be9cbd61cc3c6d510448edfd61dbf98b48d"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (14000 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Runway\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"Runway Video Generation\", \"timestamp\": \"20260924213122Z\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Runway",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "provenance/sdxl-dwt-dct.png": {
+  "sha256": "9ec3dcbfea19e4651b898f98ada28a1c81f054d63621a0bba2d484aa77da251a",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/seedream-v4.jpg": {
+  "sha256": "9ec6af1fc0509d74e264b9631a6cddd2ce7ce20146347fe418e9306032beb759",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "provenance/xai-grok-imagine-video.mp4": {
+  "sha256": "c6e3329009260cd230deaadd0cc7293269a94c4628010cd7eeb3d390b76cc0c2",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (5005 bytes)\", \"issuer\": \"xAI Grok Imagine\", \"actions\": \"created\", \"c2pa_identity_ai\": true, \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.bmffHash.match\", \"signingCredential.ocsp.skipped\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Grok Imagine\"}",
+  "png_info_json": "{}",
+  "raw": [
+   36854,
+   "642c42b6e039d008fa579a7c6ea0e093669139ea2ffd83a4fbdf44443ffaf124"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (36854 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"xAI Grok Imagine\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"SpaceXAI\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": "xAI Grok Imagine",
+   "vendor_platform": "xAI Grok Imagine",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "provenance/youtube-reencode-gemini-omni-flash.mp4": {
+  "sha256": "aa2fde5c0444eda05f40db2a8974183284016876c9788f099dda9df5aac1714f",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (11100 bytes)\", \"issuer\": \"Google LLC\", \"actions\": \"opened, transcoded, created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.bmffHash.match\", \"timeStamp.untrusted\", \"assertion.bmffHash.additionalExclusionsPresent\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"2026-09-24T18:45:50+00:00\"}",
+  "png_info_json": "{}",
+  "raw": [
+   15330,
+   "1ccd958f70183f9caf70707400d5f7e9df9e568065852b329f6f1b375e098576"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (15330 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Google LLC\", \"actions\": \"created, edited, opened\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"20260924174001Z\", \"timestamps\": [\"20260924174001Z\", \"20260923161600Z\", \"20260923161644Z\"]}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [
+   "Google LLC"
+  ],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Google (Gemini / Imagen)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "provenance/youtube-reencode-grok.mp4": {
+  "sha256": "236dd73a25a893b8f2c7bbdad8e1208341251c2b12e7b261c1fff65bf58277a5",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (11385 bytes)\", \"issuer\": \"Google LLC\", \"actions\": \"opened, transcoded\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.bmffHash.match\", \"timeStamp.untrusted\", \"assertion.bmffHash.additionalExclusionsPresent\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"2026-09-24T18:53:04+00:00\"}",
+  "png_info_json": "{}",
+  "raw": [
+   21984,
+   "cadec9304edc2e8eee3072e869a088000ceae8ee04d505cafd690ca21c384144"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (21984 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Google LLC, xAI Grok Imagine\", \"actions\": \"created, opened\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"SpaceXAI\", \"timestamp\": \"20260924164300Z\", \"timestamps\": [\"20260924164300Z\", \"20260924164319Z\", \"20261001164319Z\"]}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": false,
+   "claim_generator_platform": null,
+   "vendor_platform": "Google (Gemini / Imagen)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/baidu/example.mp4": {
+  "sha256": "aa21d20c05292035353400d2c64c3676fcb0cf23d9b2905f08abd733f03a83ca",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/baidu/example.png": {
+  "sha256": "305e0afb76577ddf11149c5cbbacd4bb56bb4ecb42edc6d58b7705204d60fcb3",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/baidu/provider-original.jpeg": {
+  "sha256": "52852c528f1a7b8918b665b2fcf883737ecc5016481d9c7683ebe07e152cc9d2",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/dola/example.mp4": {
+  "sha256": "e80ac275d74b60254d86239ab20ead2c7ac084132c71f2ac567aaed32dad65f1",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/dola/example.png": {
+  "sha256": "eb5a01039a54e7d794df82cd042fbeddf87a7a5af06768bb54da425b86ce9cf2",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/doubao/example.mp4": {
+  "sha256": "319e53bfa71546a0bf509084dcea35d7d123fc376fb25582b92b7260a460b2b5",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/doubao/example.png": {
+  "sha256": "06daf794fecd05f079e1dc19d0c23f9e94ecbb49d8f5fa87b7e447092123ba21",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/dreamina/example.mp4": {
+  "sha256": "1b644d8a28e5ea2a0d95d76252a7756e3d82497030f0159b83abe3e111fb031d",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/gemini/example.png": {
+  "sha256": "767bb3c6278a07d4a1d7f5e5608348e54cfe3a74b4c5beb1a9a07a39ca5e3ba9",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/generic_ai_label/example.mp4": {
+  "sha256": "476e5583dc0ba676f1da3c3ef46380f298d933e893acf942a7ecbd2c419b918f",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/generic_ai_label/example.png": {
+  "sha256": "a8b36d4d69293213c32426b977ddab70be085753f95086bf4725114bbc81646e",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/genspark/example.png": {
+  "sha256": "2e4d8fb7ea8928f521fdce86674e2a6ff227f05bcd91bfb96c60ce822bd47c8d",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/hailuo/example.mp4": {
+  "sha256": "aebb53b2f90273a0236902770a8b8d61202c98137ccdcee037c38682f85e509d",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/hailuo/provider-original.mp4": {
+  "sha256": "6152609e0339c443af79e244440e1b1050f3c615a50f76bfaf6146584e68142f",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   2051,
+   "9dc2655669dec8c5367dc55559ce5c6f8466f2c63fbb12f1276e33b81b8e3f51"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (2051 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/heygen/example.mp4": {
+  "sha256": "528a5e6db225bdb7c08caddf902daa3a2e53009dc0597aca145684492fccf478",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/jimeng/example.mp4": {
+  "sha256": "d7aff3f32bc43b9b6497e5eba94a55a35ced8db99057f389a039c70638f31798",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/jimeng/example.png": {
+  "sha256": "34172890c00585e76f94e458651c1fa989f5dbea5a00b2d4f24f8e1fc6000907",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/jimeng_pill/example.mp4": {
+  "sha256": "71e4e67ee91da735b20f51d6b2d703450c86b21f7cba8953b9b3b10ba438bd80",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/jimeng_pill/example.png": {
+  "sha256": "5d5be9f0ebee9a64512e420dbed78c23e1390bbce91329ae92d7086bf1a1489f",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/jimeng_pill/provider-published-example.jpg": {
+  "sha256": "1182fba74d3753785345f8a35d09a8c9b52ea8383ebe9ee999d0d027437f03fd",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/kling/example.mp4": {
+  "sha256": "8f0e62d84ab42c1c55571c46bf848efe16a0e15a58168b3ceba7522b9da93a2d",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/kling/example.png": {
+  "sha256": "dbf0b5418d89545114316a7aead83e932982ee8fdcd318173e37b5017c4715db",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/kling/provider-original-direct.png": {
+  "sha256": "aefbf69a99cf7eb4211cc0513c6979b81731107a1bc605c972e01900b7c56f51",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/kling/provider-original.mp4": {
+  "sha256": "f3e8d6a765fca699036d68fde28eb16f7aed97b6702f06f318e61ae8d4e53a69",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   36,
+   "974f0447088da7aeeef20c0b5e331784f4a92e8bdc875f0b7ea05271ca3ffce4"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (36 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/liblib/current-provider-output.png": {
+  "sha256": "60398d4f06fd50e047d3321c62405dae0a1c4a7070e77ac5e0548c516257d2e3",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {
+   "parameters": ""
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nparameters: ",
+  "has_ai_metadata": true
+ },
+ "visible/liblib/example.png": {
+  "sha256": "37738093b3424cca11debf6d4775da8e54bada04bd2182d2f74406e539ae1df2",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/liblib_pill/example.png": {
+  "sha256": "bea9208479e080a1ec72d49e0b2ecf215e61c3970187bb86b6b5f50d291fa498",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/luma/example.mp4": {
+  "sha256": "a5baecb297395beb5c23e8b769906387e2b0052893f3f4fd810078a65e3e1a2e",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/microsoft/example.mp4": {
+  "sha256": "f023d2313aba4e033beef2366a9d91b0fe59b0f11b8f88f476e87f58376f8bdf",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/microsoft/example.png": {
+  "sha256": "439c85e42e239430ab1b48e85837c4e0210bd3d831f222fb990991af517b9f48",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/microsoft/provider-original.png": {
+  "sha256": "0e76fb8aa0540b18fee4d63ac4b5fd63c7eee310474e896d21d27e668403afe7",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (6293 bytes)\", \"issuer\": \"Microsoft\", \"actions\": \"created, watermarked\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Microsoft InvisMark\"], \"soft_binding\": \"Microsoft InvisMark\", \"soft_binding_algorithm\": \"com.microsoft.invismark.1\", \"soft_binding_value\": \"975290d4-9c2f-4359-ad5a-92c5b5b850a4\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"signingCredential.untrusted\", \"signingCredential.expired\", \"claim.malformed\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Microsoft\", \"timestamp\": \"2026-09-03T18:06:06+00:00\"}",
+  "png_info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (18899 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Microsoft\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"claim_generator\": \"Microsoft Copilot\", \"timestamp\": \"20260903180606Z\"}",
+  "raw": [
+   18899,
+   "238f2fbec316879ab184073065e970d1cb4833587820c539b317a8cbd5bb87af"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (18899 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Microsoft\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"claim_generator\": \"Microsoft Copilot\", \"timestamp\": \"20260903180606Z\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": true,
+  "c2pa_chunk": "aaa5aa4064a92bf5fc4adf839811b7cf0635795e06786c89f85ce5ff8ab5db44",
+  "well_formed_png": true,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": true,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Microsoft (Copilot / Designer)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": {
+   "c2pa": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (6293 bytes)\", \"issuer\": \"Microsoft\", \"actions\": \"created, watermarked\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"watermarked\": true, \"soft_binding_vendors\": [\"Microsoft InvisMark\"], \"soft_binding\": \"Microsoft InvisMark\", \"soft_binding_algorithm\": \"com.microsoft.invismark.1\", \"soft_binding_value\": \"975290d4-9c2f-4359-ad5a-92c5b5b850a4\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.dataHash.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"signingCredential.untrusted\", \"signingCredential.expired\", \"claim.malformed\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Microsoft\", \"timestamp\": \"2026-09-03T18:06:06+00:00\"}",
+   "c2pa_chunk": "aaa5aa4064a92bf5fc4adf839811b7cf0635795e06786c89f85ce5ff8ab5db44"
+  },
+  "ai_summary": "AI Image Metadata:\n----------------------------------------\nC2PA Metadata:\n  has_c2pa: True\n  type: C2PA (Coalition for Content Provenance and Authenticity)\n  c2pa_manifest: C2PA manifest store (6293 bytes)\n  issuer: Microsoft\n  actions: created, watermarked\n  source_type: trainedAlgorithmicMedia (AI-generated)\n  ai_source_kind: generated\n  watermarked: True\n  soft_binding_vendors: ['Microsoft InvisMark']\n  soft_binding: Microsoft InvisMark\n  soft_binding_algorithm: com.microsoft.invismark.1\n  soft_binding_value: 975290d4-9c2f-4359-ad5a-92c5b5b850a4\n  c2pa_validation_source: reader\n  c2pa_validation_state: Invalid\n  c2pa_integrity: valid\n  c2pa_signature: valid\n  c2pa_signer_trust: untrusted\n  c2pa_signer_validity: expired\n  c2pa_validation_codes: ['timeStamp.validated', 'claimSignature.insideValidity', 'claimSignature.validated', 'assertion.hash...\n  c2pa_failed_codes: []\n  claim_generator: Microsoft\n  timestamp: 2026-09-03T18:06:06+00:00",
+  "has_ai_metadata": true
+ },
+ "visible/openart/example.png": {
+  "sha256": "8a9819d00c444ccadcd3109f418e347c3c17ae380eff38641e3cb19741f24f64",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/pixverse/example.mp4": {
+  "sha256": "e0b6d4f8b27dace27fa10322862892f097e1d586b169e2e682383dd792f58a71",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/qwen/example.mp4": {
+  "sha256": "d7c158f65a6acc706929977844e896cdac5cf1152428d1c6af3e76f67b35bc25",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/qwen/example.png": {
+  "sha256": "d9923d315f4f3e549dc6aef4c2d8fcb0b38049061927cad3eb87d560a88b1f2e",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/qwen/provider-original.png": {
+  "sha256": "dce9e17c9b9b0483c672b71183b6eb5562f8205bb39a6da14451e07db13b1a50",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/runninghub/example.mp4": {
+  "sha256": "bbc5829276cd3fcb8833106331562ba0b172e657f542b941c37f37f3792867c0",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/runninghub/example.png": {
+  "sha256": "339cd8d0beec52a1074f5a7112d888c34b390373610eb0cf07e054e13432b2c2",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/samsung/example.png": {
+  "sha256": "0594d6331fc65a68040e72b1cffc015853eeebdf5ad5a6cade5ef589d262241f",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/seedance/example.mp4": {
+  "sha256": "a3e90a1ddc5b6824ba876b05ad4c59ad9cc5a550393bf2a6644b2ab6ce4eed28",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/sora/example.mp4": {
+  "sha256": "a7edb5391d1dee05f5a3ffb9c091bb83fbbcaf3695c920ec51958b4f2ecb01f2",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/sora/provider-frame.jpg": {
+  "sha256": "bbcf70b737c30568668572a5bb23e70c52c9687808b0714ca98f9fac073f12c4",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/sora/provider-original.mp4": {
+  "sha256": "7dd8a9d43d43cd5b901946c7ba14e8018e18d47e75f0f774157327ba7e9181c5",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (5513 bytes)\", \"issuer\": \"OpenAI, Truepic\", \"ai_tool\": \"Sora\", \"actions\": \"created\", \"c2pa_identity_ai\": true, \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Invalid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"expired\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.bmffHash.match\", \"signingCredential.ocsp.skipped\", \"timeStamp.untrusted\", \"signingCredential.untrusted\", \"signingCredential.expired\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Sora\", \"timestamp\": \"2025-10-01T07:05:04+00:00\"}",
+  "png_info_json": "{}",
+  "raw": [
+   14363,
+   "cef1de3f003ce8633492816869e901854c22ef229df1865529931004b71b0a20"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (14363 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"OpenAI, Truepic\", \"ai_tool\": \"Sora\", \"actions\": \"created\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"claim_generator\": \"Sora\", \"timestamp\": \"20251001070504Z\"}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "OpenAI (ChatGPT / GPT Image / DALL·E / Sora)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/sync_labs/example.mp4": {
+  "sha256": "52ec9f4811a6657d4b545979c19b34b4cba90d36c54bbe4f833734ba4fe2f47f",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/tiktok_ai/example.mp4": {
+  "sha256": "360a6e53013d20d3687969637d659cdd9913ab1b5b90079e5b5b73ef2c3933c2",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/veo/example.mp4": {
+  "sha256": "04162e01a4b004fef9f7f11074e27fc0e9e5b72e00fa7514c34493bb8915eacf",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/veo/provider-original.mp4": {
+  "sha256": "e778194b545e34dafd2d5be58691031a070862890c41e6c527a652a114a7c7a4",
+  "reader": "store",
+  "info_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest store (5057 bytes)\", \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"c2pa_validation_source\": \"reader\", \"c2pa_validation_state\": \"Valid\", \"c2pa_integrity\": \"valid\", \"c2pa_signature\": \"valid\", \"c2pa_signer_trust\": \"untrusted\", \"c2pa_signer_validity\": \"valid\", \"c2pa_validation_codes\": [\"timeStamp.validated\", \"claimSignature.insideValidity\", \"claimSignature.validated\", \"assertion.hashedURI.match\", \"assertion.bmffHash.match\", \"timeStamp.untrusted\", \"assertion.bmffHash.additionalExclusionsPresent\", \"signingCredential.untrusted\"], \"c2pa_failed_codes\": [], \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"2026-09-03T19:53:47+00:00\"}",
+  "png_info_json": "{}",
+  "raw": [
+   6271,
+   "f415daf5db3388467cc7d0018cd5f1a3423468df646983320970472610f38958"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (6271 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": [], \"issuer\": \"Google LLC\", \"actions\": \"created, edited\", \"source_type\": \"trainedAlgorithmicMedia (AI-generated)\", \"ai_source_kind\": \"generated\", \"synthid_vendors\": [\"Google LLC\"], \"synthid_watermark\": \"present according to Google LLC provenance\", \"claim_generator\": \"Google C2PA Core Generator Library\", \"timestamp\": \"20260903195348Z\", \"timestamps\": [\"20260903195348Z\", \"20260903161400Z\", \"20260903161413Z\"]}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [
+   "Google LLC"
+  ],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": {
+   "credential_level": "verified",
+   "invalid_credential": false,
+   "invismark": false,
+   "removal_hint": true,
+   "claim_generator_platform": null,
+   "vendor_platform": "Google (Gemini / Imagen)",
+   "markers_claim_ai": true
+  },
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/vidu/example.mp4": {
+  "sha256": "77c65f915df65a1731aa2f4239ce82a9b0b379f6aca8f4fb458866c09e57648f",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "fd9580da68e741d70d6ad3c95651c7277799bc137275318ae1d2855d68a88627"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/vidu/provider-original.mp4": {
+  "sha256": "8e9f2a8bd190e5cfc662151aeef63cbc3372619678e2d37b3432b4fea113fb1c",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   347,
+   "719b543f4573ea0324795acd7f845dd947f485cd8fdc655d3bff662b42d97f08"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (347 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/wan/example.mp4": {
+  "sha256": "55dac000e18f8d652ffbe8234fe9c284e928764024c5533c3699a20372dda6fa",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/wan/example.png": {
+  "sha256": "b168b1d34b3883d8a158c9c00514f9fa1f29f1eaf5a97000e0cbcb4efa651c79",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/wan/provider-original.png": {
+  "sha256": "583df0ec34d88653fc82c658728780f474a959eb246156649e5d5dde956fc474",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/workbuddy/example.png": {
+  "sha256": "8f00a284247725c9bce3dc67a53749636f7de079f417bf0997a933ef7ec5980d",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/yuanbao/example.mp4": {
+  "sha256": "d3aec261150159abb24206e392935dae2c9a39b6029d61a84793b2bffd8179de",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   12,
+   "d4c9436befba263c9f3476a60aca6f103644099dd1b359364dde5ce675e6b1c9"
+  ],
+  "fallback_json": "{\"has_c2pa\": true, \"type\": \"C2PA (Coalition for Content Provenance and Authenticity)\", \"c2pa_manifest\": \"C2PA manifest (12 bytes)\", \"c2pa_validation_source\": \"fallback\", \"c2pa_validation_state\": \"unknown\", \"c2pa_integrity\": \"unknown\", \"c2pa_signature\": \"unknown\", \"c2pa_signer_trust\": \"unknown\", \"c2pa_signer_validity\": \"unknown\", \"c2pa_validation_codes\": [], \"c2pa_failed_codes\": []}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": false,
+  "helpers": null,
+  "extract_ai_metadata": "error:UnidentifiedImageError"
+ },
+ "visible/yuanbao/example.png": {
+  "sha256": "ecc64388bc7ac8b71318446f4ed34f5a6ca120fc3fe2835d4fd1b77d4a7d5539",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ },
+ "visible/yuanbao/provider-original.png": {
+  "sha256": "e4fd856565d0434ef06deb78ff2088e597c4fec98640ad737213c7c0a917c82d",
+  "reader": "none",
+  "info_json": "{}",
+  "png_info_json": "{}",
+  "raw": [
+   0,
+   "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "fallback_json": "{}",
+  "soft_binding_vendors_in": [],
+  "soft_binding_entries": [],
+  "synthid_vendors_in": [],
+  "has_c2pa_metadata": false,
+  "c2pa_chunk": null,
+  "well_formed_png": true,
+  "helpers": null,
+  "extract_ai_metadata": {},
+  "ai_summary": "No AI metadata found.",
+  "has_ai_metadata": false
+ }
+}
