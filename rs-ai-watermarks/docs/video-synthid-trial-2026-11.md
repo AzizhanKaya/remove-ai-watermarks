@@ -52,7 +52,10 @@ the local `encoder=Lavf63.16.100` tag, no audio. GPU at 99%, 4.3 GB VRAM, proces
   faithful face and motion, no visible seam at the window crossfades.
 - A 17-frame smoke run with a random prompt embedding looked smeared and plastic: the
   conditioning matters, so smoke tests must use the real cache.
-- Not yet checked on synthid.com.
+- synthid.com (user's check, 2026-11-26): **SynthID not detected** on `_clean_wan21`
+  (sha256 `713d364a078c85639351cf75390a02b45365c5e6cef014e77bea7c1e0e87483a`).
+  Operating point: `wan21-synthid` defaults, strength 0.38 = the last 7 of 20 UniPC steps
+  (flow shift 3.0, first timestep 618, sigma 0.618), CFG off, seed 0 per window.
 
 ## Where we stopped
 
