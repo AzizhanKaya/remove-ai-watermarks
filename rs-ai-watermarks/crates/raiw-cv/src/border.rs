@@ -46,7 +46,11 @@ impl Border {
                 let delta = isize::from(self == Self::Reflect101);
                 let mut p = p;
                 while !(0..n).contains(&p) {
-                    p = if p < 0 { -p - 1 + delta } else { n - 1 - (p - n) - delta };
+                    p = if p < 0 {
+                        -p - 1 + delta
+                    } else {
+                        n - 1 - (p - n) - delta
+                    };
                 }
                 Some(p as usize)
             }
@@ -64,7 +68,9 @@ impl Border {
 
 /// Precomputed source indices for a border of `before`/`after` pixels around `len` samples.
 pub(crate) fn border_table(len: usize, before: usize, after: usize, border: Border) -> Vec<Option<usize>> {
-    (0..before + len + after).map(|i| border.interpolate(i as isize - before as isize, len)).collect()
+    (0..before + len + after)
+        .map(|i| border.interpolate(i as isize - before as isize, len))
+        .collect()
 }
 
 /// `cv::copyMakeBorder`.
@@ -87,11 +93,17 @@ pub fn copy_make_border<'a, T: Element>(
     let mut out = Mat::zeros(w + left + right, h + top + bottom, cn);
     for (y, sy) in ys.iter().enumerate() {
         let row = out.row_mut(y);
-        for (x, sx) in xs.iter().enumerate() {
+        let Some(sy) = *sy else {
+            row.chunks_exact_mut(cn).for_each(|px| px.copy_from_slice(&fill));
+            continue;
+        };
+        let line = src.row(sy);
+        row[left * cn..(left + w) * cn].copy_from_slice(line);
+        for x in (0..left).chain(left + w..left + w + right) {
             let px = &mut row[x * cn..(x + 1) * cn];
-            match (sy, sx) {
-                (Some(sy), Some(sx)) => px.copy_from_slice(src.pixel(*sx, *sy)),
-                _ => px.copy_from_slice(&fill),
+            match xs[x] {
+                Some(sx) => px.copy_from_slice(&line[sx * cn..(sx + 1) * cn]),
+                None => px.copy_from_slice(&fill),
             }
         }
     }
@@ -105,7 +117,10 @@ mod tests {
     #[test]
     fn interpolation_matches_opencv_examples() {
         let idx = |b: Border| (-3..11).map(|p| b.interpolate(p, 8).unwrap()).collect::<Vec<_>>();
-        assert_eq!(idx(Border::Reflect101), [3, 2, 1, 0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4]);
+        assert_eq!(
+            idx(Border::Reflect101),
+            [3, 2, 1, 0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4]
+        );
         assert_eq!(idx(Border::Reflect), [2, 1, 0, 0, 1, 2, 3, 4, 5, 6, 7, 7, 6, 5]);
         assert_eq!(idx(Border::Replicate), [0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 7, 7, 7]);
         assert_eq!(idx(Border::Wrap), [5, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2]);

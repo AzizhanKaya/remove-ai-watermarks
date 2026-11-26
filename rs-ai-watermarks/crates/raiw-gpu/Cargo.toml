@@ -9,14 +9,16 @@ authors.workspace = true
 
 [features]
 default = ["wgpu"]
-# Portable wgpu: Vulkan on Linux/Windows, Metal on macOS, DX12 on Windows (WGSL shaders)
-wgpu = ["burn/wgpu", "burn/fusion", "burn/autotune"]
-# Pin wgpu to Vulkan with native SPIR-V kernels
-vulkan = ["wgpu", "burn/vulkan"]
+# Portable wgpu: Vulkan (native SPIR-V kernels) on Linux/Windows, Metal on macOS, DX12/WGSL fallback
+wgpu = ["burn/wgpu", "burn/vulkan", "gpu-runtime"]
+# Pin wgpu to Vulkan
+vulkan = ["wgpu"]
 # Pin wgpu to Metal with native MSL kernels
 metal = ["wgpu", "burn/metal"]
-cuda = ["burn/cuda", "burn/fusion", "burn/autotune"]
-rocm = ["burn/rocm", "burn/fusion", "burn/autotune"]
+cuda = ["burn/cuda", "gpu-runtime"]
+rocm = ["burn/rocm", "gpu-runtime"]
+# Fusion, autotuning, and on-disk autotune/kernel caches shared by every CubeCL backend
+gpu-runtime = ["burn/fusion", "burn/autotune", "burn/persistence", "burn/cubecl"]
 
 [dependencies]
 raiw-core.workspace = true
@@ -24,8 +26,10 @@ thiserror.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 tracing.workspace = true
-burn = { workspace = true, features = ["std", "flex"] }
+# burn-flex runs single-threaded scalar code without rayon and simd
+burn = { workspace = true, features = ["std", "flex", "rayon", "simd"] }
 burn-store = { workspace = true, features = ["std", "pytorch", "safetensors"] }
+crc32fast.workspace = true
 half.workspace = true
 realfft.workspace = true
 ureq = "3.5.2"

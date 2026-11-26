@@ -50,7 +50,11 @@ pub fn add_weighted<'a, 'b, T: Element>(
         for (i, ((o, &x), &z)) in row.iter_mut().zip(a.row(y)).zip(b.row(y)).enumerate() {
             *o = if float {
                 let (x, z) = (x.to_f64(), z.to_f64());
-                T::from_f64(if base + i < fused_end { x.mul_add(alpha, z.mul_add(beta, gamma)) } else { x * alpha + z * beta + gamma })
+                T::from_f64(if base + i < fused_end {
+                    x.mul_add(alpha, z.mul_add(beta, gamma))
+                } else {
+                    x * alpha + z * beta + gamma
+                })
             } else {
                 T::from_f32(x.to_f32() * al + (z.to_f32() * be + ga))
             };
@@ -64,7 +68,11 @@ pub fn add_weighted<'a, 'b, T: Element>(
 pub fn convert_scale_abs<'a, T: Element>(src: impl Into<MatView<'a, T>>, alpha: f64, beta: f64) -> Mat<u8> {
     let src = src.into();
     let (a, b) = (alpha as f32, beta as f32);
-    let run = if src.is_contiguous() { src.row_len() * src.height() } else { src.row_len() };
+    let run = if src.is_contiguous() {
+        src.row_len() * src.height()
+    } else {
+        src.row_len()
+    };
     let fused = run >= 16;
     let mut out = Mat::zeros(src.width(), src.height(), src.channels());
     out.par_rows_mut().enumerate().for_each(|(y, row)| {
@@ -82,18 +90,25 @@ pub fn magnitude<'a, 'b, T: Element + crate::element::Float>(
     x: impl Into<MatView<'a, T>>,
     y: impl Into<MatView<'b, T>>,
 ) -> Result<Mat<T>> {
-    zip_map(x, y, "magnitude", |a, b| T::from_f64(if T::DEPTH == Depth::F32 {
-        let (a, b) = (a.to_f32(), b.to_f32());
-        f64::from((a * a + b * b).sqrt())
-    } else {
-        let (a, b) = (a.to_f64(), b.to_f64());
-        (a * a + b * b).sqrt()
-    }))
+    zip_map(x, y, "magnitude", |a, b| {
+        T::from_f64(if T::DEPTH == Depth::F32 {
+            let (a, b) = (a.to_f32(), b.to_f32());
+            f64::from((a * a + b * b).sqrt())
+        } else {
+            let (a, b) = (a.to_f64(), b.to_f64());
+            (a * a + b * b).sqrt()
+        })
+    })
 }
 
 /// `cv::absdiff(a, b)`.
-pub fn abs_diff<'a, 'b, T: Element>(a: impl Into<MatView<'a, T>>, b: impl Into<MatView<'b, T>>) -> Result<Mat<T>> {
-    zip_map(a, b, "abs_diff", |x, y| T::from_f64((x.to_f64() - y.to_f64()).abs()))
+pub fn abs_diff<'a, 'b, T: Element>(
+    a: impl Into<MatView<'a, T>>,
+    b: impl Into<MatView<'b, T>>,
+) -> Result<Mat<T>> {
+    zip_map(a, b, "abs_diff", |x, y| {
+        T::from_f64((x.to_f64() - y.to_f64()).abs())
+    })
 }
 
 /// `cv::bitwise_and`.

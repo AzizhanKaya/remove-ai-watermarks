@@ -52,7 +52,10 @@ fn union(parent: &mut [u32], a: u32, b: u32) {
 }
 
 /// `cv::connectedComponents(src, connectivity)`: returns `(count, labels)`.
-pub fn connected_components<'a, T: Element>(src: impl Into<MatView<'a, T>>, connectivity: Connectivity) -> Result<(usize, Mat<i32>)> {
+pub fn connected_components<'a, T: Element>(
+    src: impl Into<MatView<'a, T>>,
+    connectivity: Connectivity,
+) -> Result<(usize, Mat<i32>)> {
     let src = src.into();
     let (count, labels) = label(&src, connectivity)?;
     Ok((count, labels))
@@ -83,7 +86,14 @@ pub fn connected_components_with_stats<'a, T: Element>(
         .into_iter()
         .map(|(l, t, r, b, area, sx, sy)| {
             if area == 0 {
-                ComponentStats { left: -1, top: -1, width: 0, height: 0, area: 0, centroid: Point2d::new(f64::NAN, f64::NAN) }
+                ComponentStats {
+                    left: -1,
+                    top: -1,
+                    width: 0,
+                    height: 0,
+                    area: 0,
+                    centroid: Point2d::new(f64::NAN, f64::NAN),
+                }
             } else {
                 ComponentStats {
                     left: l,
@@ -105,7 +115,9 @@ fn label<T: Element>(src: &MatView<'_, T>, connectivity: Connectivity) -> Result
     }
     let (w, h) = (src.width(), src.height());
     let n = w * h;
-    let fg: Vec<bool> = (0..h).flat_map(|y| src.row(y).iter().map(|v| v.to_f64() != 0.0)).collect();
+    let fg: Vec<bool> = (0..h)
+        .flat_map(|y| src.row(y).iter().map(|v| v.to_f64() != 0.0))
+        .collect();
     let mut parent: Vec<u32> = (0..n as u32).collect();
     for y in 0..h {
         for x in 0..w {
@@ -160,7 +172,14 @@ fn label<T: Element>(src: &MatView<'_, T>, connectivity: Connectivity) -> Result
             }
         }
     }
-    let data: Vec<i32> =
-        (0..n).map(|i| if fg[i] { final_label[find(&mut parent, i as u32) as usize] } else { 0 }).collect();
+    let data: Vec<i32> = (0..n)
+        .map(|i| {
+            if fg[i] {
+                final_label[find(&mut parent, i as u32) as usize]
+            } else {
+                0
+            }
+        })
+        .collect();
     Ok((next as usize, Mat::from_vec(w, h, 1, data)?))
 }

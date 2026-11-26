@@ -153,7 +153,7 @@ impl AudioSealDetector {
         check_mono(samples, "AudioSeal")?;
         let frames = samples.len();
         let x = mono_tensor(samples, self.device.burn());
-        let latent = self.encoder.forward(x);
+        let latent = self.encoder.forward(x)?;
         let upsampled = self.reverse.forward(latent).slice(s![.., .., 0..frames]);
         let result = self.head.forward(upsampled);
         let detect = softmax(result.clone().slice(s![.., 0..2, ..]), 1).slice(s![.., 1..2, ..]);

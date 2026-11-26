@@ -21,7 +21,12 @@ pub enum Array {
 }
 
 pub fn shape_of(v: &Value) -> (usize, usize, usize) {
-    let s: Vec<usize> = v["shape"].as_array().expect("shape").iter().map(|d| d.as_u64().unwrap_or(0) as usize).collect();
+    let s: Vec<usize> = v["shape"]
+        .as_array()
+        .expect("shape")
+        .iter()
+        .map(|d| d.as_u64().unwrap_or(0) as usize)
+        .collect();
     match s.len() {
         1 => (s[0], 1, 1),
         2 => (s[1], s[0], 1),
@@ -30,14 +35,21 @@ pub fn shape_of(v: &Value) -> (usize, usize, usize) {
 }
 
 fn inflate(b64: &str) -> Vec<u8> {
-    let raw = base64::engine::general_purpose::STANDARD.decode(b64).expect("base64");
+    let raw = base64::engine::general_purpose::STANDARD
+        .decode(b64)
+        .expect("base64");
     let mut out = Vec::new();
-    flate2::read::ZlibDecoder::new(&raw[..]).read_to_end(&mut out).expect("zlib");
+    flate2::read::ZlibDecoder::new(&raw[..])
+        .read_to_end(&mut out)
+        .expect("zlib");
     out
 }
 
 fn typed<T: Element>(bytes: &[u8]) -> Vec<T> {
-    bytes.chunks_exact(size_of::<T>()).map(bytemuck::pod_read_unaligned).collect()
+    bytes
+        .chunks_exact(size_of::<T>())
+        .map(bytemuck::pod_read_unaligned)
+        .collect()
 }
 
 pub fn decode(v: &Value) -> Array {
@@ -57,12 +69,18 @@ pub fn inputs() -> &'static HashMap<String, Array> {
     static INPUTS: OnceLock<HashMap<String, Array>> = OnceLock::new();
     INPUTS.get_or_init(|| {
         let doc = golden("cv", "inputs");
-        doc.as_object().expect("inputs").iter().map(|(k, v)| (k.clone(), decode(v))).collect()
+        doc.as_object()
+            .expect("inputs")
+            .iter()
+            .map(|(k, v)| (k.clone(), decode(v)))
+            .collect()
     })
 }
 
 pub fn input(name: &str) -> &'static Array {
-    inputs().get(name).unwrap_or_else(|| panic!("unknown input {name}"))
+    inputs()
+        .get(name)
+        .unwrap_or_else(|| panic!("unknown input {name}"))
 }
 
 pub fn cases(suite: &str) -> Vec<Value> {
@@ -73,7 +91,7 @@ pub fn sha256<T: Element>(m: &Mat<T>) -> String {
     hex::encode(Sha256::digest(m.as_bytes()))
 }
 
-pub fn values<T: Element>(v: &Value) -> Option<(Vec<f64>, usize)> {
+pub fn values(v: &Value) -> Option<(Vec<f64>, usize)> {
     let to_f64 = |bytes: Vec<u8>| -> Vec<f64> {
         match v["dtype"].as_str().unwrap_or("") {
             "uint8" => bytes.iter().map(|&b| f64::from(b)).collect(),
@@ -89,7 +107,10 @@ pub fn values<T: Element>(v: &Value) -> Option<(Vec<f64>, usize)> {
         return Some((to_f64(inflate(full)), 1));
     }
     let sample = v["sample"].as_str()?;
-    Some((to_f64(inflate(sample)), v["stride"].as_u64().unwrap_or(1) as usize))
+    Some((
+        to_f64(inflate(sample)),
+        v["stride"].as_u64().unwrap_or(1) as usize,
+    ))
 }
 
 /// Statistics of a comparison against a golden array.
@@ -103,17 +124,28 @@ pub struct Diff {
 
 pub fn compare<T: Element>(actual: &Mat<T>, expected: &Value) -> Diff {
     let (w, h, c) = shape_of(expected);
-    assert_eq!((actual.width(), actual.height(), actual.channels()), (w, h, c), "shape mismatch");
+    assert_eq!(
+        (actual.width(), actual.height(), actual.channels()),
+        (w, h, c),
+        "shape mismatch"
+    );
     let exact = sha256(actual) == expected["sha256"].as_str().unwrap_or("");
-    let mut diff = Diff { exact, ..Diff::default() };
+    let mut diff = Diff {
+        exact,
+        ..Diff::default()
+    };
     if exact {
         diff.compared = actual.data().len();
         return diff;
     }
-    if let Some((vals, stride)) = values::<T>(expected) {
+    if let Some((vals, stride)) = values(expected) {
         for (i, e) in vals.iter().enumerate() {
             let a = actual.data()[i * stride].to_f64();
-            let d = if a.is_nan() && e.is_nan() { 0.0 } else { (a - e).abs() };
+            let d = if a.is_nan() && e.is_nan() {
+                0.0
+            } else {
+                (a - e).abs()
+            };
             if d > 0.0 {
                 diff.mismatches += 1;
             }
@@ -133,7 +165,13 @@ pub struct Report {
 }
 
 impl Report {
-    pub fn check<T: Element>(&mut self, name: &str, actual: &Mat<T>, expected: &Value, tolerance: f64) -> Diff {
+    pub fn check<T: Element>(
+        &mut self,
+        name: &str,
+        actual: &Mat<T>,
+        expected: &Value,
+        tolerance: f64,
+    ) -> Diff {
         let d = compare(actual, expected);
         self.rows.push((name.to_string(), d, tolerance));
         d
@@ -145,13 +183,23 @@ impl Report {
         let worst = self.rows.iter().map(|r| r.1.max_abs).fold(0.0, f64::max);
         for (name, d, tol) in &self.rows {
             if !d.exact {
-                println!("{suite}/{name}: max_abs={:.3e} mismatches={}/{}", d.max_abs, d.mismatches, d.compared);
+                println!(
+                    "{suite}/{name}: max_abs={:.3e} mismatches={}/{}",
+                    d.max_abs, d.mismatches, d.compared
+                );
             }
             if d.max_abs > *tol {
                 failed.push(format!("{name} (max_abs {:.3e} > {tol:.1e})", d.max_abs));
             }
         }
-        println!("{suite}: {exact}/{} bit-exact, worst max_abs {worst:.3e}", self.rows.len());
-        assert!(failed.is_empty(), "{suite}: {} cases out of tolerance: {failed:#?}", failed.len());
+        println!(
+            "{suite}: {exact}/{} bit-exact, worst max_abs {worst:.3e}",
+            self.rows.len()
+        );
+        assert!(
+            failed.is_empty(),
+            "{suite}: {} cases out of tolerance: {failed:#?}",
+            failed.len()
+        );
     }
 }

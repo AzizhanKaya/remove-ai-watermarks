@@ -140,6 +140,25 @@ impl Hub {
         self.download(file)
     }
 
+    /// Resolve a pinned plain-HTTPS asset under `raiw_core::model_cache_dir()/<cache_path>`.
+    pub fn resolve_url(&self, url: &str, sha256: &str, cache_path: &str, fetch: Fetch) -> Result<PathBuf> {
+        let target = raiw_core::model_cache_dir().join(cache_path);
+        let pinned = HubFile::new(url, "", url).with_sha256(sha256);
+        if target.is_file() {
+            verify_digest(&pinned, &target)?;
+            return Ok(target);
+        }
+        if self.offline || fetch == Fetch::CacheOnly {
+            return Err(GpuError::NotCached {
+                repo: url.to_owned(),
+                revision: sha256.to_owned(),
+                filename: cache_path.to_owned(),
+            });
+        }
+        self.fetch_blob(url, &target, &pinned)?;
+        Ok(target)
+    }
+
     /// Resolve an archive member into the model cache, downloading and extracting it when allowed.
     pub fn resolve_archive_member(&self, member: &ArchiveMember<'_>, fetch: Fetch) -> Result<PathBuf> {
         let target = raiw_core::model_cache_dir().join(member.cache_path);
@@ -198,7 +217,7 @@ impl Hub {
         Ok(snapshot)
     }
 
-    fn agent(&self, redirects: u32) -> ureq::Agent {
+    fn agent(redirects: u32) -> ureq::Agent {
         ureq::Agent::config_builder()
             .max_redirects(redirects)
             .http_status_as_error(false)
@@ -209,7 +228,7 @@ impl Hub {
     }
 
     fn head(&self, url: &str) -> Result<FileMeta> {
-        let mut request = self.agent(0).head(url);
+        let mut request = Self::agent(0).head(url);
         if let Some(token) = &self.token {
             request = request.header("Authorization", format!("Bearer {token}"));
         }
@@ -247,7 +266,7 @@ impl Hub {
     fn fetch_blob(&self, url: &str, blob: &Path, file: &HubFile<'_>) -> Result<()> {
         create_parent(blob)?;
         let partial = blob.with_extension("incomplete");
-        let mut request = self.agent(10).get(url);
+        let mut request = Self::agent(10).get(url);
         if let Some(token) = &self.token {
             request = request.header("Authorization", format!("Bearer {token}"));
         }

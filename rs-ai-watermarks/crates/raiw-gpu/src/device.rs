@@ -6,6 +6,9 @@
 use std::fmt;
 use std::panic::{self, AssertUnwindSafe};
 use std::str::FromStr;
+#[cfg(any(feature = "wgpu", feature = "cuda", feature = "rocm"))]
+use std::sync::Once;
+use std::sync::OnceLock;
 
 use burn::tensor::{Device, Tensor};
 
@@ -95,22 +98,32 @@ impl ComputeDevice {
     }
 
     /// Resolve a request to a working device; `auto` never fails.
+    ///
+    /// Each request is probed once per process, so every model shares one runtime client.
     pub fn select(request: DeviceRequest) -> Result<Self> {
-        let selected = match request {
-            DeviceRequest::Cpu => return Ok(Self::cpu()),
-            DeviceRequest::Auto => {
-                return Ok(candidates(GpuClass::Any)
-                    .into_iter()
-                    .find_map(probe)
-                    .unwrap_or_else(Self::cpu));
-            }
-            DeviceRequest::Cuda => candidates(GpuClass::Discrete).into_iter().find_map(probe),
-            DeviceRequest::Mps => candidates(GpuClass::Apple).into_iter().find_map(probe),
+        static RESOLVED: [OnceLock<Option<ComputeDevice>>; 4] = [const { OnceLock::new() }; 4];
+        RESOLVED[request as usize]
+            .get_or_init(|| Self::resolve(request))
+            .clone()
+            .ok_or_else(|| GpuError::DeviceUnavailable {
+                requested: request.to_string(),
+                reason: "no compiled-in backend produced a working adapter".to_owned(),
+            })
+    }
+
+    fn resolve(request: DeviceRequest) -> Option<Self> {
+        let class = match request {
+            DeviceRequest::Cpu => return Some(Self::cpu()),
+            DeviceRequest::Auto => GpuClass::Any,
+            DeviceRequest::Cuda => GpuClass::Discrete,
+            DeviceRequest::Mps => GpuClass::Apple,
         };
-        selected.ok_or_else(|| GpuError::DeviceUnavailable {
-            requested: request.to_string(),
-            reason: "no compiled-in backend produced a working adapter".to_owned(),
-        })
+        configure_runtime();
+        let selected = candidates(class).into_iter().find_map(probe);
+        match request {
+            DeviceRequest::Auto => Some(selected.unwrap_or_else(Self::cpu)),
+            _ => selected,
+        }
     }
 
     /// Parse and resolve a Python-style device string.
@@ -148,6 +161,27 @@ impl fmt::Display for ComputeDevice {
         write!(f, "{} ({})", self.adapter, self.backend.as_str())
     }
 }
+
+/// Keep CubeCL's autotune results and compiled kernels in the model cache across processes,
+/// unless a `cubecl.toml` already names a location.
+#[cfg(any(feature = "wgpu", feature = "cuda", feature = "rocm"))]
+fn configure_runtime() {
+    use burn::cubecl::config::cache::CacheConfig;
+    use burn::cubecl::config::{CubeClRuntimeConfig, RuntimeConfig};
+    static CONFIGURED: Once = Once::new();
+    CONFIGURED.call_once(|| {
+        let mut config = CubeClRuntimeConfig::from_current_dir().override_from_env();
+        if matches!(config.environment.path, CacheConfig::Target) {
+            config.environment.path = CacheConfig::Directory(raiw_core::model_cache_dir().join("cubecl"));
+        }
+        if !CubeClRuntimeConfig::try_set(config) {
+            tracing::debug!("CubeCL configuration was loaded before device selection");
+        }
+    });
+}
+
+#[cfg(not(any(feature = "wgpu", feature = "cuda", feature = "rocm")))]
+fn configure_runtime() {}
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum GpuClass {

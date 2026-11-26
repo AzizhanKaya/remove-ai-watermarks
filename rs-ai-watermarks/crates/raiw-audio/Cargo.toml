@@ -8,11 +8,12 @@ license.workspace = true
 authors.workspace = true
 
 [features]
-# Seam for the burn-backed decoders and codecs in raiw-gpu (wired by a later wave).
-gpu = []
+# Burn-backed decoders and codecs from raiw-gpu behind the neural traits.
+gpu = ["dep:raiw-gpu"]
 
 [dependencies]
 raiw-core.workspace = true
+raiw-gpu = { workspace = true, optional = true }
 thiserror.workspace = true
 serde.workspace = true
 serde_json.workspace = true

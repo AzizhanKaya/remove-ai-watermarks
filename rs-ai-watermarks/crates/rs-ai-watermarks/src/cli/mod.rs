@@ -3,6 +3,9 @@
 pub mod args;
 mod audio;
 mod image;
+mod run;
+#[cfg(feature = "video")]
+mod run_video;
 mod text;
 mod video;
 
@@ -115,8 +118,14 @@ fn execute(command: Command) -> anyhow::Result<i32> {
         Command::Erase(_) => "erase",
         Command::Identify(_) => "identify",
         Command::Invisible(_) => "invisible",
+        #[cfg(feature = "metadata")]
+        Command::Metadata(cmd) => return run::metadata(&cmd),
+        #[cfg(not(feature = "metadata"))]
         Command::Metadata(_) => "metadata",
         Command::Text(_) => "text",
+        #[cfg(feature = "video")]
+        Command::Video(cmd) => return run_video::video(cmd),
+        #[cfg(not(feature = "video"))]
         Command::Video(_) => "video",
         Command::Visible(_) => "visible",
     };
@@ -154,12 +163,17 @@ fn integration(action: IntegrationCmd) -> anyhow::Result<i32> {
 }
 
 fn init_logging(verbose: bool) {
-    let level = if verbose { "debug" } else { "warn" };
+    // Third-party crates (c2pa-rs) stay quiet unless asked, as the Python CLI does.
+    let level = if verbose { "debug" } else { "warn,c2pa=error" };
+    // Plain `target | message` lines like the Python logging format; colour only on a terminal.
     let _ = tracing_subscriber::fmt()
         .with_env_filter(
             tracing_subscriber::EnvFilter::try_from_default_env().unwrap_or_else(|_| level.into()),
         )
         .with_writer(std::io::stderr)
+        .with_ansi(std::io::IsTerminal::is_terminal(&std::io::stderr()))
+        .without_time()
+        .with_level(false)
         .try_init();
 }
 

@@ -30,6 +30,8 @@ PYTHON = [str(REPO / ".venv" / "bin" / "python"), "-m", "remove_ai_watermarks.cl
 IMAGES = sorted(p for p in (FIXTURES / "provenance").iterdir() if p.suffix.lower() in {".png", ".jpg", ".jpeg", ".webp"})
 VIDEOS = sorted(p for p in (FIXTURES / "provenance").iterdir() if p.suffix.lower() in {".mp4", ".mov", ".mkv"})
 VISIBLE = sorted((FIXTURES / "visible").glob("*/example.png"))
+VIDEO_GALLERY = sorted((FIXTURES / "visible").glob("*/example.mp4"))
+VIDEO_SAMPLE = tuple(p for p in VIDEO_GALLERY if p.parent.name in {"sora", "veo", "kling", "hailuo"})
 
 
 @dataclass(frozen=True)
@@ -51,6 +53,11 @@ CASES = (
     Case("visible", ("visible", "-o", "{out}", "{src}"), tuple(VISIBLE), writes=True),
     Case("video-metadata", ("video", "metadata", "--check", "--json", "{src}"), tuple(VIDEOS)),
     Case("video-identify-metadata", ("video", "identify", "--json", "--no-visible", "{src}"), tuple(VIDEOS)),
+    Case("video-scan-identify", ("video", "identify", "--json", "{src}"), VIDEO_SAMPLE),
+    Case("video-scan-visible", ("video", "visible", "--json", "-o", "{out}", "{src}"), VIDEO_SAMPLE[:2], writes=True),
+    Case("video-erase", ("video", "erase", "--json", "--region", "20,20,120,60", "--frames", "0:30", "-o", "{out}", "{src}"),
+         VIDEO_SAMPLE[:1], writes=True),
+    Case("video-all", ("video", "all", "--json", "-o", "{out}", "{src}"), VIDEO_SAMPLE[1:2], writes=True),
 )
 
 
@@ -117,13 +124,16 @@ def main() -> int:
                 scratch = Path(scratch_dir)
                 results = []
                 for side, base in (("py", PYTHON), ("rs", rust)):
-                    out = scratch / f"{side}_{source.stem}_clean{source.suffix}" if case.writes else None
+                    side_dir = scratch / side
+                    side_dir.mkdir()
+                    out = side_dir / f"{source.stem}_clean{source.suffix}" if case.writes else None
                     command = [*base, *(a.replace("{src}", str(source)).replace("{out}", str(out)) for a in case.args)]
                     results.append(run(command, out, args.repeat))
                 py, rs = results
                 same = (
                     py.code == rs.code
-                    and normalized(py.stdout, case.ignore_keys, scratch) == normalized(rs.stdout, case.ignore_keys, scratch)
+                    and normalized(py.stdout, case.ignore_keys, scratch / "py")
+                    == normalized(rs.stdout, case.ignore_keys, scratch / "rs")
                     and py.output_sha == rs.output_sha
                 )
                 totals["cases"] += 1

@@ -37,7 +37,11 @@ fn best<T>(repeat: usize, mut f: impl FnMut() -> T) -> f64 {
 }
 
 fn resample_stereo(x: &Frames, up: usize, down: usize) -> Frames {
-    let channels: Vec<Vec<f32>> = x.to_channels().iter().map(|c| resample_poly(c, up, down)).collect();
+    let channels: Vec<Vec<f32>> = x
+        .to_channels()
+        .iter()
+        .map(|c| resample_poly(c, up, down))
+        .collect();
     Frames::from_channels(&channels)
 }
 
@@ -51,9 +55,18 @@ fn hot_path_timings() {
     let mut record = |name: &str, seconds: f64| {
         results.insert(name.to_owned(), json!((seconds * 1e4).round() / 1e4));
     };
-    record("resample_48k_to_16k_60s_stereo", best(3, || resample_stereo(&x48, 1, 3)));
-    record("resample_44k1_to_16k_60s_stereo", best(3, || resample_stereo(&x44, 160, 441)));
-    record("resample_16k_to_44k1_60s_stereo", best(3, || resample_stereo(&x16, 441, 160)));
+    record(
+        "resample_48k_to_16k_60s_stereo",
+        best(3, || resample_stereo(&x48, 1, 3)),
+    );
+    record(
+        "resample_44k1_to_16k_60s_stereo",
+        best(3, || resample_stereo(&x44, 160, 441)),
+    );
+    record(
+        "resample_16k_to_44k1_60s_stereo",
+        best(3, || resample_stereo(&x16, 441, 160)),
+    );
     let clock = RationalClock::standard(x48.frames(), 48_000).unwrap();
     record(
         "clock_forward_inverse_48k_60s_stereo",
@@ -63,24 +76,44 @@ fn hot_path_timings() {
     record(
         "spectral_filter_48k_60s_stereo",
         best(3, || {
-            let chunks = (0..x48.frames()).step_by(chunk).map(|s| Ok(x48.slice(s..s + chunk)));
-            spectral::filter_chunks(chunks, 48_000).unwrap().collect::<Result<Vec<_>, _>>().unwrap()
+            let chunks = (0..x48.frames())
+                .step_by(chunk)
+                .map(|s| Ok(x48.slice(s..s + chunk)));
+            spectral::filter_chunks(chunks, 48_000)
+                .unwrap()
+                .collect::<Result<Vec<_>, _>>()
+                .unwrap()
         }),
     );
     let x30 = x44.slice(0..44_100 * 30);
     let processed = x30.scale(0.9);
-    record("hf_crossover_44k1_30s_stereo", best(3, || blend_hf_crossover(&processed, &x30, 44_100, 14_000.0).unwrap()));
+    record(
+        "hf_crossover_44k1_30s_stereo",
+        best(3, || {
+            blend_hf_crossover(&processed, &x30, 44_100, 14_000.0).unwrap()
+        }),
+    );
     let tools = FfmpegTools::discover().unwrap();
     let dir = tempfile::tempdir().unwrap();
     let (source, output) = (dir.path().join("a.wav"), dir.path().join("b.wav"));
     encode_raw(&x48, 48_000, &source, &["-c:a", "pcm_f32le"], None);
     encode_raw(&x48.scale(0.9), 48_000, &output, &["-c:a", "pcm_f32le"], None);
     let info = probe_audio(&tools, &source, 0).unwrap();
-    record("decode_48k_60s_stereo", best(3, || read_all(&tools, &source, &info).unwrap()));
-    record("measure_fidelity_48k_60s_stereo", best(3, || measure_fidelity(&tools, &source, &info, &output, 0).unwrap()));
+    record(
+        "decode_48k_60s_stereo",
+        best(3, || read_all(&tools, &source, &info).unwrap()),
+    );
+    record(
+        "measure_fidelity_48k_60s_stereo",
+        best(3, || {
+            measure_fidelity(&tools, &source, &info, &output, 0).unwrap()
+        }),
+    );
     record(
         "perceptual_metrics_48k_60s_stereo",
-        best(1, || compute_perceptual_metrics(&tools, &source, &info, &output, 0, None).unwrap()),
+        best(1, || {
+            compute_perceptual_metrics(&tools, &source, &info, &output, 0, None).unwrap()
+        }),
     );
     println!("{}", serde_json::to_string_pretty(&results).unwrap());
 }

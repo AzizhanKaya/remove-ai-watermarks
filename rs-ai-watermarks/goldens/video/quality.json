@@ -1,0 +1,88 @@
+[
+ {
+  "name": "same",
+  "report": {
+   "file": "delivered_same.mp4",
+   "source": "cfr_audio.mp4",
+   "source_width": 160,
+   "source_height": 96,
+   "source_fps": 24.0,
+   "width": 160,
+   "height": 96,
+   "fps": 24.0,
+   "frames": 48,
+   "max_timestamp_error_seconds": null,
+   "video_duration_error_seconds": null,
+   "pixel_ratio": 1.0,
+   "source_psnr_db": 26.785,
+   "min_frame_psnr_db": 25.6639,
+   "source_ssim": 0.9505,
+   "source_color_ssim": 0.8602,
+   "min_frame_ssim": 0.9351,
+   "worst_window_ssim": 0.9432,
+   "temporal_residual_ratio": 1.0466,
+   "size_bytes": 35249,
+   "file_bitrate_kbps": 141.0
+  },
+  "passed": true
+ },
+ {
+  "name": "same_timestamps",
+  "report": {
+   "file": "delivered_same.mp4",
+   "source": "cfr_audio.mp4",
+   "source_width": 160,
+   "source_height": 96,
+   "source_fps": 24.0,
+   "width": 160,
+   "height": 96,
+   "fps": 24.0,
+   "frames": 48,
+   "max_timestamp_error_seconds": 0.0,
+   "video_duration_error_seconds": 0.0,
+   "pixel_ratio": 1.0,
+   "source_psnr_db": 26.785,
+   "min_frame_psnr_db": 25.6639,
+   "source_ssim": 0.9505,
+   "source_color_ssim": 0.8602,
+   "min_frame_ssim": 0.9351,
+   "worst_window_ssim": 0.9432,
+   "temporal_residual_ratio": 1.0466,
+   "size_bytes": 35249,
+   "file_bitrate_kbps": 141.0
+  },
+  "passed": true
+ },
+ {
+  "name": "small",
+  "report": "error: delivered_small.mp4 and the sampled source ran out at different points after 12 frames. Pass --duration to match the prefix this output was produced from, or check that it came from cfr_audio.mp4.",
+  "passed": null
+ },
+ {
+  "name": "small_duration",
+  "report": {
+   "file": "delivered_small.mp4",
+   "source": "cfr_audio.mp4",
+   "source_width": 160,
+   "source_height": 96,
+   "source_fps": 24.0,
+   "width": 80,
+   "height": 48,
+   "fps": 12.0,
+   "frames": 12,
+   "max_timestamp_error_seconds": null,
+   "video_duration_error_seconds": null,
+   "pixel_ratio": 0.25,
+   "source_psnr_db": 15.1597,
+   "min_frame_psnr_db": 14.1808,
+   "source_ssim": 0.7515,
+   "source_color_ssim": 0.5655,
+   "min_frame_ssim": 0.705,
+   "worst_window_ssim": 0.7515,
+   "temporal_residual_ratio": 1.1613,
+   "size_bytes": 5791,
+   "file_bitrate_kbps": 46.3
+  },
+  "passed": false
+ }
+]

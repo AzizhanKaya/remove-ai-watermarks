@@ -11,6 +11,10 @@ cargo test --workspace                 # unit + golden tests
 cargo test --workspace --features gpu  # adds burn model tests (Vulkan/Metal/DX12/CPU)
 ```
 
+Where the port stands and how to resume: [docs/status.md](docs/status.md).
+Measured parity, speed and hazards: [docs/findings.md](docs/findings.md).
+First real video run: [docs/video-synthid-trial-2026-11.md](docs/video-synthid-trial-2026-11.md).
+
 ## Crate map
 
 | Crate | Role | Python reference |

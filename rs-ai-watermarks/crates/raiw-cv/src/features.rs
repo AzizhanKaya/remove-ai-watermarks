@@ -11,10 +11,17 @@ use crate::morph::{StructuringElement, dilate};
 use crate::types::Point2f;
 
 /// `cv::cornerMinEigenVal(src, block_size, ksize)` with the default reflect-101 border.
-pub fn corner_min_eigen_val<'a, T: Element>(src: impl Into<MatView<'a, T>>, block_size: usize, ksize: usize) -> Result<Mat<f32>> {
+pub fn corner_min_eigen_val<'a, T: Element>(
+    src: impl Into<MatView<'a, T>>,
+    block_size: usize,
+    ksize: usize,
+) -> Result<Mat<f32>> {
     let src = src.into();
     if src.channels() != 1 || !matches!(T::DEPTH, Depth::U8 | Depth::F32) {
-        return Err(invalid("corner_min_eigen_val", "8-bit or float single-channel input required"));
+        return Err(invalid(
+            "corner_min_eigen_val",
+            "8-bit or float single-channel input required",
+        ));
     }
     let mut scale = f64::from(1u32 << (ksize.max(1) - 1)) * block_size as f64;
     if T::DEPTH == Depth::U8 {
@@ -22,8 +29,8 @@ pub fn corner_min_eigen_val<'a, T: Element>(src: impl Into<MatView<'a, T>>, bloc
     }
     let scale = 1.0 / scale;
     let border = Border::Reflect101;
-    let dx: Mat<f32> = sobel(&src, 1, 0, ksize, scale, 0.0, border)?;
-    let dy: Mat<f32> = sobel(&src, 0, 1, ksize, scale, 0.0, border)?;
+    let dx: Mat<f32> = sobel(src, 1, 0, ksize, scale, 0.0, border)?;
+    let dy: Mat<f32> = sobel(src, 0, 1, ksize, scale, 0.0, border)?;
     let (w, h) = (src.width(), src.height());
     let cov: Vec<[f32; 3]> = dx
         .data()
@@ -68,12 +75,14 @@ pub fn good_features_to_track<'a, T: Element>(
     if let Some(m) = &mask
         && m.size() != image.size()
     {
-        return Err(CvError::ShapeMismatch { op: "good_features_to_track" });
+        return Err(CvError::ShapeMismatch {
+            op: "good_features_to_track",
+        });
     }
     if image.is_empty() {
         return Ok(Vec::new());
     }
-    let mut eig = corner_min_eigen_val(&image, 3, 3)?;
+    let mut eig = corner_min_eigen_val(image, 3, 3)?;
     let allowed = |x: usize, y: usize| mask.as_ref().is_none_or(|m| m.at(x, y, 0) != 0);
     let mut max_val = f32::MIN;
     for y in 0..eig.height() {
@@ -100,7 +109,11 @@ pub fn good_features_to_track<'a, T: Element>(
             }
         }
     }
-    candidates.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap_or(std::cmp::Ordering::Equal).then(b.1.cmp(&a.1)));
+    candidates.sort_by(|a, b| {
+        b.0.partial_cmp(&a.0)
+            .unwrap_or(std::cmp::Ordering::Equal)
+            .then(b.1.cmp(&a.1))
+    });
     let mut corners = Vec::new();
     if min_distance >= 1.0 {
         let cell = crate::element::cv_round(min_distance).max(1) as usize;
@@ -128,7 +141,10 @@ pub fn good_features_to_track<'a, T: Element>(
             }
         }
     } else {
-        corners = candidates.iter().map(|&(_, ofs)| Point2f::new((ofs % w) as f32, (ofs / w) as f32)).collect();
+        corners = candidates
+            .iter()
+            .map(|&(_, ofs)| Point2f::new((ofs % w) as f32, (ofs / w) as f32))
+            .collect();
         if max_corners > 0 {
             corners.truncate(max_corners);
         }

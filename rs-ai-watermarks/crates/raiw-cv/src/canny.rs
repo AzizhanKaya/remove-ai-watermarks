@@ -12,12 +12,15 @@ const TG22: i32 = 13_573;
 pub fn canny<'a>(src: impl Into<MatView<'a, u8>>, low: f64, high: f64) -> Result<Mat<u8>> {
     let src = src.into();
     if src.channels() != 1 {
-        return Err(CvError::Channels { op: "canny", channels: src.channels() });
+        return Err(CvError::Channels {
+            op: "canny",
+            channels: src.channels(),
+        });
     }
     let (low, high) = if low > high { (high, low) } else { (low, high) };
     let (low, high) = (cv_floor(low), cv_floor(high));
-    let dx: Mat<i16> = sobel(&src, 1, 0, 3, 1.0, 0.0, Border::Replicate)?;
-    let dy: Mat<i16> = sobel(&src, 0, 1, 3, 1.0, 0.0, Border::Replicate)?;
+    let dx: Mat<i16> = sobel(src, 1, 0, 3, 1.0, 0.0, Border::Replicate)?;
+    let dy: Mat<i16> = sobel(src, 0, 1, 3, 1.0, 0.0, Border::Replicate)?;
     let (w, h) = (src.width(), src.height());
     let mag = |y: isize, x: isize| -> i32 {
         if y < 0 || y >= h as isize || x < 0 || x >= w as isize {

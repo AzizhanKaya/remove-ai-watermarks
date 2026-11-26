@@ -1,5 +1,5 @@
 [build]
-jobs = 6
+jobs = 4
 
 [env]
 RAIW_REPO_ROOT = { value = "..", relative = true }

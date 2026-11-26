@@ -9,7 +9,6 @@ which runs the same workloads (seconds of audio per model) on wgpu and the CPU b
 from __future__ import annotations
 
 import json
-import statistics
 import sys
 import time
 from pathlib import Path
@@ -19,28 +18,40 @@ import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "src"))
 
-from remove_ai_watermarks._internal import audio_dac, audio_snac, audioseal, perth, silentcipher, wavmark  # noqa: E402
+from remove_ai_watermarks._internal import (  # noqa: E402
+    audio_codec,
+    audio_dac,
+    audio_snac,
+    audioseal,
+    perth,
+    silentcipher,
+    wavmark,
+)
 from remove_ai_watermarks._internal._silentcipher_network import magnitude  # noqa: E402
+
+THREADS = 4
 
 WORKLOADS = {
     "audioseal": (16_000, 10.0),
-    "dac": (44_100, 5.0),
-    "snac": (44_100, 5.0),
-    "wavmark": (16_000, 10.0),
+    "dac": (44_100, 1.0),
+    "snac": (44_100, 1.0),
+    "encodec_6kbps": (24_000, 1.0),
+    "wavmark": (16_000, 2.0),
     "perth": (16_000, 10.0),
     "silentcipher_phase": (44_100, 3.0),
 }
-REPEATS = 3
+REPEATS = 2
 
 
 def timed(run: object) -> float:
+    """Best of `REPEATS` runs after one warm-up, as the Rust timing test."""
     run()
     samples = []
     for _ in range(REPEATS):
         start = time.perf_counter()
         run()
         samples.append(time.perf_counter() - start)
-    return statistics.median(samples)
+    return min(samples)
 
 
 def signal(rate: int, seconds: float) -> np.ndarray:
@@ -52,6 +63,8 @@ def signal(rate: int, seconds: float) -> np.ndarray:
 def main() -> None:
     audio_dac.is_available = lambda: True
     audio_snac.is_available = lambda: True
+    torch.set_num_threads(THREADS)
+    audio_codec.is_available = lambda: True
     results: dict[str, object] = {"torch": torch.__version__, "threads": torch.get_num_threads()}
 
     rate, seconds = WORKLOADS["audioseal"]
@@ -65,12 +78,20 @@ def main() -> None:
     audio = audio[: audio.shape[0] // 512 * 512]
     x = torch.from_numpy(audio).view(1, 1, -1)
 
-    def run_dac() -> None:
+    with torch.inference_mode():
+        codes = dac.encode(x, n_quantizers=3).audio_codes
+
+    def run_dac_encode() -> None:
         with torch.inference_mode():
-            codes = dac.encode(x, n_quantizers=3).audio_codes
+            dac.encode(x, n_quantizers=3)
+
+    def run_dac_decode() -> None:
+        with torch.inference_mode():
             dac.decode(audio_codes=codes)
 
-    results["dac"] = {"seconds_audio": seconds, "torch_cpu_s": timed(run_dac)}
+    results["dac_encode"] = {"seconds_audio": seconds, "torch_cpu_s": timed(run_dac_encode)}
+    results["dac_decode"] = {"seconds_audio": seconds, "torch_cpu_s": timed(run_dac_decode)}
+    del dac
 
     rate, seconds = WORKLOADS["snac"]
     snac = audio_snac.load_pinned_model()
@@ -81,6 +102,18 @@ def main() -> None:
             snac.reconstruct(x, n_quantizers=3)
 
     results["snac"] = {"seconds_audio": seconds, "torch_cpu_s": timed(run_snac)}
+    del snac
+
+    rate, seconds = WORKLOADS["encodec_6kbps"]
+    encodec = audio_codec.load_pinned_model()
+    x = torch.from_numpy(signal(rate, seconds)).view(1, 1, -1)
+
+    def run_encodec() -> None:
+        with torch.inference_mode():
+            encodec(x, bandwidth=6.0)
+
+    results["encodec_6kbps"] = {"seconds_audio": seconds, "torch_cpu_s": timed(run_encodec)}
+    del encodec
 
     rate, seconds = WORKLOADS["wavmark"]
     model = wavmark.load_model()

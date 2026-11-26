@@ -1,8 +1,8 @@
 //! Alibaba Qwen "千问AI生成" text or Qwen Create's three-lobe symbol, bottom-right (`qwen_engine.py`).
 
 use raiw_cv::{
-    Border, Interpolation, Mat, MorphShape, Rect, StructuringElement, dilate, gaussian_blur,
-    match_template_ccoeff_normed, min_max_loc, resize,
+    Border, Interpolation, Mat, MorphShape, Rect, StructuringElement, TemplateSearch, dilate, gaussian_blur,
+    min_max_loc, resize,
 };
 
 use super::MarkEngine;
@@ -121,13 +121,14 @@ impl QwenEngine {
         }
         let alpha = &assets::template(SYMBOL_ASSET)?.alpha;
         let (mut best_score, mut best_region, mut best_iou) = (0.0, Region::ZERO, 0.0);
+        let search = TemplateSearch::new(&response);
         for rung in SYMBOL_LADDER {
             let s = 12.max((f64::from(base) * SYMBOL_SIZE_FRAC * rung) as i32);
             if s >= side {
                 continue;
             }
             let template = resize(alpha, s as usize, s as usize, Interpolation::Area)?;
-            let scores = match_template_ccoeff_normed(&response, &template)?;
+            let scores = search.match_template(&template)?;
             let mm = min_max_loc(&scores)?;
             if mm.max <= best_score {
                 continue;

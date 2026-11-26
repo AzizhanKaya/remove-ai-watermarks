@@ -1,0 +1,247 @@
+{
+ "base_args": [
+  "-y",
+  "-v",
+  "error",
+  "-threads",
+  "4"
+ ],
+ "clips": [
+  {
+   "name": "cfr_audio",
+   "suffix": ".mp4",
+   "args": [
+    "-f",
+    "lavfi",
+    "-i",
+    "testsrc2=size=160x96:rate=24:duration=2",
+    "-f",
+    "lavfi",
+    "-i",
+    "sine=frequency=440:sample_rate=48000:duration=2",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "veryfast",
+    "-pix_fmt",
+    "yuv420p",
+    "-g",
+    "12",
+    "-c:a",
+    "aac",
+    "-b:a",
+    "64k",
+    "-shortest"
+   ]
+  },
+  {
+   "name": "vfr",
+   "suffix": ".mkv",
+   "args": [
+    "-f",
+    "lavfi",
+    "-i",
+    "testsrc2=size=128x80:rate=30:duration=1.5",
+    "-vf",
+    "setpts='if(lt(N,20),N*1001/(30000*TB),(20*1001/30000+(N-20)/15)/TB)'",
+    "-fps_mode",
+    "vfr",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "veryfast",
+    "-pix_fmt",
+    "yuv420p",
+    "-fflags",
+    "+bitexact"
+   ]
+  },
+  {
+   "name": "odd_size",
+   "suffix": ".mp4",
+   "args": [
+    "-f",
+    "lavfi",
+    "-i",
+    "testsrc2=size=161x97:rate=25:duration=1",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "veryfast",
+    "-pix_fmt",
+    "yuv444p"
+   ]
+  },
+  {
+   "name": "rotated",
+   "suffix": ".mp4",
+   "args": [
+    "-display_rotation:v:0",
+    "90",
+    "-i",
+    "{clip:cfr_audio}",
+    "-c",
+    "copy"
+   ]
+  },
+  {
+   "name": "two_audio",
+   "suffix": ".mp4",
+   "args": [
+    "-i",
+    "{clip:cfr_audio}",
+    "-f",
+    "lavfi",
+    "-i",
+    "sine=frequency=880:sample_rate=44100:duration=2",
+    "-map",
+    "0:v",
+    "-map",
+    "0:a",
+    "-map",
+    "1:a",
+    "-c:v",
+    "copy",
+    "-c:a:0",
+    "copy",
+    "-c:a:1",
+    "aac",
+    "-b:a:1",
+    "48k"
+   ]
+  },
+  {
+   "name": "offset_start",
+   "suffix": ".mp4",
+   "args": [
+    "-i",
+    "{clip:cfr_audio}",
+    "-c",
+    "copy",
+    "-output_ts_offset",
+    "1.5"
+   ]
+  },
+  {
+   "name": "tagged_bt709",
+   "suffix": ".mp4",
+   "args": [
+    "-f",
+    "lavfi",
+    "-i",
+    "testsrc2=size=128x72:rate=24:duration=1",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "veryfast",
+    "-pix_fmt",
+    "yuv420p",
+    "-color_primaries",
+    "bt709",
+    "-color_trc",
+    "bt709",
+    "-colorspace",
+    "bt709",
+    "-color_range",
+    "tv"
+   ]
+  },
+  {
+   "name": "hevc_10bit",
+   "suffix": ".mp4",
+   "args": [
+    "-f",
+    "lavfi",
+    "-i",
+    "testsrc2=size=128x72:rate=24:duration=1",
+    "-c:v",
+    "libx265",
+    "-preset",
+    "ultrafast",
+    "-pix_fmt",
+    "yuv420p10le",
+    "-tag:v",
+    "hvc1",
+    "-x265-params",
+    "log-level=error:pools=4"
+   ]
+  },
+  {
+   "name": "webm_vp9",
+   "suffix": ".webm",
+   "args": [
+    "-f",
+    "lavfi",
+    "-i",
+    "testsrc2=size=128x72:rate=24:duration=1",
+    "-c:v",
+    "libvpx-vp9",
+    "-deadline",
+    "realtime",
+    "-cpu-used",
+    "8",
+    "-b:v",
+    "200k",
+    "-fflags",
+    "+bitexact"
+   ]
+  },
+  {
+   "name": "delivered_same",
+   "suffix": ".mp4",
+   "args": [
+    "-i",
+    "{clip:cfr_audio}",
+    "-c:v",
+    "libx264",
+    "-crf",
+    "30",
+    "-preset",
+    "veryfast",
+    "-c:a",
+    "copy"
+   ]
+  },
+  {
+   "name": "delivered_small",
+   "suffix": ".mp4",
+   "args": [
+    "-i",
+    "{clip:cfr_audio}",
+    "-vf",
+    "scale=80:48",
+    "-r",
+    "12",
+    "-frames:v",
+    "12",
+    "-c:v",
+    "libx264",
+    "-crf",
+    "23",
+    "-preset",
+    "veryfast",
+    "-an"
+   ]
+  }
+ ],
+ "truncated": {
+  "truncated": [
+   "cfr_audio",
+   0.5
+  ]
+ },
+ "sha256": {
+  "cfr_audio": "4d22c8c40b54020b6c7a9b26111cab5b4912c96d62ade6a6df573d1dffbc1a9c",
+  "vfr": "16e047f1e567b01085eb2ee0e29736bb6abf2bf0aec5768faa9891d5ea564cf9",
+  "odd_size": "de200f703467f19e224658be4143bed38f3acbdb548b601aa0b1523368f5fbde",
+  "rotated": "b791e130b956e2f648eb3e0b10f52b1bc2acdef5f3fdb069723399357c81fe71",
+  "two_audio": "33a822452807bf00c52dce1d01463e832bb1a56dfe3ff1d85dc1606944ca227a",
+  "offset_start": "6cc61f0df519da487969aa35545555ed09edc90b5d516598961c65ad5f6597a4",
+  "tagged_bt709": "f5442d0de06526793e87b8f258865de27eff124b870e9d5c0e07dfc13d35d2a9",
+  "hevc_10bit": "116cdb2b527fac9465b08c121c627224e36c34e1a14bc92e3478ddd0baaa10a7",
+  "webm_vp9": "eeeba8c166bcb3452ef97ef4eddad2d8457ba8c9a57bf167fe91e1269d6021c3",
+  "delivered_same": "92923107d46e9d862577fb39ad901069c804cadb37c3a1b1f27451de78042791",
+  "delivered_small": "f87748a4bf798d3952d1112d908b892c86af3dc414187f68b2fc5e9f40018576",
+  "truncated": "4f1287b6f5836c32363780c8038e05dc149a554b20931ae9c2dd6a962a71c05a"
+ }
+}

@@ -261,27 +261,31 @@ impl SeanetResnetBlock {
 
 #[derive(Debug, Clone)]
 enum Stage {
-    Conv(StreamingConv1d),
-    ConvTranspose(StreamingConvTranspose1d),
-    Resnet(SeanetResnetBlock),
+    Conv(Box<StreamingConv1d>),
+    ConvTranspose(Box<StreamingConvTranspose1d>),
+    Resnet(Box<SeanetResnetBlock>),
     Elu,
     /// LSTM over time with a residual skip, on `[batch, channels, time]`.
     Lstm(Lstm),
 }
 
 impl Stage {
-    fn forward(&self, x: Tensor<3>, alpha: f64) -> Tensor<3> {
-        match self {
+    fn forward(&self, x: Tensor<3>, alpha: f64) -> Result<Tensor<3>> {
+        Ok(match self {
             Self::Conv(conv) => conv.forward(x),
             Self::ConvTranspose(conv) => conv.forward(x),
             Self::Resnet(block) => block.forward(x),
             Self::Elu => elu(x, alpha),
             Self::Lstm(lstm) => {
                 let time_major = x.swap_dims(1, 2);
-                (lstm.forward(time_major.clone()) + time_major).swap_dims(1, 2)
+                (lstm.forward(time_major.clone())? + time_major).swap_dims(1, 2)
             }
-        }
+        })
     }
+}
+
+fn run_stages(stages: &[Stage], x: Tensor<3>, alpha: f64) -> Result<Tensor<3>> {
+    stages.iter().try_fold(x, |x, stage| stage.forward(x, alpha))
 }
 
 /// Stages addressed by their `nn.Sequential`/`ModuleList` index (parameter-free ones included).
@@ -306,7 +310,7 @@ impl<'a> StageBuilder<'a> {
 
     fn conv(&mut self, state: &mut StateDict, spec: Conv1dSpec, device: &Device) -> Result<()> {
         let conv = self.config.conv(state, &self.name(), spec, device)?;
-        self.stages.push(Stage::Conv(conv));
+        self.stages.push(Stage::Conv(Box::new(conv)));
         Ok(())
     }
 
@@ -318,7 +322,7 @@ impl<'a> StageBuilder<'a> {
     ) -> Result<()> {
         let name = self.config.layout.conv_transpose(&self.name());
         let conv = StreamingConvTranspose1d::load(state, &name, spec, self.config.causal, device)?;
-        self.stages.push(Stage::ConvTranspose(conv));
+        self.stages.push(Stage::ConvTranspose(Box::new(conv)));
         Ok(())
     }
 
@@ -326,7 +330,7 @@ impl<'a> StageBuilder<'a> {
         for j in 0..self.config.n_residual_layers {
             let dilation = self.config.dilation_base.pow(j as u32);
             let block = SeanetResnetBlock::load(state, &self.name(), dim, dilation, self.config, device)?;
-            self.stages.push(Stage::Resnet(block));
+            self.stages.push(Stage::Resnet(Box::new(block)));
         }
         Ok(())
     }
@@ -391,10 +395,8 @@ impl SeanetEncoder {
     }
 
     /// `[batch, channels, samples]` to `[batch, dimension, frames]`.
-    pub fn forward(&self, x: Tensor<3>) -> Tensor<3> {
-        self.stages
-            .iter()
-            .fold(x, |x, stage| stage.forward(x, self.alpha))
+    pub fn forward(&self, x: Tensor<3>) -> Result<Tensor<3>> {
+        run_stages(&self.stages, x, self.alpha)
     }
 }
 
@@ -438,10 +440,8 @@ impl SeanetDecoder {
     }
 
     /// `[batch, dimension, frames]` to `[batch, channels, frames * hop]`.
-    pub fn forward(&self, x: Tensor<3>) -> Tensor<3> {
-        self.stages
-            .iter()
-            .fold(x, |x, stage| stage.forward(x, self.alpha))
+    pub fn forward(&self, x: Tensor<3>) -> Result<Tensor<3>> {
+        run_stages(&self.stages, x, self.alpha)
     }
 }
 

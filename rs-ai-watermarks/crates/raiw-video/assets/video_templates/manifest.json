@@ -1,0 +1,241 @@
+{
+ "baidu": {
+  "shape": [
+   187,
+   366
+  ],
+  "sha256": "d9b2c964b6fdb9388698529345e5ddae5634955b4e53f2fe643e78b06f7b3a02",
+  "package_asset": "baidu_alpha.png"
+ },
+ "dola": {
+  "shape": [
+   53,
+   240
+  ],
+  "sha256": "8a3867ccf1ced6417f71eb0e1d99d6a81f83980e4f095d0aa12ed4e78426c957",
+  "package_asset": "video_dola_hershey_duplex.png"
+ },
+ "doubao": {
+  "shape": [
+   83,
+   335
+  ],
+  "sha256": "77c5294826ae36440bd9573e51fcf3cb928ae275e35aafc83a5b566fac44961d",
+  "package_asset": "doubao_alpha.png"
+ },
+ "dreamina": {
+  "shape": [
+   152,
+   204
+  ],
+  "sha256": "57b2dd16b9bd127dd45ade42d6ad6ac80b23d902b91f255ab8209b7c965c74bc"
+ },
+ "generic_ai_label": {
+  "shape": [
+   128,
+   353
+  ],
+  "sha256": "77ec50fab12b05f2aadc510f2cb73d2c4d6b1772dc51361b14d745517689f64e",
+  "package_asset": "generic_ai_label_alpha.png"
+ },
+ "hailuo": {
+  "shape": [
+   112,
+   680
+  ],
+  "sha256": "552880db6cead928b7a0875877fb4abeb7e50164e488262a84317ddd7266128d"
+ },
+ "heygen": {
+  "shape": [
+   131,
+   251
+  ],
+  "sha256": "8b3f74c8857f54034c982374e7bc16b20fa9e38591a4847747ebe11b9cdad7ad"
+ },
+ "jimeng": {
+  "shape": [
+   118,
+   414
+  ],
+  "sha256": "57d577aa56c28478d77f562f27e5f89fd1b540a1548982eeb6bf8111f08bb8e3",
+  "package_asset": "jimeng_alpha.png"
+ },
+ "jimeng_pill": {
+  "shape": [
+   160,
+   320
+  ],
+  "sha256": "bc0c0627ded9497b7e550f83dd3883096db5933ca022f83b5daaafc7b2b9234a",
+  "package_asset": "jimeng_pill.png"
+ },
+ "kling-0": {
+  "shape": [
+   49,
+   247
+  ],
+  "sha256": "1c1c3d786d3b3691bdfc4cb85e2e488beb1aff5cfe719fcdd8b20a1cffc06364"
+ },
+ "kling-1": {
+  "shape": [
+   53,
+   278
+  ],
+  "sha256": "b6d7138f79067fc01c8acfa007530446021a4deeb80b0f37623234a71ff42cdc",
+  "package_asset": "video_kling_ai_hershey_simplex.png"
+ },
+ "kling-2": {
+  "shape": [
+   53,
+   286
+  ],
+  "sha256": "279712d970c9699e6089b6550e4d96a4fd0fb93409e0a74a50d1a109de04fb0f",
+  "package_asset": "video_kling_ai_hershey_duplex.png"
+ },
+ "kling-3": {
+  "shape": [
+   64,
+   199
+  ],
+  "sha256": "d46a38122244feafcf9ab34e1b4051632613ab61786e40ec66564692612557d0"
+ },
+ "kling-4": {
+  "shape": [
+   69,
+   212
+  ],
+  "sha256": "436ebb67221baf020a847edc8e1c18503c96b19a007bb9ff4175b21d63ded6d8",
+  "package_asset": "video_klingai_hershey_simplex.png"
+ },
+ "kling-5": {
+  "shape": [
+   68,
+   227
+  ],
+  "sha256": "76f4b7233a7d285c9b2a8f1b228377161dd30c1dd6f86fb09be3db88aa01f392",
+  "package_asset": "video_klingai_hershey_duplex.png"
+ },
+ "kling-logo": {
+  "shape": [
+   85,
+   85
+  ],
+  "sha256": "17384ee32696ae27204ef7c26b58661a1b46098160986b07ad0adc5ab9bdf96a"
+ },
+ "luma": {
+  "shape": [
+   106,
+   454
+  ],
+  "sha256": "045b37a0d2977ca73c0262233f2210fc8d796fcb457a20390313a395d35ca2cb"
+ },
+ "microsoft": {
+  "shape": [
+   89,
+   335
+  ],
+  "sha256": "dc41b376da546ecc041c890a93e1ecd0c956179d8171a8e9f5c1b2ac00eae167",
+  "package_asset": "microsoft_alpha.png"
+ },
+ "pixverse": {
+  "shape": [
+   42,
+   247
+  ],
+  "sha256": "35b4c5ee89d6b919d927b1314966ae2d53a3f05095c0a2062e1f9528fb461c9d"
+ },
+ "qwen": {
+  "shape": [
+   77,
+   347
+  ],
+  "sha256": "4f26dce3c9d40bdf3e1efe6aaf6381fc4083b33200d9fa974764afd0322dea57",
+  "package_asset": "qwen_alpha.png"
+ },
+ "qwen-en": {
+  "shape": [
+   67,
+   257
+  ],
+  "sha256": "d737335a85ccec4a4f738c740690b84a4ca8bb6f9e701a9c1c763f8929dd1cbe"
+ },
+ "runninghub": {
+  "shape": [
+   43,
+   337
+  ],
+  "sha256": "fddfa27811888d8ed684cfd47acaea00c1f4a272db17f9b3f9020852f697767a",
+  "package_asset": "runninghub_alpha.png"
+ },
+ "seedance": {
+  "shape": [
+   120,
+   160
+  ],
+  "sha256": "adfd0cc875646cb23441f3b2ab875c80d6615c159bc3326d12f7a7e22c324ad0"
+ },
+ "sora-icon": {
+  "shape": [
+   64,
+   64
+  ],
+  "sha256": "edde9bef6def47eb07a4d5971a2e05b9f38324bc0195639a1dcea437aee82acf"
+ },
+ "sora-word": {
+  "shape": [
+   64,
+   180
+  ],
+  "sha256": "38732490ab9fe61ac99e15557cc26489fbfc82400880632d493cff9df9e49d0d"
+ },
+ "sync_labs": {
+  "shape": [
+   71,
+   286
+  ],
+  "sha256": "691cd711d0e34d2ec18992d693723345c34d64df33eeeda9aed4a3d63d9c4030"
+ },
+ "tiktok_ai": {
+  "shape": [
+   39,
+   229
+  ],
+  "sha256": "78fa2c62bcf484e650b55741d191a8ec5c497a5337618087644b0c2603d66cb4"
+ },
+ "veo-diamond": {
+  "shape": [
+   256,
+   256
+  ],
+  "sha256": "9c7e01dc9c0d392fd886d040d893266240fffaf3cf6f519817fc7ae4f411a11c"
+ },
+ "veo-text": {
+  "shape": [
+   34,
+   81
+  ],
+  "sha256": "9be7ef01d36a95c7829f1a390ad66c3dd4b6ea5c23898d1f9a0fd3b3e4e4e8b9"
+ },
+ "vidu": {
+  "shape": [
+   100,
+   464
+  ],
+  "sha256": "394f1a766b02a146979fd52aa7f22195305ed46b11b281459ca7a1f41bb459d9"
+ },
+ "wan": {
+  "shape": [
+   109,
+   335
+  ],
+  "sha256": "8bf2d0546679e4b05e54d2d348143c06d8a5479d312861f77b1e3a3f10fbba4e",
+  "package_asset": "wan_alpha.png"
+ },
+ "yuanbao": {
+  "shape": [
+   206,
+   371
+  ],
+  "sha256": "fb9f4a909595858e7f28f014b194a300c054b26488fa7bb76a02ab268d6fc9e7",
+  "package_asset": "yuanbao_alpha.png"
+ }
+}

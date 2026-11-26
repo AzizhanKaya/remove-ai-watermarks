@@ -1,8 +1,8 @@
 //! Detection: locate, front-end response, ladder sweep, verdict and post-gates.
 
 use raiw_cv::{
-    Border, ColorConversion, Interpolation, Mat, MatView, MorphOp, StructuringElement, cvt_color, gaussian_blur,
-    laplacian, match_template_ccoeff_normed, min_max_loc, morphology_ex, resize,
+    Border, ColorConversion, Interpolation, Mat, MatView, MorphOp, StructuringElement, TemplateSearch, cvt_color,
+    gaussian_blur, laplacian, match_template_ccoeff_normed, min_max_loc, morphology_ex, resize,
 };
 
 use super::{
@@ -63,8 +63,8 @@ fn template_side(frac: f64, base: usize, scale: f64) -> i32 {
     (frac * base as f64 * scale) as i32
 }
 
-fn best_match(resp: &Mat<u8>, tmpl: &Mat<u8>) -> Result<(f64, i32, i32)> {
-    let scores = match_template_ccoeff_normed(resp, tmpl)?;
+fn best_match(resp: &TemplateSearch<'_, u8>, tmpl: &Mat<u8>) -> Result<(f64, i32, i32)> {
+    let scores = resp.match_template(tmpl)?;
     let mm = min_max_loc(&scores)?;
     Ok((mm.max, mm.max_loc.x, mm.max_loc.y))
 }
@@ -211,7 +211,7 @@ impl TextMarkEngine {
     fn sized_silhouette(&self, gw: i32, gh: i32) -> Result<Mat<u8>> {
         let sil = &assets::template(self.config.asset)?.silhouette;
         let tmpl = resize(sil, gw as usize, gh as usize, Interpolation::Area)?;
-        if self.config.frontend == super::Frontend::Tophat && self.config.template_blur > 0.0 {
+        if self.config.frontend == Frontend::Tophat && self.config.template_blur > 0.0 {
             let s = self.config.template_blur;
             let blurred = gaussian_blur(&tmpl.convert::<f32>(), (0, 0), s, s, Border::Reflect101)?;
             return Ok(blurred.map(|v| v as u8));
@@ -240,6 +240,7 @@ impl TextMarkEngine {
     fn standard_ladder(&self, image: &Image, resp: &Mat<u8>) -> Result<(f64, Option<MatchBox>)> {
         let c = &self.config;
         let base = self.scale_base(image.height(), image.width());
+        let search = TemplateSearch::new(resp);
         let mut best = (0.0, None);
         for &scale in c.ladder {
             let gw = c.min_gw.max(template_side(c.alpha_width_frac, base, scale));
@@ -248,7 +249,7 @@ impl TextMarkEngine {
                 continue;
             }
             let tmpl = self.sized_silhouette(gw, gh)?;
-            let (score, x, y) = best_match(resp, &tmpl)?;
+            let (score, x, y) = best_match(&search, &tmpl)?;
             if score > best.0 {
                 best = (score, Some(MatchBox::at(x, y, gw, gh)));
             }
@@ -268,6 +269,7 @@ impl TextMarkEngine {
         let (frame_h, frame_w) = (image.height() as i32, image.width() as i32);
         let anchor_base = f64::from(frame_h.min(frame_w));
         let base = self.scale_base(image.height(), image.width());
+        let search = TemplateSearch::new(resp);
         let mut best = (0.0, None);
         for &scale in c.ladder {
             let gw = c.min_gw.max(template_side(c.alpha_width_frac, base, scale));
@@ -276,7 +278,7 @@ impl TextMarkEngine {
                 continue;
             }
             let tmpl = resize(&assets::template(c.asset)?.silhouette, gw as usize, gh as usize, Interpolation::Area)?;
-            let scores = match_template_ccoeff_normed(resp, &tmpl)?;
+            let scores = search.match_template(&tmpl)?;
             let py_round = |v: f64| v.round_ties_even() as i32;
             let min_x = 0.max(py_round(f64::from(frame_w - loc.x - gw) - max_right * anchor_base));
             let max_x = (scores.width() as i32 - 1).min(frame_w - loc.x - gw);
@@ -556,7 +558,7 @@ pub fn template_match_best(glyphs: &Mat<u8>, base: usize, c: &TextMarkConfig) ->
         return Ok((0.0, None));
     }
     let tmpl = resize(sil, gw as usize, gh as usize, Interpolation::Nearest)?;
-    let (score, x, y) = best_match(glyphs, &tmpl)?;
+    let (score, x, y) = best_match(&TemplateSearch::new(glyphs), &tmpl)?;
     Ok((score, Some(MatchBox::at(x, y, gw, gh))))
 }
 

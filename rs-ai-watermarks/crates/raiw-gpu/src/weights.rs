@@ -59,16 +59,15 @@ impl StateDict {
         if let Some(key) = top_level_key {
             store = store.with_top_level_key(key);
         }
-        match Self::from_store(path, &mut store) {
+        match Self::from_store(path, &mut store, &|_| true) {
             Ok(state) => Ok(state),
             Err(primary) => {
-                let tensors =
-                    crate::torch_pickle::read_checkpoint(path, top_level_key).map_err(|fallback| {
-                        GpuError::Weights {
-                            path: path.to_path_buf(),
-                            reason: format!("{primary}; fallback reader: {fallback}"),
-                        }
-                    })?;
+                let tensors = crate::torch_pickle::read_checkpoint(path, top_level_key, &|_| true).map_err(
+                    |fallback| GpuError::Weights {
+                        path: path.to_path_buf(),
+                        reason: format!("{primary}; fallback reader: {fallback}"),
+                    },
+                )?;
                 tracing::debug!(path = %path.display(), "read checkpoint with the tolerant pickle reader");
                 Ok(Self {
                     source: path.to_path_buf(),
@@ -78,9 +77,40 @@ impl StateDict {
         }
     }
 
+    /// Read selected tensors of a `torch.save` zip or TorchScript archive with the tolerant reader.
+    ///
+    /// Only tensors `keep` accepts (by dotted name below `top_level_key`) are materialized, so a
+    /// large checkpoint can yield one sub-network without loading the rest.
+    pub fn from_torch_zip(
+        path: &Path,
+        top_level_key: Option<&str>,
+        remap: Remap<'_>,
+        keep: impl Fn(&str) -> bool,
+    ) -> Result<Self> {
+        let tensors = crate::torch_pickle::read_checkpoint(path, top_level_key, &keep)?;
+        Ok(Self {
+            source: path.to_path_buf(),
+            tensors: remap_keys(path, tensors, remap)?,
+        })
+    }
+
     pub fn from_safetensors(path: &Path, remap: Remap<'_>) -> Result<Self> {
         let mut store = SafetensorsStore::from_file(path).remap(remapper(path, remap)?);
-        Self::from_store(path, &mut store)
+        Self::from_store(path, &mut store, &|_| true)
+    }
+
+    /// Materialize only the tensors `keep` accepts from memory-mapped safetensors shards.
+    ///
+    /// Each shard header is parsed and only accepted tensors are copied out, so one
+    /// sub-network (e.g. a single transformer block) loads without touching the rest.
+    pub fn from_safetensors_shards(paths: &[PathBuf], keep: impl Fn(&str) -> bool) -> Result<Self> {
+        let source = paths.first().cloned().unwrap_or_default();
+        let mut tensors = BTreeMap::new();
+        for path in paths {
+            let mut store = SafetensorsStore::from_file(path);
+            tensors.append(&mut Self::from_store(path, &mut store, &keep)?.tensors);
+        }
+        Ok(Self { source, tensors })
     }
 
     /// Pick the reader from the file extension.
@@ -91,7 +121,7 @@ impl StateDict {
         }
     }
 
-    fn from_store<S: ModuleStore>(path: &Path, store: &mut S) -> Result<Self> {
+    fn from_store<S: ModuleStore>(path: &Path, store: &mut S, keep: &dyn Fn(&str) -> bool) -> Result<Self> {
         let weights_error = |reason: String| GpuError::Weights {
             path: path.to_path_buf(),
             reason,
@@ -100,7 +130,7 @@ impl StateDict {
             .get_all_tensors()
             .map_err(|err| weights_error(err.to_string()))?;
         let mut tensors = BTreeMap::new();
-        for (name, tensor) in packed {
+        for (name, tensor) in packed.iter().filter(|(name, _)| keep(name)) {
             let data =
                 burn_store::bridge::to_data(tensor).map_err(|err| weights_error(format!("{name}: {err}")))?;
             let shape = data.shape().to_vec();
@@ -262,7 +292,7 @@ fn fold_pair(prefix: &str, g: &HostTensor, v: &HostTensor) -> Result<HostTensor>
         .shape
         .first()
         .ok_or_else(|| GpuError::Config(format!("{prefix}: scalar weight_v")))?;
-    if g.data.len() != rows || rows == 0 || v.data.len() % rows != 0 {
+    if g.data.len() != rows || rows == 0 || !v.data.len().is_multiple_of(rows) {
         return Err(GpuError::ShapeMismatch {
             name: format!("{prefix}.weight_g"),
             actual: g.shape.clone(),

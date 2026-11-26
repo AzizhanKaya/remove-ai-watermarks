@@ -42,7 +42,8 @@ fn bound_gradient(flow: &mut Mat<f32>) -> Result<()> {
     let (gy1, gx1) = gradient(&plane(flow, 1))?;
     let mut max_norm = f32::MIN;
     for i in 0..gy0.data().len() {
-        let s = ((gy0.data()[i] * gy0.data()[i] + gx0.data()[i] * gx0.data()[i]) + gy1.data()[i] * gy1.data()[i])
+        let s = ((gy0.data()[i] * gy0.data()[i] + gx0.data()[i] * gx0.data()[i])
+            + gy1.data()[i] * gy1.data()[i])
             + gx1.data()[i] * gx1.data()[i];
         max_norm = max_norm.max(s.sqrt());
     }
@@ -68,11 +69,17 @@ pub fn bound_flow(
 ) -> Result<(Mat<u8>, Mat<f32>)> {
     let (width, height) = donor.size();
     if small_flow.channels() != 2 {
-        return Err(CvError::Channels { op: "bound_flow", channels: small_flow.channels() });
+        return Err(CvError::Channels {
+            op: "bound_flow",
+            channels: small_flow.channels(),
+        });
     }
     let (sw, sh) = small_flow.size();
     let mut flow = resize(small_flow, width, height, Interpolation::Linear)?;
-    let (fx, fy) = ((width as f64 / sw as f64) as f32, (height as f64 / sh as f64) as f32);
+    let (fx, fy) = (
+        (width as f64 / sw as f64) as f32,
+        (height as f64 / sh as f64) as f32,
+    );
     for px in flow.data_mut().chunks_exact_mut(2) {
         px[0] *= fx;
         px[1] *= fy;
@@ -93,7 +100,9 @@ pub fn bound_flow(
             if !(left < right && right <= width && top < bottom && bottom <= height) {
                 return Err(invalid("bound_flow", "Protected box outside image"));
             }
-            allowed.roi_mut(crate::types::Rect::from_corners(left, top, right, bottom))?.fill(0);
+            allowed
+                .roi_mut(crate::types::Rect::from_corners(left, top, right, bottom))?
+                .fill(0);
         }
         let distance = distance_transform_l2(&allowed)?;
         for (px, &d) in flow.data_mut().chunks_exact_mut(2).zip(distance.data()) {
@@ -107,22 +116,42 @@ pub fn bound_flow(
 }
 
 /// `attenuate_regenerated(donor, flow, weights)`: weighted displacement, one Lanczos-4 resample.
-pub fn attenuate_regenerated(donor: &Mat<u8>, flow: &Mat<f32>, weights: &Mat<f32>) -> Result<(Mat<u8>, Mat<f32>)> {
+pub fn attenuate_regenerated(
+    donor: &Mat<u8>,
+    flow: &Mat<f32>,
+    weights: &Mat<f32>,
+) -> Result<(Mat<u8>, Mat<f32>)> {
     let (w, h) = donor.size();
     if donor.channels() != 3 || w.min(h) < 64 {
-        return Err(invalid("attenuate_regenerated", "Expected uint8 RGB donor with sides at least 64 pixels"));
+        return Err(invalid(
+            "attenuate_regenerated",
+            "Expected uint8 RGB donor with sides at least 64 pixels",
+        ));
     }
     if flow.size() != (w, h) || flow.channels() != 2 || weights.size() != (w, h) || weights.channels() != 1 {
-        return Err(invalid("attenuate_regenerated", "Flow and weight dimensions must match donor"));
+        return Err(invalid(
+            "attenuate_regenerated",
+            "Flow and weight dimensions must match donor",
+        ));
     }
     if flow.data().iter().chain(weights.data()).any(|v| !v.is_finite()) {
-        return Err(invalid("attenuate_regenerated", "Nonfinite displacement or weights"));
+        return Err(invalid(
+            "attenuate_regenerated",
+            "Nonfinite displacement or weights",
+        ));
     }
     if weights.data().iter().any(|&v| !(0.0..=1.0).contains(&v)) {
         return Err(invalid("attenuate_regenerated", "Weights must be in [0, 1]"));
     }
-    if flow.data().chunks_exact(2).any(|p| f64::from(p[0].hypot(p[1])) > 16.0001) {
-        return Err(invalid("attenuate_regenerated", "Input displacement exceeds alignment bound"));
+    if flow
+        .data()
+        .chunks_exact(2)
+        .any(|p| f64::from(p[0].hypot(p[1])) > 16.0001)
+    {
+        return Err(invalid(
+            "attenuate_regenerated",
+            "Input displacement exceeds alignment bound",
+        ));
     }
     let mut weighted = flow.clone();
     for (px, &k) in weighted.data_mut().chunks_exact_mut(2).zip(weights.data()) {
@@ -134,15 +163,30 @@ pub fn attenuate_regenerated(donor: &Mat<u8>, flow: &Mat<f32>, weights: &Mat<f32
 }
 
 /// `local_error_weights(reference, baseline, candidate, sigma)` on RGB `u8` images.
-pub fn local_error_weights(reference: &Mat<u8>, baseline: &Mat<u8>, candidate: &Mat<u8>, sigma: f64) -> Result<Mat<f32>> {
+pub fn local_error_weights(
+    reference: &Mat<u8>,
+    baseline: &Mat<u8>,
+    candidate: &Mat<u8>,
+    sigma: f64,
+) -> Result<Mat<f32>> {
     if reference.channels() != 3 || reference.is_empty() {
-        return Err(invalid("local_error_weights", "Inputs must have nonempty RGB dimensions"));
+        return Err(invalid(
+            "local_error_weights",
+            "Inputs must have nonempty RGB dimensions",
+        ));
     }
-    if baseline.size() != reference.size() || candidate.size() != reference.size() || baseline.channels() != 3 || candidate.channels() != 3 {
+    if baseline.size() != reference.size()
+        || candidate.size() != reference.size()
+        || baseline.channels() != 3
+        || candidate.channels() != 3
+    {
         return Err(invalid("local_error_weights", "Input dimensions must match"));
     }
     if !sigma.is_finite() || sigma <= 0.0 {
-        return Err(invalid("local_error_weights", "Sigma must be positive and finite"));
+        return Err(invalid(
+            "local_error_weights",
+            "Sigma must be positive and finite",
+        ));
     }
     let (width, height) = reference.size();
     let ratio = (256.0 / width.max(height) as f64).min(1.0);
@@ -170,7 +214,10 @@ pub fn local_error_weights(reference: &Mat<u8>, baseline: &Mat<u8>, candidate: &
     }
     let num = resize(&num, size.0, size.1, Interpolation::Area)?;
     let den = resize(&den, size.0, size.1, Interpolation::Area)?;
-    let (sx, sy) = (sigma * size.0 as f64 / width as f64, sigma * size.1 as f64 / height as f64);
+    let (sx, sy) = (
+        sigma * size.0 as f64 / width as f64,
+        sigma * size.1 as f64 / height as f64,
+    );
     let smooth = |m: &Mat<f32>| gaussian_blur(m, (0, 0), sx, sy, Border::Reflect101);
     let sn = smooth(&num)?;
     let sd = smooth(&den)?;
@@ -178,7 +225,11 @@ pub fn local_error_weights(reference: &Mat<u8>, baseline: &Mat<u8>, candidate: &
         sn.width(),
         sn.height(),
         1,
-        sn.data().iter().zip(sd.data()).map(|(&a, &b)| (a / b.max(1.0)).clamp(0.0, 1.0)).collect(),
+        sn.data()
+            .iter()
+            .zip(sd.data())
+            .map(|(&a, &b)| (a / b.max(1.0)).clamp(0.0, 1.0))
+            .collect(),
     )?;
     let out = resize(&smooth(&weight)?, width, height, Interpolation::Linear)?;
     Ok(out.map(|v: f32| v.clamp(0.0, 1.0)))

@@ -16,7 +16,12 @@ impl Rect {
 
     /// The rectangle spanning `[x0, x1) x [y0, y1)`, like a numpy slice `[y0:y1, x0:x1]`.
     pub fn from_corners(x0: usize, y0: usize, x1: usize, y1: usize) -> Self {
-        Self { x: x0, y: y0, width: x1.saturating_sub(x0), height: y1.saturating_sub(y0) }
+        Self {
+            x: x0,
+            y: y0,
+            width: x1.saturating_sub(x0),
+            height: y1.saturating_sub(y0),
+        }
     }
 
     pub const fn right(&self) -> usize {

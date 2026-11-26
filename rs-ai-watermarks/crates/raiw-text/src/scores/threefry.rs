@@ -144,14 +144,51 @@ pub(crate) fn fsum(values: impl IntoIterator<Item = f64>) -> f64 {
     hi
 }
 
+/// Product of `factors` by balanced binary splitting.
+fn product(factors: &[BigUint]) -> BigUint {
+    match factors {
+        [] => BigUint::from(1u8),
+        [single] => single.clone(),
+        _ => {
+            let (left, right) = factors.split_at(factors.len() / 2);
+            product(left) * product(right)
+        }
+    }
+}
+
+/// Exponent of prime `p` in `n!` (Legendre's formula).
+fn legendre(mut n: u64, p: u64) -> u64 {
+    let mut exponent = 0;
+    while n > 0 {
+        n /= p;
+        exponent += n;
+    }
+    exponent
+}
+
+/// `math.comb(n, k)` from its prime factorization.
 fn binomial(n: u64, k: u64) -> BigUint {
     let k = k.min(n - k);
-    let mut value = BigUint::from(1u8);
-    for index in 0..k {
-        value *= n - index;
-        value /= index + 1;
+    if k == 0 {
+        return BigUint::from(1u8);
     }
-    value
+    let limit = n as usize;
+    let mut composite = vec![false; limit + 1];
+    let mut factors = Vec::new();
+    for p in 2..=limit {
+        if composite[p] {
+            continue;
+        }
+        for multiple in (p * p..=limit).step_by(p) {
+            composite[multiple] = true;
+        }
+        let p = p as u64;
+        let exponent = legendre(n, p) - legendre(k, p) - legendre(n - k, p);
+        if exponent > 0 {
+            factors.push(BigUint::from(p).pow(exponent as u32));
+        }
+    }
+    product(&factors)
 }
 
 /// `P(X >= ones)` for `X ~ Binomial(trials, 1/2)`.

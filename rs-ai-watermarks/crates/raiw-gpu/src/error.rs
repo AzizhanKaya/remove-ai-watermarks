@@ -42,6 +42,11 @@ pub enum GpuError {
     UnusedTensors(Vec<String>),
     #[error("invalid model configuration: {0}")]
     Config(String),
+    #[error(
+        "Wan 2.1 prompt embedding cache {0} is missing; UMT5-XXL runs only in Python: produce it once \
+         with `rs-ai-watermarks/tools/goldens/gpu_wan_prompt_cache.py` (or any Python `wan21-*` run)"
+    )]
+    MissingPromptCache(PathBuf),
     #[error("invalid input: {0}")]
     Input(String),
     #[error("model produced non-finite values")]

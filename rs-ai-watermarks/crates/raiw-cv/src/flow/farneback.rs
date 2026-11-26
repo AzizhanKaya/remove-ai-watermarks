@@ -1,5 +1,7 @@
 //! `cv::calcOpticalFlowFarneback` (box-filter variant, `flags = 0`), ported from `optflowgf.cpp`.
 
+use rayon::prelude::*;
+
 use crate::border::Border;
 use crate::element::{Element, cv_floor, cv_round};
 use crate::error::{CvError, Result, invalid};
@@ -7,6 +9,9 @@ use crate::filter::gaussian_blur;
 use crate::mat::{Mat, MatView};
 use crate::resize::resize;
 use crate::types::Interpolation;
+
+/// Pyramid levels stop above this many pixels per side.
+const MIN_SIZE: f64 = 32.0;
 
 /// Farneback parameters, named like the OpenCV arguments.
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -22,7 +27,14 @@ pub struct FarnebackParams {
 impl Default for FarnebackParams {
     /// The package's call: `(0.5, 3, 15, 3, 5, 1.2, 0)`.
     fn default() -> Self {
-        Self { pyr_scale: 0.5, levels: 3, winsize: 15, iterations: 3, poly_n: 5, poly_sigma: 1.2 }
+        Self {
+            pyr_scale: 0.5,
+            levels: 3,
+            winsize: 15,
+            iterations: 3,
+            poly_n: 5,
+            poly_sigma: 1.2,
+        }
     }
 }
 
@@ -39,7 +51,6 @@ pub fn calc_optical_flow_farneback<'a, 'b, T: Element>(
     if params.pyr_scale >= 1.0 || params.poly_n == 0 {
         return Err(invalid("farneback", "pyr_scale must be < 1 and poly_n positive"));
     }
-    const MIN_SIZE: f64 = 32.0;
     let (w0, h0) = (prev.width() as f64, prev.height() as f64);
     let mut levels = 0;
     let mut scale = 1.0;
@@ -76,7 +87,14 @@ pub fn calc_optical_flow_farneback<'a, 'b, T: Element>(
         let mut m = Mat::<f32>::zeros(width, height, 5);
         update_matrices(&r[0], &r[1], &flow, &mut m, 0, height);
         for i in 0..params.iterations {
-            update_flow_blur(&r[0], &r[1], &mut flow, &mut m, params.winsize, i + 1 < params.iterations);
+            update_flow_blur(
+                &r[0],
+                &r[1],
+                &mut flow,
+                &mut m,
+                params.winsize,
+                i + 1 < params.iterations,
+            );
         }
         prev_flow = Some(flow);
     }
@@ -85,7 +103,11 @@ pub fn calc_optical_flow_farneback<'a, 'b, T: Element>(
 
 /// `FarnebackPrepareGaussian`: taps `g`, `x g`, `x^2 g` and four entries of the inverse moment matrix.
 fn prepare_gaussian(n: usize, sigma: f64) -> (Vec<f32>, Vec<f32>, Vec<f32>, [f64; 4]) {
-    let sigma = if sigma < f64::from(f32::EPSILON) { n as f64 * 0.3 } else { sigma };
+    let sigma = if sigma < f64::from(f32::EPSILON) {
+        n as f64 * 0.3
+    } else {
+        sigma
+    };
     let ni = n as i64;
     let len = 2 * n + 1;
     let mut g = vec![0.0f32; len];
@@ -123,14 +145,15 @@ fn prepare_gaussian(n: usize, sigma: f64) -> (Vec<f32>, Vec<f32>, Vec<f32>, [f64
     gm[4][4] = gm[3][3];
     gm[3][4] = gm[5][5];
     gm[4][3] = gm[5][5];
-    let inv = cholesky_inverse(gm);
+    let inv = cholesky_inverse(&gm);
     (g, xg, xxg, [inv[1][1], inv[0][3], inv[3][3], inv[5][5]])
 }
 
 /// `Mat::inv(DECOMP_CHOLESKY)` following `CholImpl` (reciprocal diagonal, two triangular solves).
-fn cholesky_inverse(a: [[f64; 6]; 6]) -> [[f64; 6]; 6] {
+#[allow(clippy::needless_range_loop)]
+fn cholesky_inverse(a: &[[f64; 6]; 6]) -> [[f64; 6]; 6] {
     const M: usize = 6;
-    let mut l = a;
+    let mut l = *a;
     for i in 0..M {
         for j in 0..i {
             let mut s = a[i][j];
@@ -176,8 +199,8 @@ fn poly_exp(src: &Mat<f32>, n: usize, sigma: f64) -> Mat<f32> {
     let (w, h) = (src.width(), src.height());
     let mut dst = Mat::<f32>::zeros(w, h, 5);
     let pad = n * 3;
-    let mut row = vec![0.0f32; (w + 2 * n) * 3];
-    for y in 0..h {
+    dst.par_rows_mut().enumerate().for_each(|(y, drow)| {
+        let mut row = vec![0.0f32; (w + 2 * n) * 3];
         let (g0, srow0) = (g[n], src.row(y));
         for x in 0..w {
             row[pad + x * 3] = srow0[x] * g0;
@@ -200,7 +223,6 @@ fn poly_exp(src: &Mat<f32>, n: usize, sigma: f64) -> Mat<f32> {
             row[pad - 1 - x] = row[pad + 2 - x];
             row[pad + w * 3 + x] = row[pad + w * 3 + x - 3];
         }
-        let drow = dst.row_mut(y);
         let at = |i: isize| f64::from(row[(pad as isize + i) as usize]);
         for x in 0..w {
             let xi = x as isize;
@@ -218,10 +240,14 @@ fn poly_exp(src: &Mat<f32>, n: usize, sigma: f64) -> Mat<f32> {
                 let gk = f64::from(g[n + k]);
                 b1 += tg * gk;
                 b4 += tg * f64::from(xxg[n + k]);
-                b2 += f64::from(row[(pad as isize + p) as usize] - row[(pad as isize + m) as usize]) * f64::from(xg[n + k]);
-                b3 += f64::from(row[(pad as isize + p + 1) as usize] + row[(pad as isize + m + 1) as usize]) * gk;
-                b6 += f64::from(row[(pad as isize + p + 1) as usize] - row[(pad as isize + m + 1) as usize]) * f64::from(xg[n + k]);
-                b5 += f64::from(row[(pad as isize + p + 2) as usize] + row[(pad as isize + m + 2) as usize]) * gk;
+                b2 += f64::from(row[(pad as isize + p) as usize] - row[(pad as isize + m) as usize])
+                    * f64::from(xg[n + k]);
+                b3 += f64::from(row[(pad as isize + p + 1) as usize] + row[(pad as isize + m + 1) as usize])
+                    * gk;
+                b6 += f64::from(row[(pad as isize + p + 1) as usize] - row[(pad as isize + m + 1) as usize])
+                    * f64::from(xg[n + k]);
+                b5 += f64::from(row[(pad as isize + p + 2) as usize] + row[(pad as isize + m + 2) as usize])
+                    * gk;
             }
             let d = &mut drow[x * 5..x * 5 + 5];
             d[1] = (b2 * ig11) as f32;
@@ -230,7 +256,7 @@ fn poly_exp(src: &Mat<f32>, n: usize, sigma: f64) -> Mat<f32> {
             d[2] = (b1 * ig03 + b5 * ig33) as f32;
             d[4] = (b6 * ig55) as f32;
         }
-    }
+    });
     dst
 }
 
@@ -241,7 +267,9 @@ fn update_matrices(r0: &Mat<f32>, r1: &Mat<f32>, flow: &Mat<f32>, m: &mut Mat<f3
     let (w, h) = (flow.width(), flow.height());
     let r1d = r1.data();
     let step = w * 5;
-    for y in y0..y1 {
+    let rows = &mut m.data_mut()[y0 * step..y1 * step];
+    rows.par_chunks_mut(step).enumerate().for_each(|(i, mrow)| {
+        let y = y0 + i;
         let frow = flow.row(y);
         let r0row = r0.row(y);
         for x in 0..w {
@@ -254,8 +282,14 @@ fn update_matrices(r0: &Mat<f32>, r1: &Mat<f32>, flow: &Mat<f32>, m: &mut Mat<f3
             let (mut r2, mut r3, r4, r5, r6);
             if (x1 as u32) < (w as u32).wrapping_sub(1) && (y1i as u32) < (h as u32).wrapping_sub(1) {
                 let p = (y1i as usize) * step + x1 as usize * 5;
-                let (a00, a01, a10, a11) = ((1.0 - fx) * (1.0 - fy), fx * (1.0 - fy), (1.0 - fx) * fy, fx * fy);
-                let s = |c: usize| a00 * r1d[p + c] + a01 * r1d[p + 5 + c] + a10 * r1d[p + step + c] + a11 * r1d[p + step + 5 + c];
+                let (a00, a01, a10, a11) =
+                    ((1.0 - fx) * (1.0 - fy), fx * (1.0 - fy), (1.0 - fx) * fy, fx * fy);
+                let s = |c: usize| {
+                    a00 * r1d[p + c]
+                        + a01 * r1d[p + 5 + c]
+                        + a10 * r1d[p + step + c]
+                        + a11 * r1d[p + step + 5 + c]
+                };
                 r2 = s(0);
                 r3 = s(1);
                 r4 = (base[2] + s(2)) * 0.5;
@@ -273,7 +307,9 @@ fn update_matrices(r0: &Mat<f32>, r1: &Mat<f32>, flow: &Mat<f32>, m: &mut Mat<f3
             r2 += r4 * dy + r6 * dx;
             r3 += r6 * dy + r5 * dx;
             let (mut r4, mut r5, mut r6) = (r4, r5, r6);
-            if x.wrapping_sub(BORDER) >= w.wrapping_sub(BORDER * 2) || y.wrapping_sub(BORDER) >= h.wrapping_sub(BORDER * 2) {
+            if x.wrapping_sub(BORDER) >= w.wrapping_sub(BORDER * 2)
+                || y.wrapping_sub(BORDER) >= h.wrapping_sub(BORDER * 2)
+            {
                 let low = |i: usize| if i < BORDER { WEIGHTS[i] } else { 1.0 };
                 let high = |i: usize, n: usize| if i + BORDER >= n { WEIGHTS[n - i - 1] } else { 1.0 };
                 let scale = low(x) * high(x, w) * low(y) * high(y, h);
@@ -283,18 +319,25 @@ fn update_matrices(r0: &Mat<f32>, r1: &Mat<f32>, flow: &Mat<f32>, m: &mut Mat<f3
                 r5 *= scale;
                 r6 *= scale;
             }
-            let out = &mut m.row_mut(y)[x * 5..x * 5 + 5];
+            let out = &mut mrow[x * 5..x * 5 + 5];
             out[0] = r4 * r4 + r6 * r6;
             out[1] = (r4 + r5) * r6;
             out[2] = r5 * r5 + r6 * r6;
             out[3] = r4 * r2 + r6 * r3;
             out[4] = r6 * r2 + r5 * r3;
         }
-    }
+    });
 }
 
 /// `FarnebackUpdateFlow_Blur`: box-filtered normal equations, matrices refreshed in stripes.
-fn update_flow_blur(r0: &Mat<f32>, r1: &Mat<f32>, flow: &mut Mat<f32>, m: &mut Mat<f32>, block: usize, update: bool) {
+fn update_flow_blur(
+    r0: &Mat<f32>,
+    r1: &Mat<f32>,
+    flow: &mut Mat<f32>,
+    m: &mut Mat<f32>,
+    block: usize,
+    update: bool,
+) {
     let (w, h) = (flow.width(), flow.height());
     let half = block / 2;
     let min_stripe = (1024 / w).max(block);
@@ -347,7 +390,11 @@ fn update_flow_blur(r0: &Mat<f32>, r1: &Mat<f32>, flow: &mut Mat<f32>, m: &mut M
             frow[x as usize * 2] = ((a * e - b * d) * idet) as f32;
             frow[x as usize * 2 + 1] = ((c * d - b * e) * idet) as f32;
         }
-        let y1 = if y == h - 1 { h as isize } else { y as isize - block as isize };
+        let y1 = if y == h - 1 {
+            h as isize
+        } else {
+            y as isize - block as isize
+        };
         if update && (y1 == h as isize || y1 >= (y0 + min_stripe) as isize) {
             update_matrices(r0, r1, flow, m, y0, y1 as usize);
             y0 = y1 as usize;

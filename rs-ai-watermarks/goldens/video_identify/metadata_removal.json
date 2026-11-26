@@ -1,0 +1,210 @@
+{
+ "provenance/amazon-bedrock-nova-reel.mp4": {
+  "detected": {
+   "c2pa_manifest": "C2PA manifest store (4855 bytes)",
+   "claim_generator": "Amazon_Bedrock",
+   "issuer": "Amazon",
+   "source_type": "trainedAlgorithmicMedia (AI-generated)",
+   "actions": "created",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid"
+  },
+  "remaining": {},
+  "output_sha256": "08019b8f3f5aa3daaadb6bbe5e5a620aa01f35139e2809f5cd11593beee8e407"
+ },
+ "provenance/dreamina-seedance-2-mini.mp4": {
+  "detected": {
+   "c2pa_manifest": "C2PA manifest store (10181 bytes)",
+   "claim_generator": "c2patool",
+   "ai_tool": "Dreamina",
+   "issuer": "ByteDance",
+   "actions": "opened, transcoded, created",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid",
+   "app_provenance": "App export provenance (ByteDance Dreamina)",
+   "app_aigc": "App AIGC disclosure (ByteDance Dreamina)"
+  },
+  "remaining": {},
+  "output_sha256": "8f3302b88dd995e574a24fd0324813c8ce7d3a2f8bad6e5c86c93992a8fcfb72"
+ },
+ "provenance/google-gemini-omni-app.mp4": {
+  "detected": {
+   "c2pa_manifest": "C2PA manifest store (5059 bytes)",
+   "claim_generator": "Google C2PA Core Generator Library",
+   "issuer": "Google LLC",
+   "source_type": "trainedAlgorithmicMedia (AI-generated)",
+   "actions": "created, edited",
+   "synthid_watermark": "present according to Google LLC provenance",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid"
+  },
+  "remaining": {},
+  "output_sha256": "831be8e1da19e1991d2c24e9e80494361aa66c8333c077a7c4e6ccf0e2075a24"
+ },
+ "provenance/google-gemini-omni-flash-api.mp4": {
+  "detected": {
+   "c2pa_manifest": "C2PA manifest store (4824 bytes)",
+   "claim_generator": "Google C2PA Core Generator Library",
+   "issuer": "Google LLC",
+   "source_type": "trainedAlgorithmicMedia (AI-generated)",
+   "actions": "created, edited",
+   "synthid_watermark": "present according to Google LLC provenance",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid"
+  },
+  "remaining": {},
+  "output_sha256": "0e7f1f89878edae397959bf50e1a1c4ad5c2c5a1102f52b508bf99c53932ac59"
+ },
+ "provenance/higgsfield-cinema-studio-v2.mp4": {
+  "detected": {
+   "aigc_label": "China AIGC label (TC260); producer kling",
+   "aigc_producer": "kling",
+   "kling_sei": "Kling AI encoder tag (H.264 SEI kling-ai)"
+  },
+  "remaining": {},
+  "output_sha256": "b114627d66aa6d3bbdc2de56152e7b226f44e9c817d8fcaa0be82610182b8b85"
+ },
+ "provenance/higgsfield-genjutsu-motion-control.mp4": {
+  "detected": {},
+  "remaining": {},
+  "output_sha256": "a3c2e8c506327ff0bdee078372be8d89fb913672f61efc66a4791771026ec0fc"
+ },
+ "provenance/higgsfield-hailuo-2-3.mp4": {
+  "detected": {
+   "aigc_label": "China AIGC label (TC260); producer MiniMax",
+   "aigc_producer": "MiniMax",
+   "aigc_signature": "TC260 label signature verified (pinned MiniMax key)"
+  },
+  "remaining": {},
+  "output_sha256": "891738729be661ca4a39d9303599ef6388fa15184221553dce5ab5473b81718d"
+ },
+ "provenance/higgsfield-happyhorse.mp4": {
+  "detected": {
+   "aigc_label": "China AIGC label (TC260); producer 001191330106MA2CFLDG4R10001",
+   "aigc_producer": "001191330106MA2CFLDG4R10001"
+  },
+  "remaining": {},
+  "output_sha256": "4854714e28afc97a07b891a858fdc30a09eaea2666144ec6a0eec1cff714a67d"
+ },
+ "provenance/higgsfield-kling-3-0-turbo.mp4": {
+  "detected": {
+   "aigc_label": "China AIGC label (TC260); producer kling",
+   "aigc_producer": "kling",
+   "kling_sei": "Kling AI encoder tag (H.264 SEI kling-ai)"
+  },
+  "remaining": {},
+  "output_sha256": "9115f0cbad282404b76cfa4f235c7ecd94005fb330969a563143258ff8fae640"
+ },
+ "provenance/higgsfield-minimax-h3.mp4": {
+  "detected": {
+   "aigc_label": "China AIGC label (TC260); producer MiniMax",
+   "aigc_producer": "MiniMax",
+   "aigc_signature": "TC260 label signature verified (pinned MiniMax key)"
+  },
+  "remaining": {},
+  "output_sha256": "c24b34d56188d9d9f9c4e3486a651cc71f846e94a61e4b276b85b3fb7cbb17ad"
+ },
+ "provenance/higgsfield-veo-3-1-lite.mp4": {
+  "detected": {
+   "c2pa_manifest": "C2PA manifest store (4827 bytes)",
+   "claim_generator": "Google C2PA Core Generator Library",
+   "issuer": "Google LLC",
+   "source_type": "trainedAlgorithmicMedia (AI-generated)",
+   "actions": "created, edited",
+   "synthid_watermark": "present according to Google LLC provenance",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid"
+  },
+  "remaining": {},
+  "output_sha256": "a205d2bfd045404d9f81ff6655950a00c8c184523ae1c30a2b888601fc38043b"
+ },
+ "provenance/runway-gen45-video.mp4": {
+  "detected": {
+   "c2pa_manifest": "C2PA manifest store (4991 bytes)",
+   "claim_generator": "c2pa-rs",
+   "issuer": "Runway",
+   "source_type": "trainedAlgorithmicMedia (AI-generated)",
+   "actions": "created",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid"
+  },
+  "remaining": {},
+  "output_sha256": "8ddb1571d474f1fe81e5c2aef0f6ef374fc09f4eeb57ab760e5679fb47616473"
+ },
+ "provenance/xai-grok-imagine-video.mp4": {
+  "detected": {
+   "c2pa_manifest": "C2PA manifest store (5005 bytes)",
+   "claim_generator": "Grok Imagine",
+   "issuer": "xAI Grok Imagine",
+   "source_type": "trainedAlgorithmicMedia (AI-generated)",
+   "actions": "created",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid",
+   "xai_signature": "xAI/Grok signature (UUID + Signature blob)"
+  },
+  "remaining": {},
+  "output_sha256": "0a652c8a024e186bf0ad0f8d42613cc56cff3317ed07ec08e7705f352ef67947"
+ },
+ "provenance/youtube-reencode-gemini-omni-flash.mp4": {
+  "detected": {
+   "c2pa_manifest": "C2PA manifest store (11100 bytes)",
+   "claim_generator": "Google C2PA Core Generator Library",
+   "issuer": "Google LLC",
+   "source_type": "trainedAlgorithmicMedia (AI-generated)",
+   "actions": "opened, transcoded, created, edited",
+   "synthid_watermark": "present according to Google LLC provenance",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid"
+  },
+  "remaining": {},
+  "output_sha256": "23c2ba1731ea6735975bf91760676c3df540b2eec5f8f1cfdcff05854c5f5cce"
+ },
+ "provenance/youtube-reencode-grok.mp4": {
+  "detected": {
+   "c2pa_manifest": "C2PA manifest store (11385 bytes)",
+   "claim_generator": "Google C2PA Core Generator Library",
+   "issuer": "Google LLC",
+   "actions": "opened, transcoded",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid"
+  },
+  "remaining": {},
+  "output_sha256": "179e0de820252cb4af903f5b0a23fcfbcd2074d128c89aa849ac0ec490fce6aa"
+ }
+}

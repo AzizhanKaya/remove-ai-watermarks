@@ -49,13 +49,21 @@ impl Spectrum {
     pub fn transform(&mut self, inverse: bool) {
         let mut planner = FftPlanner::<f64>::new();
         let (row, col): (std::sync::Arc<dyn Fft<f64>>, std::sync::Arc<dyn Fft<f64>>) = if inverse {
-            (planner.plan_fft_inverse(self.cols), planner.plan_fft_inverse(self.rows))
+            (
+                planner.plan_fft_inverse(self.cols),
+                planner.plan_fft_inverse(self.rows),
+            )
         } else {
-            (planner.plan_fft_forward(self.cols), planner.plan_fft_forward(self.rows))
+            (
+                planner.plan_fft_forward(self.cols),
+                planner.plan_fft_forward(self.rows),
+            )
         };
         self.data.par_chunks_mut(self.cols).for_each(|r| row.process(r));
         let (rows, cols) = (self.rows, self.cols);
-        let mut columns: Vec<Vec<Complex64>> = (0..cols).map(|x| (0..rows).map(|y| self.data[y * cols + x]).collect()).collect();
+        let mut columns: Vec<Vec<Complex64>> = (0..cols)
+            .map(|x| (0..rows).map(|y| self.data[y * cols + x]).collect())
+            .collect();
         columns.par_iter_mut().for_each(|c| col.process(c));
         for (x, c) in columns.iter().enumerate() {
             for (y, v) in c.iter().enumerate() {
@@ -66,17 +74,26 @@ impl Spectrum {
 }
 
 /// `cv::phaseCorrelate(a, b)`: the sub-pixel shift of `b` relative to `a` and the peak response.
-pub fn phase_correlate<'a, 'b, T: Element>(a: impl Into<MatView<'a, T>>, b: impl Into<MatView<'b, T>>) -> Result<(Point2d, f64)> {
+pub fn phase_correlate<'a, 'b, T: Element>(
+    a: impl Into<MatView<'a, T>>,
+    b: impl Into<MatView<'b, T>>,
+) -> Result<(Point2d, f64)> {
     let (a, b) = (a.into(), b.into());
     if a.size() != b.size() || a.channels() != 1 || b.channels() != 1 || a.is_empty() {
-        return Err(CvError::ShapeMismatch { op: "phase_correlate" });
+        return Err(CvError::ShapeMismatch {
+            op: "phase_correlate",
+        });
     }
     let (m, n) = (optimal_dft_size(a.height()), optimal_dft_size(a.width()));
     let mut fa = Spectrum::from_real(&a, m, n);
     let mut fb = Spectrum::from_real(&b, m, n);
     fa.transform(false);
     fb.transform(false);
-    let eps = if T::DEPTH == Depth::F32 { f64::from(f32::EPSILON) } else { f64::EPSILON };
+    let eps = if T::DEPTH == Depth::F32 {
+        f64::from(f32::EPSILON)
+    } else {
+        f64::EPSILON
+    };
     fa.data.par_iter_mut().zip(fb.data.par_iter()).for_each(|(p, q)| {
         let prod = *p * q.conj();
         let mag = prod.norm();

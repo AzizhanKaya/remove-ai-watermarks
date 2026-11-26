@@ -86,7 +86,7 @@ fn runtime(case: &Value, source: &Path) -> AudioRuntime {
                 .collect()
         })
         .unwrap_or_default();
-    AudioRuntime::discover()
+    AudioRuntime::bare()
         .with_decoders(fakes::decoders(&case["fakes"]))
         .with_codecs(fakes::codecs(&case["fakes"]))
         .with_metadata(Arc::new(fakes::FakeMetadata {
@@ -132,8 +132,6 @@ fn error_type(err: &AudioError) -> &'static str {
     }
 }
 
-const APPROXIMATE: &[&str] = &["remove_dac_long_windows"];
-
 fn run_scenario(case: &Value) {
     let name = case["name"].as_str().unwrap();
     let dir = tempfile::tempdir().unwrap();
@@ -175,19 +173,8 @@ fn run_scenario(case: &Value) {
         remove_audio_invisible(&runtime, &source, &output, &request(kwargs)).map(|r| scrubbed(&r, &root))
     };
     match (&outcome, case.get("result"), case.get("error")) {
-        (Ok(actual), Some(expected), _) => {
-            let mut expected = normalized(expected);
-            let mut actual = actual.clone();
-            // Surround and windowed codec paths agree within float32 rounding, not bit for bit.
-            if APPROXIMATE.contains(&name) {
-                for value in [&mut actual, &mut expected] {
-                    if let Some(after) = value.get_mut("after").and_then(Value::as_object_mut) {
-                        after.insert("sha256".into(), Value::Null);
-                    }
-                }
-            }
-            assert_same(&actual, &expected, 1e-6, name);
-        }
+        // Delivered files are bit-identical, so `after.sha256` must match too.
+        (Ok(actual), Some(expected), _) => assert_same(actual, &normalized(expected), 1e-6, name),
         (Err(err), _, Some(expected)) => {
             let message = err.to_string().replace(&root.display().to_string(), "<ROOT0>");
             assert_eq!(

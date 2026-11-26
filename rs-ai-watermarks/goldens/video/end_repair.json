@@ -1,0 +1,115 @@
+[
+ {
+  "source": {
+   "streams": [
+    {
+     "time_base": "1/12800",
+     "duration_ts": 25600,
+     "start_pts": 0
+    }
+   ]
+  },
+  "encoded": {
+   "streams": [
+    {
+     "time_base": "1/12800"
+    }
+   ],
+   "packets": [
+    {
+     "pts": 0,
+     "dts": -1024
+    },
+    {
+     "pts": 2048,
+     "dts": -512
+    },
+    {
+     "pts": 1024,
+     "dts": 0
+    },
+    {
+     "pts": 24576,
+     "dts": 24064
+    }
+   ]
+  },
+  "result": {
+   "last_packet_index": 3,
+   "last_packet_duration": 1024,
+   "final_frame_pts": 24576,
+   "final_frame_duration": 1024,
+   "movie_timescale": 12800,
+   "bitstream_filter": "setts=pts=PTS:dts=DTS:duration='if(eq(N,3),1024,if(eq(PTS,24576),1024,DURATION))'"
+  }
+ },
+ {
+  "source": {
+   "streams": [
+    {
+     "time_base": "1/12800",
+     "duration_ts": 25600,
+     "start_pts": 0
+    }
+   ]
+  },
+  "encoded": {
+   "streams": [
+    {
+     "time_base": "1/12800"
+    }
+   ],
+   "packets": [
+    {
+     "pts": 0,
+     "dts": 0
+    },
+    {
+     "pts": 512,
+     "dts": 512
+    },
+    {
+     "pts": 25088,
+     "dts": 25088
+    }
+   ]
+  },
+  "result": {
+   "last_packet_index": 2,
+   "last_packet_duration": 512,
+   "final_frame_pts": 25088,
+   "final_frame_duration": 512,
+   "movie_timescale": 12800,
+   "bitstream_filter": "setts=pts=PTS:dts=DTS:duration='if(eq(N,2),512,if(eq(PTS,25088),512,DURATION))'"
+  }
+ },
+ {
+  "source": {
+   "streams": [
+    {
+     "time_base": "1/12800",
+     "duration_ts": 25600,
+     "start_pts": 0
+    }
+   ]
+  },
+  "encoded": {
+   "streams": [
+    {
+     "time_base": "1/12800"
+    }
+   ],
+   "packets": [
+    {
+     "pts": 0,
+     "dts": 0
+    },
+    {
+     "pts": 30000,
+     "dts": 30000
+    }
+   ]
+  },
+  "result": "error: Encoded packet clocks do not fit the source video window"
+ }
+]

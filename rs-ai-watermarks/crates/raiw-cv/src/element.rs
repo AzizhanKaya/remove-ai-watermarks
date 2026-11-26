@@ -17,13 +17,29 @@ pub enum Depth {
 /// `cvRound(double)`: round half to even, `i32::MIN` outside the `i32` range (SSE2 `cvtsd2si`).
 #[inline]
 pub fn cv_round(v: f64) -> i32 {
-    if v >= -2_147_483_648.0 && v < 2_147_483_648.0 { v.round_ties_even() as i32 } else { i32::MIN }
+    // Adding and removing 1.5 * 2^52 rounds half to even without a libm call.
+    const MAGIC: f64 = 6_755_399_441_055_744.0;
+    if v.abs() < 1_073_741_824.0 {
+        ((v + MAGIC) - MAGIC) as i32
+    } else if (-2_147_483_648.0..2_147_483_648.0).contains(&v) {
+        v.round_ties_even() as i32
+    } else {
+        i32::MIN
+    }
 }
 
 /// `cvRound(float)`.
 #[inline]
 pub fn cv_round_f32(v: f32) -> i32 {
-    if v >= -2_147_483_648.0 && v < 2_147_483_648.0 { v.round_ties_even() as i32 } else { i32::MIN }
+    // 1.5 * 2^23 pins the integer bit position for |v| < 2^22.
+    const MAGIC: f32 = 12_582_912.0;
+    if v.abs() < 4_194_304.0 {
+        ((v + MAGIC) - MAGIC) as i32
+    } else if (-2_147_483_648.0..2_147_483_648.0).contains(&v) {
+        v.round_ties_even() as i32
+    } else {
+        i32::MIN
+    }
 }
 
 /// `cvFloor(double)`.
@@ -72,6 +88,12 @@ pub trait Element: bytemuck::Pod + Default + Debug + PartialOrd + Send + Sync + 
     fn from_f64(v: f64) -> Self;
     /// `saturate_cast<T>(int)`.
     fn from_i32(v: i32) -> Self;
+    /// `cv::subtract` of one element: saturating for integers.
+    #[inline]
+    #[must_use]
+    fn sub_sat(self, rhs: Self) -> Self {
+        Self::from_f64(self.to_f64() - rhs.to_f64())
+    }
 }
 
 macro_rules! int_element {
@@ -101,6 +123,10 @@ macro_rules! int_element {
             #[inline]
             fn from_i32(v: i32) -> Self {
                 v.clamp(<$t>::MIN as i32, <$t>::MAX as i32) as $t
+            }
+            #[inline]
+            fn sub_sat(self, rhs: Self) -> Self {
+                self.saturating_sub(rhs)
             }
         }
     };
@@ -146,6 +172,11 @@ impl Element for f32 {
     const ZERO: Self = 0.0;
 
     #[inline]
+    fn sub_sat(self, rhs: Self) -> Self {
+        self - rhs
+    }
+
+    #[inline]
     fn to_f32(self) -> f32 {
         self
     }
@@ -172,6 +203,11 @@ impl Element for f64 {
     const LOWEST: Self = -f64::MAX;
     const HIGHEST: Self = f64::MAX;
     const ZERO: Self = 0.0;
+
+    #[inline]
+    fn sub_sat(self, rhs: Self) -> Self {
+        self - rhs
+    }
 
     #[inline]
     fn to_f32(self) -> f32 {

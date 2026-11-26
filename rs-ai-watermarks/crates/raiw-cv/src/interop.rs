@@ -15,7 +15,8 @@ macro_rules! image_interop {
             /// Takes the buffer without copying; channel order stays as stored (RGB for color).
             fn from(img: ImageBuffer<$pixel<$sub>, Vec<$sub>>) -> Self {
                 let (w, h) = img.dimensions();
-                Mat::from_vec(w as usize, h as usize, $cn, img.into_raw()).unwrap_or_else(|_| Mat::zeros(0, 0, $cn))
+                Mat::from_vec(w as usize, h as usize, $cn, img.into_raw())
+                    .unwrap_or_else(|_| Mat::zeros(0, 0, $cn))
             }
         }
 
@@ -25,10 +26,14 @@ macro_rules! image_interop {
             /// Hands the buffer to `image` without copying.
             fn try_from(mat: Mat<$sub>) -> Result<Self> {
                 if mat.channels() != $cn {
-                    return Err(CvError::Channels { op: "into image buffer", channels: mat.channels() });
+                    return Err(CvError::Channels {
+                        op: "into image buffer",
+                        channels: mat.channels(),
+                    });
                 }
                 let (w, h) = (mat.width() as u32, mat.height() as u32);
-                ImageBuffer::from_raw(w, h, mat.into_vec()).ok_or_else(|| invalid("into image buffer", "size mismatch"))
+                ImageBuffer::from_raw(w, h, mat.into_vec())
+                    .ok_or_else(|| invalid("into image buffer", "size mismatch"))
             }
         }
     };
@@ -56,6 +61,7 @@ impl<T: Element> Mat<T> {
     }
 
     /// The same image with the first and third channel swapped.
+    #[must_use]
     pub fn swapped_rb(mut self) -> Self {
         self.swap_rb();
         self
@@ -88,7 +94,10 @@ pub fn imdecode(bytes: &[u8], mode: ReadMode) -> Result<Decoded> {
         ReadMode::Color => Decoded::U8(Mat::from(img.to_rgb8()).swapped_rb()),
         ReadMode::Grayscale => {
             let bgr = Mat::from(img.to_rgb8()).swapped_rb();
-            Decoded::U8(crate::color::cvt_color(&bgr, crate::color::ColorConversion::BgrToGray)?)
+            Decoded::U8(crate::color::cvt_color(
+                &bgr,
+                crate::color::ColorConversion::BgrToGray,
+            )?)
         }
         ReadMode::Unchanged => match img {
             DynamicImage::ImageLuma8(g) => Decoded::U8(Mat::from(g)),
@@ -118,14 +127,23 @@ pub fn imencode(mat: &Mat<u8>, encoding: Encoding) -> Result<Vec<u8>> {
         1 => DynamicImage::ImageLuma8(ImageBuffer::try_from(rgb)?),
         3 => DynamicImage::ImageRgb8(ImageBuffer::try_from(rgb)?),
         4 => DynamicImage::ImageRgba8(ImageBuffer::try_from(rgb)?),
-        n => return Err(CvError::Channels { op: "imencode", channels: n }),
+        n => {
+            return Err(CvError::Channels {
+                op: "imencode",
+                channels: n,
+            });
+        }
     };
     let mut out = Cursor::new(Vec::new());
     match encoding {
         Encoding::Png => dynamic.write_to(&mut out, ImageFormat::Png)?,
         Encoding::WebpLossless => dynamic.write_to(&mut out, ImageFormat::WebP)?,
         Encoding::Jpeg(quality) => {
-            let rgb8 = if dynamic.color().has_alpha() { DynamicImage::ImageRgb8(dynamic.to_rgb8()) } else { dynamic };
+            let rgb8 = if dynamic.color().has_alpha() {
+                DynamicImage::ImageRgb8(dynamic.to_rgb8())
+            } else {
+                dynamic
+            };
             let encoder = image::codecs::jpeg::JpegEncoder::new_with_quality(&mut out, quality.clamp(1, 100));
             rgb8.write_with_encoder(encoder)?;
         }

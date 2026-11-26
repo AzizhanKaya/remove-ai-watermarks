@@ -8,8 +8,6 @@
 use std::path::Path;
 
 use burn::tensor::activation::sigmoid;
-use burn::tensor::module::conv2d;
-use burn::tensor::ops::ConvOptions;
 use burn::tensor::{Device, Tensor, TensorData};
 
 use crate::device::ComputeDevice;
@@ -17,6 +15,7 @@ use crate::dsp::Stft;
 use crate::error::{GpuError, Result};
 use crate::hub::{Fetch, Hub, HubFile};
 use crate::io::read_finite;
+use crate::layers::{Conv2d, Conv2dSpec};
 use crate::weights::StateDict;
 
 pub const MODEL_REPOSITORY: &str = "sony/silentcipher";
@@ -89,10 +88,8 @@ impl Reading {
 
 #[derive(Debug, Clone)]
 struct GatedLayer {
-    conv_w: Tensor<4>,
-    conv_b: Tensor<1>,
-    gate_w: Tensor<4>,
-    gate_b: Tensor<1>,
+    conv: Conv2d,
+    gate: Conv2d,
     bn_w: Tensor<4>,
     bn_b: Tensor<4>,
 }
@@ -110,26 +107,17 @@ impl GatedLayer {
         for buffer in ["running_mean", "running_var", "num_batches_tracked"] {
             state.take_any(&format!("{prefix}.bn.{buffer}"))?;
         }
+        let spec = Conv2dSpec::new(input, output, 3).padding(1);
         Ok(Self {
-            conv_w: state.tensor(&format!("{prefix}.conv.weight"), [output, input, 3, 3], device)?,
-            conv_b: state.tensor(&format!("{prefix}.conv.bias"), [output], device)?,
-            gate_w: state.tensor(&format!("{prefix}.gate.weight"), [output, input, 3, 3], device)?,
-            gate_b: state.tensor(&format!("{prefix}.gate.bias"), [output], device)?,
+            conv: Conv2d::load(state, &format!("{prefix}.conv"), spec, device)?,
+            gate: Conv2d::load(state, &format!("{prefix}.gate"), spec, device)?,
             bn_w: bn_w.reshape([1, output, 1, 1]),
             bn_b: bn_b.reshape([1, output, 1, 1]),
         })
     }
 
     fn forward(&self, x: Tensor<4>) -> Tensor<4> {
-        let options = || ConvOptions::new([1, 1], [1, 1], [1, 1], 1);
-        let conv = conv2d(
-            x.clone(),
-            self.conv_w.clone(),
-            Some(self.conv_b.clone()),
-            options(),
-        );
-        let gate = conv2d(x, self.gate_w.clone(), Some(self.gate_b.clone()), options());
-        let h = conv * sigmoid(gate);
+        let h = self.conv.forward(x.clone()) * sigmoid(self.gate.forward(x));
         let mean = h.clone().mean_dim(3).mean_dim(2);
         let centered = h - mean;
         let var = centered.clone().powf_scalar(2.0).mean_dim(3).mean_dim(2);
@@ -140,8 +128,9 @@ impl GatedLayer {
 #[derive(Debug, Clone)]
 pub struct SilentCipherDecoder {
     layers: Vec<GatedLayer>,
-    linear_w: Tensor<2>,
-    linear_b: Tensor<1>,
+    /// The cheap 1024-band head runs on the host, next to the score decoding.
+    linear_w: Vec<f32>,
+    linear_b: f32,
     stft: Stft,
     device: ComputeDevice,
 }
@@ -173,12 +162,12 @@ impl SilentCipherDecoder {
                 )
             })
             .collect::<Result<Vec<_>>>()?;
-        let linear_w: Tensor<2> = state.tensor("linear.weight", [1, MESSAGE_BAND], burn)?;
-        let linear_b = state.tensor("linear.bias", [1], burn)?;
+        let linear_w = state.take("linear.weight", &[1, MESSAGE_BAND])?.data;
+        let linear_b = state.take("linear.bias", &[1])?.data[0];
         state.finish()?;
         Ok(Self {
             layers,
-            linear_w: linear_w.transpose(),
+            linear_w,
             linear_b,
             stft: Stft::new(N_FFT, HOP_LENGTH),
             device: device.clone(),
@@ -231,12 +220,26 @@ impl SilentCipherDecoder {
         let (magnitudes, frames) = self.magnitude(normalized)?;
         let burn = self.device.burn();
         let x: Tensor<4> = Tensor::from_data(TensorData::new(magnitudes, [1, 1, MESSAGE_BAND, frames]), burn);
-        let hidden = self.layers.iter().fold(x, |x, layer| layer.forward(x));
-        let projected = hidden
-            .swap_dims(2, 3)
-            .matmul(self.linear_w.clone().unsqueeze_dims::<4>(&[0, 1]))
-            + self.linear_b.clone().unsqueeze_dims::<4>(&[0, 1, 2]);
-        let values = read_finite(projected.reshape([MESSAGE_DIM, frames]))?;
+        // Flush per layer: fusing the whole 10-layer graph corrupts tail tiles on RADV/wgpu
+        let mut hidden = x;
+        for layer in &self.layers {
+            hidden = layer.forward(hidden);
+            burn.flush().map_err(|err| GpuError::Readback(err.to_string()))?;
+        }
+        let hidden = read_finite(hidden)?;
+        let mut values = vec![0.0f32; MESSAGE_DIM * frames];
+        for (symbol, plane) in hidden.chunks_exact(MESSAGE_BAND * frames).enumerate() {
+            let out = &mut values[symbol * frames..(symbol + 1) * frames];
+            for (band, row) in plane.chunks_exact(frames).enumerate() {
+                let weight = self.linear_w[band];
+                for (acc, &h) in out.iter_mut().zip(row) {
+                    *acc += weight * h;
+                }
+            }
+            for acc in out.iter_mut() {
+                *acc += self.linear_b;
+            }
+        }
         Ok(Scores { frames, values })
     }
 
@@ -321,6 +324,43 @@ pub fn decode_sequence(scores: &Scores) -> Result<(Option<[u8; 5]>, f64)> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    #[ignore = "GPU layer bisection; needs the cached checkpoint"]
+    fn layers_match_cpu_on_gpu() {
+        let Ok(gpu) = ComputeDevice::select(crate::DeviceRequest::Cuda) else {
+            return;
+        };
+        let Ok(path) = Hub::from_env().resolve(&DECODER_FILE, Fetch::CacheOnly) else {
+            return;
+        };
+        let cpu = ComputeDevice::cpu();
+        let (a, b) = (
+            SilentCipherDecoder::from_checkpoint(&path, &cpu).unwrap(),
+            SilentCipherDecoder::from_checkpoint(&path, &gpu).unwrap(),
+        );
+        let samples: Vec<f32> = (0..141_120)
+            .map(|i| ((i as f32) * 0.031).sin() * 0.1 + ((i * 7919 % 1000) as f32 / 1000.0 - 0.5) * 0.01)
+            .collect();
+        let (mags, frames) = a.magnitude(&normalize_power(&samples).unwrap()).unwrap();
+        let mut xa: Tensor<4> = Tensor::from_data(
+            TensorData::new(mags.clone(), [1, 1, MESSAGE_BAND, frames]),
+            cpu.burn(),
+        );
+        let mut xb: Tensor<4> =
+            Tensor::from_data(TensorData::new(mags, [1, 1, MESSAGE_BAND, frames]), gpu.burn());
+        for (i, (la, lb)) in a.layers.iter().zip(&b.layers).enumerate() {
+            xa = la.forward(xa);
+            xb = lb.forward(xb);
+            let (va, vb) = (read_finite(xa.clone()).unwrap(), read_finite(xb.clone()).unwrap());
+            let diff = va
+                .iter()
+                .zip(&vb)
+                .map(|(x, y)| (x - y).abs())
+                .fold(0.0f32, f32::max);
+            eprintln!("frames {frames} layer {i}: max diff {diff:.2e}");
+        }
+    }
 
     fn scores_from_symbols(symbols: &[u8], cycles: usize) -> Scores {
         let frames = symbols.len() * cycles;

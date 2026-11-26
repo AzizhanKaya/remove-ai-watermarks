@@ -178,6 +178,7 @@ impl MiganFill {
             return Err(VisibleError::Inference { backend: "MI-GAN", reason: format!("{} outputs", out.len()) });
         }
         let plane = ow * oh;
+        let out = &out;
         let hwc: Vec<u8> = (0..plane).flat_map(|i| (0..3).map(move |c| out[c * plane + i])).collect();
         let mut res = Mat::from_vec(ow, oh, 3, hwc)?;
         if (ow, oh) != (cw, ch) {

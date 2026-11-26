@@ -7,8 +7,6 @@
 use std::path::Path;
 
 use burn::tensor::activation::{leaky_relu, sigmoid};
-use burn::tensor::module::conv2d;
-use burn::tensor::ops::ConvOptions;
 use burn::tensor::{Device, Tensor, TensorData};
 use realfft::num_complex::Complex;
 
@@ -17,6 +15,7 @@ use crate::dsp::{Spectrogram, Stft};
 use crate::error::{GpuError, Result};
 use crate::hub::{Fetch, Hub, HubFile};
 use crate::io::read_finite;
+use crate::layers::{Conv2d, Conv2dSpec};
 use crate::weights::StateDict;
 
 pub const MODEL_REPOSITORY: &str = "M4869/WavMark";
@@ -55,35 +54,23 @@ impl WavMarkReading {
 /// `ResidualDenseBlock_out`: five 3x3 convs with dense concatenation and LeakyReLU.
 #[derive(Debug, Clone)]
 struct DenseBlock {
-    convs: Vec<(Tensor<4>, Tensor<1>)>,
+    convs: Vec<Conv2d>,
 }
 
 impl DenseBlock {
     fn load(state: &mut StateDict, prefix: &str, device: &Device) -> Result<Self> {
         let convs = (0..5)
             .map(|i| {
-                let input = 2 + i * DENSE;
                 let output = if i == 4 { 2 } else { DENSE };
-                let name = format!("{prefix}.conv{}", i + 1);
-                Ok((
-                    state.tensor(&format!("{name}.weight"), [output, input, 3, 3], device)?,
-                    state.tensor(&format!("{name}.bias"), [output], device)?,
-                ))
+                let spec = Conv2dSpec::new(2 + i * DENSE, output, 3).padding(1);
+                Conv2d::load(state, &format!("{prefix}.conv{}", i + 1), spec, device)
             })
             .collect::<Result<Vec<_>>>()?;
         Ok(Self { convs })
     }
 
     fn forward(&self, x: Tensor<4>) -> Tensor<4> {
-        let conv = |features: &[Tensor<4>], (weight, bias): &(Tensor<4>, Tensor<1>)| {
-            let options = ConvOptions::new([1, 1], [1, 1], [1, 1], 1);
-            conv2d(
-                Tensor::cat(features.to_vec(), 1),
-                weight.clone(),
-                Some(bias.clone()),
-                options,
-            )
-        };
+        let conv = |features: &[Tensor<4>], layer: &Conv2d| layer.forward(Tensor::cat(features.to_vec(), 1));
         let mut features = vec![x];
         let Some((last, hidden)) = self.convs.split_last() else {
             return features.remove(0);

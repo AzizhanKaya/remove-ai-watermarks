@@ -274,7 +274,7 @@ impl DacCodec {
             )));
         }
         let latent = self.encode_latent(mono_tensor(samples, self.device.burn()));
-        Ok(residual_quantize(&self.quantizers[..n_quantizers], latent))
+        Ok(residual_quantize(&self.quantizers[..n_quantizers], &latent))
     }
 
     fn encode_latent(&self, x: Tensor<3>) -> Tensor<3> {

@@ -48,11 +48,22 @@ pub(crate) trait SepOps: Sync {
     fn col(&self, rows: &[&[Self::B]], out: &mut [Self::D]);
 }
 
-/// Border-extend a source row into `ext` (`ext.len() == xs.len() * cn`).
-pub(crate) fn extend_row<T: Element>(src: &[T], xs: &[Option<usize>], fill: &[T], ext: &mut [T]) {
+/// Border-extend a source row into `ext` (`ext.len() == xs.len() * cn`); `before` pixels of
+/// border precede the row, which is copied in one block.
+pub(crate) fn extend_row<T: Element>(
+    src: &[T],
+    xs: &[Option<usize>],
+    fill: &[T],
+    ext: &mut [T],
+    before: usize,
+) {
     let cn = fill.len();
-    for (e, sx) in ext.chunks_exact_mut(cn).zip(xs) {
-        match sx {
+    let row = src.len();
+    ext[before * cn..before * cn + row].copy_from_slice(src);
+    let width = row / cn;
+    for i in (0..before).chain(before + width..xs.len()) {
+        let e = &mut ext[i * cn..(i + 1) * cn];
+        match xs[i] {
             Some(sx) => e.copy_from_slice(&src[sx * cn..(sx + 1) * cn]),
             None => e.copy_from_slice(fill),
         }
@@ -70,30 +81,62 @@ pub(crate) fn run_separable<O: SepOps>(src: &MatView<'_, O::S>, ops: &O, border:
     let (ax, ay) = (kx / 2, ky / 2);
     let xs = border_table(w, ax, kx - 1 - ax, border);
     let ys = border_table(h, ay, ky - 1 - ay, border);
-    let fill: Vec<O::S> = (0..cn).map(|c| O::S::from_f64(border.constant_value(c))).collect();
+    let fill: Vec<O::S> = (0..cn)
+        .map(|c| O::S::from_f64(border.constant_value(c)))
+        .collect();
     let row_len = w * cn;
     let mut dst = Mat::<O::D>::zeros(w, h, cn);
     let band = band_size(h, ky);
-    dst.data_mut().par_chunks_mut(row_len * band).enumerate().for_each(|(b, out)| {
-        let y0 = b * band;
-        let rows_out = out.len() / row_len;
-        let mut ext = vec![O::S::ZERO; xs.len() * cn];
-        let mut filtered = vec![O::B::default(); (rows_out + ky - 1) * row_len];
-        for (r, chunk) in filtered.chunks_exact_mut(row_len).enumerate() {
-            match ys[y0 + r] {
-                Some(sy) => extend_row(src.row(sy), &xs, &fill, &mut ext),
-                None => ext.chunks_exact_mut(cn).for_each(|e| e.copy_from_slice(&fill)),
+    dst.data_mut()
+        .par_chunks_mut(row_len * band)
+        .enumerate()
+        .for_each(|(b, out)| {
+            // A ring of `ky` row-filtered lines keeps the working set in cache.
+            let y0 = b * band;
+            let mut ext = vec![O::S::ZERO; xs.len() * cn];
+            let mut ring = vec![O::B::default(); ky * row_len];
+            let mut filter_line = |r: usize, ring: &mut [O::B]| {
+                match ys[y0 + r] {
+                    Some(sy) => extend_row(src.row(sy), &xs, &fill, &mut ext, ax),
+                    None => ext.chunks_exact_mut(cn).for_each(|e| e.copy_from_slice(&fill)),
+                }
+                let slot = &mut ring[(r % ky) * row_len..(r % ky + 1) * row_len];
+                crate::simd::dispatch(RowJob(ops, &ext, slot, cn));
+            };
+            for r in 0..ky - 1 {
+                filter_line(r, &mut ring);
             }
-            ops.row(&ext, chunk, cn);
-        }
-        let mut taps: Vec<&[O::B]> = Vec::with_capacity(ky);
-        for (i, drow) in out.chunks_exact_mut(row_len).enumerate() {
-            taps.clear();
-            taps.extend((0..ky).map(|k| &filtered[(i + k) * row_len..(i + k + 1) * row_len]));
-            ops.col(&taps, drow);
-        }
-    });
+            for (i, drow) in out.chunks_exact_mut(row_len).enumerate() {
+                filter_line(i + ky - 1, &mut ring);
+                let taps: Vec<&[O::B]> = (0..ky)
+                    .map(|k| &ring[((i + k) % ky) * row_len..((i + k) % ky + 1) * row_len])
+                    .collect();
+                crate::simd::dispatch(ColJob(ops, &taps, drow));
+            }
+        });
     dst
+}
+
+struct RowJob<'a, O: SepOps>(&'a O, &'a [O::S], &'a mut [O::B], usize);
+
+impl<O: SepOps> crate::simd::Kernel for RowJob<'_, O> {
+    type Output = ();
+
+    #[inline(always)]
+    fn run(self) {
+        self.0.row(self.1, self.2, self.3);
+    }
+}
+
+struct ColJob<'a, O: SepOps>(&'a O, &'a [&'a [O::B]], &'a mut [O::D]);
+
+impl<O: SepOps> crate::simd::Kernel for ColJob<'_, O> {
+    type Output = ();
+
+    #[inline(always)]
+    fn run(self) {
+        self.0.col(self.1, self.2);
+    }
 }
 
 /// Float separable filter with OpenCV's symmetric-kernel summation order.
@@ -146,40 +189,51 @@ impl<S: Element, D: Element, W: Work> SepOps for FloatSep<S, D, W> {
         self.ky.len()
     }
 
+    #[inline(always)]
     fn row(&self, ext: &[S], out: &mut [W], cn: usize) {
         let k = &self.kx;
         let half = k.len() / 2;
-        let sym = if k.len() <= 5 { symmetry(k) } else { Symmetry::General };
+        let sym = if k.len() <= 5 {
+            symmetry(k)
+        } else {
+            Symmetry::General
+        };
         let x: Vec<W> = ext.iter().map(|&v| W::from_elem(v)).collect();
-        let at = |i: usize| x[i];
-        for (i, o) in out.iter_mut().enumerate() {
-            let c = i + half * cn;
-            *o = match sym {
-                Symmetry::Symmetric => {
-                    let mut s = k[half] * at(c);
-                    for j in 1..=half {
-                        s = s + k[half + j] * (at(c - j * cn) + at(c + j * cn));
-                    }
-                    s
+        let n = out.len();
+        let tap = |j: usize| &x[j * cn..j * cn + n];
+        match sym {
+            Symmetry::Symmetric => {
+                for (o, &v) in out.iter_mut().zip(tap(half)) {
+                    *o = k[half] * v;
                 }
-                Symmetry::Antisymmetric => {
-                    let mut s = W::default();
-                    for j in 1..=half {
-                        s = s + k[half + j] * (at(c + j * cn) - at(c - j * cn));
+                for j in 1..=half {
+                    let kj = k[half + j];
+                    for ((o, &lo), &hi) in out.iter_mut().zip(tap(half - j)).zip(tap(half + j)) {
+                        *o = *o + kj * (lo + hi);
                     }
-                    s
                 }
-                Symmetry::General => {
-                    let mut s = W::default();
-                    for (j, &kj) in k.iter().enumerate() {
-                        s = s + kj * at(i + j * cn);
+            }
+            Symmetry::Antisymmetric => {
+                out.fill(W::default());
+                for j in 1..=half {
+                    let kj = k[half + j];
+                    for ((o, &lo), &hi) in out.iter_mut().zip(tap(half - j)).zip(tap(half + j)) {
+                        *o = *o + kj * (hi - lo);
                     }
-                    s
                 }
-            };
+            }
+            Symmetry::General => {
+                out.fill(W::default());
+                for (j, &kj) in k.iter().enumerate() {
+                    for (o, &v) in out.iter_mut().zip(tap(j)) {
+                        *o = *o + kj * v;
+                    }
+                }
+            }
         }
     }
 
+    #[inline(always)]
     fn col(&self, rows: &[&[W]], out: &mut [D]) {
         // Row-wise accumulation keeps OpenCV's per-element summation order and vectorizes.
         let k = &self.ky;
@@ -232,13 +286,24 @@ pub(crate) struct FixedGauss<T> {
 impl<T: Element> FixedGauss<T> {
     pub fn new(ksize: (usize, usize), sigma: (f64, f64)) -> Self {
         let bits = if T::DEPTH == crate::Depth::U8 { 8 } else { 16 };
-        let taps = |n, s| super::kernels::gaussian_kernel_fixed(n, s, bits).into_iter().map(|v| v as u32).collect();
-        Self { kx: taps(ksize.0, sigma.0), ky: taps(ksize.1, sigma.1), _type: std::marker::PhantomData }
+        let taps = |n, s| {
+            super::kernels::gaussian_kernel_fixed(n, s, bits)
+                .into_iter()
+                .map(|v| v as u32)
+                .collect()
+        };
+        Self {
+            kx: taps(ksize.0, sigma.0),
+            ky: taps(ksize.1, sigma.1),
+            _type: std::marker::PhantomData,
+        }
     }
 }
 
+// `$racc`/`$ktype` are the narrowest exact row-accumulator and tap types: for 8-bit input every
+// partial row sum stays <= 255 * 256, so 16-bit lanes are exact (as in OpenCV's `ufixedpoint16`).
 macro_rules! fixed_gauss {
-    ($t:ty, $buf:ty, $acc:ty, $shift:expr) => {
+    ($t:ty, $buf:ty, $racc:ty, $ktype:ty, $acc:ty, $shift:expr) => {
         impl SepOps for FixedGauss<$t> {
             type S = $t;
             type B = $buf;
@@ -252,29 +317,47 @@ macro_rules! fixed_gauss {
                 self.ky.len()
             }
 
+            #[inline(always)]
             fn row(&self, ext: &[$t], out: &mut [$buf], cn: usize) {
-                let half = self.kx.len() / 2;
-                let kc = <$acc>::from(self.kx[half]);
-                for (i, o) in out.iter_mut().enumerate() {
-                    let c = i + half * cn;
-                    let mut s = kc * <$acc>::from(ext[c]);
-                    for j in 1..=half {
-                        s += <$acc>::from(self.kx[half + j])
-                            * (<$acc>::from(ext[c - j * cn]) + <$acc>::from(ext[c + j * cn]));
+                let (n, half) = (out.len(), self.kx.len() / 2);
+                let kc = self.kx[half] as $racc;
+                let mut acc: Vec<$racc> = ext[half * cn..half * cn + n]
+                    .iter()
+                    .map(|&v| kc * <$racc>::from(v))
+                    .collect();
+                for j in 1..=half {
+                    let k = self.kx[half + j] as $racc;
+                    let (lo, hi) = (
+                        &ext[(half - j) * cn..(half - j) * cn + n],
+                        &ext[(half + j) * cn..(half + j) * cn + n],
+                    );
+                    for ((s, &p), &q) in acc.iter_mut().zip(lo).zip(hi) {
+                        *s += k * (<$racc>::from(p) + <$racc>::from(q));
                     }
-                    *o = s.min(<$acc>::from(<$buf>::MAX)) as $buf;
+                }
+                for (o, s) in out.iter_mut().zip(acc) {
+                    *o = s.min(<$racc>::from(<$buf>::MAX)) as $buf;
                 }
             }
 
+            #[inline(always)]
             fn col(&self, rows: &[&[$buf]], out: &mut [$t]) {
                 const BLOCK: usize = 64;
                 let round: $acc = 1 << ($shift - 1);
+                let taps: Vec<$ktype> = self.ky.iter().map(|&k| k as $ktype).collect();
+                let half = rows.len() / 2;
                 for (start, chunk) in (0..out.len()).step_by(BLOCK).zip(out.chunks_mut(BLOCK)) {
+                    let span = start..start + chunk.len();
                     let mut acc: [$acc; BLOCK] = [0; BLOCK];
-                    for (&k, r) in self.ky.iter().zip(rows) {
-                        let k = <$acc>::from(k);
-                        for (a, &v) in acc.iter_mut().zip(&r[start..start + chunk.len()]) {
-                            *a += k * <$acc>::from(v);
+                    let kc = <$acc>::from(taps[half]);
+                    for (a, &v) in acc.iter_mut().zip(&rows[half][span.clone()]) {
+                        *a = kc * <$acc>::from(v);
+                    }
+                    for j in 1..=half {
+                        let k = <$acc>::from(taps[half + j]);
+                        let (lo, hi) = (&rows[half - j][span.clone()], &rows[half + j][span.clone()]);
+                        for ((a, &p), &q) in acc.iter_mut().zip(lo).zip(hi) {
+                            *a += k * (<$acc>::from(p) + <$acc>::from(q));
                         }
                     }
                     for (o, a) in chunk.iter_mut().zip(acc) {
@@ -286,8 +369,8 @@ macro_rules! fixed_gauss {
     };
 }
 
-fixed_gauss!(u8, u16, u32, 16);
-fixed_gauss!(u16, u32, u64, 32);
+fixed_gauss!(u8, u16, u16, u16, u32, 16);
+fixed_gauss!(u16, u32, u64, u32, u64, 32);
 
 /// `filter2D` by direct correlation over the nonzero taps, in row-major tap order.
 pub(crate) fn run_filter2d<S: Element, D: Element, W: Work>(
@@ -314,28 +397,31 @@ pub(crate) fn run_filter2d<S: Element, D: Element, W: Work>(
     let row_len = w * cn;
     let mut dst = Mat::<D>::zeros(w, h, cn);
     let band = band_size(h, kh);
-    dst.data_mut().par_chunks_mut(row_len * band).enumerate().for_each(|(b, out)| {
-        let y0 = b * band;
-        let rows_out = out.len() / row_len;
-        let ext: Vec<Vec<W>> = (y0..y0 + rows_out + kh - 1)
-            .map(|ey| {
-                let mut e = vec![S::ZERO; xs.len() * cn];
-                match ys[ey] {
-                    Some(sy) => extend_row(src.row(sy), &xs, &fill, &mut e),
-                    None => e.chunks_exact_mut(cn).for_each(|p| p.copy_from_slice(&fill)),
+    dst.data_mut()
+        .par_chunks_mut(row_len * band)
+        .enumerate()
+        .for_each(|(b, out)| {
+            let y0 = b * band;
+            let rows_out = out.len() / row_len;
+            let ext: Vec<Vec<W>> = (y0..y0 + rows_out + kh - 1)
+                .map(|ey| {
+                    let mut e = vec![S::ZERO; xs.len() * cn];
+                    match ys[ey] {
+                        Some(sy) => extend_row(src.row(sy), &xs, &fill, &mut e, anchor.0),
+                        None => e.chunks_exact_mut(cn).for_each(|p| p.copy_from_slice(&fill)),
+                    }
+                    e.into_iter().map(W::from_elem).collect()
+                })
+                .collect();
+            for (i, drow) in out.chunks_exact_mut(row_len).enumerate() {
+                for (x, o) in drow.iter_mut().enumerate() {
+                    let mut s = delta;
+                    for &(kx, ky, k) in &taps {
+                        s = s + k * ext[i + ky][x + kx * cn];
+                    }
+                    *o = s.to_elem();
                 }
-                e.into_iter().map(W::from_elem).collect()
-            })
-            .collect();
-        for (i, drow) in out.chunks_exact_mut(row_len).enumerate() {
-            for (x, o) in drow.iter_mut().enumerate() {
-                let mut s = delta;
-                for &(kx, ky, k) in &taps {
-                    s = s + k * ext[i + ky][x + kx * cn];
-                }
-                *o = s.to_elem();
             }
-        }
-    });
+        });
     dst
 }

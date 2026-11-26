@@ -37,7 +37,7 @@ impl fmt::Debug for Stft {
         f.debug_struct("Stft")
             .field("n_fft", &self.n_fft)
             .field("hop", &self.hop)
-            .finish()
+            .finish_non_exhaustive()
     }
 }
 
@@ -120,7 +120,7 @@ impl Stft {
         for frame in 0..spec.frames {
             bins.copy_from_slice(&spec.values[frame * spec.bins..(frame + 1) * spec.bins]);
             bins[0].im = 0.0;
-            if self.n_fft % 2 == 0 {
+            if self.n_fft.is_multiple_of(2) {
                 bins[last].im = 0.0;
             }
             self.inverse

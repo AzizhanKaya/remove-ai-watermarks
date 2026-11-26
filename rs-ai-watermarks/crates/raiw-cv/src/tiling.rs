@@ -20,7 +20,10 @@ pub struct Tile {
 /// `_axis_positions`: tile starts along one axis, the last one flush with the far edge.
 pub fn axis_positions(length: usize, tile: usize, overlap: isize) -> Result<Vec<usize>> {
     if tile == 0 {
-        return Err(invalid("axis_positions", format!("tile must be positive, got {tile}")));
+        return Err(invalid(
+            "axis_positions",
+            format!("tile must be positive, got {tile}"),
+        ));
     }
     if length <= tile {
         return Ok(vec![0]);
@@ -40,7 +43,17 @@ pub fn plan_tiles(width: usize, height: usize, tile_size: usize, overlap: isize)
     let xs = axis_positions(width, tile_size, overlap)?;
     let ys = axis_positions(height, tile_size, overlap)?;
     let (tw, th) = (tile_size.min(width), tile_size.min(height));
-    Ok(ys.iter().flat_map(|&y| xs.iter().map(move |&x| Tile { x, y, width: tw, height: th })).collect())
+    Ok(ys
+        .iter()
+        .flat_map(|&y| {
+            xs.iter().map(move |&x| Tile {
+                x,
+                y,
+                width: tw,
+                height: th,
+            })
+        })
+        .collect())
 }
 
 fn ramp(n: usize, overlap: isize) -> Vec<f32> {
@@ -83,7 +96,14 @@ pub fn run_tiled(
     let total = tiles.len();
     for (index, t) in tiles.iter().enumerate() {
         if let Some(report) = progress.as_deref_mut() {
-            report(&format!("Tiled diffusion: tile {}/{total} at ({},{}) {}x{}...", index + 1, t.x, t.y, t.width, t.height));
+            report(&format!(
+                "Tiled diffusion: tile {}/{total} at ({},{}) {}x{}...",
+                index + 1,
+                t.x,
+                t.y,
+                t.width,
+                t.height
+            ));
         }
         let crop = image.crop(crate::types::Rect::new(t.x, t.y, t.width, t.height))?;
         let mut result = generate_tile(&crop)?;

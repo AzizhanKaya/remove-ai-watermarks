@@ -1,0 +1,2816 @@
+{
+ "clip:cfr_audio": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 48,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "4f9e870e8fac461d7cf9134414bb0ec68676c9038ab117eecdf58c8594861e5b",
+  "duration": 2.0,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 48,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.5
+    ],
+    [
+     24,
+     1.0
+    ],
+    [
+     36,
+     1.5
+    ]
+   ]
+  },
+  "keyframe_count": 4,
+  "decoded_frames": 48
+ },
+ "clip:vfr": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": "tv",
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/1000",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 45,
+  "timestamps_head": [
+   0.0,
+   0.033,
+   0.067,
+   0.1
+  ],
+  "timestamps_sha256": "57f05b90c659955bc824a1ede18c8ed4ab2b2f40dddce9470a454874c97694e1",
+  "duration": "error: could not convert string to float: 'N/A'",
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 45,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 45
+ },
+ "clip:odd_size": {
+  "profile": {
+   "pixel_format": "yuv444p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12800",
+   "start_pts": 0,
+   "source_pixel_format": "yuv444p",
+   "component_depth": 8
+  },
+  "timestamps_count": 25,
+  "timestamps_head": [
+   0.0,
+   0.04,
+   0.08,
+   0.12
+  ],
+  "timestamps_sha256": "7a5826e5a0a1d3d5a0bc7c5b2f51d98f871997174fbd25fbec77293db59648b5",
+  "duration": 1.0,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High 4:4:4 Predictive",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 25,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 25
+ },
+ "clip:rotated": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 48,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "4f9e870e8fac461d7cf9134414bb0ec68676c9038ab117eecdf58c8594861e5b",
+  "duration": 2.0,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 48,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.5
+    ],
+    [
+     24,
+     1.0
+    ],
+    [
+     36,
+     1.5
+    ]
+   ]
+  },
+  "keyframe_count": 4,
+  "decoded_frames": 48
+ },
+ "clip:two_audio": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 48,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "4f9e870e8fac461d7cf9134414bb0ec68676c9038ab117eecdf58c8594861e5b",
+  "duration": 2.0,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 48,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.5
+    ],
+    [
+     24,
+     1.0
+    ],
+    [
+     36,
+     1.5
+    ]
+   ]
+  },
+  "keyframe_count": 4,
+  "decoded_frames": 48
+ },
+ "clip:offset_start": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 18432,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 48,
+  "timestamps_head": [
+   1.5,
+   1.541667,
+   1.583333,
+   1.625
+  ],
+  "timestamps_sha256": "e4946f420d29006ae307be3a82d249b95420bf2d2297f185cff9041bf1d0ddb1",
+  "duration": 2.0,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 18432,
+   "has_b_frames": 2,
+   "packet_count": 48,
+   "keyframes": [
+    [
+     0,
+     1.5
+    ],
+    [
+     12,
+     2.0
+    ],
+    [
+     24,
+     2.5
+    ],
+    [
+     36,
+     3.0
+    ]
+   ]
+  },
+  "keyframe_count": 4,
+  "decoded_frames": 48
+ },
+ "clip:tagged_bt709": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": "tv",
+   "color_space": "bt709",
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 24,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "72a8c2394ffd0d13f804557e5cd8963caa782433564cf8479626d4b7d4e5820c",
+  "duration": 1.0,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 24,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 24
+ },
+ "clip:hevc_10bit": {
+  "profile": {
+   "pixel_format": "yuv420p10le",
+   "color_range": "tv",
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p10le",
+   "component_depth": 10
+  },
+  "timestamps_count": 24,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "72a8c2394ffd0d13f804557e5cd8963caa782433564cf8479626d4b7d4e5820c",
+  "duration": 1.0,
+  "keyframes": {
+   "codec_name": "hevc",
+   "profile_name": "Main 10",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 24,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 24
+ },
+ "clip:webm_vp9": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": "tv",
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/1000",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 24,
+  "timestamps_head": [
+   0.0,
+   0.042,
+   0.083,
+   0.125
+  ],
+  "timestamps_sha256": "11b80d6e273579a35725655d33f3477cac4624d040af61e93aeb179155bf664f",
+  "duration": "error: could not convert string to float: 'N/A'",
+  "keyframes": {
+   "codec_name": "vp9",
+   "profile_name": "Profile 0",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 24,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 24
+ },
+ "clip:delivered_same": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 48,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "4f9e870e8fac461d7cf9134414bb0ec68676c9038ab117eecdf58c8594861e5b",
+  "duration": 2.0,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 48,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 48
+ },
+ "clip:delivered_small": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 12,
+  "timestamps_head": [
+   0.0,
+   0.083333,
+   0.166667,
+   0.25
+  ],
+  "timestamps_sha256": "86fadbfeb2f8d836ee2bb5712773cc1720724a547ca987541a9a959977eef144",
+  "duration": 1.0,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 12,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 12
+ },
+ "clip:truncated": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": null,
+   "start_pts": null,
+   "source_pixel_format": null,
+   "component_depth": null
+  },
+  "timestamps_count": 0,
+  "timestamps_head": [],
+  "timestamps_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "duration": "error: Could not read video duration: /tmp/tmpbfpujd4e/truncated.mp4",
+  "keyframes": null,
+  "keyframe_count": null,
+  "decoded_frames": null
+ },
+ "provenance/amazon-bedrock-nova-reel.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 145,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "a1a846e040be4154554412a7d64c8695bc58c23e58995994b1335f3c6aa3e886",
+  "duration": 6.041667,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 145,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 145
+ },
+ "provenance/dreamina-seedance-2-mini.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 121,
+  "timestamps_head": [
+   0.0,
+   0.05,
+   0.083333,
+   0.133333
+  ],
+  "timestamps_sha256": "1885f547e861083a61078975e62e628199cd7aab4af96bb8aaf90fb5f03c35ab",
+  "duration": 5.016667,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 121,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 121
+ },
+ "provenance/google-gemini-omni-app.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 240,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "b79c4327e30e49fa33d93ddc4ab83354bac8434e51837b92e695a6750b33e421",
+  "duration": 10.0,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 240,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 240
+ },
+ "provenance/google-gemini-omni-flash-api.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 240,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "b79c4327e30e49fa33d93ddc4ab83354bac8434e51837b92e695a6750b33e421",
+  "duration": 10.0,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 240,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     136,
+     5.666667
+    ]
+   ]
+  },
+  "keyframe_count": 2,
+  "decoded_frames": 240
+ },
+ "provenance/higgsfield-cinema-studio-v2.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 73,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "936befdaa51c3ca598127ba6d776d5d5f647c9dad3f5d650ff06295a81106192",
+  "duration": 3.041667,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "Main",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 73,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 73
+ },
+ "provenance/higgsfield-genjutsu-motion-control.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 113,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "20e1f65406e4d7e957a3966ef4ac480c686de53d42078ac23fe2414889e63319",
+  "duration": 4.708333,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 113,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 113
+ },
+ "provenance/higgsfield-hailuo-2-3.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 141,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "4861056b7f5d66e21c9d6614dc091b1dcd60877d81806b0fc1932e59c2ef9a5c",
+  "duration": 5.875,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 141,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 141
+ },
+ "provenance/higgsfield-happyhorse.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 121,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "f21545ae1b24514ab46336d4276414b06c15640e95bf0f6838a22bd7bb99ba59",
+  "duration": 5.041667,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 121,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 121
+ },
+ "provenance/higgsfield-kling-3-0-turbo.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 121,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "f21545ae1b24514ab46336d4276414b06c15640e95bf0f6838a22bd7bb99ba59",
+  "duration": 5.041667,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "Main",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 121,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 121
+ },
+ "provenance/higgsfield-minimax-h3.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 124,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "acbec8499806137a85b0542b4f49018a12d59285c51f2ee051f20dd1518f9474",
+  "duration": 5.166667,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 124,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 124
+ },
+ "provenance/higgsfield-veo-3-1-lite.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 192,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "18d79e873d64954988fc7cd3756e09888f78887d9dc28c5ee4928fb3701020be",
+  "duration": 8.0,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 192,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 192
+ },
+ "provenance/runway-gen45-video.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 121,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "f21545ae1b24514ab46336d4276414b06c15640e95bf0f6838a22bd7bb99ba59",
+  "duration": 5.041667,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 121,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 121
+ },
+ "provenance/xai-grok-imagine-video.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": "tv",
+   "color_space": "bt709",
+   "color_transfer": "bt709",
+   "color_primaries": "bt709",
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 145,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "a1a846e040be4154554412a7d64c8695bc58c23e58995994b1335f3c6aa3e886",
+  "duration": 6.041667,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 145,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 145
+ },
+ "provenance/youtube-reencode-gemini-omni-flash.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": "tv",
+   "color_space": "bt709",
+   "color_transfer": "bt709",
+   "color_primaries": "bt709",
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 240,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "b79c4327e30e49fa33d93ddc4ab83354bac8434e51837b92e695a6750b33e421",
+  "duration": 10.0,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 240,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     60,
+     2.5
+    ],
+    [
+     120,
+     5.0
+    ],
+    [
+     136,
+     5.666667
+    ],
+    [
+     196,
+     8.166667
+    ]
+   ]
+  },
+  "keyframe_count": 5,
+  "decoded_frames": 240
+ },
+ "provenance/youtube-reencode-grok.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": "tv",
+   "color_space": "bt709",
+   "color_transfer": "bt709",
+   "color_primaries": "bt709",
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 145,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "a1a846e040be4154554412a7d64c8695bc58c23e58995994b1335f3c6aa3e886",
+  "duration": 6.041667,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 145,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     16,
+     0.666667
+    ],
+    [
+     32,
+     1.333333
+    ],
+    [
+     48,
+     2.0
+    ],
+    [
+     64,
+     2.666667
+    ],
+    [
+     80,
+     3.333333
+    ],
+    [
+     96,
+     4.0
+    ],
+    [
+     112,
+     4.666667
+    ]
+   ]
+  },
+  "keyframe_count": 10,
+  "decoded_frames": 145
+ },
+ "visible/baidu/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/dola/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/doubao/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/dreamina/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/generic_ai_label/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/hailuo/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/heygen/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/jimeng/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/jimeng_pill/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/kling/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/luma/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/microsoft/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/pixverse/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/qwen/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/runninghub/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/seedance/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/sora/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/sync_labs/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/tiktok_ai/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/veo/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/vidu/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/wan/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/yuanbao/example.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 90,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "2330a73b01d70cbca8b6d0ae9b3c5fe1fe13586aee099af5adedb1a32dc11a24",
+  "duration": 3.0,
+  "keyframes": {
+   "codec_name": "mpeg4",
+   "profile_name": "Simple Profile",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 90,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     12,
+     0.4
+    ],
+    [
+     24,
+     0.8
+    ],
+    [
+     36,
+     1.2
+    ],
+    [
+     48,
+     1.6
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     72,
+     2.4
+    ],
+    [
+     84,
+     2.8
+    ]
+   ]
+  },
+  "keyframe_count": 8,
+  "decoded_frames": 90
+ },
+ "visible/hailuo/provider-original.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 124,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "acbec8499806137a85b0542b4f49018a12d59285c51f2ee051f20dd1518f9474",
+  "duration": 5.166667,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 124,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 124
+ },
+ "visible/kling/provider-original.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 121,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "f21545ae1b24514ab46336d4276414b06c15640e95bf0f6838a22bd7bb99ba59",
+  "duration": 5.041667,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 0,
+   "packet_count": 121,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 121
+ },
+ "visible/sora/provider-original.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/15360",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 300,
+  "timestamps_head": [
+   0.0,
+   0.033333,
+   0.066667,
+   0.1
+  ],
+  "timestamps_sha256": "c8bd08df1da9597608e92bb010f74f6f8f58fc4aca71fb7812ab51f94d0630ad",
+  "duration": 10.0,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 300,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     30,
+     1.0
+    ],
+    [
+     60,
+     2.0
+    ],
+    [
+     87,
+     2.9
+    ],
+    [
+     117,
+     3.9
+    ],
+    [
+     147,
+     4.9
+    ],
+    [
+     174,
+     5.8
+    ],
+    [
+     204,
+     6.8
+    ]
+   ]
+  },
+  "keyframe_count": 11,
+  "decoded_frames": 300
+ },
+ "visible/veo/provider-original.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": null,
+   "color_space": null,
+   "color_transfer": null,
+   "color_primaries": null,
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuv420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 192,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "18d79e873d64954988fc7cd3756e09888f78887d9dc28c5ee4928fb3701020be",
+  "duration": 8.0,
+  "keyframes": {
+   "codec_name": "h264",
+   "profile_name": "High",
+   "start_pts": 0,
+   "has_b_frames": 2,
+   "packet_count": 192,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ]
+   ]
+  },
+  "keyframe_count": 1,
+  "decoded_frames": 192
+ },
+ "visible/vidu/provider-original.mp4": {
+  "profile": {
+   "pixel_format": "yuv420p",
+   "color_range": "pc",
+   "color_space": "bt709",
+   "color_transfer": "bt709",
+   "color_primaries": "bt709",
+   "time_base": "1/12288",
+   "start_pts": 0,
+   "source_pixel_format": "yuvj420p",
+   "component_depth": 8
+  },
+  "timestamps_count": 193,
+  "timestamps_head": [
+   0.0,
+   0.041667,
+   0.083333,
+   0.125
+  ],
+  "timestamps_sha256": "add623c7d29b7ffef2e159f89fe1215e02618b6211db7e23d9978ef5ac901a6d",
+  "duration": 8.041667,
+  "keyframes": {
+   "codec_name": "hevc",
+   "profile_name": "Main",
+   "start_pts": 0,
+   "has_b_frames": 3,
+   "packet_count": 193,
+   "keyframes": [
+    [
+     0,
+     0.0
+    ],
+    [
+     17,
+     1.0
+    ],
+    [
+     41,
+     2.0
+    ],
+    [
+     65,
+     3.0
+    ],
+    [
+     89,
+     4.0
+    ],
+    [
+     113,
+     5.0
+    ],
+    [
+     137,
+     6.0
+    ],
+    [
+     161,
+     7.0
+    ]
+   ]
+  },
+  "keyframe_count": 9,
+  "decoded_frames": 193
+ }
+}

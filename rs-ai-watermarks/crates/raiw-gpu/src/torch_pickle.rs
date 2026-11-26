@@ -100,10 +100,13 @@ struct TensorRef {
     stride: Vec<usize>,
 }
 
-/// Read every tensor under `top_level_key` (or the root) keyed by dotted path.
+/// Read the tensors under `top_level_key` (or the root) that `keep` accepts, keyed by dotted path.
+///
+/// Works for `torch.save` checkpoints and TorchScript archives (module attributes become keys).
 pub(crate) fn read_checkpoint(
     path: &Path,
     top_level_key: Option<&str>,
+    keep: &dyn Fn(&str) -> bool,
 ) -> Result<BTreeMap<String, HostTensor>> {
     let fail = |reason: String| GpuError::Weights {
         path: path.to_path_buf(),
@@ -114,7 +117,7 @@ pub(crate) fn read_checkpoint(
     let names: Vec<String> = archive
         .file_names()
         .filter_map(std::result::Result::ok)
-        .map(|name| name.into_owned())
+        .map(std::borrow::Cow::into_owned)
         .collect();
     let pickle_name = names
         .iter()
@@ -131,7 +134,7 @@ pub(crate) fn read_checkpoint(
     collect_tensors(&root, String::new(), &mut refs);
     let mut storages: HashMap<String, Vec<u8>> = HashMap::new();
     let mut tensors = BTreeMap::new();
-    for (name, tensor) in refs {
+    for (name, tensor) in refs.into_iter().filter(|(name, _)| keep(name)) {
         if !storages.contains_key(&tensor.key) {
             let bytes = read_entry(&mut archive, &format!("{prefix}data/{}", tensor.key)).map_err(&fail)?;
             storages.insert(tensor.key.clone(), bytes);
@@ -400,7 +403,7 @@ impl Machine {
                     let module = self.pop()?;
                     match (module, name) {
                         (Value::Str(module), Value::Str(name)) => {
-                            self.stack.push(Value::Global(module, name))
+                            self.stack.push(Value::Global(module, name));
                         }
                         _ => return Err("STACK_GLOBAL expects two strings".to_owned()),
                     }
@@ -473,22 +476,26 @@ impl Machine {
                 b'R' => {
                     let args = self.pop()?;
                     let callable = self.pop()?;
-                    let value = reduce(callable, args)?;
+                    let value = reduce(&callable, args)?;
                     self.stack.push(value);
                 }
+                // Objects become attribute dicts so TorchScript modules expose their tensors
                 0x81 => {
                     self.pop()?;
                     self.pop()?;
-                    self.stack.push(Value::Opaque);
+                    self.stack.push(Value::Dict(Vec::new()));
                 }
                 0x92 => {
                     self.pop()?;
                     self.pop()?;
                     self.pop()?;
-                    self.stack.push(Value::Opaque);
+                    self.stack.push(Value::Dict(Vec::new()));
                 }
                 b'b' => {
-                    let _state = self.pop()?;
+                    let state = self.pop()?;
+                    if let (Value::Dict(attrs), Value::Dict(object)) = (state, self.top()?) {
+                        object.extend(attrs);
+                    }
                 }
                 b'Q' => {
                     let pid = self.pop()?;
@@ -556,8 +563,8 @@ fn as_usizes(value: &Value) -> std::result::Result<Vec<usize>, String> {
     }
 }
 
-fn reduce(callable: Value, args: Value) -> std::result::Result<Value, String> {
-    let Value::Global(module, name) = &callable else {
+fn reduce(callable: &Value, args: Value) -> std::result::Result<Value, String> {
+    let Value::Global(module, name) = callable else {
         return Ok(Value::Opaque);
     };
     let args = match args {

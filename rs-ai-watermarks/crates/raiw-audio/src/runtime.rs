@@ -15,6 +15,12 @@ pub struct Accelerators {
     pub mps: bool,
 }
 
+/// Owner of loaded neural models (`release_audio_models`).
+pub trait ModelResidency: Send + Sync {
+    /// Drop every resident model and its device memory.
+    fn release(&self);
+}
+
 /// ffmpeg, decoders, codecs and the metadata stage (Python's module-level `is_available()` state).
 #[derive(Clone)]
 pub struct AudioRuntime {
@@ -24,6 +30,7 @@ pub struct AudioRuntime {
     pub codecs: CodecSet,
     pub metadata: Arc<dyn MetadataSeam>,
     pub accelerators: Accelerators,
+    pub models: Option<Arc<dyn ModelResidency>>,
 }
 
 impl std::fmt::Debug for AudioRuntime {
@@ -45,13 +52,38 @@ impl Default for AudioRuntime {
 
 impl AudioRuntime {
     /// System ffmpeg, no neural backends, no metadata stage.
-    pub fn discover() -> Self {
+    pub fn bare() -> Self {
         Self {
             tools: FfmpegTools::discover().ok(),
             decoders: DecoderSet::default(),
             codecs: CodecSet::default(),
             metadata: Arc::new(NoMetadata),
             accelerators: Accelerators::default(),
+            models: None,
+        }
+    }
+
+    /// System ffmpeg plus the burn decoders and codecs when built with the `gpu` feature.
+    pub fn discover() -> Self {
+        #[cfg(feature = "gpu")]
+        {
+            let (decoders, codecs, cache) = crate::gpu::backends();
+            Self {
+                decoders,
+                codecs,
+                accelerators: crate::gpu::accelerators(),
+                models: Some(cache),
+                ..Self::bare()
+            }
+        }
+        #[cfg(not(feature = "gpu"))]
+        Self::bare()
+    }
+
+    /// `release_audio_models`: evict cached neural models.
+    pub fn release_models(&self) {
+        if let Some(models) = &self.models {
+            models.release();
         }
     }
 

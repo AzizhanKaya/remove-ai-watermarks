@@ -18,9 +18,17 @@ pub struct MinMaxLoc {
 pub fn min_max_loc<'a, T: Element>(src: impl Into<MatView<'a, T>>) -> Result<MinMaxLoc> {
     let src = src.into();
     if src.channels() != 1 {
-        return Err(CvError::Channels { op: "min_max_loc", channels: src.channels() });
+        return Err(CvError::Channels {
+            op: "min_max_loc",
+            channels: src.channels(),
+        });
     }
-    let mut out = MinMaxLoc { min: f64::MAX, max: -f64::MAX, min_loc: Point::new(-1, -1), max_loc: Point::new(-1, -1) };
+    let mut out = MinMaxLoc {
+        min: f64::MAX,
+        max: -f64::MAX,
+        min_loc: Point::new(-1, -1),
+        max_loc: Point::new(-1, -1),
+    };
     let mut first = true;
     for y in 0..src.height() {
         for (x, &v) in src.row(y).iter().enumerate() {
@@ -63,12 +71,20 @@ pub fn mean_std_dev<'a, T: Element>(src: impl Into<MatView<'a, T>>) -> Result<(V
     }
     let scale = 1.0 / (src.width() * src.height()) as f64;
     let mean: Vec<f64> = s.iter().map(|v| v * scale).collect();
-    let sdv = sq.iter().zip(&mean).map(|(q, m)| (q * scale - m * m).max(0.0).sqrt()).collect();
+    let sdv = sq
+        .iter()
+        .zip(&mean)
+        .map(|(q, m)| (q * scale - m * m).max(0.0).sqrt())
+        .collect();
     Ok((mean, sdv))
 }
 
 /// `cv::normalize(src, None, alpha, beta, NORM_MINMAX)` keeping the element type.
-pub fn normalize_min_max<'a, T: Element>(src: impl Into<MatView<'a, T>>, alpha: f64, beta: f64) -> Result<Mat<T>> {
+pub fn normalize_min_max<'a, T: Element>(
+    src: impl Into<MatView<'a, T>>,
+    alpha: f64,
+    beta: f64,
+) -> Result<Mat<T>> {
     let src = src.into();
     let mut smin = f64::MAX;
     let mut smax = -f64::MAX;
@@ -98,7 +114,11 @@ pub fn normalize_l2<'a, T: Element>(src: impl Into<MatView<'a, T>>) -> Result<Ma
 
 /// `cv::calcHist([img], [0..cn], None, bins, ranges)` over every channel of one image.
 /// Returns a row-major `f32` histogram (`bins[0] x bins[1] x ...`).
-pub fn calc_hist<'a, T: Element>(src: impl Into<MatView<'a, T>>, bins: &[usize], ranges: &[(f64, f64)]) -> Result<Vec<f32>> {
+pub fn calc_hist<'a, T: Element>(
+    src: impl Into<MatView<'a, T>>,
+    bins: &[usize],
+    ranges: &[(f64, f64)],
+) -> Result<Vec<f32>> {
     let src = src.into();
     let cn = src.channels();
     if bins.len() != cn || ranges.len() != cn || bins.contains(&0) {
@@ -106,7 +126,11 @@ pub fn calc_hist<'a, T: Element>(src: impl Into<MatView<'a, T>>, bins: &[usize],
     }
     let total: usize = bins.iter().product();
     let mut hist = vec![0.0f32; total];
-    let scales: Vec<f64> = bins.iter().zip(ranges).map(|(&b, &(lo, hi))| b as f64 / (hi - lo)).collect();
+    let scales: Vec<f64> = bins
+        .iter()
+        .zip(ranges)
+        .map(|(&b, &(lo, hi))| b as f64 / (hi - lo))
+        .collect();
     for y in 0..src.height() {
         'px: for px in src.row(y).chunks_exact(cn) {
             let mut idx = 0;

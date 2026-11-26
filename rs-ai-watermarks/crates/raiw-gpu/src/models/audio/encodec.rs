@@ -166,14 +166,14 @@ impl EncodecCodec {
     /// `model(x, bandwidth=...).audio_values`, trimmed to the input length.
     pub fn reconstruct(&self, samples: &[f32], bandwidth_kbps: f64) -> Result<Vec<f32>> {
         let (_, quantized) = self.quantize(samples, bandwidth_kbps)?;
-        let decoded = self.decoder.forward(quantized);
+        let decoded = self.decoder.forward(quantized)?;
         read_finite(decoded.slice(s![.., .., 0..samples.len()]))
     }
 
     fn quantize(&self, samples: &[f32], bandwidth_kbps: f64) -> Result<(Vec<Tensor<2, Int>>, Tensor<3>)> {
         check_mono(samples, "EnCodec")?;
         let active = num_quantizers(bandwidth_kbps)?;
-        let latent = self.encoder.forward(mono_tensor(samples, self.device.burn()));
+        let latent = self.encoder.forward(mono_tensor(samples, self.device.burn()))?;
         let mut residual = latent.clone();
         let mut quantized = latent.zeros_like();
         let mut codes = Vec::with_capacity(active);

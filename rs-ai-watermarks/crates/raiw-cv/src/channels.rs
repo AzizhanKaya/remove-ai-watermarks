@@ -27,7 +27,10 @@ fn extract_planar<T: Element>(src: &MatView<'_, T>, c: usize) -> Mat<T> {
 pub fn extract_channel<'a, T: Element>(src: impl Into<MatView<'a, T>>, channel: usize) -> Result<Mat<T>> {
     let src = src.into();
     if channel >= src.channels() {
-        return Err(CvError::Channels { op: "extract_channel", channels: src.channels() });
+        return Err(CvError::Channels {
+            op: "extract_channel",
+            channels: src.channels(),
+        });
     }
     Ok(extract_planar(&src, channel))
 }
@@ -35,7 +38,10 @@ pub fn extract_channel<'a, T: Element>(src: impl Into<MatView<'a, T>>, channel: 
 /// `cv::merge` of single-channel planes of equal size.
 pub fn merge<T: Element>(planes: &[MatView<'_, T>]) -> Result<Mat<T>> {
     let first = planes.first().ok_or_else(|| invalid("merge", "no planes"))?;
-    if planes.iter().any(|p| p.size() != first.size() || p.channels() != 1) {
+    if planes
+        .iter()
+        .any(|p| p.size() != first.size() || p.channels() != 1)
+    {
         return Err(CvError::ShapeMismatch { op: "merge" });
     }
     let cn = planes.len();
@@ -51,7 +57,11 @@ pub fn merge<T: Element>(planes: &[MatView<'_, T>]) -> Result<Mat<T>> {
 }
 
 /// `cv::insertChannel(plane, dst, channel)`.
-pub fn insert_channel<'a, T: Element>(plane: impl Into<MatView<'a, T>>, dst: &mut Mat<T>, channel: usize) -> Result<()> {
+pub fn insert_channel<'a, T: Element>(
+    plane: impl Into<MatView<'a, T>>,
+    dst: &mut Mat<T>,
+    channel: usize,
+) -> Result<()> {
     let plane = plane.into();
     if plane.size() != dst.size() || plane.channels() != 1 || channel >= dst.channels() {
         return Err(CvError::ShapeMismatch { op: "insert_channel" });

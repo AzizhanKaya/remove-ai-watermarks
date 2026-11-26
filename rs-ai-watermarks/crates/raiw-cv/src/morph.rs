@@ -38,7 +38,11 @@ pub struct StructuringElement {
 impl StructuringElement {
     /// `cv::getStructuringElement(shape, (width, height))`.
     pub fn new(shape: MorphShape, width: usize, height: usize) -> Self {
-        let shape = if width == 1 && height == 1 { MorphShape::Rect } else { shape };
+        let shape = if width == 1 && height == 1 {
+            MorphShape::Rect
+        } else {
+            shape
+        };
         let (ax, ay) = (width / 2, height / 2);
         let (r, c) = (height as i64 / 2, width as i64 / 2);
         let inv_r2 = if r > 0 { 1.0 / (r * r) as f64 } else { 0.0 };
@@ -51,9 +55,13 @@ impl StructuringElement {
                 MorphShape::Ellipse => {
                     let dy = i as i64 - r;
                     if dy.abs() <= r {
-                        let dx = crate::element::cv_round(c as f64 * (((r * r - dy * dy) as f64) * inv_r2).sqrt());
+                        let dx =
+                            crate::element::cv_round(c as f64 * (((r * r - dy * dy) as f64) * inv_r2).sqrt());
                         let dx = i64::from(dx);
-                        ((c - dx).max(0) as usize, ((c + dx + 1).min(width as i64)) as usize)
+                        (
+                            (c - dx).max(0) as usize,
+                            ((c + dx + 1).min(width as i64)) as usize,
+                        )
                     } else {
                         (0, 0)
                     }
@@ -81,7 +89,11 @@ impl StructuringElement {
         if mask.len() != width * height || width == 0 || height == 0 {
             return Err(invalid("StructuringElement", "mask size mismatch"));
         }
-        Ok(Self { width, height, mask: mask.iter().map(|&v| v != 0).collect() })
+        Ok(Self {
+            width,
+            height,
+            mask: mask.iter().map(|&v| v != 0).collect(),
+        })
     }
 
     pub const fn width(&self) -> usize {
@@ -98,7 +110,9 @@ impl StructuringElement {
 
     /// The element as a 0/1 `u8` image.
     pub fn to_mat(&self) -> Mat<u8> {
-        Mat::from_fn(self.width, self.height, 1, |x, y, _| u8::from(self.contains(x, y)))
+        Mat::from_fn(self.width, self.height, 1, |x, y, _| {
+            u8::from(self.contains(x, y))
+        })
     }
 
     /// Horizontal runs `(row, start, len)` of member pixels.
@@ -129,7 +143,7 @@ enum Extremum {
 }
 
 impl Extremum {
-    #[inline]
+    #[inline(always)]
     fn pick<T: PartialOrd + Copy>(self, a: T, b: T) -> T {
         match self {
             Self::Max => {
@@ -158,6 +172,7 @@ impl Extremum {
 }
 
 /// Windowed extrema of one padded row for every power-of-two window up to `max_len`.
+#[inline(always)]
 fn doubling_table<T: Element>(row: &[T], cn: usize, max_len: usize, op: Extremum) -> Vec<Vec<T>> {
     let mut levels = vec![row.to_vec()];
     let mut span = 1;
@@ -166,9 +181,7 @@ fn doubling_table<T: Element>(row: &[T], cn: usize, max_len: usize, op: Extremum
         let shift = (span * cn).min(prev.len());
         let mut next = prev.to_vec();
         let n = prev.len() - shift;
-        for ((o, &a), &b) in next[..n].iter_mut().zip(&prev[..n]).zip(&prev[shift..]) {
-            *o = op.pick(a, b);
-        }
+        crate::simd::vectorized(pick_pair::<T>, (&mut next[..n], &prev[..n], &prev[shift..], op));
         levels.push(next);
         span *= 2;
     }
@@ -187,55 +200,75 @@ fn morph_once<T: Element>(src: &MatView<'_, T>, se: &StructuringElement, op: Ext
     let mut segments: Vec<(usize, usize)> = runs.iter().map(|&(_, s, l)| (s, l)).collect();
     segments.sort_unstable();
     segments.dedup();
-    let run_segment: Vec<(usize, usize)> =
-        runs.iter().map(|&(ky, s, l)| (ky, segments.binary_search(&(s, l)).unwrap_or(0))).collect();
+    let run_segment: Vec<(usize, usize)> = runs
+        .iter()
+        .map(|&(ky, s, l)| (ky, segments.binary_search(&(s, l)).unwrap_or(0)))
+        .collect();
     let pad_left = ax;
     let padded_len = (w + se.width) * cn;
     let neutral = op.neutral::<T>();
     let row_len = w * cn;
-    let band = h.div_ceil(rayon::current_num_threads().max(1) * 2).max(se.height.max(8)).min(h.max(1));
-    out.data_mut().par_chunks_mut(row_len * band).enumerate().for_each(|(b, dst)| {
-        let y0 = b * band;
-        let rows = dst.len() / row_len;
-        let first = y0 as isize - ay as isize;
-        let nsrc = rows + se.height - 1;
-        // Horizontal extrema of every distinct kernel segment for each source row of the band.
-        let mut hbuf = vec![neutral; segments.len() * nsrc * row_len];
-        let mut padded = vec![neutral; padded_len];
-        let mut present = vec![false; nsrc];
-        for (i, flag) in present.iter_mut().enumerate() {
-            let sy = first + i as isize;
-            if sy < 0 || sy as usize >= h {
-                continue;
-            }
-            *flag = true;
-            padded[pad_left * cn..pad_left * cn + row_len].copy_from_slice(src.row(sy as usize));
-            let levels = doubling_table(&padded, cn, max_len, op);
-            for (si, &(start, len)) in segments.iter().enumerate() {
-                let p = (usize::BITS - 1 - len.leading_zeros()) as usize;
-                let tail = (len - (1 << p)) * cn;
-                let base = start * cn;
-                let a = &levels[p][base..base + row_len];
-                let c = &levels[p][base + tail..base + tail + row_len];
-                let target = &mut hbuf[(si * nsrc + i) * row_len..(si * nsrc + i + 1) * row_len];
-                for ((t, &u), &v) in target.iter_mut().zip(a).zip(c) {
-                    *t = op.pick(u, v);
-                }
-            }
-        }
-        for (i, drow) in dst.chunks_exact_mut(row_len).enumerate() {
-            for &(ky, si) in &run_segment {
-                if !present[i + ky] {
+    let band = h
+        .div_ceil(rayon::current_num_threads().max(1) * 2)
+        .max(se.height.max(8))
+        .min(h.max(1));
+    out.data_mut()
+        .par_chunks_mut(row_len * band)
+        .enumerate()
+        .for_each(|(b, dst)| {
+            let y0 = b * band;
+            let rows = dst.len() / row_len;
+            let first = y0 as isize - ay as isize;
+            let nsrc = rows + se.height - 1;
+            // Horizontal extrema of every distinct kernel segment for each source row of the band.
+            let mut hbuf = vec![neutral; segments.len() * nsrc * row_len];
+            let mut padded = vec![neutral; padded_len];
+            let mut present = vec![false; nsrc];
+            for (i, flag) in present.iter_mut().enumerate() {
+                let sy = first + i as isize;
+                if sy < 0 || sy as usize >= h {
                     continue;
                 }
-                let line = &hbuf[(si * nsrc + i + ky) * row_len..(si * nsrc + i + ky + 1) * row_len];
-                for (d, &v) in drow.iter_mut().zip(line) {
-                    *d = op.pick(*d, v);
+                *flag = true;
+                padded[pad_left * cn..pad_left * cn + row_len].copy_from_slice(src.row(sy as usize));
+                let levels = doubling_table(&padded, cn, max_len, op);
+                for (si, &(start, len)) in segments.iter().enumerate() {
+                    let p = (usize::BITS - 1 - len.leading_zeros()) as usize;
+                    let tail = (len - (1 << p)) * cn;
+                    let base = start * cn;
+                    let a = &levels[p][base..base + row_len];
+                    let c = &levels[p][base + tail..base + tail + row_len];
+                    let target = &mut hbuf[(si * nsrc + i) * row_len..(si * nsrc + i + 1) * row_len];
+                    crate::simd::vectorized(pick_pair::<T>, (target, a, c, op));
                 }
             }
-        }
-    });
+            for (i, drow) in dst.chunks_exact_mut(row_len).enumerate() {
+                for &(ky, si) in &run_segment {
+                    if !present[i + ky] {
+                        continue;
+                    }
+                    let line = &hbuf[(si * nsrc + i + ky) * row_len..(si * nsrc + i + ky + 1) * row_len];
+                    crate::simd::vectorized(pick_into::<T>, (drow, line, op));
+                }
+            }
+        });
     out
+}
+
+/// `target[i] = pick(a[i], c[i])`.
+#[inline(always)]
+fn pick_pair<T: Element>((target, a, c, op): (&mut [T], &[T], &[T], Extremum)) {
+    for ((t, &u), &v) in target.iter_mut().zip(a).zip(c) {
+        *t = op.pick(u, v);
+    }
+}
+
+/// `dst[i] = pick(dst[i], line[i])`.
+#[inline(always)]
+fn pick_into<T: Element>((dst, line, op): (&mut [T], &[T], Extremum)) {
+    for (d, &v) in dst.iter_mut().zip(line) {
+        *d = op.pick(*d, v);
+    }
 }
 
 fn morph<'a, T: Element>(
@@ -256,12 +289,20 @@ fn morph<'a, T: Element>(
 }
 
 /// `cv::dilate(src, kernel, iterations=iterations)`.
-pub fn dilate<'a, T: Element>(src: impl Into<MatView<'a, T>>, se: &StructuringElement, iterations: usize) -> Result<Mat<T>> {
+pub fn dilate<'a, T: Element>(
+    src: impl Into<MatView<'a, T>>,
+    se: &StructuringElement,
+    iterations: usize,
+) -> Result<Mat<T>> {
     morph(src, se, iterations.max(1), Extremum::Max)
 }
 
 /// `cv::erode(src, kernel, iterations=iterations)`.
-pub fn erode<'a, T: Element>(src: impl Into<MatView<'a, T>>, se: &StructuringElement, iterations: usize) -> Result<Mat<T>> {
+pub fn erode<'a, T: Element>(
+    src: impl Into<MatView<'a, T>>,
+    se: &StructuringElement,
+    iterations: usize,
+) -> Result<Mat<T>> {
     morph(src, se, iterations.max(1), Extremum::Min)
 }
 
@@ -269,7 +310,7 @@ fn subtract<T: Element>(a: &MatView<'_, T>, b: &Mat<T>) -> Mat<T> {
     let mut out = b.clone();
     out.par_rows_mut().enumerate().for_each(|(y, row)| {
         for (o, &s) in row.iter_mut().zip(a.row(y)) {
-            *o = T::from_f64(s.to_f64() - o.to_f64());
+            *o = s.sub_sat(*o);
         }
     });
     out
@@ -302,4 +343,3 @@ pub fn morphology_ex<'a, T: Element>(
         }
     }
 }
-

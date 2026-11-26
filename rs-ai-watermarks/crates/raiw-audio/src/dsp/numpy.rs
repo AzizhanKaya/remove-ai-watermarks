@@ -53,7 +53,11 @@ pub fn cos_f32(x: f32) -> f32 {
         .mul_add(r2, c(0x3D2A_AA9E))
         .mul_add(r2, -0.5)
         .mul_add(r2, 1.0);
-    let sin = (c(0x363E_9DDE).mul_add(r2, c(0xB950_35DD)).mul_add(r2, c(0x3C08_88CD)).mul_add(r2, c(0xBE2A_AAAB)) * r2)
+    let sin = (c(0x363E_9DDE)
+        .mul_add(r2, c(0xB950_35DD))
+        .mul_add(r2, c(0x3C08_88CD))
+        .mul_add(r2, c(0xBE2A_AAAB))
+        * r2)
         .mul_add(r, r);
     let iquadrant = quadrant as i32 + 1;
     let value = if iquadrant & 1 == 0 { sin } else { cos };

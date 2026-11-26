@@ -5,9 +5,9 @@ use std::path::PathBuf;
 use clap::{Args, Subcommand};
 
 use super::args::{
-    AudioInspect, AudioProcessArgs, AudioScheme, Device, Invisible, MessageMethod, MessageScheme,
+    AudioInspect, AudioProcessArgs, AudioScheme, Device, FillBackend, Invisible, MessageMethod, MessageScheme,
     MetadataArgs, StripMetadata, TemporalConsistency, Verify, VideoAudioArgs, VideoBatchMode, VideoMark,
-    VideoProfile, VideoQuality, VideoRegenArgs, existing_dir, existing_file, optional_unit_interval,
+    VideoRegenArgs, existing_dir, existing_file, optional_unit_interval,
 };
 
 /// Process AI watermarks in video files.
@@ -70,9 +70,9 @@ pub struct MessageRemoveCmd {
     /// Independent encoder message hex (64 hex digits for videoseal/pixelseal, 256 for chunkyseal).
     #[arg(long, required = true)]
     pub reference: String,
-    /// Output MP4, MOV, M4V, MKV, WebM, AVI, or FLV.
-    #[arg(short, long, required = true)]
-    pub output: PathBuf,
+    /// Output MP4, MOV, M4V, MKV, WebM, AVI, or FLV (default: SOURCE_message_processed.mp4).
+    #[arg(short, long)]
+    pub output: Option<PathBuf>,
     #[arg(long, value_enum, default_value_t = MessageMethod::Auto)]
     pub method: MessageMethod,
     /// Explicit VAE noise; requires --method vae.
@@ -128,6 +128,9 @@ pub struct VideoIdentifyCmd {
     pub no_visible: bool,
     #[command(flatten)]
     pub audio: AudioInspect,
+    /// Compatible public models to check; all requests every named model, auto checks installed models.
+    #[arg(long = "audio-scheme", value_enum, default_value_t = AudioScheme::Auto)]
+    pub audio_scheme: AudioScheme,
     /// Emit the report as JSON.
     #[arg(long = "json")]
     pub as_json: bool,
@@ -158,15 +161,6 @@ pub struct VideoInvisibleCmd {
     pub output: Option<PathBuf>,
     #[command(flatten)]
     pub regen: VideoRegenArgs,
-    /// VAE inference device.
-    #[arg(long, value_enum, default_value_t = Device::Auto)]
-    pub device: Device,
-    /// Output quality; master requires seedance, wan21-synthid, or wan21-seedance.
-    #[arg(long, value_enum, default_value_t = VideoQuality::Delivery)]
-    pub quality: VideoQuality,
-    /// Video-pixel profile. 'auto' routes ByteDance/Seedance and SynthID clips automatically.
-    #[arg(long, value_enum, default_value_t = VideoProfile::Auto)]
-    pub profile: VideoProfile,
     /// Emit the regeneration result as JSON.
     #[arg(long = "json")]
     pub as_json: bool,
@@ -180,9 +174,8 @@ pub struct VideoVisibleCmd {
     /// Output path (default: <source>_clean with the same container).
     #[arg(short, long)]
     pub output: Option<PathBuf>,
-    /// Visible AI mark to remove. Auto scans every supported mark.
-    #[arg(long, value_enum, default_value_t = VideoMark::Auto)]
-    pub mark: VideoMark,
+    #[command(flatten)]
+    pub visible: VideoVisibleArgs,
     #[command(flatten)]
     pub temporal_consistency: TemporalConsistency,
     #[command(flatten)]
@@ -212,6 +205,9 @@ pub struct VideoEraseCmd {
     /// Output path (default: <source>_clean with the same container).
     #[arg(short, long)]
     pub output: Option<PathBuf>,
+    /// Inpaint backend for unrecovered core pixels.
+    #[arg(long, value_enum, default_value_t = FillBackend::Auto)]
+    pub backend: FillBackend,
     /// Grow each box in pixels.
     #[arg(long, default_value_t = 3)]
     pub dilate: u32,
@@ -232,6 +228,8 @@ pub struct VideoAllCmd {
     /// Output path (default: <source>_clean with the same container).
     #[arg(short, long)]
     pub output: Option<PathBuf>,
+    #[command(flatten)]
+    pub visible: VideoVisibleArgs,
     #[command(flatten)]
     pub temporal_consistency: TemporalConsistency,
     #[command(flatten)]
@@ -260,6 +258,8 @@ pub struct VideoBatchCmd {
     #[arg(long, value_enum, default_value_t = VideoBatchMode::All)]
     pub mode: VideoBatchMode,
     #[command(flatten)]
+    pub visible: VideoVisibleArgs,
+    #[command(flatten)]
     pub temporal_consistency: TemporalConsistency,
     #[command(flatten)]
     pub invisible: Invisible,
@@ -272,8 +272,13 @@ pub struct VideoBatchCmd {
     pub as_json: bool,
 }
 
-impl VideoAudioCmd {
-    pub fn process(&self) -> &AudioProcessArgs {
-        &self.process
-    }
+/// `--mark` and `--backend` shared by `video visible|all|batch`.
+#[derive(Debug, Clone, Args)]
+pub struct VideoVisibleArgs {
+    /// Visible AI mark to remove. Auto scans every supported provider in one decode pass.
+    #[arg(long, value_enum, default_value_t = VideoMark::Auto)]
+    pub mark: VideoMark,
+    /// Per-frame visible-fill backend.
+    #[arg(long, value_enum, default_value_t = FillBackend::Cv2)]
+    pub backend: FillBackend,
 }

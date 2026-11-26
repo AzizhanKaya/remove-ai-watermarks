@@ -58,7 +58,11 @@ const XYZ2SRGB_D65: [u64; 9] = [
     0xbfca_1e14_bdfd_2631,
     0x3ff0_eabe_f06b_3786,
 ];
-const D65: [u64; 3] = [0x3fee_6a22_b389_2ee8, 0x3ff0_0000_0000_0000, 0x3ff1_6b89_5076_3a19];
+const D65: [u64; 3] = [
+    0x3fee_6a22_b389_2ee8,
+    0x3ff0_0000_0000_0000,
+    0x3ff1_6b89_5076_3a19,
+];
 
 fn raw(v: u64) -> f64 {
     f64::from_bits(v)
@@ -99,7 +103,7 @@ fn soft_cbrt(x: f32) -> f32 {
         return x;
     }
     let bits = x.to_bits();
-    if bits & 0x7fff_ffff == 0 {
+    if x == 0.0 {
         return 0.0;
     }
     let a = A.map(raw);
@@ -180,12 +184,21 @@ fn build_tables() -> LabTables {
         for q in 0..dim {
             for r in 0..dim {
                 let idx = p * 3 + q * dim * 3 + r * dim * dim * 3;
-                let (rr, gg, bb) =
-                    (apply_gamma(p as f32 / lld), apply_gamma(q as f32 / lld), apply_gamma(r as f32 / lld));
+                let (rr, gg, bb) = (
+                    apply_gamma(p as f32 / lld),
+                    apply_gamma(q as f32 / lld),
+                    apply_gamma(r as f32 / lld),
+                );
                 let x = rr * s[0] + gg * s[1] + bb * s[2];
                 let y = rr * s[3] + gg * s[4] + bb * s[5];
                 let z = rr * s[6] + gg * s[7] + bb * s[8];
-                let f = |v: f32| if v > lthresh { soft_cbrt(v) } else { v.mul_add(lscale, lbias) };
+                let f = |v: f32| {
+                    if v > lthresh {
+                        soft_cbrt(v)
+                    } else {
+                        v.mul_add(lscale, lbias)
+                    }
+                };
                 let (fx, fy, fz) = (f(x), f(y), f(z));
                 let l = if y > lthresh { 116.0 * fy - 16.0 } else { f9033 * y };
                 let a = 500.0 * (fx - fy);
@@ -219,7 +232,8 @@ fn build_tables() -> LabTables {
         for q in 0..TRILINEAR_BASE {
             for r in 0..TRILINEAR_BASE {
                 let (pp, qq, rr) = (TRILINEAR_BASE - p, TRILINEAR_BASE - q, TRILINEAR_BASE - r);
-                let w = &mut weights[(8 * p + 8 * TRILINEAR_BASE * q + 8 * TRILINEAR_BASE * TRILINEAR_BASE * r) as usize..];
+                let w = &mut weights
+                    [(8 * p + 8 * TRILINEAR_BASE * q + 8 * TRILINEAR_BASE * TRILINEAR_BASE * r) as usize..];
                 w[..8].copy_from_slice(&[
                     pp * qq * rr,
                     pp * qq * r,
@@ -234,8 +248,14 @@ fn build_tables() -> LabTables {
         }
     }
     let scale = 1.0f32 / GAMMA_TAB_SIZE as f32;
-    let ig: Vec<f32> = (0..=GAMMA_TAB_SIZE).map(|i| apply_inv_gamma(scale * i as f32)).collect();
-    LabTables { lut, weights, inv_gamma: spline_build(&ig) }
+    let ig: Vec<f32> = (0..=GAMMA_TAB_SIZE)
+        .map(|i| apply_inv_gamma(scale * i as f32))
+        .collect();
+    LabTables {
+        lut,
+        weights,
+        inv_gamma: spline_build(&ig),
+    }
 }
 
 fn trilinear(cx: i32, cy: i32, cz: i32, t: &LabTables) -> [i32; 3] {
@@ -290,8 +310,17 @@ fn lab_to_rgb(src: &MatView<'_, f32>, bgr: bool) -> Mat<f32> {
     let width = src.width();
     let simd_end = width / 8 * 8;
     dst.par_rows_mut().enumerate().for_each(|(y, row)| {
-        for (x, (s, d)) in src.row(y).chunks_exact(3).zip(row.chunks_exact_mut(3)).enumerate() {
-            let [r, g, b] = if x < simd_end { lab_pixel_simd(s, &c) } else { lab_pixel_scalar(s, &c) };
+        for (x, (s, d)) in src
+            .row(y)
+            .chunks_exact(3)
+            .zip(row.chunks_exact_mut(3))
+            .enumerate()
+        {
+            let [r, g, b] = if x < simd_end {
+                lab_pixel_simd(s, &c)
+            } else {
+                lab_pixel_scalar(s, &c)
+            };
             for (o, v) in d.iter_mut().zip([r, g, b]) {
                 *o = spline_interpolate(v * gscale, &t.inv_gamma, GAMMA_TAB_SIZE);
             }
@@ -309,10 +338,24 @@ fn lab_pixel_scalar(s: &[f32], c: &[f32; 9]) -> [f32; 3] {
         let fy = (li + 16.0) / 116.0;
         (fy * fy * fy, fy)
     };
-    let f = |v: f32| if v <= 6.0 / 29.0 { (v - 16.0 / 116.0) / 7.787 } else { v * v * v };
+    let f = |v: f32| {
+        if v <= 6.0 / 29.0 {
+            (v - 16.0 / 116.0) / 7.787
+        } else {
+            v * v * v
+        }
+    };
     let x = f(ai / 500.0 + fy);
     let z = f(fy - bi / 200.0);
-    let clip = |v: f32| if v < 0.0 { 0.0 } else if v <= 1.0 { v } else { 1.0 };
+    let clip = |v: f32| {
+        if v < 0.0 {
+            0.0
+        } else if v <= 1.0 {
+            v
+        } else {
+            1.0
+        }
+    };
     [
         clip(c[0] * x + c[1] * y + c[2] * z),
         clip(c[3] * x + c[4] * y + c[5] * z),
@@ -329,7 +372,13 @@ fn lab_pixel_simd(s: &[f32], c: &[f32; 9]) -> [f32; 3] {
         let fy = (li + 16.0) * (1.0 / 116.0);
         (fy * fy * fy, fy)
     };
-    let f = |v: f32| if v <= 6.0 / 29.0 { (v - 16.0 / 116.0) * (1.0 / 7.787) } else { v * v * v };
+    let f = |v: f32| {
+        if v <= 6.0 / 29.0 {
+            (v - 16.0 / 116.0) * (1.0 / 7.787)
+        } else {
+            v * v * v
+        }
+    };
     let x = f(ai * (1.0 / 500.0) + fy);
     let z = f(bi * (-1.0 / 200.0) + fy);
     let clip = |v: f32| 0.0f32.max(v.min(1.0));

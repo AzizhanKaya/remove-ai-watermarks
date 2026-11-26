@@ -269,9 +269,9 @@ pub struct VideoRegenArgs {
     /// SynthID output long side in pixels.
     #[arg(long = "long-side", default_value_t = 512, value_parser = clap::value_parser!(u32).range(8..))]
     pub long_side: u32,
-    /// SynthID output frame rate, capped at the source frame rate.
-    #[arg(long, default_value_t = 12.0, value_parser = at_least_one)]
-    pub fps: f64,
+    /// SynthID output frame rate, capped at the source frame rate [default: 12.0].
+    #[arg(long, value_parser = at_least_one)]
+    pub fps: Option<f64>,
     /// SynthID inference batch size; Seedance uses a fixed batch size.
     #[arg(long = "batch-size", default_value_t = 4, value_parser = clap::value_parser!(u32).range(1..))]
     pub batch_size: u32,
@@ -292,6 +292,26 @@ pub struct VideoRegenArgs {
     /// Evict cached neural models and empty GPU caches between stages and files.
     #[arg(long = "low-memory")]
     pub low_memory: bool,
+    /// VAE inference device.
+    #[arg(long, value_enum, default_value_t = Device::Auto)]
+    pub device: Device,
+    /// Output quality; master requires seedance, wan21-synthid, or wan21-seedance.
+    #[arg(long, value_enum, default_value_t = VideoQuality::Delivery)]
+    pub quality: VideoQuality,
+    /// Video-pixel profile. 'auto' routes ByteDance/Seedance and SynthID clips automatically.
+    #[arg(long, value_enum, default_value_t = VideoProfile::Auto)]
+    pub profile: VideoProfile,
+}
+
+impl VideoRegenArgs {
+    /// `_effective_cli_fps`: `None` keeps the source rate (`--keep-fps`, or `--native-guide` with a default `--fps`).
+    pub fn effective_fps(&self) -> Option<f64> {
+        if self.keep_fps || (self.native_guide && self.fps.is_none()) {
+            None
+        } else {
+            Some(self.fps.unwrap_or(12.0))
+        }
+    }
 }
 
 /// Audio cleaning options embedded in `video all|batch` with the `--audio-` prefix.
@@ -299,6 +319,15 @@ pub struct VideoRegenArgs {
 pub struct VideoAudioArgs {
     #[command(flatten)]
     pub audio_invisible: AudioInvisible,
+    /// Compatible public models to check when --audio-invisible is set.
+    #[arg(long = "audio-scheme", value_enum, default_value_t = AudioScheme::Auto)]
+    pub audio_scheme: AudioScheme,
+    /// Audio watermark removal method when --audio-invisible is enabled.
+    #[arg(long = "audio-method", value_enum, default_value_t = AudioMethod::Auto)]
+    pub audio_method: AudioMethod,
+    /// Known audio vendor when metadata was stripped; enables wideband audio scrubbing.
+    #[arg(long = "audio-vendor", value_enum, default_value_t = AudioVendor::Auto)]
+    pub audio_vendor: AudioVendor,
     /// Alias enabling every --audio-allow-* override when --audio-invisible is set.
     #[arg(long = "audio-force")]
     pub audio_force: bool,

@@ -13,10 +13,13 @@ raiw-cv.workspace = true
 thiserror.workspace = true
 serde.workspace = true
 serde_json.workspace = true
+indexmap.workspace = true
 rayon.workspace = true
 rustfft.workspace = true
 num-complex.workspace = true
 image.workspace = true
+half.workspace = true
+zip = { version = "9.8.2", default-features = false, features = ["deflate-flate2-zlib-rs"] }
 
 [dev-dependencies]
 raiw-core = { workspace = true, features = ["testing"] }

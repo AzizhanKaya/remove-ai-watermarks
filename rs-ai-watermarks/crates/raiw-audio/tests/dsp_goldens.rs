@@ -2,10 +2,33 @@
 
 mod common;
 
-use common::{check_f32, check_f64, golden, sha_f32, synth};
+use common::{check_f32, check_f64, golden, sha_f32, splitmix_uniform, synth};
+use raiw_audio::codecs::stream::fade_in;
+use raiw_audio::dsp::numpy::cos_f32;
 use raiw_audio::dsp::{Band, Section, butter_sos, resample_poly, sosfilt_zi, sosfiltfilt};
 use raiw_audio::{Frames, RationalClock, spectral};
 use serde_json::Value;
+
+#[test]
+fn float32_cosine_and_crossfade_match_numpy_bit_for_bit() {
+    let golden = golden("fade");
+    for case in golden["fades"].as_array().unwrap() {
+        let overlap = case["overlap"].as_u64().unwrap() as usize;
+        assert!(
+            check_f32(&fade_in(overlap), &case["fade"], 1e-6, &format!("fade {overlap}")),
+            "fade {overlap}"
+        );
+    }
+    let x: Vec<f32> = splitmix_uniform(77, 100_000)
+        .into_iter()
+        .map(|u| (40.0 * u - 20.0) as f32)
+        .collect();
+    let cos: Vec<f32> = x.iter().map(|&v| cos_f32(v)).collect();
+    assert!(
+        check_f32(&cos, &golden["cos"], 1e-6, "np.cos float32"),
+        "np.cos float32 bit-identical"
+    );
+}
 
 fn design(value: &Value) -> (Band, usize, f64) {
     let design = value.as_array().unwrap();

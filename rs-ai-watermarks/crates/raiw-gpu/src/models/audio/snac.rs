@@ -344,7 +344,7 @@ impl SnacCodec {
         let mut padded = samples.to_vec();
         padded.resize(samples.len() + pad, 0.0);
         let latent = self.encode_latent(mono_tensor(&padded, self.device.burn()));
-        Ok(residual_quantize(&self.quantizers[..n_quantizers], latent))
+        Ok(residual_quantize(&self.quantizers[..n_quantizers], &latent))
     }
 
     fn encode_latent(&self, x: Tensor<3>) -> Tensor<3> {

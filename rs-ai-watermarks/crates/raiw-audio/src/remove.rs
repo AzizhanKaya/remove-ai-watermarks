@@ -60,6 +60,8 @@ pub struct RemovalRequest {
     pub preserve_hf_hz: Option<f64>,
     pub max_duration_seconds: Option<f64>,
     pub progress: Option<Progress>,
+    /// Evict cached neural models after processing (`low_memory=True`).
+    pub low_memory: bool,
 }
 
 impl std::fmt::Debug for RemovalRequest {
@@ -137,6 +139,19 @@ fn skip_result(
 /// vendor cohort) only after local verification fails; every attempt reuses one hash-bound
 /// source report. Failed intermediate candidates are discarded before the next profile runs.
 pub fn remove_audio_invisible(
+    runtime: &AudioRuntime,
+    source: &Path,
+    output: &Path,
+    request: &RemovalRequest,
+) -> Result<AudioRemovalResult> {
+    let result = remove_with_fallback(runtime, source, output, request);
+    if request.low_memory {
+        runtime.release_models();
+    }
+    result
+}
+
+fn remove_with_fallback(
     runtime: &AudioRuntime,
     source: &Path,
     output: &Path,
@@ -346,6 +361,29 @@ pub fn remove_audio_profile(
     request: &ProfileRequest,
     before: Option<&AudioProvenanceReport>,
 ) -> Result<AudioRemovalResult> {
+    run_profile(runtime, source, output, request, before, false)
+}
+
+/// `_remove_audio_profile(..., _skip_post_verify=True)`: publish right after encoding, leaving
+/// fidelity and decoder verification to a caller that checks the final mux (video audio).
+pub fn remove_audio_profile_unverified(
+    runtime: &AudioRuntime,
+    source: &Path,
+    output: &Path,
+    request: &ProfileRequest,
+    before: Option<&AudioProvenanceReport>,
+) -> Result<AudioRemovalResult> {
+    run_profile(runtime, source, output, request, before, true)
+}
+
+fn run_profile(
+    runtime: &AudioRuntime,
+    source: &Path,
+    output: &Path,
+    request: &ProfileRequest,
+    before: Option<&AudioProvenanceReport>,
+    skip_post_verify: bool,
+) -> Result<AudioRemovalResult> {
     let permissions = request.permissions;
     let profile = request.profile;
     if !request.verify && !permissions.unverified() {
@@ -449,6 +487,28 @@ pub fn remove_audio_profile(
         return Err(AudioError::failed(
             "Audio processing changed the decoded sample-frame count",
         ));
+    }
+    if skip_post_verify {
+        if sha256_file(&before.source)? != before.sha256 {
+            return Err(AudioError::failed("Audio source changed during processing"));
+        }
+        staged.commit()?;
+        return Ok(AudioRemovalResult {
+            source: before.source.clone(),
+            output: Some(output.to_path_buf()),
+            frames_processed: written,
+            removed_markers: before.metadata_markers.clone(),
+            after: None,
+            verified_removed: None,
+            skipped: false,
+            method: profile,
+            fidelity: None,
+            verification_scope: Vec::new(),
+            bandwidth_kbps: bandwidth,
+            vocoder_device: reported_device,
+            quality_passed: None,
+            before,
+        });
     }
     let fidelity = measure_fidelity(&tools, &before.source, &info, staged.path(), 0)?;
     let quality_ok = audio_quality_passed(&fidelity, is_lossy_output(staged.path()));

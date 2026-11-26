@@ -1,0 +1,1411 @@
+{
+ "fixture": "provenance/xai-grok-imagine-video.mp4",
+ "report": {
+  "source": "<ROOT0>/data/fixtures/provenance/xai-grok-imagine-video.mp4",
+  "sha256": "c6e3329009260cd230deaadd0cc7293269a94c4628010cd7eeb3d390b76cc0c2",
+  "stream": {
+   "index": 1,
+   "sample_rate": 48000,
+   "channels": 2,
+   "codec": "aac",
+   "start_time": "0",
+   "duration": "6",
+   "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+   "channel_layout": "stereo",
+   "sample_fmt": "fltp",
+   "bits_per_raw_sample": null
+  },
+  "metadata_markers": {
+   "c2pa_manifest": "fMP4 C2PA emsg segment provenance (urn:c2pa:)",
+   "xai_signature": "xAI/Grok signature (UUID + Signature blob)"
+  },
+  "watermark_status": "not_detected",
+  "detections": [
+   {
+    "scheme": "audioseal",
+    "channel": 0,
+    "status": "not_detected",
+    "whole_clip": {
+     "mean_detect_prob": 0.21928372979164124,
+     "frac_above_threshold": 0.20322916666666666,
+     "decoded_bits": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1
+     ]
+    },
+    "windows": [
+     {
+      "start_frame": 0,
+      "end_frame": 48000,
+      "reading": {
+       "mean_detect_prob": 0.00013511389261111617,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 48000,
+      "end_frame": 96000,
+      "reading": {
+       "mean_detect_prob": 0.0020956380758434534,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 96000,
+      "end_frame": 144000,
+      "reading": {
+       "mean_detect_prob": 0.006543540861457586,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 144000,
+      "end_frame": 192000,
+      "reading": {
+       "mean_detect_prob": 0.10441260039806366,
+       "frac_above_threshold": 0.008125,
+       "decoded_bits": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 192000,
+      "end_frame": 240000,
+      "reading": {
+       "mean_detect_prob": 0.000726633588783443,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 240000,
+      "end_frame": 288000,
+      "reading": {
+       "mean_detect_prob": 0.0001050212376867421,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     }
+    ],
+    "whole_clip_error": null,
+    "decoder_sample_rate": 16000,
+    "whole_segments": [
+     {
+      "start_frame": 0,
+      "end_frame": 288000,
+      "reading": {
+       "mean_detect_prob": 0.21928372979164124,
+       "frac_above_threshold": 0.20322916666666666,
+       "decoded_bits": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     }
+    ],
+    "inapplicable": false
+   },
+   {
+    "scheme": "audioseal",
+    "channel": 1,
+    "status": "not_detected",
+    "whole_clip": {
+     "mean_detect_prob": 0.2192683070898056,
+     "frac_above_threshold": 0.20321875,
+     "decoded_bits": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1
+     ]
+    },
+    "windows": [
+     {
+      "start_frame": 0,
+      "end_frame": 48000,
+      "reading": {
+       "mean_detect_prob": 0.0001351139071630314,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 48000,
+      "end_frame": 96000,
+      "reading": {
+       "mean_detect_prob": 0.002093916991725564,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 96000,
+      "end_frame": 144000,
+      "reading": {
+       "mean_detect_prob": 0.0065435380674898624,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 144000,
+      "end_frame": 192000,
+      "reading": {
+       "mean_detect_prob": 0.10441247373819351,
+       "frac_above_threshold": 0.008125,
+       "decoded_bits": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 192000,
+      "end_frame": 240000,
+      "reading": {
+       "mean_detect_prob": 0.0007266332977451384,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 240000,
+      "end_frame": 288000,
+      "reading": {
+       "mean_detect_prob": 0.00010502341319806874,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     }
+    ],
+    "whole_clip_error": null,
+    "decoder_sample_rate": 16000,
+    "whole_segments": [
+     {
+      "start_frame": 0,
+      "end_frame": 288000,
+      "reading": {
+       "mean_detect_prob": 0.2192683070898056,
+       "frac_above_threshold": 0.20321875,
+       "decoded_bits": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     }
+    ],
+    "inapplicable": false
+   },
+   {
+    "scheme": "audioseal",
+    "channel": "mix",
+    "status": "not_detected",
+    "whole_clip": {
+     "mean_detect_prob": 0.21927671134471893,
+     "frac_above_threshold": 0.20322916666666666,
+     "decoded_bits": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1
+     ]
+    },
+    "windows": [
+     {
+      "start_frame": 0,
+      "end_frame": 48000,
+      "reading": {
+       "mean_detect_prob": 0.00013511288852896541,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 48000,
+      "end_frame": 96000,
+      "reading": {
+       "mean_detect_prob": 0.0020946278236806393,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 96000,
+      "end_frame": 144000,
+      "reading": {
+       "mean_detect_prob": 0.0065435548312962055,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 144000,
+      "end_frame": 192000,
+      "reading": {
+       "mean_detect_prob": 0.1044125109910965,
+       "frac_above_threshold": 0.008125,
+       "decoded_bits": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 192000,
+      "end_frame": 240000,
+      "reading": {
+       "mean_detect_prob": 0.0007266336469911039,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 240000,
+      "end_frame": 288000,
+      "reading": {
+       "mean_detect_prob": 0.00010502229270059615,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     }
+    ],
+    "whole_clip_error": null,
+    "decoder_sample_rate": 16000,
+    "whole_segments": [
+     {
+      "start_frame": 0,
+      "end_frame": 288000,
+      "reading": {
+       "mean_detect_prob": 0.21927671134471893,
+       "frac_above_threshold": 0.20322916666666666,
+       "decoded_bits": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     }
+    ],
+    "inapplicable": false
+   },
+   {
+    "scheme": "audioseal",
+    "channel": 0,
+    "status": "not_detected",
+    "whole_clip": {
+     "mean_detect_prob": 0.140227809548378,
+     "frac_above_threshold": 0.04204861111111111,
+     "decoded_bits": [
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+     ]
+    },
+    "windows": [
+     {
+      "start_frame": 0,
+      "end_frame": 48000,
+      "reading": {
+       "mean_detect_prob": 0.0010799181181937456,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 48000,
+      "end_frame": 96000,
+      "reading": {
+       "mean_detect_prob": 0.07655324041843414,
+       "frac_above_threshold": 0.005645833333333333,
+       "decoded_bits": [
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 96000,
+      "end_frame": 144000,
+      "reading": {
+       "mean_detect_prob": 0.06682039797306061,
+       "frac_above_threshold": 0.0491875,
+       "decoded_bits": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 144000,
+      "end_frame": 192000,
+      "reading": {
+       "mean_detect_prob": 0.0017047820147126913,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 192000,
+      "end_frame": 240000,
+      "reading": {
+       "mean_detect_prob": 0.0051513174548745155,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 240000,
+      "end_frame": 288000,
+      "reading": {
+       "mean_detect_prob": 0.0003444887697696686,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     }
+    ],
+    "whole_clip_error": null,
+    "decoder_sample_rate": 48000,
+    "whole_segments": [
+     {
+      "start_frame": 0,
+      "end_frame": 288000,
+      "reading": {
+       "mean_detect_prob": 0.140227809548378,
+       "frac_above_threshold": 0.04204861111111111,
+       "decoded_bits": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     }
+    ],
+    "inapplicable": false
+   },
+   {
+    "scheme": "audioseal",
+    "channel": 1,
+    "status": "not_detected",
+    "whole_clip": {
+     "mean_detect_prob": 0.13957706093788147,
+     "frac_above_threshold": 0.03931944444444444,
+     "decoded_bits": [
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "windows": [
+     {
+      "start_frame": 0,
+      "end_frame": 48000,
+      "reading": {
+       "mean_detect_prob": 0.0010904802475124598,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 48000,
+      "end_frame": 96000,
+      "reading": {
+       "mean_detect_prob": 0.07723593711853027,
+       "frac_above_threshold": 0.005833333333333334,
+       "decoded_bits": [
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 96000,
+      "end_frame": 144000,
+      "reading": {
+       "mean_detect_prob": 0.06705984473228455,
+       "frac_above_threshold": 0.049375,
+       "decoded_bits": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 144000,
+      "end_frame": 192000,
+      "reading": {
+       "mean_detect_prob": 0.0017039875965565443,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 192000,
+      "end_frame": 240000,
+      "reading": {
+       "mean_detect_prob": 0.0051672374829649925,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 240000,
+      "end_frame": 288000,
+      "reading": {
+       "mean_detect_prob": 0.000344015919836238,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     }
+    ],
+    "whole_clip_error": null,
+    "decoder_sample_rate": 48000,
+    "whole_segments": [
+     {
+      "start_frame": 0,
+      "end_frame": 288000,
+      "reading": {
+       "mean_detect_prob": 0.13957706093788147,
+       "frac_above_threshold": 0.03931944444444444,
+       "decoded_bits": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     }
+    ],
+    "inapplicable": false
+   },
+   {
+    "scheme": "audioseal",
+    "channel": "mix",
+    "status": "not_detected",
+    "whole_clip": {
+     "mean_detect_prob": 0.12467727065086365,
+     "frac_above_threshold": 0.03320833333333333,
+     "decoded_bits": [
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "windows": [
+     {
+      "start_frame": 0,
+      "end_frame": 48000,
+      "reading": {
+       "mean_detect_prob": 0.001085507683455944,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 48000,
+      "end_frame": 96000,
+      "reading": {
+       "mean_detect_prob": 0.07686745375394821,
+       "frac_above_threshold": 0.005791666666666666,
+       "decoded_bits": [
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 96000,
+      "end_frame": 144000,
+      "reading": {
+       "mean_detect_prob": 0.0670783519744873,
+       "frac_above_threshold": 0.04927083333333333,
+       "decoded_bits": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 144000,
+      "end_frame": 192000,
+      "reading": {
+       "mean_detect_prob": 0.001704556168988347,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 192000,
+      "end_frame": 240000,
+      "reading": {
+       "mean_detect_prob": 0.0051582977175712585,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     },
+     {
+      "start_frame": 240000,
+      "end_frame": 288000,
+      "reading": {
+       "mean_detect_prob": 0.00034437092836014926,
+       "frac_above_threshold": 0.0,
+       "decoded_bits": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     }
+    ],
+    "whole_clip_error": null,
+    "decoder_sample_rate": 48000,
+    "whole_segments": [
+     {
+      "start_frame": 0,
+      "end_frame": 288000,
+      "reading": {
+       "mean_detect_prob": 0.12467727065086365,
+       "frac_above_threshold": 0.03320833333333333,
+       "decoded_bits": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+       ]
+      },
+      "error": null,
+      "inapplicable": false
+     }
+    ],
+    "inapplicable": false
+   }
+  ],
+  "caveats": [
+   "audioseal checks cover its pinned public model. Production-provider compatibility and general AI origin remain unverified.",
+   "AudioSeal adds native-clock checks for calibrated 24 kHz and 48 kHz profiles alongside 16 kHz checks; other native clocks are outside this coverage. Each channel and clock is independent. A matching public-model mark does not identify LTX."
+  ],
+  "recommended_recipe": "remove-ai-watermarks audio metadata input.mp4 --remove -o clean.mp4"
+ }
+}

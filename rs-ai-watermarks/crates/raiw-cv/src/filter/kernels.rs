@@ -15,7 +15,9 @@ pub fn gaussian_kernel(n: usize, sigma: f64) -> Vec<f64> {
             1 => &[1.0],
             3 => &[0.25, 0.5, 0.25],
             5 => &[0.0625, 0.25, 0.375, 0.25, 0.0625],
-            7 => &[0.031_25, 0.109_375, 0.218_75, 0.281_25, 0.218_75, 0.109_375, 0.031_25],
+            7 => &[
+                0.031_25, 0.109_375, 0.218_75, 0.281_25, 0.218_75, 0.109_375, 0.031_25,
+            ],
             9 => &[
                 4.0 / 256.0,
                 13.0 / 256.0,
@@ -33,7 +35,11 @@ pub fn gaussian_kernel(n: usize, sigma: f64) -> Vec<f64> {
             return fixed.to_vec();
         }
     }
-    let sigma_x = if sigma > 0.0 { sigma } else { (n as f64).mul_add(0.15, 0.35) };
+    let sigma_x = if sigma > 0.0 {
+        sigma
+    } else {
+        (n as f64).mul_add(0.15, 0.35)
+    };
     let scale2x = -0.125 / (sigma_x * sigma_x);
     let half = (n - 1) / 2;
     let mut values = Vec::with_capacity(half);
@@ -47,7 +53,7 @@ pub fn gaussian_kernel(n: usize, sigma: f64) -> Vec<f64> {
     }
     sum *= 2.0;
     sum += 1.0;
-    if n % 2 == 0 {
+    if n.is_multiple_of(2) {
         sum += 1.0;
     }
     let mul = 1.0 / sum;
@@ -57,7 +63,7 @@ pub fn gaussian_kernel(n: usize, sigma: f64) -> Vec<f64> {
         out[n - 1 - i] = v * mul;
     }
     out[half] = mul;
-    if n % 2 == 0 {
+    if n.is_multiple_of(2) {
         out[half + 1] = mul;
     }
     out
@@ -86,8 +92,11 @@ pub(crate) fn gaussian_kernel_fixed(n: usize, sigma: f64, bits: u32) -> Vec<u64>
 
 /// `getDerivKernels` for Sobel apertures (`ksize` 1, 3, 5, ..., 31): `(kx, ky)`.
 pub fn sobel_kernels(dx: usize, dy: usize, ksize: usize) -> Result<(Vec<f64>, Vec<f64>)> {
-    if ksize % 2 == 0 || ksize > 31 || dx + dy == 0 {
-        return Err(invalid("sobel", "kernel size must be odd, at most 31, with a nonzero order"));
+    if ksize.is_multiple_of(2) || ksize > 31 || dx + dy == 0 {
+        return Err(invalid(
+            "sobel",
+            "kernel size must be odd, at most 31, with a nonzero order",
+        ));
     }
     let one = |order: usize| -> Result<Vec<f64>> {
         let ksize = if ksize == 1 && order > 0 { 3 } else { ksize };
@@ -134,7 +143,10 @@ mod tests {
     #[test]
     fn small_kernels() {
         assert_eq!(gaussian_kernel_fixed(3, 0.0, 8), [64, 128, 64]);
-        assert_eq!(sobel_kernels(1, 0, 3).unwrap(), (vec![-1.0, 0.0, 1.0], vec![1.0, 2.0, 1.0]));
+        assert_eq!(
+            sobel_kernels(1, 0, 3).unwrap(),
+            (vec![-1.0, 0.0, 1.0], vec![1.0, 2.0, 1.0])
+        );
         assert_eq!(sobel_kernels(0, 1, 5).unwrap().1, vec![-1.0, -2.0, 0.0, 2.0, 1.0]);
         assert_eq!(gaussian_ksize(2.0, true), 13);
         assert_eq!(gaussian_ksize(2.0, false), 17);

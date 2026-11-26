@@ -7,6 +7,11 @@ rust-version.workspace = true
 license.workspace = true
 authors.workspace = true
 
+[features]
+default = ["turbojpeg"]
+# libjpeg-turbo (system libturbojpeg) for Pillow-identical JPEG decode and re-encode.
+turbojpeg = ["dep:turbojpeg"]
+
 [dependencies]
 raiw-core.workspace = true
 raiw-container.workspace = true
@@ -17,11 +22,18 @@ serde_json.workspace = true
 regex.workspace = true
 memchr.workspace = true
 hex.workspace = true
+indexmap.workspace = true
+flate2.workspace = true
+crc32fast.workspace = true
+base64.workspace = true
+image.workspace = true
 sm2 = { version = "0.14.0", default-features = false, features = ["dsa", "std"] }
+turbojpeg = { version = "1.5.1", optional = true, default-features = false, features = ["pkg-config"] }
 
 [dev-dependencies]
 raiw-core = { workspace = true, features = ["testing"] }
 tempfile.workspace = true
+serde_json.workspace = true
 
 [lints]
 workspace = true

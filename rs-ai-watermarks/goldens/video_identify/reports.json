@@ -1,0 +1,2139 @@
+{
+ "provenance/amazon-bedrock-nova-reel.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/amazon-bedrock-nova-reel.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Amazon Bedrock (Nova)",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": 145,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (4855 bytes)",
+    "claim_generator": "Amazon_Bedrock",
+    "issuer": "Amazon",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "created",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Invisible watermark hints come from metadata declarations or provider policy, not a pixel detection. They do not confirm a surviving watermark or verified removal on this file."
+   ],
+   "invisible_watermark_hints": [
+    "Amazon Nova Reel"
+   ],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/amazon-bedrock-nova-reel.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Amazon Bedrock (Nova)",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (4855 bytes)",
+    "claim_generator": "Amazon_Bedrock",
+    "issuer": "Amazon",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "created",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Invisible watermark hints come from metadata declarations or provider policy, not a pixel detection. They do not confirm a surviving watermark or verified removal on this file.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [
+    "Amazon Nova Reel"
+   ],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  }
+ },
+ "provenance/dreamina-seedance-2-mini.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/dreamina-seedance-2-mini.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "ByteDance Dreamina",
+   "visible_mark": "dreamina",
+   "visible_detected_frames": 121,
+   "total_frames": 121,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (10181 bytes)",
+    "claim_generator": "c2patool",
+    "ai_tool": "Dreamina",
+    "issuer": "ByteDance",
+    "actions": "opened, transcoded, created",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid",
+    "app_provenance": "App export provenance (ByteDance Dreamina)",
+    "app_aigc": "App AIGC disclosure (ByteDance Dreamina)"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)",
+   "visible_marks": [
+    "dreamina"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/dreamina-seedance-2-mini.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "ByteDance Dreamina",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (10181 bytes)",
+    "claim_generator": "c2patool",
+    "ai_tool": "Dreamina",
+    "issuer": "ByteDance",
+    "actions": "opened, transcoded, created",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid",
+    "app_provenance": "App export provenance (ByteDance Dreamina)",
+    "app_aigc": "App AIGC disclosure (ByteDance Dreamina)"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video metadata input.mp4 --remove -o clean.mp4 (try lossless C2PA strip first; add video all --invisible --profile auto only for consumer CapCut pixel marks)",
+   "visible_marks": []
+  }
+ },
+ "provenance/google-gemini-omni-app.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/google-gemini-omni-app.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Google Veo",
+   "visible_mark": "veo",
+   "visible_detected_frames": 240,
+   "total_frames": 240,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (5059 bytes)",
+    "claim_generator": "Google C2PA Core Generator Library",
+    "issuer": "Google LLC",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "created, edited",
+    "synthid_watermark": "present according to Google LLC provenance",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Invisible watermark hints come from metadata declarations or provider policy, not a pixel detection. They do not confirm a surviving watermark or verified removal on this file."
+   ],
+   "invisible_watermark_hints": [
+    "SynthID"
+   ],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "visible_marks": [
+    "veo"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/google-gemini-omni-app.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Google (Gemini / Imagen)",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (5059 bytes)",
+    "claim_generator": "Google C2PA Core Generator Library",
+    "issuer": "Google LLC",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "created, edited",
+    "synthid_watermark": "present according to Google LLC provenance",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Invisible watermark hints come from metadata declarations or provider policy, not a pixel detection. They do not confirm a surviving watermark or verified removal on this file.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [
+    "SynthID"
+   ],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "visible_marks": []
+  }
+ },
+ "provenance/google-gemini-omni-flash-api.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/google-gemini-omni-flash-api.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Google (Gemini / Imagen)",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": 240,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (4824 bytes)",
+    "claim_generator": "Google C2PA Core Generator Library",
+    "issuer": "Google LLC",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "created, edited",
+    "synthid_watermark": "present according to Google LLC provenance",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Invisible watermark hints come from metadata declarations or provider policy, not a pixel detection. They do not confirm a surviving watermark or verified removal on this file."
+   ],
+   "invisible_watermark_hints": [
+    "SynthID"
+   ],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "visible_marks": []
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/google-gemini-omni-flash-api.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Google (Gemini / Imagen)",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (4824 bytes)",
+    "claim_generator": "Google C2PA Core Generator Library",
+    "issuer": "Google LLC",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "created, edited",
+    "synthid_watermark": "present according to Google LLC provenance",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Invisible watermark hints come from metadata declarations or provider policy, not a pixel detection. They do not confirm a surviving watermark or verified removal on this file.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [
+    "SynthID"
+   ],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "visible_marks": []
+  }
+ },
+ "provenance/higgsfield-cinema-studio-v2.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/higgsfield-cinema-studio-v2.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Kuaishou Kling AI",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": 73,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "aigc_label": "China AIGC label (TC260); producer kling",
+    "aigc_producer": "kling",
+    "kling_sei": "Kling AI encoder tag (H.264 SEI kling-ai)"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/higgsfield-cinema-studio-v2.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Kuaishou Kling AI",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "aigc_label": "China AIGC label (TC260); producer kling",
+    "aigc_producer": "kling",
+    "kling_sei": "Kling AI encoder tag (H.264 SEI kling-ai)"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  }
+ },
+ "provenance/higgsfield-genjutsu-motion-control.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/higgsfield-genjutsu-motion-control.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "MiniMax Hailuo AI",
+   "visible_mark": "hailuo",
+   "visible_detected_frames": 113,
+   "total_frames": 113,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "hailuo"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/higgsfield-genjutsu-motion-control.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "provenance/higgsfield-hailuo-2-3.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/higgsfield-hailuo-2-3.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "MiniMax Hailuo AI",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": 141,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "aigc_label": "China AIGC label (TC260); producer MiniMax",
+    "aigc_producer": "MiniMax",
+    "aigc_signature": "TC260 label signature verified (pinned MiniMax key)"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/higgsfield-hailuo-2-3.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "MiniMax Hailuo AI",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "aigc_label": "China AIGC label (TC260); producer MiniMax",
+    "aigc_producer": "MiniMax",
+    "aigc_signature": "TC260 label signature verified (pinned MiniMax key)"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  }
+ },
+ "provenance/higgsfield-happyhorse.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/higgsfield-happyhorse.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Alibaba Tongyi (Wan, HappyHorse)",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": 121,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "aigc_label": "China AIGC label (TC260); producer 001191330106MA2CFLDG4R10001",
+    "aigc_producer": "001191330106MA2CFLDG4R10001"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/higgsfield-happyhorse.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Alibaba Tongyi (Wan, HappyHorse)",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "aigc_label": "China AIGC label (TC260); producer 001191330106MA2CFLDG4R10001",
+    "aigc_producer": "001191330106MA2CFLDG4R10001"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  }
+ },
+ "provenance/higgsfield-kling-3-0-turbo.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/higgsfield-kling-3-0-turbo.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Kuaishou Kling AI",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": 121,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "aigc_label": "China AIGC label (TC260); producer kling",
+    "aigc_producer": "kling",
+    "kling_sei": "Kling AI encoder tag (H.264 SEI kling-ai)"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/higgsfield-kling-3-0-turbo.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Kuaishou Kling AI",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "aigc_label": "China AIGC label (TC260); producer kling",
+    "aigc_producer": "kling",
+    "kling_sei": "Kling AI encoder tag (H.264 SEI kling-ai)"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  }
+ },
+ "provenance/higgsfield-minimax-h3.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/higgsfield-minimax-h3.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "MiniMax Hailuo AI",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": 124,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "aigc_label": "China AIGC label (TC260); producer MiniMax",
+    "aigc_producer": "MiniMax",
+    "aigc_signature": "TC260 label signature verified (pinned MiniMax key)"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/higgsfield-minimax-h3.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "MiniMax Hailuo AI",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "aigc_label": "China AIGC label (TC260); producer MiniMax",
+    "aigc_producer": "MiniMax",
+    "aigc_signature": "TC260 label signature verified (pinned MiniMax key)"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  }
+ },
+ "provenance/higgsfield-veo-3-1-lite.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/higgsfield-veo-3-1-lite.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Google (Gemini / Imagen)",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": 192,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (4827 bytes)",
+    "claim_generator": "Google C2PA Core Generator Library",
+    "issuer": "Google LLC",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "created, edited",
+    "synthid_watermark": "present according to Google LLC provenance",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Invisible watermark hints come from metadata declarations or provider policy, not a pixel detection. They do not confirm a surviving watermark or verified removal on this file."
+   ],
+   "invisible_watermark_hints": [
+    "SynthID"
+   ],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "visible_marks": []
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/higgsfield-veo-3-1-lite.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Google (Gemini / Imagen)",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (4827 bytes)",
+    "claim_generator": "Google C2PA Core Generator Library",
+    "issuer": "Google LLC",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "created, edited",
+    "synthid_watermark": "present according to Google LLC provenance",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Invisible watermark hints come from metadata declarations or provider policy, not a pixel detection. They do not confirm a surviving watermark or verified removal on this file.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [
+    "SynthID"
+   ],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "visible_marks": []
+  }
+ },
+ "provenance/runway-gen45-video.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/runway-gen45-video.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Runway",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": 121,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (4991 bytes)",
+    "claim_generator": "c2pa-rs",
+    "issuer": "Runway",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "created",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/runway-gen45-video.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Runway",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (4991 bytes)",
+    "claim_generator": "c2pa-rs",
+    "issuer": "Runway",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "created",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  }
+ },
+ "provenance/xai-grok-imagine-video.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/xai-grok-imagine-video.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "xAI Grok Imagine",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": 145,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (5005 bytes)",
+    "claim_generator": "Grok Imagine",
+    "issuer": "xAI Grok Imagine",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "created",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid",
+    "xai_signature": "xAI/Grok signature (UUID + Signature blob)"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/xai-grok-imagine-video.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "xAI Grok Imagine",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (5005 bytes)",
+    "claim_generator": "Grok Imagine",
+    "issuer": "xAI Grok Imagine",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "created",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid",
+    "xai_signature": "xAI/Grok signature (UUID + Signature blob)"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  }
+ },
+ "provenance/youtube-reencode-gemini-omni-flash.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/youtube-reencode-gemini-omni-flash.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Google (Gemini / Imagen)",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": 240,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (11100 bytes)",
+    "claim_generator": "Google C2PA Core Generator Library",
+    "issuer": "Google LLC",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "opened, transcoded, created, edited",
+    "synthid_watermark": "present according to Google LLC provenance",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Invisible watermark hints come from metadata declarations or provider policy, not a pixel detection. They do not confirm a surviving watermark or verified removal on this file."
+   ],
+   "invisible_watermark_hints": [
+    "SynthID"
+   ],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "visible_marks": []
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/youtube-reencode-gemini-omni-flash.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Google (Gemini / Imagen)",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (11100 bytes)",
+    "claim_generator": "Google C2PA Core Generator Library",
+    "issuer": "Google LLC",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "opened, transcoded, created, edited",
+    "synthid_watermark": "present according to Google LLC provenance",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Invisible watermark hints come from metadata declarations or provider policy, not a pixel detection. They do not confirm a surviving watermark or verified removal on this file.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [
+    "SynthID"
+   ],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "visible_marks": []
+  }
+ },
+ "provenance/youtube-reencode-grok.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/youtube-reencode-grok.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": 145,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (11385 bytes)",
+    "claim_generator": "Google C2PA Core Generator Library",
+    "issuer": "Google LLC",
+    "actions": "opened, transcoded",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "A C2PA manifest signed by Google LLC records opened, transcoded and no AI claim, as a platform re-encode does (YouTube re-signs every upload); that is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/provenance/youtube-reencode-grok.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (11385 bytes)",
+    "claim_generator": "Google C2PA Core Generator Library",
+    "issuer": "Google LLC",
+    "actions": "opened, transcoded",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "A C2PA manifest signed by Google LLC records opened, transcoded and no AI claim, as a platform re-encode does (YouTube re-signs every upload); that is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/baidu/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/baidu/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Baidu",
+   "visible_mark": "baidu",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "baidu"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/baidu/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/dola/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/dola/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "ByteDance Dola",
+   "visible_mark": "dola",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)",
+   "visible_marks": [
+    "dola"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/dola/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/doubao/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/doubao/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "ByteDance Doubao",
+   "visible_mark": "doubao",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)",
+   "visible_marks": [
+    "doubao"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/doubao/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/dreamina/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/dreamina/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "ByteDance Dreamina",
+   "visible_mark": "dreamina",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)",
+   "visible_marks": [
+    "dreamina"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/dreamina/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/generic_ai_label/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/generic_ai_label/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "AI-generated content (GB 45438-2025 label)",
+   "visible_mark": "generic_ai_label",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "generic_ai_label"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/generic_ai_label/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/hailuo/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/hailuo/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "MiniMax Hailuo AI",
+   "visible_mark": "hailuo",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "hailuo"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/hailuo/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/heygen/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/heygen/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "HeyGen",
+   "visible_mark": "heygen",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "heygen"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/heygen/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/jimeng/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/jimeng/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "ByteDance Jimeng",
+   "visible_mark": "jimeng",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)",
+   "visible_marks": [
+    "jimeng"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/jimeng/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/jimeng_pill/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/jimeng_pill/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "ByteDance Jimeng",
+   "visible_mark": "jimeng_pill",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)",
+   "visible_marks": [
+    "jimeng_pill"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/jimeng_pill/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/kling/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/kling/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Kuaishou Kling AI",
+   "visible_mark": "kling",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "kling"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/kling/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/luma/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/luma/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Luma AI",
+   "visible_mark": "luma",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "luma"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/luma/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/microsoft/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/microsoft/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Microsoft",
+   "visible_mark": "microsoft",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "microsoft"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/microsoft/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/pixverse/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/pixverse/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "PixVerse",
+   "visible_mark": "pixverse",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "pixverse"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/pixverse/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/qwen/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/qwen/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Alibaba Cloud Qwen",
+   "visible_mark": "qwen",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "qwen"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/qwen/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/runninghub/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/runninghub/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "RunningHub",
+   "visible_mark": "runninghub",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "runninghub"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/runninghub/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/seedance/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/seedance/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "ByteDance Seedance",
+   "visible_mark": "seedance",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)",
+   "visible_marks": [
+    "seedance"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/seedance/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/sora/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/sora/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "OpenAI Sora",
+   "visible_mark": "sora",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "sora"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/sora/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/sync_labs/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/sync_labs/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Sync Labs",
+   "visible_mark": "sync_labs",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "sync_labs"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/sync_labs/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/tiktok_ai/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/tiktok_ai/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "TikTok",
+   "visible_mark": "tiktok_ai",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "tiktok_ai"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/tiktok_ai/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/veo/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/veo/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Google Veo",
+   "visible_mark": "veo",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "visible_marks": [
+    "veo"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/veo/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/vidu/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/vidu/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "ShengShu Vidu",
+   "visible_mark": "vidu",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "vidu"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/vidu/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/wan/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/wan/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Alibaba Tongyi (Wan, HappyHorse)",
+   "visible_mark": "wan",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "wan"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/wan/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/yuanbao/example.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/yuanbao/example.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Tencent Yuanbao",
+   "visible_mark": "yuanbao",
+   "visible_detected_frames": 90,
+   "total_frames": 90,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "yuanbao"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/yuanbao/example.mp4",
+   "is_ai_generated": null,
+   "confidence": "unknown",
+   "platform": null,
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": false,
+   "metadata_markers": {},
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped.",
+    "No supported signal was found; absence is unknown, not proof that the video is clean."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": null,
+   "visible_marks": []
+  }
+ },
+ "visible/hailuo/provider-original.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/hailuo/provider-original.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "MiniMax Hailuo AI",
+   "visible_mark": "hailuo",
+   "visible_detected_frames": 124,
+   "total_frames": 124,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "aigc_label": "China AIGC label (TC260); producer MiniMax",
+    "aigc_producer": "MiniMax",
+    "aigc_signature": "TC260 label signature verified (pinned MiniMax key)"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "hailuo"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/hailuo/provider-original.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "MiniMax Hailuo AI",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "aigc_label": "China AIGC label (TC260); producer MiniMax",
+    "aigc_producer": "MiniMax",
+    "aigc_signature": "TC260 label signature verified (pinned MiniMax key)"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  }
+ },
+ "visible/kling/provider-original.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/kling/provider-original.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Kuaishou Kling AI",
+   "visible_mark": "kling",
+   "visible_detected_frames": 121,
+   "total_frames": 121,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "kling_sei": "Kling AI encoder tag (H.264 SEI kling-ai)"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "kling"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/kling/provider-original.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Kuaishou Kling AI",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "kling_sei": "Kling AI encoder tag (H.264 SEI kling-ai)"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  }
+ },
+ "visible/sora/provider-original.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/sora/provider-original.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "OpenAI Sora",
+   "visible_mark": "sora",
+   "visible_detected_frames": 300,
+   "total_frames": 300,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (5513 bytes)",
+    "claim_generator": "Sora",
+    "ai_tool": "Sora",
+    "issuer": "OpenAI, Truepic",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "created",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Invalid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "expired"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "sora"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/sora/provider-original.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "OpenAI (ChatGPT / GPT Image / DALL\u00b7E / Sora)",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (5513 bytes)",
+    "claim_generator": "Sora",
+    "ai_tool": "Sora",
+    "issuer": "OpenAI, Truepic",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "created",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Invalid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "expired"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  }
+ },
+ "visible/veo/provider-original.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/veo/provider-original.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Google Veo",
+   "visible_mark": "veo",
+   "visible_detected_frames": 192,
+   "total_frames": 192,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (5057 bytes)",
+    "claim_generator": "Google C2PA Core Generator Library",
+    "issuer": "Google LLC",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "created, edited",
+    "synthid_watermark": "present according to Google LLC provenance",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Invisible watermark hints come from metadata declarations or provider policy, not a pixel detection. They do not confirm a surviving watermark or verified removal on this file."
+   ],
+   "invisible_watermark_hints": [
+    "SynthID"
+   ],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "visible_marks": [
+    "veo"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/veo/provider-original.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "Google (Gemini / Imagen)",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "c2pa_manifest": "C2PA manifest store (5057 bytes)",
+    "claim_generator": "Google C2PA Core Generator Library",
+    "issuer": "Google LLC",
+    "source_type": "trainedAlgorithmicMedia (AI-generated)",
+    "actions": "created, edited",
+    "synthid_watermark": "present according to Google LLC provenance",
+    "c2pa_validation_source": "reader",
+    "c2pa_validation_state": "Valid",
+    "c2pa_integrity": "valid",
+    "c2pa_signature": "valid",
+    "c2pa_signer_trust": "untrusted",
+    "c2pa_signer_validity": "valid"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Invisible watermark hints come from metadata declarations or provider policy, not a pixel detection. They do not confirm a surviving watermark or verified removal on this file.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [
+    "SynthID"
+   ],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "visible_marks": []
+  }
+ },
+ "visible/vidu/provider-original.mp4": {
+  "visible": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/vidu/provider-original.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "ShengShu Vidu",
+   "visible_mark": "vidu",
+   "visible_detected_frames": 193,
+   "total_frames": 193,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "aigc_label": "China AIGC label (TC260); producer 001191110108MACC4D63XF10306",
+    "aigc_producer": "001191110108MACC4D63XF10306"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": [
+    "vidu"
+   ]
+  },
+  "metadata_only": {
+   "source": "/opt/remove-ai-watermarks/data/fixtures/visible/vidu/provider-original.mp4",
+   "is_ai_generated": true,
+   "confidence": "high",
+   "platform": "ShengShu Vidu",
+   "visible_mark": null,
+   "visible_detected_frames": 0,
+   "total_frames": null,
+   "has_ai_metadata": true,
+   "metadata_markers": {
+    "aigc_label": "China AIGC label (TC260); producer 001191110108MACC4D63XF10306",
+    "aigc_producer": "001191110108MACC4D63XF10306"
+   },
+   "caveats": [
+    "No public local decoder can verify proprietary pixel watermarks such as video SynthID.",
+    "Visible video-mark detection was skipped."
+   ],
+   "invisible_watermark_hints": [],
+   "audio_streams": [],
+   "recommended_recipe": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "visible_marks": []
+  }
+ }
+}

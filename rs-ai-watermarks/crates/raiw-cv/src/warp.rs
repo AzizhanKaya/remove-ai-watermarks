@@ -15,18 +15,48 @@ const INTER_BITS: i32 = 5;
 const TAB: i32 = 1 << INTER_BITS;
 const COEF_BITS: i32 = 15;
 const COEF_SCALE: i32 = 1 << COEF_BITS;
+/// Fixed-point bits of `warpAffine`'s incremental coordinates.
+const AB_BITS: i32 = 10;
 
 /// Element types `remap` / `warp_affine` accept; 8-bit images interpolate in fixed point.
-pub trait WarpElement: Element {}
-impl WarpElement for u8 {}
-impl WarpElement for u16 {}
-impl WarpElement for i16 {}
-impl WarpElement for f32 {}
+pub trait WarpElement: Element {
+    /// The sample as a fixed-point operand (integer types only reach this).
+    #[doc(hidden)]
+    fn fixed(self) -> i32;
+}
+
+macro_rules! warp_int {
+    ($($t:ty),*) => {$(
+        impl WarpElement for $t {
+            #[inline]
+            fn fixed(self) -> i32 {
+                i32::from(self)
+            }
+        }
+    )*};
+}
+
+warp_int!(u8, u16, i16);
+
+impl WarpElement for f32 {
+    #[inline]
+    fn fixed(self) -> i32 {
+        self as i32
+    }
+}
 
 fn lanczos4_1d(x: f32) -> [f32; 8] {
     const S45: f64 = std::f64::consts::FRAC_1_SQRT_2;
-    const CS: [[f64; 2]; 8] =
-        [[1.0, 0.0], [-S45, -S45], [0.0, 1.0], [S45, -S45], [-1.0, 0.0], [S45, S45], [0.0, -1.0], [-S45, S45]];
+    const CS: [[f64; 2]; 8] = [
+        [1.0, 0.0],
+        [-S45, -S45],
+        [0.0, 1.0],
+        [S45, -S45],
+        [-1.0, 0.0],
+        [S45, S45],
+        [0.0, -1.0],
+        [-S45, S45],
+    ];
     let mut out = [0.0f32; 8];
     if x < f32::EPSILON {
         out[3] = 1.0;
@@ -138,7 +168,11 @@ struct Coord {
 impl Coord {
     /// From fixed-point coordinates with `INTER_BITS` fractional bits.
     fn from_fixed(x: i32, y: i32) -> Self {
-        Self { x: x >> INTER_BITS, y: y >> INTER_BITS, phase: ((y & (TAB - 1)) * TAB + (x & (TAB - 1))) as usize }
+        Self {
+            x: x >> INTER_BITS,
+            y: y >> INTER_BITS,
+            phase: ((y & (TAB - 1)) * TAB + (x & (TAB - 1))) as usize,
+        }
     }
 }
 
@@ -152,8 +186,16 @@ struct Sampler<'s, 'a, T> {
 
 impl<'s, 'a, T: WarpElement> Sampler<'s, 'a, T> {
     fn new(src: &'s MatView<'a, T>, border: Border, interpolation: Interpolation) -> Self {
-        let cval = (0..src.channels()).map(|c| T::from_f64(border.constant_value(c & 3))).collect();
-        Self { src, border, cval, fixed_point: T::DEPTH == Depth::U8, tab: tables(interpolation) }
+        let cval = (0..src.channels())
+            .map(|c| T::from_f64(border.constant_value(c & 3)))
+            .collect();
+        Self {
+            src,
+            border,
+            cval,
+            fixed_point: T::DEPTH == Depth::U8,
+            tab: tables(interpolation),
+        }
     }
 
     #[inline]
@@ -195,12 +237,48 @@ impl<'s, 'a, T: WarpElement> Sampler<'s, 'a, T> {
     fn bilinear(&self, p: Coord, out: &mut [T]) {
         let (w, h) = (self.src.width() as i32, self.src.height() as i32);
         let (sx, sy) = (p.x, p.y);
+        if sx >= 0 && sy >= 0 && sx + 1 < w && sy + 1 < h {
+            let cn = out.len();
+            let (r0, r1) = (self.src.row(sy as usize), self.src.row(sy as usize + 1));
+            let i = sx as usize * cn;
+            if self.fixed_point {
+                let wt = &self.tab.fixed[p.phase * 4..p.phase * 4 + 4];
+                let (w0, w1, w2, w3) = (
+                    i32::from(wt[0]),
+                    i32::from(wt[1]),
+                    i32::from(wt[2]),
+                    i32::from(wt[3]),
+                );
+                for (c, o) in out.iter_mut().enumerate() {
+                    let v = |t: T| t.fixed();
+                    let sum = v(r0[i + c]) * w0
+                        + v(r0[i + cn + c]) * w1
+                        + v(r1[i + c]) * w2
+                        + v(r1[i + cn + c]) * w3;
+                    *o = Self::cast_fixed(sum);
+                }
+            } else {
+                let wt = &self.tab.float[p.phase * 4..p.phase * 4 + 4];
+                for (c, o) in out.iter_mut().enumerate() {
+                    let sum = r0[i + c].to_f32() * wt[0]
+                        + r0[i + cn + c].to_f32() * wt[1]
+                        + r1[i + c].to_f32() * wt[2]
+                        + r1[i + cn + c].to_f32() * wt[3];
+                    *o = T::from_f32(sum);
+                }
+            }
+            return;
+        }
         if self.is_constant() && (sx >= w || sx + 1 < 0 || sy >= h || sy + 1 < 0) {
             out.copy_from_slice(&self.cval);
             return;
         }
         let pick = |v: i32, len: i32| -> Option<i32> {
-            if self.border == Border::Replicate { Some(v.clamp(0, len - 1)) } else { self.index(v, len as usize) }
+            if self.border == Border::Replicate {
+                Some(v.clamp(0, len - 1))
+            } else {
+                self.index(v, len as usize)
+            }
         };
         let (x0, x1, y0, y1) = (pick(sx, w), pick(sx + 1, w), pick(sy, h), pick(sy + 1, h));
         for (c, o) in out.iter_mut().enumerate() {
@@ -211,11 +289,14 @@ impl<'s, 'a, T: WarpElement> Sampler<'s, 'a, T> {
             let px = [v(x0, y0), v(x1, y0), v(x0, y1), v(x1, y1)];
             *o = if self.fixed_point {
                 let wt = &self.tab.fixed[p.phase * 4..p.phase * 4 + 4];
-                let sum: i32 = px.iter().zip(wt).map(|(t, &k)| t.to_f64() as i32 * i32::from(k)).sum();
+                let sum: i32 = px.iter().zip(wt).map(|(t, &k)| t.fixed() * i32::from(k)).sum();
                 Self::cast_fixed(sum)
             } else {
                 let wt = &self.tab.float[p.phase * 4..p.phase * 4 + 4];
-                let sum = px[0].to_f32() * wt[0] + px[1].to_f32() * wt[1] + px[2].to_f32() * wt[2] + px[3].to_f32() * wt[3];
+                let sum = px[0].to_f32() * wt[0]
+                    + px[1].to_f32() * wt[1]
+                    + px[2].to_f32() * wt[2]
+                    + px[3].to_f32() * wt[3];
                 T::from_f32(sum)
             };
         }
@@ -236,7 +317,9 @@ impl<'s, 'a, T: WarpElement> Sampler<'s, 'a, T> {
                 *o = if self.fixed_point {
                     let sum: i32 = (0..k)
                         .map(|r| {
-                            (0..k).map(|j| self.at(sx + j, sy + r, c).to_f64() as i32 * i32::from(fw[tap(r, j)])).sum::<i32>()
+                            (0..k)
+                                .map(|j| self.at(sx + j, sy + r, c).fixed() * i32::from(fw[tap(r, j)]))
+                                .sum::<i32>()
                         })
                         .sum();
                     Self::cast_fixed(sum)
@@ -263,13 +346,13 @@ impl<'s, 'a, T: WarpElement> Sampler<'s, 'a, T> {
         for (c, o) in out.iter_mut().enumerate() {
             let cv = self.cval[c];
             *o = if self.fixed_point {
-                let cvi = cv.to_f64() as i32;
+                let cvi = cv.fixed();
                 let mut sum = cvi * COEF_SCALE;
                 for (i, y) in ys.iter().enumerate() {
                     let Some(y) = *y else { continue };
                     for (j, x) in xs.iter().enumerate() {
                         if let Some(x) = *x {
-                            sum += (self.at(x, y, c).to_f64() as i32 - cvi) * i32::from(fw[tap(i as i32, j as i32)]);
+                            sum += (self.at(x, y, c).fixed() - cvi) * i32::from(fw[tap(i as i32, j as i32)]);
                         }
                     }
                 }
@@ -290,6 +373,70 @@ impl<'s, 'a, T: WarpElement> Sampler<'s, 'a, T> {
         }
     }
 
+    /// Resample one output row; bilinear interior pixels take a branch-light fast path.
+    fn row(&self, interpolation: Interpolation, coords: &[Coord], out: &mut [T]) {
+        let cn = self.src.channels();
+        if interpolation != Interpolation::Linear {
+            for (p, px) in coords.iter().zip(out.chunks_exact_mut(cn)) {
+                self.sample(interpolation, *p, px);
+            }
+            return;
+        }
+        match cn {
+            1 => self.linear_row::<1>(coords, out),
+            3 => self.linear_row::<3>(coords, out),
+            4 => self.linear_row::<4>(coords, out),
+            _ => {
+                for (p, px) in coords.iter().zip(out.chunks_exact_mut(cn)) {
+                    self.bilinear(*p, px);
+                }
+            }
+        }
+    }
+
+    #[inline(always)]
+    fn linear_row<const CN: usize>(&self, coords: &[Coord], out: &mut [T]) {
+        let (data, stride) = self.src.raw();
+        let (w, h) = (self.src.width() as i32, self.src.height() as i32);
+        let (fixed, float) = (&self.tab.fixed, &self.tab.float);
+        for (p, px) in coords.iter().zip(out.chunks_exact_mut(CN)) {
+            if !(p.x >= 0 && p.y >= 0 && p.x + 1 < w && p.y + 1 < h) {
+                self.bilinear(*p, px);
+                continue;
+            }
+            let base = p.y as usize * stride + p.x as usize * CN;
+            let (r0, r1) = (
+                &data[base..base + 2 * CN],
+                &data[base + stride..base + stride + 2 * CN],
+            );
+            let k = p.phase * 4;
+            if self.fixed_point {
+                let wt = [
+                    i32::from(fixed[k]),
+                    i32::from(fixed[k + 1]),
+                    i32::from(fixed[k + 2]),
+                    i32::from(fixed[k + 3]),
+                ];
+                for c in 0..CN {
+                    let sum = r0[c].fixed() * wt[0]
+                        + r0[CN + c].fixed() * wt[1]
+                        + r1[c].fixed() * wt[2]
+                        + r1[CN + c].fixed() * wt[3];
+                    px[c] = Self::cast_fixed(sum);
+                }
+            } else {
+                let wt = [float[k], float[k + 1], float[k + 2], float[k + 3]];
+                for c in 0..CN {
+                    let sum = r0[c].to_f32() * wt[0]
+                        + r0[CN + c].to_f32() * wt[1]
+                        + r1[c].to_f32() * wt[2]
+                        + r1[CN + c].to_f32() * wt[3];
+                    px[c] = T::from_f32(sum);
+                }
+            }
+        }
+    }
+
     fn sample(&self, interpolation: Interpolation, p: Coord, out: &mut [T]) {
         match interpolation {
             Interpolation::Cubic | Interpolation::Lanczos4 => self.window(p, out),
@@ -300,7 +447,11 @@ impl<'s, 'a, T: WarpElement> Sampler<'s, 'a, T> {
 
 /// OpenCV maps `INTER_AREA` to bilinear for warps.
 fn warp_interpolation(interpolation: Interpolation) -> Interpolation {
-    if interpolation == Interpolation::Area { Interpolation::Linear } else { interpolation }
+    if interpolation == Interpolation::Area {
+        Interpolation::Linear
+    } else {
+        interpolation
+    }
 }
 
 /// `cv::remap(src, map_x, map_y, interpolation, borderMode, borderValue)` with float maps.
@@ -323,17 +474,28 @@ pub fn remap<'a, 'b, 'c, T: WarpElement>(
     let cn = src.channels();
     let mut dst = Mat::zeros(mx.width(), mx.height(), cn);
     dst.par_rows_mut().enumerate().for_each(|(y, row)| {
-        for ((px, &fx), &fy) in row.chunks_exact_mut(cn).zip(mx.row(y)).zip(my.row(y)) {
-            if interpolation == Interpolation::Nearest {
-                sampler.nearest(i32::from(saturate_i16(cv_round_f32(fx))), i32::from(saturate_i16(cv_round_f32(fy))), px);
-            } else {
-                let (sx, sy) = (cv_round_f32(fx * TAB as f32), cv_round_f32(fy * TAB as f32));
-                let mut c = Coord::from_fixed(sx, sy);
+        if interpolation == Interpolation::Nearest {
+            for ((px, &fx), &fy) in row.chunks_exact_mut(cn).zip(mx.row(y)).zip(my.row(y)) {
+                sampler.nearest(
+                    i32::from(saturate_i16(cv_round_f32(fx))),
+                    i32::from(saturate_i16(cv_round_f32(fy))),
+                    px,
+                );
+            }
+            return;
+        }
+        let coords: Vec<Coord> = mx
+            .row(y)
+            .iter()
+            .zip(my.row(y))
+            .map(|(&fx, &fy)| {
+                let mut c = Coord::from_fixed(cv_round_f32(fx * TAB as f32), cv_round_f32(fy * TAB as f32));
                 c.x = i32::from(saturate_i16(c.x));
                 c.y = i32::from(saturate_i16(c.y));
-                sampler.sample(interpolation, c, px);
-            }
-        }
+                c
+            })
+            .collect();
+        sampler.row(interpolation, &coords, row);
     });
     Ok(dst)
 }
@@ -347,13 +509,16 @@ pub fn get_rotation_matrix_2d(center: Point2f, angle: f64, scale: f64) -> Affine
     let alpha = angle.cos() * scale;
     let beta = angle.sin() * scale;
     let (cx, cy) = (f64::from(center.x), f64::from(center.y));
-    [[alpha, beta, (1.0 - alpha) * cx - beta * cy], [-beta, alpha, beta * cx + (1.0 - alpha) * cy]]
+    [
+        [alpha, beta, (1.0 - alpha) * cx - beta * cy],
+        [-beta, alpha, beta * cx + (1.0 - alpha) * cy],
+    ]
 }
 
 /// `cv::invertAffineTransform`.
 pub fn invert_affine(m: &Affine) -> Affine {
     let d = m[0][0] * m[1][1] - m[0][1] * m[1][0];
-    let d = if d != 0.0 { 1.0 / d } else { 0.0 };
+    let d = if d == 0.0 { 0.0 } else { 1.0 / d };
     let (a11, a22) = (m[1][1] * d, m[0][0] * d);
     let (a12, a21) = (m[0][1] * -d, m[1][0] * -d);
     let b1 = -a11 * m[0][2] - a12 * m[1][2];
@@ -377,30 +542,50 @@ pub fn warp_affine<'a, T: WarpElement>(
     }
     let interpolation = warp_interpolation(interpolation);
     let inv = invert_affine(m);
-    const AB_BITS: i32 = 10;
     let ab_scale = f64::from(1 << AB_BITS);
-    let round_delta = if interpolation == Interpolation::Nearest { (1 << AB_BITS) / 2 } else { (1 << AB_BITS) / TAB / 2 };
-    let adelta: Vec<i32> = (0..width).map(|x| cv_round(inv[0][0] * x as f64 * ab_scale)).collect();
-    let bdelta: Vec<i32> = (0..width).map(|x| cv_round(inv[1][0] * x as f64 * ab_scale)).collect();
+    let round_delta = if interpolation == Interpolation::Nearest {
+        (1 << AB_BITS) / 2
+    } else {
+        (1 << AB_BITS) / TAB / 2
+    };
+    let adelta: Vec<i32> = (0..width)
+        .map(|x| cv_round(inv[0][0] * x as f64 * ab_scale))
+        .collect();
+    let bdelta: Vec<i32> = (0..width)
+        .map(|x| cv_round(inv[1][0] * x as f64 * ab_scale))
+        .collect();
     let sampler = Sampler::new(&src, border, interpolation);
     let cn = src.channels();
     let mut dst = Mat::zeros(width, height, cn);
     dst.par_rows_mut().enumerate().for_each(|(y, row)| {
         let x0 = cv_round((inv[0][1] * y as f64 + inv[0][2]) * ab_scale).wrapping_add(round_delta);
         let y0 = cv_round((inv[1][1] * y as f64 + inv[1][2]) * ab_scale).wrapping_add(round_delta);
-        for (x, px) in row.chunks_exact_mut(cn).enumerate() {
-            let (fx, fy) = (x0.wrapping_add(adelta[x]), y0.wrapping_add(bdelta[x]));
-            if interpolation == Interpolation::Nearest {
-                let (sx, sy) = (i32::from(saturate_i16(fx >> AB_BITS)), i32::from(saturate_i16(fy >> AB_BITS)));
+        if interpolation == Interpolation::Nearest {
+            for (x, px) in row.chunks_exact_mut(cn).enumerate() {
+                let (fx, fy) = (x0.wrapping_add(adelta[x]), y0.wrapping_add(bdelta[x]));
+                let (sx, sy) = (
+                    i32::from(saturate_i16(fx >> AB_BITS)),
+                    i32::from(saturate_i16(fy >> AB_BITS)),
+                );
                 sampler.nearest(sx, sy, px);
-            } else {
-                let (fx, fy) = (fx >> (AB_BITS - INTER_BITS), fy >> (AB_BITS - INTER_BITS));
+            }
+            return;
+        }
+        let coords: Vec<Coord> = adelta
+            .iter()
+            .zip(&bdelta)
+            .map(|(&a, &b)| {
+                let (fx, fy) = (
+                    x0.wrapping_add(a) >> (AB_BITS - INTER_BITS),
+                    y0.wrapping_add(b) >> (AB_BITS - INTER_BITS),
+                );
                 let mut c = Coord::from_fixed(fx, fy);
                 c.x = i32::from(saturate_i16(c.x));
                 c.y = i32::from(saturate_i16(c.y));
-                sampler.sample(interpolation, c, px);
-            }
-        }
+                c
+            })
+            .collect();
+        sampler.row(interpolation, &coords, row);
     });
     Ok(dst)
 }

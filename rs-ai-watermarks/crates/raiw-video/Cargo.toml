@@ -8,11 +8,13 @@ license.workspace = true
 authors.workspace = true
 
 [features]
+# burn-backed neural video runtimes: the 2D SD-VAE and the VideoSeal-family detectors
 gpu = ["dep:raiw-gpu", "raiw-audio/gpu"]
 
 [dependencies]
 raiw-core.workspace = true
 raiw-container.workspace = true
+raiw-c2pa.workspace = true
 raiw-metadata.workspace = true
 raiw-cv.workspace = true
 raiw-visible.workspace = true
@@ -21,11 +23,18 @@ raiw-gpu = { workspace = true, optional = true }
 thiserror.workspace = true
 serde.workspace = true
 serde_json.workspace = true
+indexmap.workspace = true
 rayon.workspace = true
+tempfile.workspace = true
+tracing.workspace = true
+which.workspace = true
+sha2.workspace = true
+hex.workspace = true
+png.workspace = true
 
 [dev-dependencies]
 raiw-core = { workspace = true, features = ["testing"] }
-tempfile.workspace = true
+base64.workspace = true
 
 [lints]
 workspace = true

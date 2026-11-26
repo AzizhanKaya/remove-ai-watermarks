@@ -1,0 +1,1966 @@
+[
+ {
+  "markers": {
+   "c2pa_manifest": "C2PA manifest store (4855 bytes)",
+   "claim_generator": "Amazon_Bedrock",
+   "issuer": "Amazon",
+   "source_type": "trainedAlgorithmicMedia (AI-generated)",
+   "actions": "created",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid"
+  },
+  "claims_ai": true,
+  "platform": "Amazon Bedrock (Nova)",
+  "hints": [
+   "Amazon Nova Reel"
+  ],
+  "bytedance": false,
+  "cohort": "declared_watermark",
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "c2pa_manifest": "C2PA manifest store (10181 bytes)",
+   "claim_generator": "c2patool",
+   "ai_tool": "Dreamina",
+   "issuer": "ByteDance",
+   "actions": "opened, transcoded, created",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid",
+   "app_provenance": "App export provenance (ByteDance Dreamina)",
+   "app_aigc": "App AIGC disclosure (ByteDance Dreamina)"
+  },
+  "claims_ai": true,
+  "platform": "ByteDance Dreamina",
+  "hints": [],
+  "bytedance": true,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video metadata input.mp4 --remove -o clean.mp4 (try lossless C2PA strip first; add video all --invisible --profile auto only for consumer CapCut pixel marks)",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "c2pa_manifest": "C2PA manifest store (5059 bytes)",
+   "claim_generator": "Google C2PA Core Generator Library",
+   "issuer": "Google LLC",
+   "source_type": "trainedAlgorithmicMedia (AI-generated)",
+   "actions": "created, edited",
+   "synthid_watermark": "present according to Google LLC provenance",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid"
+  },
+  "claims_ai": true,
+  "platform": "Google (Gemini / Imagen)",
+  "hints": [
+   "SynthID"
+  ],
+  "bytedance": false,
+  "cohort": "synthid",
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "veo"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "c2pa_manifest": "C2PA manifest store (4824 bytes)",
+   "claim_generator": "Google C2PA Core Generator Library",
+   "issuer": "Google LLC",
+   "source_type": "trainedAlgorithmicMedia (AI-generated)",
+   "actions": "created, edited",
+   "synthid_watermark": "present according to Google LLC provenance",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid"
+  },
+  "claims_ai": true,
+  "platform": "Google (Gemini / Imagen)",
+  "hints": [
+   "SynthID"
+  ],
+  "bytedance": false,
+  "cohort": "synthid",
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "veo"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "aigc_label": "China AIGC label (TC260); producer kling",
+   "aigc_producer": "kling",
+   "kling_sei": "Kling AI encoder tag (H.264 SEI kling-ai)"
+  },
+  "claims_ai": true,
+  "platform": "Kuaishou Kling AI",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai"
+  ],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "aigc_label": "China AIGC label (TC260); producer MiniMax",
+   "aigc_producer": "MiniMax",
+   "aigc_signature": "TC260 label signature verified (pinned MiniMax key)"
+  },
+  "claims_ai": true,
+  "platform": "MiniMax Hailuo AI",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "hailuo"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "aigc_label": "China AIGC label (TC260); producer 001191330106MA2CFLDG4R10001",
+   "aigc_producer": "001191330106MA2CFLDG4R10001"
+  },
+  "claims_ai": true,
+  "platform": "Alibaba Tongyi (Wan, HappyHorse)",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "wan"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "aigc_label": "China AIGC label (TC260); producer kling",
+   "aigc_producer": "kling",
+   "kling_sei": "Kling AI encoder tag (H.264 SEI kling-ai)"
+  },
+  "claims_ai": true,
+  "platform": "Kuaishou Kling AI",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai"
+  ],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "aigc_label": "China AIGC label (TC260); producer MiniMax",
+   "aigc_producer": "MiniMax",
+   "aigc_signature": "TC260 label signature verified (pinned MiniMax key)"
+  },
+  "claims_ai": true,
+  "platform": "MiniMax Hailuo AI",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "hailuo"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "c2pa_manifest": "C2PA manifest store (4827 bytes)",
+   "claim_generator": "Google C2PA Core Generator Library",
+   "issuer": "Google LLC",
+   "source_type": "trainedAlgorithmicMedia (AI-generated)",
+   "actions": "created, edited",
+   "synthid_watermark": "present according to Google LLC provenance",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid"
+  },
+  "claims_ai": true,
+  "platform": "Google (Gemini / Imagen)",
+  "hints": [
+   "SynthID"
+  ],
+  "bytedance": false,
+  "cohort": "synthid",
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "veo"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "c2pa_manifest": "C2PA manifest store (4991 bytes)",
+   "claim_generator": "c2pa-rs",
+   "issuer": "Runway",
+   "source_type": "trainedAlgorithmicMedia (AI-generated)",
+   "actions": "created",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid"
+  },
+  "claims_ai": true,
+  "platform": "Runway",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "c2pa_manifest": "C2PA manifest store (5005 bytes)",
+   "claim_generator": "Grok Imagine",
+   "issuer": "xAI Grok Imagine",
+   "source_type": "trainedAlgorithmicMedia (AI-generated)",
+   "actions": "created",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid",
+   "xai_signature": "xAI/Grok signature (UUID + Signature blob)"
+  },
+  "claims_ai": true,
+  "platform": "xAI Grok Imagine",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "c2pa_manifest": "C2PA manifest store (11100 bytes)",
+   "claim_generator": "Google C2PA Core Generator Library",
+   "issuer": "Google LLC",
+   "source_type": "trainedAlgorithmicMedia (AI-generated)",
+   "actions": "opened, transcoded, created, edited",
+   "synthid_watermark": "present according to Google LLC provenance",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid"
+  },
+  "claims_ai": true,
+  "platform": "Google (Gemini / Imagen)",
+  "hints": [
+   "SynthID"
+  ],
+  "bytedance": false,
+  "cohort": "synthid",
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "veo"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "c2pa_manifest": "C2PA manifest store (11385 bytes)",
+   "claim_generator": "Google C2PA Core Generator Library",
+   "issuer": "Google LLC",
+   "actions": "opened, transcoded",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid"
+  },
+  "claims_ai": false,
+  "platform": "Google (Gemini / Imagen)",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "aigc_label": "China AIGC label (TC260); producer MiniMax",
+   "aigc_producer": "MiniMax",
+   "aigc_signature": "TC260 label signature verified (pinned MiniMax key)"
+  },
+  "claims_ai": true,
+  "platform": "MiniMax Hailuo AI",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "hailuo"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "kling_sei": "Kling AI encoder tag (H.264 SEI kling-ai)"
+  },
+  "claims_ai": true,
+  "platform": "Kuaishou Kling AI",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "c2pa_manifest": "C2PA manifest store (5513 bytes)",
+   "claim_generator": "Sora",
+   "ai_tool": "Sora",
+   "issuer": "OpenAI, Truepic",
+   "source_type": "trainedAlgorithmicMedia (AI-generated)",
+   "actions": "created",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Invalid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "expired"
+  },
+  "claims_ai": true,
+  "platform": "OpenAI (ChatGPT / GPT Image / DALL\u00b7E / Sora)",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "sora"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "c2pa_manifest": "C2PA manifest store (5057 bytes)",
+   "claim_generator": "Google C2PA Core Generator Library",
+   "issuer": "Google LLC",
+   "source_type": "trainedAlgorithmicMedia (AI-generated)",
+   "actions": "created, edited",
+   "synthid_watermark": "present according to Google LLC provenance",
+   "c2pa_validation_source": "reader",
+   "c2pa_validation_state": "Valid",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid",
+   "c2pa_signer_trust": "untrusted",
+   "c2pa_signer_validity": "valid"
+  },
+  "claims_ai": true,
+  "platform": "Google (Gemini / Imagen)",
+  "hints": [
+   "SynthID"
+  ],
+  "bytedance": false,
+  "cohort": "synthid",
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "veo"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "aigc_label": "China AIGC label (TC260); producer 001191110108MACC4D63XF10306",
+   "aigc_producer": "001191110108MACC4D63XF10306"
+  },
+  "claims_ai": true,
+  "platform": "ShengShu Vidu",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "vidu"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {},
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "claim_generator": "Sora",
+   "issuer": "Google LLC",
+   "source_type": "trainedAlgorithmicMedia"
+  },
+  "claims_ai": true,
+  "platform": "Google (Gemini / Imagen)",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "sora",
+   "veo"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "claim_generator": "OpenAI Sora",
+   "issuer": "OpenAI",
+   "source_type": "trainedAlgorithmicMedia"
+  },
+  "claims_ai": true,
+  "platform": "OpenAI (ChatGPT / GPT Image / DALL\u00b7E / Sora)",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "sora"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "issuer": "Google LLC",
+   "source_type": "trainedAlgorithmicMedia",
+   "c2pa_signature": "invalid"
+  },
+  "claims_ai": true,
+  "platform": "Google (Gemini / Imagen)",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [
+   "veo"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "issuer": "ByteDance",
+   "source_type": "trainedAlgorithmicMedia",
+   "claim_generator": "Dreamina"
+  },
+  "claims_ai": true,
+  "platform": "ByteDance Dreamina",
+  "hints": [],
+  "bytedance": true,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "veo",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "kling"
+  ],
+  "confirms": [
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "dola"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video metadata input.mp4 --remove -o clean.mp4 (try lossless C2PA strip first; add video all --invisible --profile auto only for consumer CapCut pixel marks)",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "aigc_label": "x",
+   "aigc_producer": "MiniMax"
+  },
+  "claims_ai": true,
+  "platform": "MiniMax Hailuo AI",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "hailuo"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "aigc_label": "x",
+   "aigc_producer": "kling"
+  },
+  "claims_ai": true,
+  "platform": "Kuaishou Kling AI",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai"
+  ],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "aigc_label": "x",
+   "aigc_producer": "unknown-vendor"
+  },
+  "claims_ai": true,
+  "platform": "China AIGC-labeled content (TC260 standard)",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "aigc_label": "x",
+   "aigc_producer": "91110108MACC4D63XF"
+  },
+  "claims_ai": true,
+  "platform": "ShengShu Vidu",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "vidu"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "app_aigc": "App AIGC disclosure (CapCut)"
+  },
+  "claims_ai": true,
+  "platform": "CapCut",
+  "hints": [],
+  "bytedance": true,
+  "cohort": "seedance",
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video metadata input.mp4 --remove -o clean.mp4 (try lossless C2PA strip first; add video all --invisible --profile auto only for consumer CapCut pixel marks)",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "app_provenance": "App export provenance (Dreamina)"
+  },
+  "claims_ai": true,
+  "platform": "ByteDance Dreamina",
+  "hints": [],
+  "bytedance": true,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video metadata input.mp4 --remove -o clean.mp4 (try lossless C2PA strip first; add video all --invisible --profile auto only for consumer CapCut pixel marks)",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "kling_sei": "present"
+  },
+  "claims_ai": true,
+  "platform": "Kuaishou Kling AI",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "xai_signature": "sig"
+  },
+  "claims_ai": true,
+  "platform": "xAI Grok Imagine",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "topazcloud": "1"
+  },
+  "claims_ai": true,
+  "platform": "Topaz Labs",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "description": "AI-enhanced using Topaz Labs"
+  },
+  "claims_ai": true,
+  "platform": "Topaz Labs",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "workflow": "{}"
+  },
+  "claims_ai": true,
+  "platform": "Stable Diffusion / local pipeline (Automatic1111, ComfyUI, InvokeAI)",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "audio_generator": "ElevenLabs"
+  },
+  "claims_ai": true,
+  "platform": "ElevenLabs",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "synthid_watermark": "SynthID",
+   "issuer": "Google LLC",
+   "source_type": "trainedAlgorithmicMedia"
+  },
+  "claims_ai": true,
+  "platform": "Google (Gemini / Imagen)",
+  "hints": [
+   "SynthID"
+  ],
+  "bytedance": false,
+  "cohort": "synthid",
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "microsoft",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "veo"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "soft_binding": "Adobe TrustMark",
+   "soft_binding_algorithm": "com.adobe.trustmark.Q"
+  },
+  "claims_ai": false,
+  "platform": "Adobe Firefly",
+  "hints": [
+   "Adobe TrustMark"
+  ],
+  "bytedance": false,
+  "cohort": "declared_watermark",
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "soft_binding": "Trufo PawPrint, Digimarc Validate"
+  },
+  "claims_ai": false,
+  "platform": null,
+  "hints": [
+   "Digimarc Validate"
+  ],
+  "bytedance": false,
+  "cohort": "declared_watermark",
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "issuer": "YouTube",
+   "actions": "opened, transcoded"
+  },
+  "claims_ai": false,
+  "platform": null,
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [],
+  "recipes": {
+   "None": null,
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "issuer": "Microsoft",
+   "source_type": "trainedAlgorithmicMedia",
+   "c2pa_integrity": "valid",
+   "c2pa_signature": "valid"
+  },
+  "claims_ai": true,
+  "platform": "Microsoft (Copilot / Designer)",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [
+   "sora",
+   "veo",
+   "dreamina",
+   "jimeng",
+   "jimeng_pill",
+   "seedance",
+   "doubao",
+   "dola",
+   "hailuo",
+   "vidu",
+   "wan",
+   "qwen",
+   "yuanbao",
+   "baidu",
+   "runninghub",
+   "pixverse",
+   "luma",
+   "heygen",
+   "sync_labs",
+   "tiktok_ai",
+   "kling"
+  ],
+  "confirms": [
+   "microsoft"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ },
+ {
+  "markers": {
+   "claim_generator": "TikTok Ad Creative Toolbox",
+   "issuer": "TikTok"
+  },
+  "claims_ai": true,
+  "platform": "TikTok Ad Creative Toolbox",
+  "hints": [],
+  "bytedance": false,
+  "cohort": null,
+  "cohort_veo": "synthid",
+  "contradicts": [],
+  "confirms": [
+   "tiktok_ai"
+  ],
+  "recipes": {
+   "None": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "veo": "remove-ai-watermarks video all input.mp4 -o clean.mp4 --invisible --profile auto",
+   "sora": "remove-ai-watermarks video all input.mp4 -o clean.mp4",
+   "seedance": "remove-ai-watermarks video all input.mp4 -o clean.mp4 (strips visible mark and C2PA; add --invisible --profile auto only for consumer CapCut pixel marks)"
+  }
+ }
+]

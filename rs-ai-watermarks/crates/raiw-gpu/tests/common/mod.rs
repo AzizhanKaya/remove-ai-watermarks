@@ -88,9 +88,15 @@ pub fn case_input(record: &Value) -> Option<Vec<f32>> {
 }
 
 /// The devices to check: always CPU, plus the auto-selected GPU when there is one.
+///
+/// `RAIW_TEST_DEVICES=cpu` or `=gpu` restricts the run to one backend.
 pub fn devices() -> Vec<ComputeDevice> {
-    let mut out = vec![ComputeDevice::cpu()];
-    if std::env::var_os("RAIW_GPU_SKIP").is_none()
+    let only = std::env::var("RAIW_TEST_DEVICES").unwrap_or_default();
+    let mut out = Vec::new();
+    if only != "gpu" {
+        out.push(ComputeDevice::cpu());
+    }
+    if only != "cpu"
         && let Ok(gpu) = ComputeDevice::select(DeviceRequest::Auto)
         && gpu.is_gpu()
     {

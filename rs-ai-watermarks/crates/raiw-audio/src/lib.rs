@@ -11,6 +11,8 @@ pub mod decoders;
 pub mod dsp;
 pub mod error;
 pub mod frames;
+#[cfg(feature = "gpu")]
+pub mod gpu;
 pub mod identify;
 pub mod io;
 pub mod metadata;
@@ -37,6 +39,7 @@ pub use options::{Device, Method, Profile, Scheme, Vendor};
 pub use policy::{Permissions, ProcessingArgs};
 pub use remove::{
     AudioRemovalResult, ProfileRequest, RemovalRequest, remove_audio_invisible, remove_audio_profile,
+    remove_audio_profile_unverified,
 };
 pub use report::{AudioDetection, AudioProvenanceReport, AudioWindowReading, Channel, WatermarkStatus};
-pub use runtime::{Accelerators, AudioRuntime};
+pub use runtime::{Accelerators, AudioRuntime, ModelResidency};

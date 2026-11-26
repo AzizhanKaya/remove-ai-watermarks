@@ -60,7 +60,12 @@ struct Queue {
 
 impl Queue {
     fn push(&mut self, i: usize, j: usize, t: f32) {
-        self.heap.push(Reverse(HeapElem { t, order: self.next, i, j }));
+        self.heap.push(Reverse(HeapElem {
+            t,
+            order: self.next,
+            i,
+            j,
+        }));
         self.next += 1;
     }
 
@@ -104,7 +109,12 @@ impl Grid {
     fn dilate_minus(&self, src: &[u8], element: &StructuringElement) -> Result<Vec<u8>> {
         let view = MatView::new(src, self.cols, self.rows, 1)?;
         let dilated = dilate(view, element, 1)?;
-        Ok(dilated.data().iter().zip(src).map(|(&d, &s)| d.saturating_sub(s)).collect())
+        Ok(dilated
+            .data()
+            .iter()
+            .zip(src)
+            .map(|(&d, &s)| d.saturating_sub(s))
+            .collect())
     }
 }
 
@@ -205,10 +215,16 @@ pub fn inpaint<'a, 'b, T: InpaintElement>(
         return Err(CvError::ShapeMismatch { op: "inpaint" });
     }
     if !(cn == 1 || (cn == 3 && T::DEPTH == Depth::U8)) {
-        return Err(invalid("inpaint", "8-bit 1/3-channel, 16-bit or float 1-channel images are supported"));
+        return Err(invalid(
+            "inpaint",
+            "8-bit 1/3-channel, 16-bit or float 1-channel images are supported",
+        ));
     }
     let range = crate::element::cv_round(radius).clamp(1, 100) as usize;
-    let g = Grid { rows: src.height() + 2, cols: src.width() + 2 };
+    let g = Grid {
+        rows: src.height() + 2,
+        cols: src.width() + 2,
+    };
     let mut f = vec![KNOWN; g.rows * g.cols];
     for y in 0..mask.height() {
         for (x, &m) in mask.row(y).iter().enumerate() {
@@ -312,7 +328,15 @@ fn px<T: Element>(out: &Mat<T>, y: usize, x: usize, c: usize) -> f64 {
     out.at(x, y, c).to_f64()
 }
 
-fn telea_pixel<T: InpaintElement>(g: &Grid, f: &[u8], t: &[f32], out: &mut Mat<T>, range: usize, i: usize, j: usize) {
+fn telea_pixel<T: InpaintElement>(
+    g: &Grid,
+    f: &[u8],
+    t: &[f32],
+    out: &mut Mat<T>,
+    range: usize,
+    i: usize,
+    j: usize,
+) {
     let cn = out.channels();
     let tt = |a: usize, b: usize| t[g.at(a, b)];
     let known = |a: usize, b: usize| f[g.at(a, b)] != INSIDE;
@@ -345,7 +369,8 @@ fn telea_pixel<T: InpaintElement>(g: &Grid, f: &[u8], t: &[f32], out: &mut Mat<T
         }
         let w = (dst * lev * dir).abs();
         for c in 0..cn {
-            let d = |y0: usize, x0: usize, y1: usize, x1: usize| (px(out, y0, x0, c) - px(out, y1, x1, c)) as f32;
+            let d =
+                |y0: usize, x0: usize, y1: usize, x1: usize| (px(out, y0, x0, c) - px(out, y1, x1, c)) as f32;
             let gx = match (known(k, l + 1), known(k, l - 1)) {
                 (true, true) => d(tap.km, tap.lp + 1, tap.km, tap.lm - 1) * 2.0,
                 (true, false) => d(tap.km, tap.lp + 1, tap.km, tap.lm),
@@ -371,7 +396,15 @@ fn telea_pixel<T: InpaintElement>(g: &Grid, f: &[u8], t: &[f32], out: &mut Mat<T
     }
 }
 
-fn ns_pixel<T: InpaintElement>(g: &Grid, f: &[u8], _t: &[f32], out: &mut Mat<T>, range: usize, i: usize, j: usize) {
+fn ns_pixel<T: InpaintElement>(
+    g: &Grid,
+    f: &[u8],
+    _t: &[f32],
+    out: &mut Mat<T>,
+    range: usize,
+    i: usize,
+    j: usize,
+) {
     let cn = out.channels();
     let known = |a: usize, b: usize| f[g.at(a, b)] != INSIDE;
     let mut ia = [0.0f32; 3];
@@ -386,7 +419,9 @@ fn ns_pixel<T: InpaintElement>(g: &Grid, f: &[u8], _t: &[f32], out: &mut Mat<T>,
         let len = rx * rx + ry * ry;
         let dst = 1.0 / (len * len + 1.0);
         for c in 0..cn {
-            let a = |y0: usize, x0: usize, y1: usize, x1: usize| (px(out, y0, x0, c) - px(out, y1, x1, c)).abs() as f32;
+            let a = |y0: usize, x0: usize, y1: usize, x1: usize| {
+                (px(out, y0, x0, c) - px(out, y1, x1, c)).abs() as f32
+            };
             let gx = match (known(k + 1, l), known(k - 1, l)) {
                 (true, true) => a(tap.kp + 1, tap.lm, tap.kp, tap.lm) + a(tap.kp, tap.lm, tap.km - 1, tap.lm),
                 (true, false) => a(tap.kp + 1, tap.lm, tap.kp, tap.lm) * 2.0,
@@ -404,7 +439,8 @@ fn ns_pixel<T: InpaintElement>(g: &Grid, f: &[u8], _t: &[f32], out: &mut Mat<T>,
             if f64::from(dir.abs()) <= 0.01 {
                 dir = 0.000_001;
             } else {
-                dir = (f64::from(rx * gx + ry * gy) / f64::from(len * (gx * gx + gy * gy)).sqrt()).abs() as f32;
+                dir =
+                    (f64::from(rx * gx + ry * gy) / f64::from(len * (gx * gx + gy * gy)).sqrt()).abs() as f32;
             }
             let w = dst * dir;
             ia[c] += w * px(out, k - 1, l - 1, c) as f32;

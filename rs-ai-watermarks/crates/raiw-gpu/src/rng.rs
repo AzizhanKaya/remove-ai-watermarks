@@ -68,7 +68,7 @@ pub fn torch_randn(n: usize, seed: u64) -> Option<Vec<f32>> {
     for start in (0..n - 15).step_by(16) {
         normal_fill_16(&mut data[start..start + 16]);
     }
-    if n % 16 != 0 {
+    if !n.is_multiple_of(16) {
         let tail = &mut data[n - 16..];
         for value in tail.iter_mut() {
             *value = engine.uniform_f32();

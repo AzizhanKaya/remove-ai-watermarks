@@ -11,7 +11,10 @@ use raiw_audio::decoders::{
 use serde_json::{Value, json};
 
 fn uniform32(seed: u64, count: usize, lo: f64, hi: f64) -> Vec<f32> {
-    splitmix_uniform(seed, count).into_iter().map(|u| (lo + (hi - lo) * u) as f32).collect()
+    splitmix_uniform(seed, count)
+        .into_iter()
+        .map(|u| (lo + (hi - lo) * u) as f32)
+        .collect()
 }
 
 fn spec_values(spec: &Value) -> Vec<f32> {
@@ -26,7 +29,9 @@ fn spec_values(spec: &Value) -> Vec<f32> {
 fn outcome<T: serde::Serialize>(result: Result<T, DecoderError>) -> Value {
     match result {
         Ok(reading) => json!({ "ok": reading }),
-        Err(DecoderError::Invalid(message)) => json!({ "error": { "type": "ValueError", "message": message } }),
+        Err(DecoderError::Invalid(message)) => {
+            json!({ "error": { "type": "ValueError", "message": message } })
+        }
         Err(DecoderError::Failed(message) | DecoderError::ModelCheck(message)) => {
             json!({ "error": { "type": "RuntimeError", "message": message } })
         }
@@ -49,7 +54,12 @@ fn audioseal_reader_matches_python_exactly() {
             probabilities: spec_values(&case["probs"]),
             message: spec_values(&case["message"]),
         });
-        assert_eq!(outcome(audioseal::read(&net, &[0.0; 10])), case["result"], "{}", case["probs"]);
+        assert_eq!(
+            outcome(audioseal::read(&net, &[0.0; 10])),
+            case["result"],
+            "{}",
+            case["probs"]
+        );
     }
 }
 
@@ -64,7 +74,7 @@ impl WavMarkNetwork for RawWavMark {
             .map(|w| {
                 let start = w[0] as usize;
                 let mut raw = uniform32(start as u64 + 7, 32, 0.0, 1.0);
-                if self.every > 0 && start % self.every == 0 {
+                if self.every > 0 && start.is_multiple_of(self.every) {
                     for (slot, bit) in raw.iter_mut().zip(SYNC_PATTERN) {
                         *slot = f32::from(bit);
                     }
@@ -81,8 +91,10 @@ struct Signature {
 
 impl WavMarkNetwork for Signature {
     fn decode(&self, windows: &[&[f32]]) -> Result<Vec<Vec<f32>>, DecoderError> {
-        let reference: Vec<f32> =
-            b"default ".iter().flat_map(|byte| (0..8).rev().map(move |i| f32::from(byte >> i & 1))).collect();
+        let reference: Vec<f32> = b"default "
+            .iter()
+            .flat_map(|byte| (0..8).rev().map(move |i| f32::from(byte >> i & 1)))
+            .collect();
         Ok(windows
             .iter()
             .enumerate()
@@ -106,14 +118,27 @@ fn wavmark_receivers_match_python_exactly() {
     for case in golden["wavmark"].as_array().unwrap() {
         let length = case["length"].as_u64().unwrap() as usize;
         let samples: Vec<f32> = (0..length).map(|v| v as f32).collect();
-        let net = RawWavMark { every: case["every"].as_u64().unwrap() as usize };
-        assert_eq!(outcome(wavmark::read(&net, &samples)), case["result"], "wavmark {length}");
+        let net = RawWavMark {
+            every: case["every"].as_u64().unwrap() as usize,
+        };
+        assert_eq!(
+            outcome(wavmark::read(&net, &samples)),
+            case["result"],
+            "wavmark {length}"
+        );
     }
     for case in golden["openvoice"].as_array().unwrap() {
         let length = case["length"].as_u64().unwrap() as usize;
-        let flips: Vec<usize> = case["flips"].as_array().unwrap().iter().map(|v| v.as_u64().unwrap() as usize).collect();
+        let flips: Vec<usize> = case["flips"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|v| v.as_u64().unwrap() as usize)
+            .collect();
         let samples: Vec<f32> = (0..length).map(|v| v as f32).collect();
-        let net = Signature { flips: [flips[0], flips[1]] };
+        let net = Signature {
+            flips: [flips[0], flips[1]],
+        };
         let actual = match wavmark::read_openvoice_default(&net, &samples) {
             Ok((whole, fragments)) => json!({ "whole": whole, "fragments": fragments }),
             Err(err) => json!({ "error": { "type": "ValueError", "message": err.to_string() } }),
@@ -134,20 +159,38 @@ impl PerthNetwork for RawPerth {
 fn perth_reader_matches_python() {
     let golden = golden("decoders");
     for case in golden["perth"].as_array().unwrap() {
-        let raw: Vec<f32> =
-            case["raw"].as_array().unwrap().iter().map(|v| v.as_str().unwrap().parse::<f64>().unwrap() as f32).collect();
-        let len = if case.get("short").is_some() { 15_999 } else { 16_000 };
-        assert_eq!(outcome(perth::read(&RawPerth(raw), &vec![0.0; len])), case["result"], "{}", case["raw"]);
+        let raw: Vec<f32> = case["raw"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|v| v.as_str().unwrap().parse::<f64>().unwrap() as f32)
+            .collect();
+        let len = if case.get("short").is_some() {
+            15_999
+        } else {
+            16_000
+        };
+        assert_eq!(
+            outcome(perth::read(&RawPerth(raw), &vec![0.0; len])),
+            case["result"],
+            "{}",
+            case["raw"]
+        );
     }
 }
 
 fn scores(kind: &str, seed: u64, frames: usize) -> Vec<f32> {
     let mut out = uniform32(seed, 5 * frames, 0.0, 0.5);
     let symbols: Vec<usize> = match kind {
-        "valid" => std::iter::once(0).chain((0..20).map(|i| 1 + (i * 3) % 4)).collect(),
+        "valid" => std::iter::once(0)
+            .chain((0..20).map(|i| 1 + (i * 3) % 4))
+            .collect(),
         "two_zeros" => [0, 0].into_iter().chain((0..19).map(|i| 1 + i % 4)).collect(),
         "no_zero" => (0..21).map(|i| 1 + i % 4).collect(),
-        _ => splitmix_uniform(seed + 1, 21).into_iter().map(|v| (v * 5.0) as usize % 5).collect(),
+        _ => splitmix_uniform(seed + 1, 21)
+            .into_iter()
+            .map(|v| (v * 5.0) as usize % 5)
+            .collect(),
     };
     for t in 0..frames {
         out[symbols[t % 21] * frames + t] += 1.0;
@@ -170,8 +213,15 @@ fn silentcipher_sequence_decoding_matches_python() {
         );
         let values = scores(kind, seed, frames);
         let sum: f64 = values.iter().map(|&v| f64::from(v)).sum();
-        assert!((sum - case["scores_sum"].as_f64().unwrap()).abs() < 1e-6, "{kind} {seed}: input");
-        let actual = match decode_sequence(&SymbolScores { rows: 5, frames, values }) {
+        assert!(
+            (sum - case["scores_sum"].as_f64().unwrap()).abs() < 1e-6,
+            "{kind} {seed}: input"
+        );
+        let actual = match decode_sequence(&SymbolScores {
+            rows: 5,
+            frames,
+            values,
+        }) {
             Ok((payload, consistency)) => json!({ "payload": payload, "consistency": consistency }),
             Err(err) => json!({ "error": err.to_string() }),
         };

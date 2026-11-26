@@ -7,10 +7,15 @@ use crate::filter::gaussian_blur;
 use crate::mat::{Mat, MatView};
 
 /// `structural_similarity_gray(a, b)`: single-scale Gaussian SSIM (11x11, sigma 1.5) in float64.
-pub fn structural_similarity_gray<'a, 'b, T: Element>(a: impl Into<MatView<'a, T>>, b: impl Into<MatView<'b, T>>) -> Result<f64> {
+pub fn structural_similarity_gray<'a, 'b, T: Element>(
+    a: impl Into<MatView<'a, T>>,
+    b: impl Into<MatView<'b, T>>,
+) -> Result<f64> {
     let (a, b) = (a.into(), b.into());
     if a.size() != b.size() || a.channels() != b.channels() {
-        return Err(CvError::ShapeMismatch { op: "structural_similarity_gray" });
+        return Err(CvError::ShapeMismatch {
+            op: "structural_similarity_gray",
+        });
     }
     let a = a.to_mat().convert::<f64>();
     let b = b.to_mat().convert::<f64>();

@@ -19,7 +19,14 @@ pub struct Mat<T> {
 
 impl<T> fmt::Debug for Mat<T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "Mat<{}>({}x{}x{})", std::any::type_name::<T>(), self.width, self.height, self.channels)
+        write!(
+            f,
+            "Mat<{}>({}x{}x{})",
+            std::any::type_name::<T>(),
+            self.width,
+            self.height,
+            self.channels
+        )
     }
 }
 
@@ -30,19 +37,39 @@ impl<T: Element> Mat<T> {
     }
 
     pub fn filled(width: usize, height: usize, channels: usize, value: T) -> Self {
-        Self { width, height, channels, data: vec![value; width * height * channels] }
+        Self {
+            width,
+            height,
+            channels,
+            data: vec![value; width * height * channels],
+        }
     }
 
     /// Wrap an existing buffer without copying.
     pub fn from_vec(width: usize, height: usize, channels: usize, data: Vec<T>) -> Result<Self> {
         if data.len() != width * height * channels || channels == 0 {
-            return Err(CvError::BufferSize { len: data.len(), width, height, channels });
+            return Err(CvError::BufferSize {
+                len: data.len(),
+                width,
+                height,
+                channels,
+            });
         }
-        Ok(Self { width, height, channels, data })
+        Ok(Self {
+            width,
+            height,
+            channels,
+            data,
+        })
     }
 
     /// Build an image from a per-element function `f(x, y, channel)`.
-    pub fn from_fn(width: usize, height: usize, channels: usize, mut f: impl FnMut(usize, usize, usize) -> T) -> Self {
+    pub fn from_fn(
+        width: usize,
+        height: usize,
+        channels: usize,
+        mut f: impl FnMut(usize, usize, usize) -> T,
+    ) -> Self {
         let mut data = Vec::with_capacity(width * height * channels);
         for y in 0..height {
             for x in 0..width {
@@ -51,7 +78,12 @@ impl<T: Element> Mat<T> {
                 }
             }
         }
-        Self { width, height, channels, data }
+        Self {
+            width,
+            height,
+            channels,
+            data,
+        }
     }
 
     /// Copy a borrowed view into a contiguous owned image.
@@ -60,7 +92,12 @@ impl<T: Element> Mat<T> {
         for y in 0..view.height {
             data.extend_from_slice(view.row(y));
         }
-        Self { width: view.width, height: view.height, channels: view.channels, data }
+        Self {
+            width: view.width,
+            height: view.height,
+            channels: view.channels,
+            data,
+        }
     }
 
     pub const fn width(&self) -> usize {
@@ -134,12 +171,24 @@ impl<T: Element> Mat<T> {
     }
 
     pub fn view(&self) -> MatView<'_, T> {
-        MatView { data: &self.data, width: self.width, height: self.height, channels: self.channels, stride: self.row_len() }
+        MatView {
+            data: &self.data,
+            width: self.width,
+            height: self.height,
+            channels: self.channels,
+            stride: self.row_len(),
+        }
     }
 
     pub fn view_mut(&mut self) -> MatViewMut<'_, T> {
         let stride = self.row_len();
-        MatViewMut { data: &mut self.data, width: self.width, height: self.height, channels: self.channels, stride }
+        MatViewMut {
+            data: &mut self.data,
+            width: self.width,
+            height: self.height,
+            channels: self.channels,
+            stride,
+        }
     }
 
     /// A zero-copy region of interest.
@@ -152,7 +201,11 @@ impl<T: Element> Mat<T> {
         check_roi(rect, self.width, self.height)?;
         let stride = self.row_len();
         let start = rect.y * stride + rect.x * self.channels;
-        let end = if rect.is_empty() { start } else { start + (rect.height - 1) * stride + rect.width * self.channels };
+        let end = if rect.is_empty() {
+            start
+        } else {
+            start + (rect.height - 1) * stride + rect.width * self.channels
+        };
         Ok(MatViewMut {
             data: &mut self.data[start..end],
             width: rect.width,
@@ -170,7 +223,12 @@ impl<T: Element> Mat<T> {
     /// Element-wise map into a new image of the same shape.
     pub fn map<U: Element>(&self, f: impl Fn(T) -> U + Sync) -> Mat<U> {
         let data = self.data.par_iter().with_min_len(4096).map(|&v| f(v)).collect();
-        Mat { width: self.width, height: self.height, channels: self.channels, data }
+        Mat {
+            width: self.width,
+            height: self.height,
+            channels: self.channels,
+            data,
+        }
     }
 
     /// `Mat::convertTo` without scaling: `saturate_cast` to the target type.
@@ -225,7 +283,14 @@ pub struct MatView<'a, T> {
 
 impl<T> fmt::Debug for MatView<'_, T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "MatView<{}>({}x{}x{})", std::any::type_name::<T>(), self.width, self.height, self.channels)
+        write!(
+            f,
+            "MatView<{}>({}x{}x{})",
+            std::any::type_name::<T>(),
+            self.width,
+            self.height,
+            self.channels
+        )
     }
 }
 
@@ -236,12 +301,33 @@ impl<'a, T: Element> MatView<'a, T> {
     }
 
     /// View a buffer whose rows start every `stride` elements.
-    pub fn with_stride(data: &'a [T], width: usize, height: usize, channels: usize, stride: usize) -> Result<Self> {
-        let needed = if height == 0 { 0 } else { (height - 1) * stride + width * channels };
+    pub fn with_stride(
+        data: &'a [T],
+        width: usize,
+        height: usize,
+        channels: usize,
+        stride: usize,
+    ) -> Result<Self> {
+        let needed = if height == 0 {
+            0
+        } else {
+            (height - 1) * stride + width * channels
+        };
         if channels == 0 || data.len() < needed || stride < width * channels {
-            return Err(CvError::BufferSize { len: data.len(), width, height, channels });
+            return Err(CvError::BufferSize {
+                len: data.len(),
+                width,
+                height,
+                channels,
+            });
         }
-        Ok(Self { data, width, height, channels, stride })
+        Ok(Self {
+            data,
+            width,
+            height,
+            channels,
+            stride,
+        })
     }
 
     pub const fn width(&self) -> usize {
@@ -268,6 +354,11 @@ impl<'a, T: Element> MatView<'a, T> {
         self.width == 0 || self.height == 0
     }
 
+    /// The backing slice (starting at the first pixel) and the row stride in elements.
+    pub(crate) const fn raw(&self) -> (&'a [T], usize) {
+        (self.data, self.stride)
+    }
+
     /// Rows follow each other without padding (OpenCV's `isContinuous`).
     pub const fn is_contiguous(&self) -> bool {
         self.stride == self.width * self.channels || self.height <= 1
@@ -290,8 +381,18 @@ impl<'a, T: Element> MatView<'a, T> {
     pub fn roi(&self, rect: Rect) -> Result<Self> {
         check_roi(rect, self.width, self.height)?;
         let start = rect.y * self.stride + rect.x * self.channels;
-        let data = if rect.is_empty() { &self.data[start..start] } else { &self.data[start..] };
-        Ok(Self { data, width: rect.width, height: rect.height, channels: self.channels, stride: self.stride })
+        let data = if rect.is_empty() {
+            &self.data[start..start]
+        } else {
+            &self.data[start..]
+        };
+        Ok(Self {
+            data,
+            width: rect.width,
+            height: rect.height,
+            channels: self.channels,
+            stride: self.stride,
+        })
     }
 
     pub fn to_mat(&self) -> Mat<T> {
@@ -327,7 +428,14 @@ pub struct MatViewMut<'a, T> {
 
 impl<T> fmt::Debug for MatViewMut<'_, T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "MatViewMut<{}>({}x{}x{})", std::any::type_name::<T>(), self.width, self.height, self.channels)
+        write!(
+            f,
+            "MatViewMut<{}>({}x{}x{})",
+            std::any::type_name::<T>(),
+            self.width,
+            self.height,
+            self.channels
+        )
     }
 }
 
@@ -355,7 +463,13 @@ impl<T: Element> MatViewMut<'_, T> {
     }
 
     pub fn as_view(&self) -> MatView<'_, T> {
-        MatView { data: self.data, width: self.width, height: self.height, channels: self.channels, stride: self.stride }
+        MatView {
+            data: self.data,
+            width: self.width,
+            height: self.height,
+            channels: self.channels,
+            stride: self.stride,
+        }
     }
 
     /// Copy a same-shaped image into this region.

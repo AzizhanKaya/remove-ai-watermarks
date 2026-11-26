@@ -15,7 +15,13 @@ fn wide<S: Element, D: Element>() -> bool {
     S::DEPTH == Depth::F64 || D::DEPTH == Depth::F64
 }
 
-fn separable<S: Element, D: Element>(src: &MatView<'_, S>, kx: &[f64], ky: &[f64], delta: f64, border: Border) -> Mat<D> {
+fn separable<S: Element, D: Element>(
+    src: &MatView<'_, S>,
+    kx: &[f64],
+    ky: &[f64],
+    delta: f64,
+    border: Border,
+) -> Mat<D> {
     if wide::<S, D>() {
         run_separable(src, &FloatSep::<S, D, f64>::new(kx, ky, delta), border)
     } else {
@@ -44,7 +50,7 @@ pub fn gaussian_blur<'a, T: Blur>(
     if kh == 0 && sigma_y > 0.0 {
         kh = gaussian_ksize(sigma_y, is_u8);
     }
-    if kw % 2 == 0 || kh % 2 == 0 {
+    if kw.is_multiple_of(2) || kh.is_multiple_of(2) {
         return Err(invalid("gaussian_blur", "kernel size must be positive and odd"));
     }
     if !matches!(border, Border::Constant(_)) {
@@ -58,7 +64,12 @@ pub fn gaussian_blur<'a, T: Blur>(
     if kw == 1 && kh == 1 {
         return Ok(src.to_mat());
     }
-    Ok(T::blur(&src, (kw, kh), (sigma_x.max(0.0), sigma_y.max(0.0)), border))
+    Ok(T::blur(
+        &src,
+        (kw, kh),
+        (sigma_x.max(0.0), sigma_y.max(0.0)),
+        border,
+    ))
 }
 
 /// Element types `gaussian_blur` accepts: 8/16-bit run OpenCV's bit-exact fixed-point path.
@@ -84,8 +95,19 @@ impl Blur for u16 {
 macro_rules! float_blur {
     ($t:ty) => {
         impl Blur for $t {
-            fn blur(src: &MatView<'_, $t>, ksize: (usize, usize), sigma: (f64, f64), border: Border) -> Mat<$t> {
-                separable::<$t, $t>(src, &gaussian_kernel(ksize.0, sigma.0), &gaussian_kernel(ksize.1, sigma.1), 0.0, border)
+            fn blur(
+                src: &MatView<'_, $t>,
+                ksize: (usize, usize),
+                sigma: (f64, f64),
+                border: Border,
+            ) -> Mat<$t> {
+                separable::<$t, $t>(
+                    src,
+                    &gaussian_kernel(ksize.0, sigma.0),
+                    &gaussian_kernel(ksize.1, sigma.1),
+                    0.0,
+                    border,
+                )
             }
         }
     };
@@ -112,7 +134,9 @@ pub fn sobel<'a, S: Element, D: Element>(
     let (mut kx, mut ky) = sobel_kernels(dx, dy, ksize)?;
     if scale != 1.0 {
         let k = if dx == 0 { &mut kx } else { &mut ky };
-        k.iter_mut().for_each(|v| *v *= scale);
+        for v in k.iter_mut() {
+            *v *= scale;
+        }
     }
     Ok(separable::<S, D>(&src, &kx, &ky, delta, border))
 }
@@ -167,7 +191,15 @@ pub fn filter_2d<'a, S: Element, D: Element>(
     if src.is_empty() || kernel.len() != kw * kh || kw == 0 || kh == 0 {
         return Err(invalid("filter_2d", "empty input or kernel size mismatch"));
     }
-    Ok(filter_2d_impl::<S, D>(&src, kernel, kw, kh, (kw / 2, kh / 2), delta, border))
+    Ok(filter_2d_impl::<S, D>(
+        &src,
+        kernel,
+        kw,
+        kh,
+        (kw / 2, kh / 2),
+        delta,
+        border,
+    ))
 }
 
 /// `cv::sepFilter2D(src, ddepth=D, kx, ky, anchor=center, delta, border)`.

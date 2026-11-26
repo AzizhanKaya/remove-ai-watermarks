@@ -13,6 +13,8 @@ thiserror.workspace = true
 rayon.workspace = true
 image.workspace = true
 rustfft.workspace = true
+realfft.workspace = true
+pulp = "0.22.3"
 num-complex.workspace = true
 bytemuck.workspace = true
 

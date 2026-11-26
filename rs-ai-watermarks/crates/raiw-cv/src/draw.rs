@@ -23,12 +23,23 @@ pub enum LineType {
 fn sin_table() -> &'static [f32; 451] {
     static TABLE: OnceLock<[f32; 451]> = OnceLock::new();
     TABLE.get_or_init(|| {
-        std::array::from_fn(|i| format!("{:.7}", (i as f64).to_radians().sin()).parse::<f32>().unwrap_or(0.0))
+        std::array::from_fn(|i| {
+            format!("{:.7}", (i as f64).to_radians().sin())
+                .parse::<f32>()
+                .unwrap_or(0.0)
+        })
     })
 }
 
 /// `cv::ellipse2Poly` (double precision): arc vertices every `delta` degrees.
-pub fn ellipse2poly_f64(center: (f64, f64), axes: (f64, f64), angle: i32, arc_start: i32, arc_end: i32, delta: i32) -> Vec<(f64, f64)> {
+pub fn ellipse2poly_f64(
+    center: (f64, f64),
+    axes: (f64, f64),
+    angle: i32,
+    arc_start: i32,
+    arc_end: i32,
+    delta: i32,
+) -> Vec<(f64, f64)> {
     let tab = sin_table();
     let mut angle = angle;
     while angle < 0 {
@@ -37,7 +48,11 @@ pub fn ellipse2poly_f64(center: (f64, f64), axes: (f64, f64), angle: i32, arc_st
     while angle > 360 {
         angle -= 360;
     }
-    let (mut s, mut e) = if arc_start > arc_end { (arc_end, arc_start) } else { (arc_start, arc_end) };
+    let (mut s, mut e) = if arc_start > arc_end {
+        (arc_end, arc_start)
+    } else {
+        (arc_start, arc_end)
+    };
     while s < 0 {
         s += 360;
         e += 360;
@@ -71,7 +86,14 @@ pub fn ellipse2poly_f64(center: (f64, f64), axes: (f64, f64), angle: i32, arc_st
 }
 
 /// `cv::ellipse2Poly` with integer output (consecutive duplicates removed).
-pub fn ellipse2poly(center: Point, axes: (i32, i32), angle: i32, arc_start: i32, arc_end: i32, delta: i32) -> Vec<Point> {
+pub fn ellipse2poly(
+    center: Point,
+    axes: (i32, i32),
+    angle: i32,
+    arc_start: i32,
+    arc_end: i32,
+    delta: i32,
+) -> Vec<Point> {
     let raw = ellipse2poly_f64(
         (f64::from(center.x), f64::from(center.y)),
         (f64::from(axes.0), f64::from(axes.1)),
@@ -99,16 +121,18 @@ fn clip_line(w: i64, h: i64, p1: &mut (i64, i64), p2: &mut (i64, i64)) -> bool {
         return false;
     }
     let (right, bottom) = (w - 1, h - 1);
-    let code = |p: (i64, i64)| i32::from(p.0 < 0) + i32::from(p.0 > right) * 2 + i32::from(p.1 < 0) * 4 + i32::from(p.1 > bottom) * 8;
+    let code = |p: (i64, i64)| {
+        i32::from(p.0 < 0) + i32::from(p.0 > right) * 2 + i32::from(p.1 < 0) * 4 + i32::from(p.1 > bottom) * 8
+    };
     let (mut c1, mut c2) = (code(*p1), code(*p2));
     if (c1 & c2) == 0 && (c1 | c2) != 0 {
-        if c1 & 12 != 0 {
+        if c1 & 0b1100 != 0 {
             let a = if c1 < 8 { 0 } else { bottom };
             p1.0 += ((a - p1.1) as f64 * (p2.0 - p1.0) as f64 / (p2.1 - p1.1) as f64) as i64;
             p1.1 = a;
             c1 = i32::from(p1.0 < 0) + i32::from(p1.0 > right) * 2;
         }
-        if c2 & 12 != 0 {
+        if c2 & 0b1100 != 0 {
             let a = if c2 < 8 { 0 } else { bottom };
             p2.0 += ((a - p2.1) as f64 * (p2.0 - p1.0) as f64 / (p2.1 - p1.1) as f64) as i64;
             p2.1 = a;
@@ -132,6 +156,16 @@ fn clip_line(w: i64, h: i64, p1: &mut (i64, i64), p2: &mut (i64, i64)) -> bool {
     (c1 | c2) == 0
 }
 
+/// One active polygon edge of the scan-line fill.
+#[derive(Clone, Copy)]
+struct Edge {
+    idx: usize,
+    di: usize,
+    x: i64,
+    dx: i64,
+    ye: i64,
+}
+
 struct Canvas<'m, T> {
     img: &'m mut Mat<T>,
     color: Vec<T>,
@@ -140,7 +174,9 @@ struct Canvas<'m, T> {
 impl<T: Element> Canvas<'_, T> {
     fn put(&mut self, x: i64, y: i64) {
         if (0..self.img.width() as i64).contains(&x) && (0..self.img.height() as i64).contains(&y) {
-            self.img.pixel_mut(x as usize, y as usize).copy_from_slice(&self.color);
+            self.img
+                .pixel_mut(x as usize, y as usize)
+                .copy_from_slice(&self.color);
         }
     }
 
@@ -174,7 +210,16 @@ impl<T: Element> Canvas<'_, T> {
             std::mem::swap(&mut dx, &mut dy);
             std::mem::swap(&mut sx, &mut sy);
         }
-        let (mut err, plus_delta, minus_delta, count, mut minus_shift, mut plus_shift, mut minus_step, mut plus_step);
+        let (
+            mut err,
+            plus_delta,
+            minus_delta,
+            count,
+            mut minus_shift,
+            mut plus_shift,
+            mut minus_step,
+            mut plus_step,
+        );
         match line_type {
             LineType::Eight => {
                 err = dx - 2 * dy;
@@ -243,7 +288,10 @@ impl<T: Element> Canvas<'_, T> {
         }
         p1.0 += XY_ONE >> 1;
         p1.1 += XY_ONE >> 1;
-        self.put((p2.0 + (XY_ONE >> 1)) >> XY_SHIFT, (p2.1 + (XY_ONE >> 1)) >> XY_SHIFT);
+        self.put(
+            (p2.0 + (XY_ONE >> 1)) >> XY_SHIFT,
+            (p2.1 + (XY_ONE >> 1)) >> XY_SHIFT,
+        );
         let mut n = ecount;
         if ax > ay {
             p1.0 >>= XY_SHIFT;
@@ -294,20 +342,32 @@ impl<T: Element> Canvas<'_, T> {
             }
             p0 = p;
         }
-        let (xmin, xmax, ymin, ymax) = ((xmin + delta) >> shift, (xmax + delta) >> shift, (ymin + delta) >> shift, (ymax + delta) >> shift);
+        let (xmin, xmax, ymin, ymax) = (
+            (xmin + delta) >> shift,
+            (xmax + delta) >> shift,
+            (ymin + delta) >> shift,
+            (ymax + delta) >> shift,
+        );
         if npts < 3 || xmax < 0 || ymax < 0 || xmin >= w || ymin >= h {
             return;
         }
         let ymax = ymax.min(h - 1);
-        #[derive(Clone, Copy)]
-        struct Edge {
-            idx: usize,
-            di: usize,
-            x: i64,
-            dx: i64,
-            ye: i64,
-        }
-        let mut edge = [Edge { idx: imin, di: 1, x: -XY_ONE, dx: 0, ye: ymin }, Edge { idx: imin, di: npts - 1, x: -XY_ONE, dx: 0, ye: ymin }];
+        let mut edge = [
+            Edge {
+                idx: imin,
+                di: 1,
+                x: -XY_ONE,
+                dx: 0,
+                ye: ymin,
+            },
+            Edge {
+                idx: imin,
+                di: npts - 1,
+                x: -XY_ONE,
+                dx: 0,
+                ye: ymin,
+            },
+        ];
         let mut edges = npts as i64;
         let half = XY_ONE >> 1;
         let mut y = ymin;
@@ -362,7 +422,12 @@ fn color_of<T: Element>(color: Scalar, cn: usize) -> Vec<T> {
 }
 
 /// `cv::fillConvexPoly(img, pts, color, lineType)` with integer vertices.
-pub fn fill_convex_poly<T: Element>(img: &mut Mat<T>, pts: &[Point], color: impl Into<Scalar>, line_type: LineType) {
+pub fn fill_convex_poly<T: Element>(
+    img: &mut Mat<T>,
+    pts: &[Point],
+    color: impl Into<Scalar>,
+    line_type: LineType,
+) {
     let cn = img.channels();
     let v: Vec<(i64, i64)> = pts.iter().map(|p| (i64::from(p.x), i64::from(p.y))).collect();
     let color = color_of(color.into(), cn);
@@ -384,11 +449,29 @@ pub fn fill_ellipse<T: Element>(
     let (cx, cy) = (i64::from(center.x) << XY_SHIFT, i64::from(center.y) << XY_SHIFT);
     let (ax, ay) = (i64::from(axes.0) << XY_SHIFT, i64::from(axes.1) << XY_SHIFT);
     let delta = ((ax.max(ay) + (XY_ONE >> 1)) >> XY_SHIFT) as i32;
-    let delta = if delta < 3 { 90 } else if delta < 10 { 30 } else if delta < 15 { 18 } else { 5 };
-    let raw = ellipse2poly_f64((cx as f64, cy as f64), (ax as f64, ay as f64), cv_round(angle), 0, 360, delta);
+    let delta = if delta < 3 {
+        90
+    } else if delta < 10 {
+        30
+    } else if delta < 15 {
+        18
+    } else {
+        5
+    };
+    let raw = ellipse2poly_f64(
+        (cx as f64, cy as f64),
+        (ax as f64, ay as f64),
+        cv_round(angle),
+        0,
+        360,
+        delta,
+    );
     let mut v: Vec<(i64, i64)> = Vec::new();
     for (x, y) in raw {
-        let mut p = (i64::from(cv_round(x / XY_ONE as f64)) << XY_SHIFT, i64::from(cv_round(y / XY_ONE as f64)) << XY_SHIFT);
+        let mut p = (
+            i64::from(cv_round(x / XY_ONE as f64)) << XY_SHIFT,
+            i64::from(cv_round(y / XY_ONE as f64)) << XY_SHIFT,
+        );
         p.0 += i64::from(cv_round(x - p.0 as f64));
         p.1 += i64::from(cv_round(y - p.1 as f64));
         if v.last() != Some(&p) {
@@ -431,7 +514,11 @@ pub fn bounding_rect<'a, T: Element>(mask: impl Into<MatView<'a, T>>) -> Rect {
             }
         }
     }
-    if x0 == usize::MAX { Rect::default() } else { Rect::new(x0, y0, x1 - x0 + 1, y1 - y0 + 1) }
+    if x0 == usize::MAX {
+        Rect::default()
+    } else {
+        Rect::new(x0, y0, x1 - x0 + 1, y1 - y0 + 1)
+    }
 }
 
 /// `cv::boundingRect(points)` for integer points.

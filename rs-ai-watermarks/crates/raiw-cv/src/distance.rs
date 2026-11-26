@@ -12,10 +12,19 @@ const PRECISE_DIST_MAX: usize = 1 << 16;
 pub fn distance_transform_l2<'a>(src: impl Into<MatView<'a, u8>>) -> Result<Mat<f32>> {
     let src = src.into();
     if src.channels() != 1 || src.is_empty() {
-        return Err(invalid("distance_transform", "non-empty single-channel input required"));
+        return Err(invalid(
+            "distance_transform",
+            "non-empty single-channel input required",
+        ));
     }
     let (n, m) = (src.width(), src.height());
-    let sqr = |i: usize, limit: usize| -> u32 { if i >= limit || i >= PRECISE_DIST_MAX { u32::MAX } else { (i * i) as u32 } };
+    let sqr = |i: usize, limit: usize| -> u32 {
+        if i >= limit || i >= PRECISE_DIST_MAX {
+            u32::MAX
+        } else {
+            (i * i) as u32
+        }
+    };
     let mut columns = vec![0.0f32; n * m];
     let cols: Vec<Vec<f32>> = (0..n)
         .into_par_iter()
@@ -40,9 +49,21 @@ pub fn distance_transform_l2<'a>(src: impl Into<MatView<'a, u8>>) -> Result<Mat<
             columns[y * n + x] = v;
         }
     }
-    let inv: Vec<f32> = (0..n).map(|i| if i == 0 { 0.0 } else { (0.5 / i as f64) as f32 }).collect();
-    let sqr_row: Vec<u32> = (0..n).map(|i| if i >= PRECISE_DIST_MAX { u32::MAX } else { (i * i) as u32 }).collect();
-    columns.par_chunks_mut(n).for_each(|d| row_pass(d, &sqr_row, &inv));
+    let inv: Vec<f32> = (0..n)
+        .map(|i| if i == 0 { 0.0 } else { (0.5 / i as f64) as f32 })
+        .collect();
+    let sqr_row: Vec<u32> = (0..n)
+        .map(|i| {
+            if i >= PRECISE_DIST_MAX {
+                u32::MAX
+            } else {
+                (i * i) as u32
+            }
+        })
+        .collect();
+    columns
+        .par_chunks_mut(n)
+        .for_each(|d| row_pass(d, &sqr_row, &inv));
     Mat::from_vec(n, m, 1, columns)
 }
 
@@ -73,7 +94,7 @@ fn row_pass(d: &mut [f32], sqr: &[u32], inv: &[f32]) {
                 k += 1;
                 v[k] = q;
                 z[k] = s;
-                if k + 1 <= n {
+                if k < n {
                     z[k + 1] = INF;
                 }
                 break;

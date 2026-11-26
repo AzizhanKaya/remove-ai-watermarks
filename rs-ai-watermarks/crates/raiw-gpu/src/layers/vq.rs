@@ -120,7 +120,7 @@ pub fn l2_normalize(x: Tensor<2>) -> Tensor<2> {
 }
 
 /// Residual quantization over the first `active` codebooks: returns per-codebook codes and the sum.
-pub fn residual_quantize(quantizers: &[VectorQuantizer], z: Tensor<3>) -> (Vec<Tensor<2, Int>>, Tensor<3>) {
+pub fn residual_quantize(quantizers: &[VectorQuantizer], z: &Tensor<3>) -> (Vec<Tensor<2, Int>>, Tensor<3>) {
     let mut residual = z.clone();
     let mut quantized = z.zeros_like();
     let mut codes = Vec::with_capacity(quantizers.len());

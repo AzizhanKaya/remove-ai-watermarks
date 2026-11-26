@@ -3,8 +3,8 @@
 use std::sync::OnceLock;
 
 use raiw_cv::{
-    Border, ColorConversion, Interpolation, Mat, MatView, MorphShape, Rect, StructuringElement, cvt_color, dilate,
-    magnitude, match_template_ccoeff_normed, mean_std_dev, min_max_loc, resize, sobel,
+    Border, ColorConversion, Interpolation, Mat, MatView, MorphShape, Rect, StructuringElement, TemplateSearch,
+    cvt_color, dilate, magnitude, match_template_ccoeff_normed, mean_std_dev, min_max_loc, resize, sobel,
 };
 use rayon::prelude::*;
 use serde::Serialize;
@@ -209,11 +209,12 @@ impl GeminiEngine {
     /// The strongest normalized match at every usable scale, in ladder order.
     fn scan_scales(&self, gray: &Mat<f32>) -> Result<Vec<(i32, f64, (i32, i32))>> {
         let (h, w) = (gray.height() as i32, gray.width() as i32);
+        let search = TemplateSearch::new(gray);
         self.templates
             .par_iter()
             .filter(|(side, _)| *side <= h && *side <= w)
             .map(|(side, tmpl)| {
-                let response = match_template_ccoeff_normed(gray, tmpl)?;
+                let response = search.match_template(tmpl)?;
                 let mm = min_max_loc(&response)?;
                 Ok((*side, mm.max, (mm.max_loc.x, mm.max_loc.y)))
             })

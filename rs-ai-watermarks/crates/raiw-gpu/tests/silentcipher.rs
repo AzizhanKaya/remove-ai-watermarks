@@ -35,11 +35,21 @@ fn decoder_matches_python_reference() {
                     "{name}@{shift}: frames"
                 );
                 let mut worst = 0.0f64;
+                let mut at = (0, 0, 0.0, 0.0);
                 for (symbol, row) in expected["scores"].as_array().unwrap().iter().enumerate() {
-                    for (actual, golden) in scores.row(symbol).iter().zip(row.as_array().unwrap()) {
-                        let scale = golden.as_f64().unwrap().abs().max(1.0);
-                        worst = worst.max((f64::from(*actual) - golden.as_f64().unwrap()).abs() / scale);
+                    for (t, (actual, golden)) in
+                        scores.row(symbol).iter().zip(row.as_array().unwrap()).enumerate()
+                    {
+                        let golden = golden.as_f64().unwrap();
+                        let diff = (f64::from(*actual) - golden).abs() / golden.abs().max(1.0);
+                        if diff > worst {
+                            worst = diff;
+                            at = (symbol, t, f64::from(*actual), golden);
+                        }
                     }
+                }
+                if worst > tol {
+                    eprintln!("worst at symbol {} frame {}: {} vs {}", at.0, at.1, at.2, at.3);
                 }
                 let (payload, consistency) = decode_sequence(&scores).unwrap();
                 eprintln!(
@@ -57,7 +67,10 @@ fn decoder_matches_python_reference() {
                 );
             }
             // The full 205-phase receiver sweep is minutes of compute; opt in with RAIW_SLOW
-            if let Some(expected) = case.get("reading").filter(|_| std::env::var_os("RAIW_SLOW").is_some()) {
+            if let Some(expected) = case
+                .get("reading")
+                .filter(|_| std::env::var_os("RAIW_SLOW").is_some())
+            {
                 let reading = decoder.read(&samples, SAMPLE_RATE).unwrap();
                 assert_eq!(
                     reading.payload.is_none(),

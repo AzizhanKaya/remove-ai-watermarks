@@ -82,12 +82,13 @@ pub fn forward(block: &mut [i64; 64]) {
 pub struct Divisor {
     recip: u32,
     corr: u32,
+    /// The total right shift, `shift + 16` in libjpeg's terms.
     shift: u32,
 }
 
 impl Divisor {
     pub fn new(divisor: u32) -> Self {
-        if divisor == 1 {
+        if divisor <= 1 {
             return Self { recip: 1, corr: 0, shift: 0 };
         }
         let b = 31 - divisor.leading_zeros();
@@ -103,13 +104,13 @@ impl Divisor {
         } else {
             fq += 1;
         }
-        Self { recip: fq as u32, corr: c, shift: r - 16 }
+        Self { recip: fq as u32, corr: c, shift: r }
     }
 
     #[inline]
     pub fn quantize(self, value: i64) -> i32 {
         let magnitude = value.unsigned_abs() as u32;
-        let product = magnitude.wrapping_add(self.corr).wrapping_mul(self.recip) >> (self.shift + 16);
+        let product = magnitude.wrapping_add(self.corr).wrapping_mul(self.recip) >> self.shift;
         let q = i32::from(product as u16 as i16);
         if value < 0 { -q } else { q }
     }

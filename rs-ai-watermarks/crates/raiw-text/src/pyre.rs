@@ -203,13 +203,141 @@ pub fn escape(text: &str) -> String {
     out
 }
 
+/// Index just past the character class starting at `chars[start] == '['`.
+fn skip_class(chars: &[char], start: usize) -> usize {
+    let mut index = start + 1;
+    if chars.get(index) == Some(&'^') {
+        index += 1;
+    }
+    if chars.get(index) == Some(&']') {
+        index += 1;
+    }
+    let mut depth = 1;
+    while index < chars.len() && depth > 0 {
+        match chars[index] {
+            '\\' => index += 1,
+            '[' => depth += 1,
+            ']' => depth -= 1,
+            _ => {}
+        }
+        index += 1;
+    }
+    index
+}
+
+/// Index just past the group opened at `chars[start] == '('`.
+fn skip_group(chars: &[char], start: usize) -> usize {
+    let mut index = start + 1;
+    let mut depth = 1;
+    while index < chars.len() && depth > 0 {
+        match chars[index] {
+            '\\' => index += 2,
+            '[' => index = skip_class(chars, index),
+            '(' => {
+                depth += 1;
+                index += 1;
+            }
+            ')' => {
+                depth -= 1;
+                index += 1;
+            }
+            _ => index += 1,
+        }
+    }
+    index
+}
+
+/// Replace every look-around group of a translated pattern with `(?:)`.
+///
+/// Look-arounds only restrict where a match may occur, so the result matches wherever the
+/// original can: it is a sound prefilter for candidate start positions. `None` when the pattern
+/// has no look-arounds.
+fn strip_lookarounds(pattern: &str) -> Option<String> {
+    let chars: Vec<char> = pattern.chars().collect();
+    let mut out = String::with_capacity(pattern.len());
+    let mut found = false;
+    let mut index = 0;
+    while index < chars.len() {
+        match chars[index] {
+            '\\' => {
+                out.extend(&chars[index..(index + 2).min(chars.len())]);
+                index += 2;
+            }
+            '[' => {
+                let end = skip_class(&chars, index);
+                out.extend(&chars[index..end.min(chars.len())]);
+                index = end;
+            }
+            '(' => {
+                let head: String = chars[index + 1..(index + 4).min(chars.len())].iter().collect();
+                if head.starts_with("?=") || head.starts_with("?!") || head == "?<=" || head == "?<!" {
+                    found = true;
+                    out.push_str("(?:)");
+                    index = skip_group(&chars, index);
+                } else {
+                    out.push('(');
+                    index += 1;
+                }
+            }
+            ch => {
+                out.push(ch);
+                index += 1;
+            }
+        }
+    }
+    found.then_some(out)
+}
+
+fn build_prefilter(translated: &str) -> Option<regex::Regex> {
+    let stripped = strip_lookarounds(translated)?;
+    regex::RegexBuilder::new(&stripped).size_limit(64 << 20).dfa_size_limit(64 << 20).build().ok()
+}
+
 /// A compiled Python pattern.
 #[derive(Debug)]
 pub struct PyRegex {
     regex: Regex,
+    /// Look-around-free superset pattern that locates candidate match starts quickly.
+    prefilter: Option<regex::Regex>,
     source: String,
     flags: Flags,
     full: OnceLock<Regex>,
+}
+
+/// Leftmost matches of a [`PyRegex`], with Python's iteration rules.
+#[derive(Debug)]
+pub struct Matches<'r, 't> {
+    regex: &'r PyRegex,
+    text: &'t str,
+    position: usize,
+    done: bool,
+}
+
+impl<'t> Iterator for Matches<'_, 't> {
+    type Item = Captures<'t, str>;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.done {
+            return None;
+        }
+        let Some(caps) = self.regex.captures_from(self.text, self.position) else {
+            self.done = true;
+            return None;
+        };
+        let span = whole(&caps);
+        self.position = if span.end > span.start {
+            span.end
+        } else {
+            match self.text[span.end..].chars().next() {
+                Some(ch) => span.end + ch.len_utf8(),
+                None => {
+                    self.done = true;
+                    span.end
+                }
+            }
+        };
+        Some(caps)
+    }
 }
 
 /// One match with byte offsets into the searched text.
@@ -240,10 +368,38 @@ impl PyRegex {
         let translated = translate(pattern, flags);
         Ok(Self {
             regex: build(&translated)?,
+            prefilter: build_prefilter(&translated),
             source: pattern.to_owned(),
             flags,
             full: OnceLock::new(),
         })
+    }
+
+    /// Next candidate start at or after `from` (every position without a prefilter).
+    fn candidates(&self, text: &str, from: usize) -> Option<usize> {
+        match &self.prefilter {
+            Some(prefilter) => prefilter.find_at(text, from).map(|m| m.start()),
+            None => (from <= text.len()).then_some(from),
+        }
+    }
+
+    fn next_candidate(text: &str, start: usize) -> Option<usize> {
+        text[start..].chars().next().map(|ch| start + ch.len_utf8())
+    }
+
+    /// Leftmost-first captures starting at or after `from`.
+    fn captures_from<'t>(&self, text: &'t str, from: usize) -> Option<Captures<'t, str>> {
+        if self.prefilter.is_none() {
+            return self.regex.captures_from_pos(text, from).ok().flatten();
+        }
+        let mut position = from;
+        loop {
+            let start = self.candidates(text, position)?;
+            if let Some(caps) = self.captures_at(text, start) {
+                return Some(caps);
+            }
+            position = Self::next_candidate(text, start)?;
+        }
     }
 
     pub fn source(&self) -> &str {
@@ -260,10 +416,20 @@ impl PyRegex {
 
     /// `pattern.search(text, pos)`.
     pub fn search_from(&self, text: &str, pos: usize) -> Option<Span> {
-        self.regex.find_from_pos(text, pos).ok().flatten().map(|m| Span {
-            start: m.start(),
-            end: m.end(),
-        })
+        if self.prefilter.is_none() {
+            return self.regex.find_from_pos(text, pos).ok().flatten().map(|m| Span {
+                start: m.start(),
+                end: m.end(),
+            });
+        }
+        let mut position = pos;
+        loop {
+            let start = self.candidates(text, position)?;
+            if let Some(span) = self.match_at(text, start) {
+                return Some(span);
+            }
+            position = Self::next_candidate(text, start)?;
+        }
     }
 
     /// `pattern.search(text)`.
@@ -300,19 +466,21 @@ impl PyRegex {
 
     /// `pattern.finditer(text)` as spans.
     pub fn find_iter<'a>(&'a self, text: &'a str) -> impl Iterator<Item = Span> + 'a {
-        self.regex.find_iter(text).map_while(Result::ok).map(|m| Span {
-            start: m.start(),
-            end: m.end(),
-        })
+        self.captures_iter(text).map(|caps| whole(&caps))
     }
 
     /// `pattern.finditer(text)` with groups.
-    pub fn captures_iter<'a>(&'a self, text: &'a str) -> impl Iterator<Item = Captures<'a, str>> + 'a {
-        self.regex.captures_iter(text).map_while(Result::ok)
+    pub fn captures_iter<'r, 't>(&'r self, text: &'t str) -> Matches<'r, 't> {
+        Matches {
+            regex: self,
+            text,
+            position: 0,
+            done: false,
+        }
     }
 
     pub fn captures<'t>(&self, text: &'t str) -> Option<Captures<'t, str>> {
-        self.regex.captures(text).ok().flatten()
+        self.captures_from(text, 0)
     }
 
     /// `pattern.findall(text)` for patterns without groups.

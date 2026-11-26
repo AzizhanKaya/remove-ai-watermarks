@@ -144,10 +144,30 @@ fn gaussian_blur_matches_opencv() {
         let b = border(p_str(&c, "border"));
         let expected = &c["output"][0];
         match input(c["input"].as_str().unwrap_or_default()) {
-            Array::U8(m) => report.check(name, &gaussian_blur(m, ksize, sx, sy, b).expect("u8"), expected, 0.0),
-            Array::U16(m) => report.check(name, &gaussian_blur(m, ksize, sx, sy, b).expect("u16"), expected, 0.0),
-            Array::F32(m) => report.check(name, &gaussian_blur(m, ksize, sx, sy, b).expect("f32"), expected, 1e-4),
-            Array::F64(m) => report.check(name, &gaussian_blur(m, ksize, sx, sy, b).expect("f64"), expected, 1e-9),
+            Array::U8(m) => report.check(
+                name,
+                &gaussian_blur(m, ksize, sx, sy, b).expect("u8"),
+                expected,
+                0.0,
+            ),
+            Array::U16(m) => report.check(
+                name,
+                &gaussian_blur(m, ksize, sx, sy, b).expect("u16"),
+                expected,
+                0.0,
+            ),
+            Array::F32(m) => report.check(
+                name,
+                &gaussian_blur(m, ksize, sx, sy, b).expect("f32"),
+                expected,
+                1e-4,
+            ),
+            Array::F64(m) => report.check(
+                name,
+                &gaussian_blur(m, ksize, sx, sy, b).expect("f64"),
+                expected,
+                1e-9,
+            ),
         };
     }
     report.finish("gaussian");
@@ -200,18 +220,30 @@ fn morphology_matches_opencv() {
         let name = c["name"].as_str().unwrap_or_default();
         if name == "structuring_elements" {
             for e in c["elements"].as_array().expect("elements") {
-                let (w, h) = (e["w"].as_u64().unwrap_or(0) as usize, e["h"].as_u64().unwrap_or(0) as usize);
+                let (w, h) = (
+                    e["w"].as_u64().unwrap_or(0) as usize,
+                    e["h"].as_u64().unwrap_or(0) as usize,
+                );
                 let shape = match e["shape"].as_str() {
                     Some("ellipse") => MorphShape::Ellipse,
                     Some("cross") => MorphShape::Cross,
                     _ => MorphShape::Rect,
                 };
-                report.check(&format!("se_{w}x{h}"), &StructuringElement::new(shape, w, h).to_mat(), &e["mask"], 0.0);
+                report.check(
+                    &format!("se_{w}x{h}"),
+                    &StructuringElement::new(shape, w, h).to_mat(),
+                    &e["mask"],
+                    0.0,
+                );
             }
             continue;
         }
         let k = p_usize(&c, "k");
-        let se = if p_str(&c, "shape") == "ellipse" { StructuringElement::ellipse(k) } else { StructuringElement::rect(k, k) };
+        let se = if p_str(&c, "shape") == "ellipse" {
+            StructuringElement::ellipse(k)
+        } else {
+            StructuringElement::rect(k, k)
+        };
         let iterations = c["params"].get("iterations").and_then(Value::as_u64).unwrap_or(1) as usize;
         let op = match p_str(&c, "op") {
             "dilate" => MorphOp::Dilate,
@@ -230,11 +262,28 @@ fn morphology_matches_opencv() {
 
 /// Extremum values must agree within `tol`; a different location is accepted only when our value
 /// at OpenCV's location ties our extremum within `tol` (OpenCV's float32 DFT breaks exact ties).
-fn check_minmax(report: &mut Vec<String>, name: &str, got: &MinMaxLoc, expected: &Value, tol: f64, map: Option<&Mat<f32>>) {
+fn check_minmax(
+    report: &mut Vec<String>,
+    name: &str,
+    got: &MinMaxLoc,
+    expected: &Value,
+    tol: f64,
+    map: Option<&Mat<f32>>,
+) {
     let e = expected.as_array().expect("minmax");
-    let loc = |v: &Value| Point::new(v[0].as_i64().unwrap_or(-9) as i32, v[1].as_i64().unwrap_or(-9) as i32);
-    let (emin, emax) = (e[0].as_f64().unwrap_or(f64::NAN), e[1].as_f64().unwrap_or(f64::NAN));
-    let ties = |p: Point, v: f64| map.is_some_and(|m| (f64::from(m.at(p.x as usize, p.y as usize, 0)) - v).abs() <= tol);
+    let loc = |v: &Value| {
+        Point::new(
+            v[0].as_i64().unwrap_or(-9) as i32,
+            v[1].as_i64().unwrap_or(-9) as i32,
+        )
+    };
+    let (emin, emax) = (
+        e[0].as_f64().unwrap_or(f64::NAN),
+        e[1].as_f64().unwrap_or(f64::NAN),
+    );
+    let ties = |p: Point, v: f64| {
+        map.is_some_and(|m| (f64::from(m.at(p.x as usize, p.y as usize, 0)) - v).abs() <= tol)
+    };
     let min_ok = got.min_loc == loc(&e[2]) || ties(loc(&e[2]), got.min);
     let max_ok = got.max_loc == loc(&e[3]) || ties(loc(&e[3]), got.max);
     if (got.min - emin).abs() > tol || (got.max - emax).abs() > tol || !min_ok || !max_ok {
@@ -262,7 +311,14 @@ fn match_template_matches_opencv() {
             exact.check(name, &out, reference, 1e-5);
         }
         if let Some(mm) = c.get("minmax") {
-            check_minmax(&mut minmax_failures, name, &min_max_loc(&out).expect("minmax"), mm, 5e-3, Some(&out));
+            check_minmax(
+                &mut minmax_failures,
+                name,
+                &min_max_loc(&out).expect("minmax"),
+                mm,
+                5e-3,
+                Some(&out),
+            );
         }
     }
     report.finish("template");
@@ -283,7 +339,9 @@ fn statistics_match_opencv() {
         if let Some(mean) = c.get("mean") {
             let (m, s) = each_array!(&src, a => mean_std_dev(a).expect("meanstd"));
             let close = |a: &[f64], e: &Value| {
-                a.iter().zip(e.as_array().expect("list")).all(|(x, y)| (x - y.as_f64().unwrap_or(f64::NAN)).abs() <= 1e-9 * x.abs().max(1.0))
+                a.iter()
+                    .zip(e.as_array().expect("list"))
+                    .all(|(x, y)| (x - y.as_f64().unwrap_or(f64::NAN)).abs() <= 1e-9 * x.abs().max(1.0))
             };
             if !close(&m, mean) || !close(&s, &c["std"]) {
                 failures.push(format!("{name}: {m:?} {s:?}"));
@@ -292,14 +350,28 @@ fn statistics_match_opencv() {
             let got = each_array!(&src, a => min_max_loc(a).expect("minmax"));
             check_minmax(&mut failures, name, &got, mm, 0.0, None);
         } else if let Some(hist) = c.get("hist") {
-            let Array::U8(img) = &src else { panic!("hist input") };
+            let Array::U8(img) = &src else {
+                panic!("hist input")
+            };
             let small = resize(img, 40, 30, Interpolation::Area).expect("resize");
             let h = calc_hist(&small, &[4, 4, 4], &[(0.0, 256.0); 3]).expect("hist");
             let hm = Mat::from_vec(h.len(), 1, 1, h).expect("hist mat");
             let l2 = normalize_l2(&hm).expect("l2");
-            let to_vec = |v: &Value| v.as_array().expect("list").iter().filter_map(Value::as_f64).collect::<Vec<_>>();
-            let max_diff = |a: &[f32], e: &[f64]| a.iter().zip(e).map(|(a, e)| (f64::from(*a) - e).abs()).fold(0.0, f64::max);
-            if max_diff(hm.data(), &to_vec(hist)) > 0.0 || max_diff(l2.data(), &to_vec(&c["hist_l2"])) > 1e-6 {
+            let to_vec = |v: &Value| {
+                v.as_array()
+                    .expect("list")
+                    .iter()
+                    .filter_map(Value::as_f64)
+                    .collect::<Vec<_>>()
+            };
+            let max_diff = |a: &[f32], e: &[f64]| {
+                a.iter()
+                    .zip(e)
+                    .map(|(a, e)| (f64::from(*a) - e).abs())
+                    .fold(0.0, f64::max)
+            };
+            if max_diff(hm.data(), &to_vec(hist)) > 0.0 || max_diff(l2.data(), &to_vec(&c["hist_l2"])) > 1e-6
+            {
                 failures.push(format!("{name}: histogram mismatch"));
             }
         } else {
@@ -314,16 +386,37 @@ fn statistics_match_opencv() {
 #[test]
 fn inpaint_matches_opencv() {
     let mut report = Report::default();
-    let Array::U8(mask) = input("mask") else { panic!("mask") };
+    let Array::U8(mask) = input("mask") else {
+        panic!("mask")
+    };
     for c in cases("inpaint") {
         let name = c["name"].as_str().unwrap_or_default();
-        let method = if p_str(&c, "method") == "telea" { InpaintMethod::Telea } else { InpaintMethod::NavierStokes };
+        let method = if p_str(&c, "method") == "telea" {
+            InpaintMethod::Telea
+        } else {
+            InpaintMethod::NavierStokes
+        };
         let radius = p_f64(&c, "radius");
         let expected = &c["output"][0];
         match decode(&c["image"]) {
-            Array::U8(img) => report.check(name, &inpaint(&img, mask, radius, method).expect("u8"), expected, 0.0),
-            Array::U16(img) => report.check(name, &inpaint(&img, mask, radius, method).expect("u16"), expected, 0.0),
-            Array::F32(img) => report.check(name, &inpaint(&img, mask, radius, method).expect("f32"), expected, 1e-4),
+            Array::U8(img) => report.check(
+                name,
+                &inpaint(&img, mask, radius, method).expect("u8"),
+                expected,
+                0.0,
+            ),
+            Array::U16(img) => report.check(
+                name,
+                &inpaint(&img, mask, radius, method).expect("u16"),
+                expected,
+                0.0,
+            ),
+            Array::F32(img) => report.check(
+                name,
+                &inpaint(&img, mask, radius, method).expect("f32"),
+                expected,
+                1e-4,
+            ),
             Array::F64(_) => panic!("no f64 inpaint"),
         };
     }
@@ -335,11 +428,22 @@ fn warps_match_opencv() {
     let mut report = Report::default();
     let all = cases("warp");
     let maps = all.iter().find(|c| c["name"] == "maps").expect("maps");
-    let (Array::F32(mx), Array::F32(my)) = (decode(&maps["map_x"]), decode(&maps["map_y"])) else { panic!("maps") };
+    let (Array::F32(mx), Array::F32(my)) = (decode(&maps["map_x"]), decode(&maps["map_y"])) else {
+        panic!("maps")
+    };
     let rotation = all.iter().find(|c| c["name"] == "rotation").expect("rotation");
     let rot = get_rotation_matrix_2d(Point2f::new(50.0, 50.0), 17.0, 1.0);
-    for (r, e) in rot.iter().flatten().zip(rotation["m"].as_array().expect("m").iter().flat_map(|row| row.as_array().expect("row"))) {
-        assert!((r - e.as_f64().unwrap_or(f64::NAN)).abs() < 1e-12, "rotation matrix {rot:?}");
+    for (r, e) in rot.iter().flatten().zip(
+        rotation["m"]
+            .as_array()
+            .expect("m")
+            .iter()
+            .flat_map(|row| row.as_array().expect("row")),
+    ) {
+        assert!(
+            (r - e.as_f64().unwrap_or(f64::NAN)).abs() < 1e-12,
+            "rotation matrix {rot:?}"
+        );
     }
     for c in all.iter().filter(|c| c.get("params").is_some()) {
         let name = c["name"].as_str().unwrap_or_default();
@@ -350,14 +454,21 @@ fn warps_match_opencv() {
         };
         let expected = &c["output"][0];
         let m: Option<Affine> = c["params"].get("m").map(|m| {
-            let v: Vec<f64> = m.as_array().expect("m").iter().flat_map(|r| r.as_array().expect("row").clone()).filter_map(|v| v.as_f64()).collect();
+            let v: Vec<f64> = m
+                .as_array()
+                .expect("m")
+                .iter()
+                .flat_map(|r| r.as_array().expect("row").clone())
+                .filter_map(|v| v.as_f64())
+                .collect();
             [[v[0], v[1], v[2]], [v[3], v[4], v[5]]]
         });
         let run = |src: &Array| -> Array {
             macro_rules! go {
                 ($m:expr, $variant:ident) => {
                     Array::$variant(match &m {
-                        Some(a) => warp_affine($m, a, p_usize(c, "width"), p_usize(c, "height"), method, b).expect("affine"),
+                        Some(a) => warp_affine($m, a, p_usize(c, "width"), p_usize(c, "height"), method, b)
+                            .expect("affine"),
                         None => remap($m, &mx, &my, method, b).expect("remap"),
                     })
                 };
@@ -389,8 +500,14 @@ fn misc_ops_match_opencv() {
         let src = input(c["input"].as_str().unwrap_or_default());
         match p_str(&c, "op") {
             "cc" => {
-                let Array::U8(img) = decode(&c["image"]) else { panic!("cc image") };
-                let conn = if p_usize(&c, "connectivity") == 8 { Connectivity::Eight } else { Connectivity::Four };
+                let Array::U8(img) = decode(&c["image"]) else {
+                    panic!("cc image")
+                };
+                let conn = if p_usize(&c, "connectivity") == 8 {
+                    Connectivity::Eight
+                } else {
+                    Connectivity::Four
+                };
                 let comps = connected_components_with_stats(&img, conn).expect("cc");
                 report.check(name, &comps.labels, expected, 0.0);
                 let (n, labels) = connected_components(&img, conn).expect("cc");
@@ -399,13 +516,29 @@ fn misc_ops_match_opencv() {
                     failures.push(format!("{name}: count {n}"));
                 }
                 for (s, e) in comps.stats.iter().zip(c["stats"].as_array().expect("stats")) {
-                    let e: Vec<i64> = e.as_array().expect("row").iter().filter_map(Value::as_i64).collect();
-                    if [s.left, s.top, s.width, s.height, s.area].iter().map(|&v| i64::from(v)).ne(e.iter().copied()) {
+                    let e: Vec<i64> = e
+                        .as_array()
+                        .expect("row")
+                        .iter()
+                        .filter_map(Value::as_i64)
+                        .collect();
+                    if [s.left, s.top, s.width, s.height, s.area]
+                        .iter()
+                        .map(|&v| i64::from(v))
+                        .ne(e.iter().copied())
+                    {
                         failures.push(format!("{name}: stats {s:?} vs {e:?}"));
                     }
                 }
-                for (s, e) in comps.stats.iter().zip(c["centroids"].as_array().expect("centroids")) {
-                    let (ex, ey) = (e[0].as_f64().unwrap_or(f64::NAN), e[1].as_f64().unwrap_or(f64::NAN));
+                for (s, e) in comps
+                    .stats
+                    .iter()
+                    .zip(c["centroids"].as_array().expect("centroids"))
+                {
+                    let (ex, ey) = (
+                        e[0].as_f64().unwrap_or(f64::NAN),
+                        e[1].as_f64().unwrap_or(f64::NAN),
+                    );
                     if (s.centroid.x - ex).abs() > 1e-9 || (s.centroid.y - ey).abs() > 1e-9 {
                         failures.push(format!("{name}: centroid {:?} vs ({ex}, {ey})", s.centroid));
                     }
@@ -414,7 +547,9 @@ fn misc_ops_match_opencv() {
             "dist" => {
                 // Below 2^14 pixels OpenCV hands off to IPP (ulp-level differences; sqrt(FLT_MAX)
                 // when no zero pixel exists); its own trueDistTrans is the exact reference.
-                let Array::U8(img) = decode(&c["image"]) else { panic!("dist image") };
+                let Array::U8(img) = decode(&c["image"]) else {
+                    panic!("dist image")
+                };
                 let out = distance_transform_l2(&img).expect("dist");
                 match c.get("noipp") {
                     Some(reference) => {
@@ -429,17 +564,32 @@ fn misc_ops_match_opencv() {
                 }
             }
             "canny" => {
-                let Array::U8(img) = src else { panic!("canny input") };
-                report.check(name, &canny(img, p_f64(&c, "low"), p_f64(&c, "high")).expect("canny"), expected, 0.0);
+                let Array::U8(img) = src else {
+                    panic!("canny input")
+                };
+                report.check(
+                    name,
+                    &canny(img, p_f64(&c, "low"), p_f64(&c, "high")).expect("canny"),
+                    expected,
+                    0.0,
+                );
             }
             "add_weighted" => {
-                let (Array::F32(a), Array::F32(b)) = (src, decode(&c["second"])) else { panic!("aw") };
-                let out = add_weighted(a, p_f64(&c, "alpha"), &b, p_f64(&c, "beta"), p_f64(&c, "gamma")).expect("aw");
+                let (Array::F32(a), Array::F32(b)) = (src, decode(&c["second"])) else {
+                    panic!("aw")
+                };
+                let out = add_weighted(a, p_f64(&c, "alpha"), &b, p_f64(&c, "beta"), p_f64(&c, "gamma"))
+                    .expect("aw");
                 report.check(name, &out, expected, 0.0);
             }
             "csa" => {
                 let Array::F32(a) = src else { panic!("csa") };
-                report.check(name, &convert_scale_abs(a, p_f64(&c, "alpha"), 0.0), expected, 0.0);
+                report.check(
+                    name,
+                    &convert_scale_abs(a, p_f64(&c, "alpha"), 0.0),
+                    expected,
+                    0.0,
+                );
             }
             "magnitude" => {
                 let Array::F32(g) = src else { panic!("magnitude") };
@@ -452,7 +602,12 @@ fn misc_ops_match_opencv() {
             "border" => {
                 let Array::F32(a) = src else { panic!("border") };
                 let roi = a.roi(Rect::new(20, 10, 40, 30)).expect("roi");
-                report.check(name, &copy_make_border(roi, 7, 3, 9, 2, border(p_str(&c, "border"))).expect("border"), expected, 0.0);
+                report.check(
+                    name,
+                    &copy_make_border(roi, 7, 3, 9, 2, border(p_str(&c, "border"))).expect("border"),
+                    expected,
+                    0.0,
+                );
             }
             "transpose" => {
                 let Array::U8(a) = src else { panic!("transpose") };
@@ -460,7 +615,12 @@ fn misc_ops_match_opencv() {
             }
             "extract" => {
                 let Array::U8(a) = src else { panic!("extract") };
-                report.check(name, &extract_channel(a, p_usize(&c, "channel")).expect("extract"), expected, 0.0);
+                report.check(
+                    name,
+                    &extract_channel(a, p_usize(&c, "channel")).expect("extract"),
+                    expected,
+                    0.0,
+                );
                 let planes = split(a);
                 let views: Vec<MatView<'_, u8>> = planes.iter().map(Mat::view).collect();
                 assert_eq!(&merge(&views).expect("merge"), a);
@@ -476,16 +636,27 @@ fn points(v: &Value) -> Vec<Point2f> {
     v.as_array()
         .expect("points")
         .iter()
-        .map(|p| Point2f::new(p[0].as_f64().unwrap_or(f64::NAN) as f32, p[1].as_f64().unwrap_or(f64::NAN) as f32))
+        .map(|p| {
+            Point2f::new(
+                p[0].as_f64().unwrap_or(f64::NAN) as f32,
+                p[1].as_f64().unwrap_or(f64::NAN) as f32,
+            )
+        })
         .collect()
 }
 
 #[test]
 fn flow_and_features_match_opencv() {
     let all = cases("flow");
-    let get = |n: &str| all.iter().find(|c| c["name"] == n).unwrap_or_else(|| panic!("case {n}"));
+    let get = |n: &str| {
+        all.iter()
+            .find(|c| c["name"] == n)
+            .unwrap_or_else(|| panic!("case {n}"))
+    };
     let frames = get("frames");
-    let (Array::U8(a), Array::U8(b)) = (decode(&frames["a"]), decode(&frames["b"])) else { panic!("frames") };
+    let (Array::U8(a), Array::U8(b)) = (decode(&frames["a"]), decode(&frames["b"])) else {
+        panic!("frames")
+    };
     let mut report = Report::default();
 
     let pd = get("pyrdown");
@@ -493,26 +664,51 @@ fn flow_and_features_match_opencv() {
     let odd = a.roi(Rect::new(0, 0, 151, 99)).expect("roi");
     report.check("pyr_down_odd", &pyr_down(odd).expect("pyr"), &pd["odd"][0], 0.0);
 
-    report.check("min_eigen", &corner_min_eigen_val(&a, 3, 3).expect("eig"), &get("min_eigen")["output"][0], 1e-7);
+    report.check(
+        "min_eigen",
+        &corner_min_eigen_val(&a, 3, 3).expect("eig"),
+        &get("min_eigen")["output"][0],
+        1e-7,
+    );
 
     let gftt = get("gftt");
     let found = good_features_to_track(&a, 200, 0.01, 4.0, None).expect("gftt");
     let expected = points(&gftt["points"]);
     let same = found.iter().zip(&expected).filter(|(f, e)| f == e).count();
-    println!("gftt: {same}/{} identical corners ({} found)", expected.len(), found.len());
-    assert!(same * 100 >= expected.len() * 98, "gftt corners diverge: {same}/{}", expected.len());
+    println!(
+        "gftt: {same}/{} identical corners ({} found)",
+        expected.len(),
+        found.len()
+    );
+    assert!(
+        same * 100 >= expected.len() * 98,
+        "gftt corners diverge: {same}/{}",
+        expected.len()
+    );
 
     let gm = get("gftt_mask");
-    let Array::U8(mask) = decode(&gm["mask"]) else { panic!("mask") };
+    let Array::U8(mask) = decode(&gm["mask"]) else {
+        panic!("mask")
+    };
     let found_m = good_features_to_track(&a, 32, 0.05, 3.0, Some(mask.view())).expect("gftt");
     assert_eq!(found_m, points(&gm["points"]), "masked gftt");
 
     for level in [3usize, 2] {
         let c = get(&format!("lk_{level}"));
-        let params = LkParams { win_width: 15, win_height: 15, max_level: level, ..LkParams::default() };
+        let params = LkParams {
+            win_width: 15,
+            win_height: 15,
+            max_level: level,
+            ..LkParams::default()
+        };
         let tracks = calc_optical_flow_pyr_lk(&a, &b, &expected, params).expect("lk");
         let next = points(&c["next"]);
-        let status: Vec<bool> = c["status"].as_array().expect("status").iter().map(|v| v.as_u64() == Some(1)).collect();
+        let status: Vec<bool> = c["status"]
+            .as_array()
+            .expect("status")
+            .iter()
+            .map(|v| v.as_u64() == Some(1))
+            .collect();
         let (mut worst, mut status_mismatch) = (0.0f32, 0);
         for ((t, n), s) in tracks.iter().zip(&next).zip(&status) {
             if t.found != *s {
@@ -522,13 +718,18 @@ fn flow_and_features_match_opencv() {
             }
         }
         println!("lk level {level}: max point diff {worst:.3e}, status mismatches {status_mismatch}");
-        assert!(worst < 2e-2 && status_mismatch <= 2, "pyr lk diverges: {worst} / {status_mismatch}");
+        assert!(
+            worst < 2e-2 && status_mismatch <= 2,
+            "pyr lk diverges: {worst} / {status_mismatch}"
+        );
     }
 
     let fb = calc_optical_flow_farneback(&a, &b, FarnebackParams::default()).expect("farneback");
     report.check("farneback", &fb, &get("farneback")["output"][0], 5e-2);
     let small = get("farneback_small");
-    let (Array::U8(sa), Array::U8(sb)) = (decode(&small["a"]), decode(&small["b"])) else { panic!("small") };
+    let (Array::U8(sa), Array::U8(sb)) = (decode(&small["a"]), decode(&small["b"])) else {
+        panic!("small")
+    };
     let fbs = calc_optical_flow_farneback(&sa, &sb, FarnebackParams::default()).expect("farneback");
     report.check("farneback_small", &fbs, &small["output"][0], 5e-2);
 
@@ -539,14 +740,28 @@ fn flow_and_features_match_opencv() {
             phase_correlate(&fa, &fbm).expect("phase")
         } else {
             let rolled = Mat::from_fn(a.width(), a.height(), 1, |x, y, _| {
-                fa.at((x + a.width() + 5) % a.width(), (y + a.height() - 3) % a.height(), 0)
+                fa.at(
+                    (x + a.width() + 5) % a.width(),
+                    (y + a.height() - 3) % a.height(),
+                    0,
+                )
             });
-            phase_correlate(fa.roi(Rect::new(0, 0, 131, 97)).expect("roi"), rolled.roi(Rect::new(0, 0, 131, 97)).expect("roi")).expect("phase")
+            phase_correlate(
+                fa.roi(Rect::new(0, 0, 131, 97)).expect("roi"),
+                rolled.roi(Rect::new(0, 0, 131, 97)).expect("roi"),
+            )
+            .expect("phase")
         };
         let e = c["shift"].as_array().expect("shift");
-        let (ex, ey) = (e[0].as_f64().unwrap_or(f64::NAN), e[1].as_f64().unwrap_or(f64::NAN));
+        let (ex, ey) = (
+            e[0].as_f64().unwrap_or(f64::NAN),
+            e[1].as_f64().unwrap_or(f64::NAN),
+        );
         let er = c["response"].as_f64().unwrap_or(f64::NAN);
-        println!("{name}: shift ({:.6}, {:.6}) vs ({ex:.6}, {ey:.6}), response {response:.6} vs {er:.6}", shift.x, shift.y);
+        println!(
+            "{name}: shift ({:.6}, {:.6}) vs ({ex:.6}, {ey:.6}), response {response:.6} vs {er:.6}",
+            shift.x, shift.y
+        );
         assert!((shift.x - ex).abs() < 1e-3 && (shift.y - ey).abs() < 1e-3 && (response - er).abs() < 1e-3);
     }
     report.finish("flow");
@@ -556,7 +771,12 @@ fn int_points(v: &Value) -> Vec<Point> {
     v.as_array()
         .expect("points")
         .iter()
-        .map(|p| Point::new(p[0].as_i64().unwrap_or(0) as i32, p[1].as_i64().unwrap_or(0) as i32))
+        .map(|p| {
+            Point::new(
+                p[0].as_i64().unwrap_or(0) as i32,
+                p[1].as_i64().unwrap_or(0) as i32,
+            )
+        })
         .collect()
 }
 
@@ -567,17 +787,39 @@ fn drawing_matches_opencv() {
         let name = c["name"].as_str().unwrap_or_default();
         match name {
             "box_points" => {
-                let r: Vec<f32> = c["rect"].as_array().expect("rect").iter().filter_map(Value::as_f64).map(|v| v as f32).collect();
-                let rect = RotatedRect { center: Point2f::new(r[0], r[1]), width: r[2], height: r[3], angle: r[4] };
+                let r: Vec<f32> = c["rect"]
+                    .as_array()
+                    .expect("rect")
+                    .iter()
+                    .filter_map(Value::as_f64)
+                    .map(|v| v as f32)
+                    .collect();
+                let rect = RotatedRect {
+                    center: Point2f::new(r[0], r[1]),
+                    width: r[2],
+                    height: r[3],
+                    angle: r[4],
+                };
                 assert_eq!(box_points(rect).to_vec(), points(&c["points"]), "box points");
             }
             "ellipse2poly" => {
-                assert_eq!(ellipse2poly(Point::new(50, 40), (30, 17), 15, 0, 360, 5), int_points(&c["points"]));
+                assert_eq!(
+                    ellipse2poly(Point::new(50, 40), (30, 17), 15, 0, 360, 5),
+                    int_points(&c["points"])
+                );
             }
             "bounding_rect" => {
-                let Array::U8(m) = decode(&c["mask"]) else { panic!("mask") };
+                let Array::U8(m) = decode(&c["mask"]) else {
+                    panic!("mask")
+                };
                 let r = bounding_rect(&m);
-                let e: Vec<usize> = c["rect"].as_array().expect("rect").iter().filter_map(Value::as_u64).map(|v| v as usize).collect();
+                let e: Vec<usize> = c["rect"]
+                    .as_array()
+                    .expect("rect")
+                    .iter()
+                    .filter_map(Value::as_u64)
+                    .map(|v| v as usize)
+                    .collect();
                 assert_eq!([r.x, r.y, r.width, r.height].to_vec(), e);
             }
             _ if name.starts_with("fill_convex") => {
@@ -588,10 +830,30 @@ fn drawing_matches_opencv() {
             }
             _ => {
                 let mut img = Mat::<u8>::zeros(120, 90, 1);
-                let ct: Vec<i32> = c["center"].as_array().expect("center").iter().filter_map(Value::as_i64).map(|v| v as i32).collect();
-                let ax: Vec<i32> = c["axes"].as_array().expect("axes").iter().filter_map(Value::as_i64).map(|v| v as i32).collect();
+                let ct: Vec<i32> = c["center"]
+                    .as_array()
+                    .expect("center")
+                    .iter()
+                    .filter_map(Value::as_i64)
+                    .map(|v| v as i32)
+                    .collect();
+                let ax: Vec<i32> = c["axes"]
+                    .as_array()
+                    .expect("axes")
+                    .iter()
+                    .filter_map(Value::as_i64)
+                    .map(|v| v as i32)
+                    .collect();
                 let angle = c["angle"].as_f64().unwrap_or(0.0);
-                fill_ellipse(&mut img, Point::new(ct[0], ct[1]), (ax[0], ax[1]), angle, 255.0, LineType::Eight).expect("ellipse");
+                fill_ellipse(
+                    &mut img,
+                    Point::new(ct[0], ct[1]),
+                    (ax[0], ax[1]),
+                    angle,
+                    255.0,
+                    LineType::Eight,
+                )
+                .expect("ellipse");
                 report.check(name, &img, &c["output"][0], 0.0);
             }
         }
@@ -604,19 +866,41 @@ fn python_helpers_match_reference() {
     use raiw_cv::{image_alignment, image_math, image_quality, tiling};
     let mut report = Report::default();
     let all = cases("helpers");
-    let get = |n: &str| all.iter().find(|c| c["name"] == n).unwrap_or_else(|| panic!("case {n}"));
-    report.check("dct8", &image_math::dct_matrix(8), &get("dct8")["output"][0], 1e-15);
-    report.check("dct5", &image_math::dct_matrix(5), &get("dct5")["output"][0], 1e-15);
+    let get = |n: &str| {
+        all.iter()
+            .find(|c| c["name"] == n)
+            .unwrap_or_else(|| panic!("case {n}"))
+    };
+    report.check(
+        "dct8",
+        &image_math::dct_matrix(8),
+        &get("dct8")["output"][0],
+        1e-15,
+    );
+    report.check(
+        "dct5",
+        &image_math::dct_matrix(5),
+        &get("dct5")["output"][0],
+        1e-15,
+    );
 
     let ssim = get("ssim");
-    let (Array::U8(a), Array::U8(b)) = (input("fixture_c1"), decode(&ssim["b"])) else { panic!("ssim") };
+    let (Array::U8(a), Array::U8(b)) = (input("fixture_c1"), decode(&ssim["b"])) else {
+        panic!("ssim")
+    };
     let value = image_quality::structural_similarity_gray(a, &b).expect("ssim");
     let expected = ssim["value"].as_f64().unwrap_or(f64::NAN);
     assert!((value - expected).abs() < 1e-12, "ssim {value} vs {expected}");
 
     for plan in get("plan_tiles")["plans"].as_array().expect("plans") {
         let u = |k: &str| plan[k].as_i64().unwrap_or(0);
-        let tiles = tiling::plan_tiles(u("w") as usize, u("h") as usize, u("tile") as usize, u("overlap") as isize).expect("plan");
+        let tiles = tiling::plan_tiles(
+            u("w") as usize,
+            u("h") as usize,
+            u("tile") as usize,
+            u("overlap") as isize,
+        )
+        .expect("plan");
         let got: Vec<[usize; 4]> = tiles.iter().map(|t| [t.x, t.y, t.width, t.height]).collect();
         let exp: Vec<[usize; 4]> = plan["tiles"]
             .as_array()
@@ -627,7 +911,12 @@ fn python_helpers_match_reference() {
         assert_eq!(got, exp, "plan_tiles {plan}");
     }
     let f = get("feather");
-    report.check("feather", &tiling::feather_weights(37, 23, 9), &f["output"][0], 0.0);
+    report.check(
+        "feather",
+        &tiling::feather_weights(37, 23, 9),
+        &f["output"][0],
+        0.0,
+    );
 
     let lw = get("local_error_weights");
     let rgb = |k: &str| match decode(&lw[k]) {
@@ -635,27 +924,48 @@ fn python_helpers_match_reference() {
         _ => panic!("{k}"),
     };
     let (reference, baseline, candidate) = (rgb("reference"), rgb("baseline"), rgb("candidate"));
-    let weights = image_alignment::local_error_weights(&reference, &baseline, &candidate, 24.0).expect("weights");
+    let weights =
+        image_alignment::local_error_weights(&reference, &baseline, &candidate, 24.0).expect("weights");
     report.check("local_error_weights", &weights, &lw["output"][0], 1e-5);
 
     let at = get("attenuate");
-    let Array::F32(flow) = decode(&at["flow"]) else { panic!("flow") };
-    let Array::F32(w_ref) = decode(&lw["output"][0]) else { panic!("weights") };
-    let (out, weighted) = image_alignment::attenuate_regenerated(&baseline, &flow, &w_ref).expect("attenuate");
+    let Array::F32(flow) = decode(&at["flow"]) else {
+        panic!("flow")
+    };
+    let Array::F32(w_ref) = decode(&lw["output"][0]) else {
+        panic!("weights")
+    };
+    let (out, weighted) =
+        image_alignment::attenuate_regenerated(&baseline, &flow, &w_ref).expect("attenuate");
     report.check("attenuate_out", &out, &at["output"][0], 0.0);
     report.check("attenuate_flow", &weighted, &at["output"][1], 1e-6);
 
     for mode in ["linear", "lanczos"] {
         let c = get(&format!("align_{mode}"));
-        let Array::U8(donor) = decode(&c["donor"]) else { panic!("donor") };
-        let Array::F32(small) = decode(&c["small_flow"]) else { panic!("small") };
+        let Array::U8(donor) = decode(&c["donor"]) else {
+            panic!("donor")
+        };
+        let Array::F32(small) = decode(&c["small_flow"]) else {
+            panic!("small")
+        };
         let boxes: Vec<(usize, usize, usize, usize)> = c["boxes"]
             .as_array()
             .expect("boxes")
             .iter()
-            .map(|b| (b[0].as_u64().unwrap_or(0) as usize, b[1].as_u64().unwrap_or(0) as usize, b[2].as_u64().unwrap_or(0) as usize, b[3].as_u64().unwrap_or(0) as usize))
+            .map(|b| {
+                (
+                    b[0].as_u64().unwrap_or(0) as usize,
+                    b[1].as_u64().unwrap_or(0) as usize,
+                    b[2].as_u64().unwrap_or(0) as usize,
+                    b[3].as_u64().unwrap_or(0) as usize,
+                )
+            })
             .collect();
-        let interp = if mode == "linear" { Interpolation::Linear } else { Interpolation::Lanczos4 };
+        let interp = if mode == "linear" {
+            Interpolation::Linear
+        } else {
+            Interpolation::Lanczos4
+        };
         let (out, final_flow) = image_alignment::bound_flow(&donor, &small, &boxes, interp).expect("bound");
         report.check(&format!("align_{mode}_out"), &out, &c["output"][0], 1.0);
         report.check(&format!("align_{mode}_flow"), &final_flow, &c["output"][1], 1e-4);
