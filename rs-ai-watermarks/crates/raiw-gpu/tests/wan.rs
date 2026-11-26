@@ -231,40 +231,52 @@ fn pipeline_matches_run_wan_window() {
     ))
     .unwrap();
     for device in devices() {
-        let hub = Hub::from_env();
-        let Some(vae) = loaded(WanVae::load_from_hub(&hub, fetch(), &device), "Wan VAE") else {
-            return;
-        };
-        let transformer = WanTransformer::load_from_hub(&hub, fetch(), &device, BlockResidency::Streamed);
-        let Some(transformer) = loaded(transformer, "Wan transformer") else {
-            return;
-        };
-        let pipeline = WanPipeline::new(vae, transformer, &prompt);
-        for (name, case) in golden["cases"].as_object().unwrap() {
-            let strength = case["strength"].as_f64().unwrap();
-            let (steps, seed) = (dim(case, "steps"), case["seed"].as_u64().unwrap());
-            let start = Instant::now();
-            let out = pipeline
-                .regenerate_chunk(&pixels, (frames, height, width), strength, steps, seed)
-                .unwrap();
-            let elapsed = start.elapsed().as_secs_f64();
-            let out = unit_to_bgr_u8(&out, height, width);
-            let expected = BASE64_STANDARD
-                .decode(case["output_bgr_b64"].as_str().unwrap())
-                .unwrap();
-            assert_eq!(out.len(), expected.len(), "{name} output length");
-            let diffs: Vec<u8> = out.iter().zip(&expected).map(|(a, b)| a.abs_diff(*b)).collect();
-            let max = diffs.iter().copied().max().unwrap_or(0);
-            let mean = diffs.iter().map(|&d| f64::from(d)).sum::<f64>() / diffs.len() as f64;
-            let python = case["seconds_cpu_fp32"].as_f64().unwrap();
-            eprintln!(
-                "wan pipeline {name} on {device}: max {max} mean {mean:.4} levels \
-                 ({elapsed:.1}s; diffusers fp32 cpu {python:.1}s)"
-            );
-            assert!(
-                max <= 1 && mean <= 0.01,
-                "{name} on {device}: max {max} mean {mean}"
-            );
+        // float32 burn ops match diffusers' float32 window to one level; the GPU's f16
+        // kernels (the default there) measured max 1, mean 0.03 levels
+        let mut engines = vec![(BlockResidency::Streamed, (1u8, 0.01))];
+        #[cfg(feature = "gpu-runtime")]
+        if device.is_gpu() {
+            engines.push((
+                BlockResidency::Fused(raiw_gpu::models::video::wan::Precision::F16),
+                (2, 0.1),
+            ));
+        }
+        for (residency, (max_levels, mean_levels)) in engines {
+            let hub = Hub::from_env();
+            let Some(vae) = loaded(WanVae::load_from_hub(&hub, fetch(), &device), "Wan VAE") else {
+                return;
+            };
+            let transformer = WanTransformer::load_from_hub(&hub, fetch(), &device, residency);
+            let Some(transformer) = loaded(transformer, "Wan transformer") else {
+                return;
+            };
+            let pipeline = WanPipeline::new(vae, transformer, &prompt);
+            for (name, case) in golden["cases"].as_object().unwrap() {
+                let strength = case["strength"].as_f64().unwrap();
+                let (steps, seed) = (dim(case, "steps"), case["seed"].as_u64().unwrap());
+                let start = Instant::now();
+                let out = pipeline
+                    .regenerate_chunk(&pixels, (frames, height, width), strength, steps, seed)
+                    .unwrap();
+                let elapsed = start.elapsed().as_secs_f64();
+                let out = unit_to_bgr_u8(&out, height, width);
+                let expected = BASE64_STANDARD
+                    .decode(case["output_bgr_b64"].as_str().unwrap())
+                    .unwrap();
+                assert_eq!(out.len(), expected.len(), "{name} output length");
+                let diffs: Vec<u8> = out.iter().zip(&expected).map(|(a, b)| a.abs_diff(*b)).collect();
+                let max = diffs.iter().copied().max().unwrap_or(0);
+                let mean = diffs.iter().map(|&d| f64::from(d)).sum::<f64>() / diffs.len() as f64;
+                let python = case["seconds_cpu_fp32"].as_f64().unwrap();
+                eprintln!(
+                    "wan pipeline {name} {residency:?} on {device}: max {max} mean {mean:.4} levels \
+                     ({elapsed:.1}s; diffusers fp32 cpu {python:.1}s)"
+                );
+                assert!(
+                    max <= max_levels && mean <= mean_levels,
+                    "{name} {residency:?} on {device}: max {max} mean {mean}"
+                );
+            }
         }
     }
 }

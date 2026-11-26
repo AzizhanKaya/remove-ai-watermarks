@@ -1,7 +1,7 @@
 //! The default-prompt UMT5-XXL embedding behind every `wan21-*` run.
 //!
 //! UMT5-XXL never loads in Rust. `video_wan.load_video_wan_runtime` encodes
-//! `WAN21_DEFAULT_PROMPT` on CPU once and `torch.save`s the `[1, 512, 4096]` embedding to
+//! `WAN21_DEFAULT_PROMPT` on CPU once and `torch.save`s the `[1, 226, 4096]` embedding to
 //! `model_cache_dir()/prompt-embeddings/<sha256(key)[:32]>.pt`, keyed by cache version,
 //! `model@revision`, `wan21_v2v_prompt_embeds_v1` and the prompt; this module derives the same
 //! path, optionally checks a pinned SHA-256 of the file, and reads the tensor.
@@ -22,11 +22,14 @@ pub const DEFAULT_PROMPT: &str =
 const CACHE_VERSION: u32 = 1;
 const CACHE_DIR: &str = "prompt-embeddings";
 const OUTPUT_PARAMS: [&str; 1] = ["wan21_v2v_prompt_embeds_v1"];
-/// UMT5 `max_sequence_length` and hidden size.
+/// Longest UMT5 sequence (`max_sequence_length` of `WanPipeline.__call__`) and hidden size.
+///
+/// The cache Python writes holds 226 rows, `encode_prompt`'s own default: those zero padding
+/// rows reach cross-attention as real (bias-only) keys, so the row count is kept as stored.
 pub const TEXT_TOKENS: usize = 512;
 pub const TEXT_DIM: usize = 4096;
 
-/// A `[512, 4096]` prompt embedding (zero rows past the prompt's tokens, as diffusers pads).
+/// A `[tokens, 4096]` prompt embedding (zero rows past the prompt's tokens, as diffusers pads).
 #[derive(Debug, Clone, PartialEq)]
 pub struct PromptEmbedding {
     values: Vec<f32>,
@@ -75,21 +78,27 @@ impl PromptEmbedding {
         let mut state = StateDict::from_torch_zip(path, None, &[], |_| true)?;
         let tensor = state.take_any("")?;
         state.finish()?;
-        if tensor.shape != [1, TEXT_TOKENS, TEXT_DIM] && tensor.shape != [TEXT_TOKENS, TEXT_DIM] {
-            return Err(GpuError::ShapeMismatch {
-                name: path.display().to_string(),
-                actual: tensor.shape,
-                expected: vec![1, TEXT_TOKENS, TEXT_DIM],
-            });
-        }
+        let tokens = match tensor.shape.as_slice() {
+            [1, tokens, TEXT_DIM] | [tokens, TEXT_DIM] if (1..=TEXT_TOKENS).contains(tokens) => *tokens,
+            _ => {
+                return Err(GpuError::ShapeMismatch {
+                    name: path.display().to_string(),
+                    actual: tensor.shape,
+                    expected: vec![1, TEXT_TOKENS, TEXT_DIM],
+                });
+            }
+        };
+        debug_assert_eq!(tensor.data.len(), tokens * TEXT_DIM);
         Self::from_values(tensor.data)
     }
 
-    /// Wrap a row-major `[512, 4096]` buffer (tests, custom prompts encoded elsewhere).
+    /// Wrap a row-major `[tokens, 4096]` buffer, `tokens <= 512` (tests, prompts encoded
+    /// elsewhere).
     pub fn from_values(values: Vec<f32>) -> Result<Self> {
-        if values.len() != TEXT_TOKENS * TEXT_DIM {
+        let tokens = values.len() / TEXT_DIM;
+        if values.len() % TEXT_DIM != 0 || !(1..=TEXT_TOKENS).contains(&tokens) {
             return Err(GpuError::Input(format!(
-                "prompt embedding holds {} values, expected {TEXT_TOKENS}x{TEXT_DIM}",
+                "prompt embedding holds {} values, expected [1..={TEXT_TOKENS}, {TEXT_DIM}]",
                 values.len()
             )));
         }
@@ -101,5 +110,44 @@ impl PromptEmbedding {
 
     pub fn values(&self) -> &[f32] {
         &self.values
+    }
+
+    /// Text tokens (rows), padding included: 226 in Python's cache.
+    pub fn tokens(&self) -> usize {
+        self.values.len() / TEXT_DIM
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn keeps_the_stored_token_count() {
+        // `encode_prompt` pads to 226 rows; `WanPipeline.__call__` to 512
+        for tokens in [1, 226, TEXT_TOKENS] {
+            let prompt = PromptEmbedding::from_values(vec![0.0; tokens * TEXT_DIM]).unwrap();
+            assert_eq!(prompt.tokens(), tokens);
+        }
+        assert!(PromptEmbedding::from_values(vec![0.0; (TEXT_TOKENS + 1) * TEXT_DIM]).is_err());
+        assert!(PromptEmbedding::from_values(vec![0.0; TEXT_DIM + 1]).is_err());
+        assert!(PromptEmbedding::from_values(Vec::new()).is_err());
+    }
+
+    /// The cache `video_wan.load_video_wan_runtime` wrote on this machine, when present.
+    #[test]
+    fn reads_the_python_cache() {
+        let path = PromptEmbedding::cache_path();
+        if !path.is_file() {
+            return;
+        }
+        let prompt = PromptEmbedding::load_cached(None).unwrap();
+        assert_eq!(prompt.tokens(), 226);
+        let row = |t: usize| &prompt.values()[t * TEXT_DIM..(t + 1) * TEXT_DIM];
+        assert!(
+            row(0).iter().any(|v| *v != 0.0),
+            "the prompt's first token is encoded"
+        );
+        assert!(row(225).iter().all(|v| *v == 0.0), "padding rows are zero");
     }
 }

@@ -85,6 +85,13 @@ Not yet at parity:
   clamped index); `RADV_DEBUG=shaders,shaderstats MESA_SHADER_CACHE_DISABLE=true` dumps ISA.
 - CubeCL `Slice::with_vector_size` on a shared buffer produced wrong values when reused as
   f16 pairs; keep one element type per shared allocation.
+- Python's Wan prompt cache is `[1, 226, 4096]`: `load_video_wan_runtime` calls
+  `WanVideoToVideoPipeline.encode_prompt` without `max_sequence_length`, whose default is
+  226 (only `__call__` defaults to 512). The zero padding rows reach cross-attention as real
+  bias-only keys, so the row count changes results; the Rust reader assumed 512 and now keeps
+  the stored count. The cache can be produced without 12 GB of RAM by loading UMT5-XXL with
+  accelerate disk offload (`device_map="auto"`, a 3 GiB CPU budget): same `encode_prompt`, ~4 GB
+  RSS, 23 GB download.
 - earlyoom killed a model test and the user's desktop app while three workers
   ran model tests with full swap.
 - wgpu cannot report VRAM, so `vram_below` returns true and `--profile auto` never

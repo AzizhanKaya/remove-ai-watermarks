@@ -26,7 +26,7 @@ use crate::weights::StateDict;
 use super::attention::{LayerNorm, RmsNorm, scaled_dot_product};
 #[cfg(feature = "gpu-runtime")]
 use super::fused::{CrossKv, FusedBlock, Precision, RopeTables};
-use super::prompt::{PromptEmbedding, TEXT_DIM, TEXT_TOKENS};
+use super::prompt::{PromptEmbedding, TEXT_DIM};
 use super::rope::Rope;
 use super::{LATENT_CHANNELS, TRANSFORMER_CONFIG, TRANSFORMER_SHARDS};
 
@@ -70,7 +70,7 @@ impl BlockResidency {
     }
 }
 
-/// The prompt embedding projected by `condition_embedder.text_embedder`, `[512, 1536]`, plus
+/// The prompt embedding projected by `condition_embedder.text_embedder`, `[tokens, 1536]`, plus
 /// each fused block's cross-attention keys and values.
 #[derive(Debug, Clone)]
 pub struct TextContext {
@@ -335,7 +335,7 @@ impl WanTransformer {
     /// `condition_embedder.text_embedder(prompt_embeds)`, reused by every denoising step.
     pub fn encode_text(&self, prompt: &PromptEmbedding) -> TextContext {
         let embeds: Tensor<2> = Tensor::from_data(
-            TensorData::new(prompt.values().to_vec(), [TEXT_TOKENS, TEXT_DIM]),
+            TensorData::new(prompt.values().to_vec(), [prompt.tokens(), TEXT_DIM]),
             self.device.burn(),
         );
         let hidden = self.text_2.forward(gelu_approximate(self.text_1.forward(embeds)));
