@@ -413,8 +413,14 @@ fn fused_blocks_match_reference_blocks() {
     let latents = synthetic_signal(16 * frames * height * width, 977, 4);
     let prompt = PromptEmbedding::from_values(synthetic_signal(512 * 4096, 977, 70)).unwrap();
     let run = |residency| {
-        let model =
-            WanTransformer::from_shards_truncated(shards.clone(), &device, residency, layers).unwrap();
+        let model = WanTransformer::from_shards_truncated(
+            raiw_gpu::models::video::wan::TransformerConfig::WAN21_T2V_1_3B,
+            shards.clone(),
+            &device,
+            residency,
+            layers,
+        )
+        .unwrap();
         let text = model.encode_text(&prompt);
         let start = Instant::now();
         let out = model
@@ -424,7 +430,11 @@ fn fused_blocks_match_reference_blocks() {
     };
     let (reference, seconds) = run(BlockResidency::Resident);
     eprintln!("reference {layers} blocks: {seconds:.2}s");
-    for (precision, limit) in [(Precision::F32, 1e-4), (Precision::F16, 2e-2)] {
+    for (precision, limit) in [
+        (Precision::F32, 1e-4),
+        (Precision::F16, 2e-2),
+        (Precision::Int8, 2e-2),
+    ] {
         let (fused, seconds) = run(BlockResidency::Fused(precision));
         let diff = relative_diff(&fused, &reference);
         eprintln!("fused {precision:?} {layers} blocks: relative diff {diff:.2e} ({seconds:.2}s)");

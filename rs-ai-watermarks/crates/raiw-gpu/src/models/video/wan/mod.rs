@@ -12,6 +12,7 @@
 //! MPS); parity is pinned against the diffusers modules in float32 on CPU.
 
 pub mod attention;
+pub mod config;
 #[cfg(feature = "gpu-runtime")]
 pub mod fused;
 pub mod pipeline;
@@ -23,12 +24,13 @@ pub mod vae3d;
 
 use crate::hub::HubFile;
 
+pub use config::TransformerConfig;
 #[cfg(feature = "gpu-runtime")]
 pub use fused::Precision;
 pub use pipeline::WanPipeline;
 pub use prompt::PromptEmbedding;
 pub use scheduler::UniPcScheduler;
-pub use transformer::{BlockResidency, TextContext, WanTransformer};
+pub use transformer::{BlockResidency, TextContext, TransformerFiles, WAN21_TRANSFORMER, WanTransformer};
 pub use vae3d::WanVae;
 
 pub const MODEL_REPOSITORY: &str = "Wan-AI/Wan2.1-T2V-1.3B-Diffusers";

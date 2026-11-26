@@ -245,11 +245,14 @@ fn linear_matches_reference() {
             let gate = seeded(n, seed + 5, 1.5);
             let (xt, wt) = (upload(&x, m, k, &device, dtype), upload(&w, n, k, &device, dtype));
             let bt = upload1(&b, &device);
-            let mut weights = vec![("torch", DenseWeight::torch(wt.clone()))];
+            // int8 is checked against its own dequantized weights: the kernel, not the rounding
+            let dequantized = dequantize_int8(&w, (n, k));
+            let mut weights = vec![("torch", DenseWeight::torch(wt.clone()), &w)];
             if dtype == DType::F16 && n % 8 == 0 {
-                weights.push(("packed", DenseWeight::packed(wt)));
+                weights.push(("packed", DenseWeight::packed(wt), &w));
+                weights.push(("int8", DenseWeight::int8(&w, (n, k), device.burn()), &dequantized));
             }
-            for (kind, weight) in weights {
+            for (kind, weight, w) in weights {
                 let plain = read(linear(
                     xt.clone(),
                     &weight,
@@ -272,11 +275,11 @@ fn linear_matches_reference() {
                     upload1(&gate, &device),
                 ));
                 let errs = [
-                    rel_err(&plain, &linear_reference(&x, &w, &b, (m, k, n), false, None)),
-                    rel_err(&gelu, &linear_reference(&x, &w, &b, (m, k, n), true, None)),
+                    rel_err(&plain, &linear_reference(&x, w, &b, (m, k, n), false, None)),
+                    rel_err(&gelu, &linear_reference(&x, w, &b, (m, k, n), true, None)),
                     rel_err(
                         &gated,
-                        &linear_reference(&x, &w, &b, (m, k, n), false, Some((&res, &gate))),
+                        &linear_reference(&x, w, &b, (m, k, n), false, Some((&res, &gate))),
                     ),
                 ];
                 eprintln!(
@@ -294,8 +297,27 @@ fn linear_matches_reference() {
                     assert!(*err <= limit, "{kind} {dtype:?} {m}x{k}x{n}: {errs:?}");
                 }
             }
+            if dtype == DType::F16 {
+                let rounding = rel_err(&dequantized, &w.iter().map(|&v| f64::from(v)).collect::<Vec<_>>());
+                eprintln!("int8 weight rounding {m}x{k}x{n}: {rounding:.1e} of max |w|");
+            }
         }
     }
+}
+
+/// `DenseWeight::int8`'s rounding, back in float32 `[out, in]`.
+fn dequantize_int8(w: &[f32], (output, input): (usize, usize)) -> Vec<f32> {
+    w.chunks_exact(input)
+        .flat_map(|row| {
+            let scale = row.iter().fold(0f32, |m, v| m.max(v.abs())) / 127.0;
+            let inv = if scale > 0.0 { 1.0 / scale } else { 0.0 };
+            row.iter()
+                .map(move |v| (v * inv).round().clamp(-127.0, 127.0) * scale)
+        })
+        .collect::<Vec<_>>()
+        .into_iter()
+        .take(output * input)
+        .collect()
 }
 
 #[test]
@@ -668,13 +690,18 @@ fn wan_linear_throughput() {
             (1536, 1536, Activation::Identity),
             (1536, 8960, Activation::GeluTanh),
             (8960, 1536, Activation::Identity),
+            (3072, 9216, Activation::Identity),
+            (3072, 14336, Activation::GeluTanh),
+            (14336, 3072, Activation::Identity),
         ] {
             let x = upload(&seeded(tokens * input, 5, 1.0), tokens, input, &device, dtype);
-            let w = upload(&seeded(input * output, 6, 0.02), output, input, &device, dtype);
+            let host = seeded(input * output, 6, 0.02);
+            let w = upload(&host, output, input, &device, dtype);
             let b = upload1(&seeded(output, 7, 0.1), &device);
             let mut weights = vec![("torch", DenseWeight::torch(w.clone()))];
             if dtype == DType::F16 {
                 weights.push(("packed", DenseWeight::packed(w)));
+                weights.push(("int8", DenseWeight::int8(&host, (output, input), device.burn())));
             }
             for (kind, weight) in weights {
                 bench(

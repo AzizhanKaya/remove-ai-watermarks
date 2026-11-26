@@ -18,7 +18,7 @@ use crate::error::Result;
 use crate::kernels::{self, Activation, DenseWeight};
 use crate::weights::StateDict;
 
-use super::transformer::{DIM, FFN_DIM, HEAD_DIM, HEADS};
+use super::config::TransformerConfig;
 
 const EPS: f32 = 1e-6;
 /// Tokens per feed-forward chunk, bounding the `[tokens, 8960]` intermediate.
@@ -30,21 +30,25 @@ pub enum Precision {
     /// Half the bandwidth and memory of float32; Python's CUDA path runs bfloat16.
     #[default]
     F16,
+    /// f16 activations, per-channel int8 weights: half the memory of f16 at the same speed
+    /// (the 5B Wan 2.2 transformer fits an 8 GB card only this way).
+    Int8,
     /// Same kernels in float32 (parity checks).
     F32,
 }
 
 impl Precision {
+    /// The activation (operand) dtype.
     pub fn dtype(self) -> DType {
         match self {
-            Self::F16 => DType::F16,
+            Self::F16 | Self::Int8 => DType::F16,
             Self::F32 => DType::F32,
         }
     }
 }
 
-/// `x·W + b` with the bias float32 and the weight at the storage precision: f16 weights are
-/// stored `[in, out]` for the packed-math GEMM, f32 ones in PyTorch's `[out, in]`.
+/// `x·W + b` with the bias float32 and the weight at the storage precision: f16 and int8
+/// weights are stored `[in, out]` for the packed-math GEMM, f32 ones in PyTorch's `[out, in]`.
 #[derive(Debug, Clone)]
 struct Dense {
     weight: DenseWeight,
@@ -57,7 +61,7 @@ impl Dense {
         state: &mut StateDict,
         prefixes: &[String],
         (input, output): (usize, usize),
-        dtype: DType,
+        precision: Precision,
         device: &Device,
     ) -> Result<Self> {
         let rows = prefixes.len() * output;
@@ -66,12 +70,17 @@ impl Dense {
             weight.extend(state.take(&format!("{prefix}.weight"), &[output, input])?.data);
             bias.extend(state.take(&format!("{prefix}.bias"), &[output])?.data);
         }
-        let weight: Tensor<2> = Tensor::from_data(TensorData::new(weight, [rows, input]), device);
+        let weight = match precision {
+            Precision::Int8 => DenseWeight::int8(&weight, (rows, input), device),
+            Precision::F16 => {
+                DenseWeight::packed(Tensor::from_data(TensorData::new(weight, [rows, input]), device))
+            }
+            Precision::F32 => {
+                DenseWeight::torch(Tensor::from_data(TensorData::new(weight, [rows, input]), device))
+            }
+        };
         Ok(Self {
-            weight: match dtype {
-                DType::F16 => DenseWeight::packed(weight),
-                _ => DenseWeight::torch(store(weight, dtype)),
-            },
+            weight,
             bias: Tensor::from_data(TensorData::new(bias, [rows]), device),
         })
     }
@@ -95,27 +104,29 @@ fn store(t: Tensor<2>, dtype: DType) -> Tensor<2> {
     if t.dtype() == dtype { t } else { t.cast(dtype) }
 }
 
-/// One block's text keys and values, `[text tokens, DIM]` at the storage precision.
+/// One block's text keys and values, `[text tokens, dim]` at the storage precision.
 #[derive(Debug, Clone)]
 pub struct CrossKv {
     k: Tensor<2>,
     v: Tensor<2>,
 }
 
-/// Rotary cos/sin tables `[tokens, HEAD_DIM / 2]` for one patch grid.
+/// Rotary cos/sin tables `[tokens, head_dim / 2]` for one patch grid.
 #[derive(Debug, Clone)]
 pub struct RopeTables {
     cos: Tensor<2>,
     sin: Tensor<2>,
+    head_dim: usize,
 }
 
 impl RopeTables {
-    pub fn new((frames, rows, cols): (usize, usize, usize), device: &Device) -> Self {
-        let (cos, sin) = super::rope::tables(HEAD_DIM, (frames, rows, cols));
-        let shape = [frames * rows * cols, HEAD_DIM / 2];
+    pub fn new((frames, rows, cols): (usize, usize, usize), head_dim: usize, device: &Device) -> Self {
+        let (cos, sin) = super::rope::tables(head_dim, (frames, rows, cols));
+        let shape = [frames * rows * cols, head_dim / 2];
         Self {
             cos: Tensor::from_data(TensorData::new(cos, shape), device),
             sin: Tensor::from_data(TensorData::new(sin, shape), device),
+            head_dim,
         }
     }
 
@@ -127,8 +138,10 @@ impl RopeTables {
 /// `WanTransformerBlock` on the kernel path.
 #[derive(Debug, Clone)]
 pub struct FusedBlock {
-    /// `scale_shift_table` `[6, DIM]`: shift, scale, gate (attention) then (feed-forward).
+    /// `scale_shift_table` `[6, dim]`: shift, scale, gate (attention) then (feed-forward).
     table: Tensor<2>,
+    dim: usize,
+    heads: usize,
     qkv: Dense,
     norm_q: Tensor<1>,
     norm_k: Tensor<1>,
@@ -146,21 +159,30 @@ pub struct FusedBlock {
 }
 
 impl FusedBlock {
-    pub fn load(state: &mut StateDict, prefix: &str, precision: Precision, device: &Device) -> Result<Self> {
+    pub fn load(
+        state: &mut StateDict,
+        prefix: &str,
+        config: &TransformerConfig,
+        precision: Precision,
+        device: &Device,
+    ) -> Result<Self> {
+        let (dim, ffn) = (config.dim(), config.ffn_dim);
         let dtype = precision.dtype();
         let names = |parts: &[&str]| parts.iter().map(|p| format!("{prefix}.{p}")).collect::<Vec<_>>();
-        let mut dense = |parts: &[&str], shape| Dense::load(state, &names(parts), shape, dtype, device);
-        let qkv = dense(&["attn1.to_q", "attn1.to_k", "attn1.to_v"], (DIM, DIM))?;
-        let out = dense(&["attn1.to_out.0"], (DIM, DIM))?;
-        let cross_q = dense(&["attn2.to_q"], (DIM, DIM))?;
-        let cross_kv = dense(&["attn2.to_k", "attn2.to_v"], (DIM, DIM))?;
-        let cross_out = dense(&["attn2.to_out.0"], (DIM, DIM))?;
-        let ffn_in = dense(&["ffn.net.0.proj"], (DIM, FFN_DIM))?;
-        let ffn_out = dense(&["ffn.net.2"], (FFN_DIM, DIM))?;
-        let table: Tensor<3> = state.tensor(&format!("{prefix}.scale_shift_table"), [1, 6, DIM], device)?;
-        let mut vector = |name: &str| state.tensor::<1>(&format!("{prefix}.{name}"), [DIM], device);
+        let mut dense = |parts: &[&str], shape| Dense::load(state, &names(parts), shape, precision, device);
+        let qkv = dense(&["attn1.to_q", "attn1.to_k", "attn1.to_v"], (dim, dim))?;
+        let out = dense(&["attn1.to_out.0"], (dim, dim))?;
+        let cross_q = dense(&["attn2.to_q"], (dim, dim))?;
+        let cross_kv = dense(&["attn2.to_k", "attn2.to_v"], (dim, dim))?;
+        let cross_out = dense(&["attn2.to_out.0"], (dim, dim))?;
+        let ffn_in = dense(&["ffn.net.0.proj"], (dim, ffn))?;
+        let ffn_out = dense(&["ffn.net.2"], (ffn, dim))?;
+        let table: Tensor<3> = state.tensor(&format!("{prefix}.scale_shift_table"), [1, 6, dim], device)?;
+        let mut vector = |name: &str| state.tensor::<1>(&format!("{prefix}.{name}"), [dim], device);
         Ok(Self {
-            table: table.reshape([6, DIM]),
+            table: table.reshape([6, dim]),
+            dim,
+            heads: config.heads,
             qkv,
             norm_q: vector("attn1.norm_q.weight")?,
             norm_k: vector("attn1.norm_k.weight")?,
@@ -178,18 +200,19 @@ impl FusedBlock {
         })
     }
 
-    /// Project the text context `[text tokens, DIM]` (float32) to this block's keys and values.
+    /// Project the text context `[text tokens, dim]` (float32) to this block's keys and values.
     pub fn cross_kv(&self, text: &Tensor<2>) -> CrossKv {
+        let dim = self.dim;
         let kv = self
             .cross_kv
             .apply(store(text.clone(), self.dtype), Activation::Identity, self.dtype);
         CrossKv {
-            k: kernels::rms_norm(kv.clone(), self.cross_norm_k.clone(), 0, DIM, EPS, self.dtype),
-            v: kv.slice(s![.., DIM..2 * DIM]),
+            k: kernels::rms_norm(kv.clone(), self.cross_norm_k.clone(), 0, dim, EPS, self.dtype),
+            v: kv.slice(s![.., dim..2 * dim]),
         }
     }
 
-    /// One block over `h` `[tokens, DIM]` (float32) at timestep projection `timestep` `[6, DIM]`.
+    /// One block over `h` `[tokens, dim]` (float32) at timestep projection `timestep` `[6, dim]`.
     pub fn forward(
         &self,
         h: Tensor<2>,
@@ -197,9 +220,9 @@ impl FusedBlock {
         timestep: &Tensor<2>,
         rope: &RopeTables,
     ) -> Tensor<2> {
-        let dtype = self.dtype;
+        let (dtype, dim, heads) = (self.dtype, self.dim, self.heads);
         let modulation = self.table.clone() + timestep.clone();
-        let row = |i: usize| modulation.clone().slice(s![i..i + 1]).reshape([DIM]);
+        let row = |i: usize| modulation.clone().slice(s![i..i + 1]).reshape([dim]);
 
         let x = kernels::modulated_layer_norm(h.clone(), row(1).add_scalar(1.0), row(0), EPS, dtype);
         let qkv = self.qkv.apply(x, Activation::Identity, dtype);
@@ -209,17 +232,17 @@ impl FusedBlock {
                 weight.clone(),
                 rope.pair(),
                 offset,
-                DIM,
-                HEAD_DIM,
+                dim,
+                rope.head_dim,
                 EPS,
                 dtype,
             )
         };
-        let (q, k) = (rope_qk(0, &self.norm_q), rope_qk(DIM, &self.norm_k));
-        let v = qkv.slice(s![.., 2 * DIM..3 * DIM]);
+        let (q, k) = (rope_qk(0, &self.norm_q), rope_qk(dim, &self.norm_k));
+        let v = qkv.slice(s![.., 2 * dim..3 * dim]);
         let h = self
             .out
-            .gated(kernels::flash_attention(q, k, v, HEADS), h, row(2));
+            .gated(kernels::flash_attention(q, k, v, heads), h, row(2));
 
         let x = kernels::modulated_layer_norm(
             h.clone(),
@@ -229,8 +252,8 @@ impl FusedBlock {
             dtype,
         );
         let q = self.cross_q.apply(x, Activation::Identity, dtype);
-        let q = kernels::rms_norm(q, self.cross_norm_q.clone(), 0, DIM, EPS, dtype);
-        let attended = kernels::flash_attention(q, cross.k.clone(), cross.v.clone(), HEADS);
+        let q = kernels::rms_norm(q, self.cross_norm_q.clone(), 0, dim, EPS, dtype);
+        let attended = kernels::flash_attention(q, cross.k.clone(), cross.v.clone(), heads);
         let h = self.cross_out.residual(attended, h);
 
         let x = kernels::modulated_layer_norm(h.clone(), row(4).add_scalar(1.0), row(3), EPS, dtype);

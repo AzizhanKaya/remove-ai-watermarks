@@ -35,9 +35,10 @@ const LDA: usize = SLAB / VECTOR + 1;
 const LDB: usize = BLOCK_COLS / VECTOR + 1;
 
 #[cube(launch)]
-fn hgemm_kernel<F: Float, O: Float, N: Size>(
+fn hgemm_kernel<F: Float, W: Numeric, O: Float, N: Size>(
     a: &[Vector<F, N>],
-    b: &[Vector<F, N>],
+    b: &[Vector<W, N>],
+    scale: ComptimeOption<&[f32]>,
     bias: &[f32],
     residual: ComptimeOption<&[f32]>,
     gate: ComptimeOption<&[f32]>,
@@ -48,6 +49,14 @@ fn hgemm_kernel<F: Float, O: Float, N: Size>(
     k: usize,
     #[comptime] activation: Activation,
 ) {
+    // int8 weights enter shared memory as q / 128 (exact in f16, |q / 128| < 1); the epilogue
+    // multiplies by 128 · scale[col]
+    let quantized = comptime!(scale.is_some());
+    let b_unit = if comptime!(quantized) {
+        F::new(1.0 / 128.0)
+    } else {
+        F::new(1.0)
+    };
     let mut a_tile = Shared::<[Vector<F, N>]>::new_aligned_slice(comptime!(BLOCK_ROWS * LDA), 16usize);
     let mut b_tile = Shared::<[Vector<F, N>]>::new_aligned_slice(comptime!(SLAB * LDB), 16usize);
 
@@ -70,7 +79,7 @@ fn hgemm_kernel<F: Float, O: Float, N: Size>(
     let a_loads = comptime!(BLOCK_ROWS * SLAB / VECTOR / THREADS);
     let b_loads = comptime!(SLAB * BLOCK_COLS / VECTOR / THREADS);
     let mut a_regs = Array::<Vector<F, N>>::new(a_loads);
-    let mut b_regs = Array::<Vector<F, N>>::new(b_loads);
+    let mut b_regs = Array::<Vector<W, N>>::new(b_loads);
     fetch::<F, N>(
         a,
         &mut a_regs,
@@ -82,7 +91,7 @@ fn hgemm_kernel<F: Float, O: Float, N: Size>(
         comptime!(SLAB / VECTOR),
         a_loads,
     );
-    fetch::<F, N>(
+    fetch::<W, N>(
         b,
         &mut b_regs,
         tid,
@@ -106,7 +115,7 @@ fn hgemm_kernel<F: Float, O: Float, N: Size>(
         for it in 0..b_loads {
             let idx = tid + it * THREADS;
             b_tile[(idx / comptime!(BLOCK_COLS / VECTOR)) * LDB + idx % comptime!(BLOCK_COLS / VECTOR)] =
-                b_regs[it];
+                Vector::<F, N>::cast_from(b_regs[it]) * Vector::new(b_unit);
         }
         sync_cube();
         let next = (s + 1) * SLAB;
@@ -122,7 +131,7 @@ fn hgemm_kernel<F: Float, O: Float, N: Size>(
                 comptime!(SLAB / VECTOR),
                 a_loads,
             );
-            fetch::<F, N>(
+            fetch::<W, N>(
                 b,
                 &mut b_regs,
                 tid,
@@ -171,7 +180,13 @@ fn hgemm_kernel<F: Float, O: Float, N: Size>(
             for e in 0..VECTOR {
                 let col = n0 + c * VECTOR + e;
                 if col < cols {
-                    let mut y = values.extract(e) + bias[col];
+                    let mut y = values.extract(e);
+                    #[comptime]
+                    match scale {
+                        ComptimeOption::Some(scale) => y *= 128.0 * scale[col],
+                        ComptimeOption::None => {}
+                    }
+                    y += bias[col];
                     if comptime!(activation == Activation::GeluTanh) {
                         y = gelu_tanh(y);
                     }
@@ -199,9 +214,9 @@ fn hgemm_kernel<F: Float, O: Float, N: Size>(
 /// column `col0 + idx % width`, zero outside `[rows, cols]` (branch-free).
 #[cube]
 #[allow(clippy::too_many_arguments)]
-fn fetch<F: Float, N: Size>(
-    src: &[Vector<F, N>],
-    regs: &mut Array<Vector<F, N>>,
+fn fetch<E: Numeric, N: Size>(
+    src: &[Vector<E, N>],
+    regs: &mut Array<Vector<E, N>>,
     tid: usize,
     row0: usize,
     rows: usize,
@@ -217,17 +232,19 @@ fn fetch<F: Float, N: Size>(
         let col = col0 + idx % width;
         let ok = row < rows && col < cols;
         let value = src[select(ok, row * cols + col, 0)];
-        regs[it] = select(ok, value, Vector::new(F::new(0.0)));
+        regs[it] = select(ok, value, Vector::new(E::from_int(0)));
     }
 }
 
 /// Work per dispatch, inside the amdgpu ring timeout at any plausible speed.
 const DISPATCH_FLOPS: usize = 200_000_000_000;
 
-/// `epilogue(x·w + bias)` for f16 `x` `[m, k]` and `w` `[k, n]`, `bias` `[n]` float32.
+/// `epilogue(x·w + bias)` for f16 `x` `[m, k]` and `w` `[k, n]`, `bias` `[n]` float32. `w` is
+/// f16, or int8 with `scale` `[n]` float32 (`w[:, j] = q[:, j] · scale[j]`).
 pub fn linear(
     x: CubeTensor,
     weight: CubeTensor,
+    scale: Option<CubeTensor>,
     bias: CubeTensor,
     epilogue: Epilogue,
     dtype: DType,
@@ -236,9 +253,19 @@ pub fn linear(
     let [m, k] = dims(&x);
     let [wk, n] = dims(&weight);
     assert_eq!(k, wk, "x and weight disagree on the reduction size");
+    assert_eq!(x.dtype, DType::F16, "packed GEMM activations are f16");
+    let scale = scale.map(|s| {
+        let s = into_contiguous(s);
+        assert_eq!(
+            (s.dtype, s.meta.num_elements()),
+            (DType::F32, n),
+            "scale must be [n] float32"
+        );
+        s
+    });
     assert!(
-        x.dtype == DType::F16 && weight.dtype == DType::F16,
-        "packed GEMM is f16"
+        (weight.dtype == DType::F16 && scale.is_none()) || (weight.dtype == DType::I8 && scale.is_some()),
+        "packed GEMM weights are f16, or int8 with per-column scales"
     );
     assert!(
         k % VECTOR == 0 && n % VECTOR == 0,
@@ -284,17 +311,18 @@ pub fn linear(
             1,
         );
         macro_rules! launch {
-            ($out:ty) => {
-                hgemm_kernel::launch::<f16, $out>(
+            ($weight:ty, $out:ty) => {
+                hgemm_kernel::launch::<f16, $weight, $out>(
                     &client,
                     count,
                     CubeDim::new_1d(THREADS as u32),
                     VECTOR,
                     x.clone().into_buffer_arg(),
                     weight.clone().into_buffer_arg(),
+                    scale.clone().map(CubeTensor::into_buffer_arg).into(),
                     bias.clone().into_buffer_arg(),
-                    residual.clone().map(|r| r.into_buffer_arg()).into(),
-                    gate.clone().map(|g| g.into_buffer_arg()).into(),
+                    residual.clone().map(CubeTensor::into_buffer_arg).into(),
+                    gate.clone().map(CubeTensor::into_buffer_arg).into(),
                     out.clone().into_buffer_arg(),
                     first * BLOCK_ROWS,
                     m,
@@ -304,9 +332,11 @@ pub fn linear(
                 )
             };
         }
-        match dtype {
-            DType::F16 => launch!(f16),
-            DType::F32 => launch!(f32),
+        match (weight.dtype, dtype) {
+            (DType::F16, DType::F16) => launch!(f16, f16),
+            (DType::F16, DType::F32) => launch!(f16, f32),
+            (DType::I8, DType::F16) => launch!(i8, f16),
+            (DType::I8, DType::F32) => launch!(i8, f32),
             other => panic!("packed GEMM writes f16 or f32, got {other:?}"),
         }
     }

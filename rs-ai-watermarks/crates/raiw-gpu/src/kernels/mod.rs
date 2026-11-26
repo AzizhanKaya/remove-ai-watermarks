@@ -17,9 +17,9 @@ pub mod gemm;
 pub mod hgemm;
 pub mod norm;
 
-use burn::backend::tensor::FloatTensor;
+use burn::backend::tensor::{FloatTensor, IntTensor};
 use burn::backend::{Backend, Dispatch, backend_extension};
-use burn::tensor::{DType, Shape, Tensor};
+use burn::tensor::{DType, Device, Int, Shape, Tensor, TensorData};
 use burn_cubecl::CubeBackend;
 use burn_cubecl::tensor::CubeTensor;
 
@@ -71,6 +71,38 @@ pub trait KernelOps: Backend {
         bias: FloatTensor<Self>,
         residual: FloatTensor<Self>,
         layout: WeightLayout,
+    ) -> FloatTensor<Self>;
+
+    /// `activation(x·(Q·diag(scale)) + bias)` for int8 `[in, out]` weights `Q`.
+    #[fusion(dtype = *dtype, shape = Shape::new([x[0], weight[1]]))]
+    fn linear_q8(
+        x: FloatTensor<Self>,
+        weight: IntTensor<Self>,
+        scale: FloatTensor<Self>,
+        bias: FloatTensor<Self>,
+        activation: Activation,
+        dtype: DType,
+    ) -> FloatTensor<Self>;
+
+    /// `residual + (x·(Q·diag(scale)) + bias) * gate` (float32).
+    #[fusion(dtype = residual, shape = residual)]
+    fn linear_q8_gated(
+        x: FloatTensor<Self>,
+        weight: IntTensor<Self>,
+        scale: FloatTensor<Self>,
+        bias: FloatTensor<Self>,
+        residual: FloatTensor<Self>,
+        gate: FloatTensor<Self>,
+    ) -> FloatTensor<Self>;
+
+    /// `residual + x·(Q·diag(scale)) + bias` (float32).
+    #[fusion(dtype = residual, shape = residual)]
+    fn linear_q8_residual(
+        x: FloatTensor<Self>,
+        weight: IntTensor<Self>,
+        scale: FloatTensor<Self>,
+        bias: FloatTensor<Self>,
+        residual: FloatTensor<Self>,
     ) -> FloatTensor<Self>;
 
     /// `x` in row-major memory order.
@@ -194,7 +226,7 @@ fn dense(
 ) -> CubeTensor {
     match layout {
         WeightLayout::OutIn => gemm::linear(x, weight, bias, epilogue, dtype, tile),
-        WeightLayout::InOut => hgemm::linear(x, weight, bias, epilogue, dtype),
+        WeightLayout::InOut => hgemm::linear(x, weight, None, bias, epilogue, dtype),
     }
 }
 
@@ -260,6 +292,51 @@ impl KernelOps for CubeBackend {
             ..gemm::Epilogue::default()
         };
         dense(x, weight, bias, epilogue, DType::F32, layout, tile)
+    }
+
+    fn linear_q8(
+        x: CubeTensor,
+        weight: CubeTensor,
+        scale: CubeTensor,
+        bias: CubeTensor,
+        activation: Activation,
+        dtype: DType,
+    ) -> CubeTensor {
+        let epilogue = gemm::Epilogue {
+            activation,
+            ..gemm::Epilogue::default()
+        };
+        hgemm::linear(x, weight, Some(scale), bias, epilogue, dtype)
+    }
+
+    fn linear_q8_gated(
+        x: CubeTensor,
+        weight: CubeTensor,
+        scale: CubeTensor,
+        bias: CubeTensor,
+        residual: CubeTensor,
+        gate: CubeTensor,
+    ) -> CubeTensor {
+        let epilogue = gemm::Epilogue {
+            residual: Some(residual),
+            gate: Some(gate),
+            ..gemm::Epilogue::default()
+        };
+        hgemm::linear(x, weight, Some(scale), bias, epilogue, DType::F32)
+    }
+
+    fn linear_q8_residual(
+        x: CubeTensor,
+        weight: CubeTensor,
+        scale: CubeTensor,
+        bias: CubeTensor,
+        residual: CubeTensor,
+    ) -> CubeTensor {
+        let epilogue = gemm::Epilogue {
+            residual: Some(residual),
+            ..gemm::Epilogue::default()
+        };
+        hgemm::linear(x, weight, Some(scale), bias, epilogue, DType::F32)
     }
 
     fn contiguous(x: CubeTensor) -> CubeTensor {
@@ -335,16 +412,31 @@ pub fn flash_attention_tuned(
 /// A dense layer's weight in the layout its GEMM kernel reads.
 #[derive(Debug, Clone)]
 pub struct DenseWeight {
-    matrix: Tensor<2>,
-    layout: WeightLayout,
+    matrix: Matrix,
+}
+
+#[derive(Debug, Clone)]
+#[allow(clippy::large_enum_variant, reason = "one per layer")]
+enum Matrix {
+    Float {
+        matrix: Tensor<2>,
+        layout: WeightLayout,
+    },
+    /// `[in, out]` int8 values and `[out]` float32 scales.
+    Int8 {
+        values: Tensor<2, Int>,
+        scale: Tensor<1>,
+    },
 }
 
 impl DenseWeight {
-    /// PyTorch's `[out, in]` weight, any storage dtype.
+    /// PyTorch's `[out, in]` weight, any float storage dtype.
     pub fn torch(weight: Tensor<2>) -> Self {
         Self {
-            matrix: weight,
-            layout: WeightLayout::OutIn,
+            matrix: Matrix::Float {
+                matrix: weight,
+                layout: WeightLayout::OutIn,
+            },
         }
     }
 
@@ -352,15 +444,45 @@ impl DenseWeight {
     pub fn packed(weight: Tensor<2>) -> Self {
         let matrix = weight.transpose().cast(DType::F16);
         Self {
-            // materialized now rather than on every call
-            matrix: Tensor::from_dispatch(<Kernels as KernelOps>::contiguous(matrix.into_dispatch())),
-            layout: WeightLayout::InOut,
+            matrix: Matrix::Float {
+                // materialized now rather than on every call
+                matrix: Tensor::from_dispatch(<Kernels as KernelOps>::contiguous(matrix.into_dispatch())),
+                layout: WeightLayout::InOut,
+            },
         }
     }
 
-    /// The storage dtype operands must share.
+    /// Symmetric per-output-channel int8 of a host `[out, in]` float32 weight (row-major),
+    /// for the packed-f16 kernel: half the memory of f16, quantization error ≤ max|w| / 254.
+    pub fn int8(weight: &[f32], (output, input): (usize, usize), device: &Device) -> Self {
+        assert_eq!(weight.len(), output * input, "int8 weight shape");
+        let scale: Vec<f32> = weight
+            .chunks_exact(input)
+            .map(|row| row.iter().fold(0f32, |m, w| m.max(w.abs())) / 127.0)
+            .collect();
+        let mut values = vec![0i8; output * input];
+        for (o, (row, &s)) in weight.chunks_exact(input).zip(&scale).enumerate() {
+            let inv = if s > 0.0 { 1.0 / s } else { 0.0 };
+            for (i, w) in row.iter().enumerate() {
+                values[i * output + o] = (w * inv).round().clamp(-127.0, 127.0) as i8;
+            }
+        }
+        // from_data widens to the default int dtype; the kernel reads bytes
+        let values: Tensor<2, Int> = Tensor::from_data(TensorData::new(values, [input, output]), device);
+        Self {
+            matrix: Matrix::Int8 {
+                values: values.cast(DType::I8),
+                scale: Tensor::from_data(TensorData::new(scale, [output]), device),
+            },
+        }
+    }
+
+    /// The dtype the activations must share (f16 for int8 weights).
     pub fn dtype(&self) -> DType {
-        self.matrix.dtype()
+        match &self.matrix {
+            Matrix::Float { matrix, .. } => matrix.dtype(),
+            Matrix::Int8 { .. } => DType::F16,
+        }
     }
 }
 
@@ -386,15 +508,26 @@ pub fn linear_tuned(
     dtype: DType,
     tile: GemmTile,
 ) -> Tensor<2> {
-    Tensor::from_dispatch(<Kernels as KernelOps>::linear(
-        x.into_dispatch(),
-        weight.matrix.clone().into_dispatch(),
-        bias.into_dispatch(),
-        activation,
-        dtype,
-        weight.layout,
-        tile,
-    ))
+    let (x, bias) = (x.into_dispatch(), bias.into_dispatch());
+    Tensor::from_dispatch(match &weight.matrix {
+        Matrix::Float { matrix, layout } => <Kernels as KernelOps>::linear(
+            x,
+            matrix.clone().into_dispatch(),
+            bias,
+            activation,
+            dtype,
+            *layout,
+            tile,
+        ),
+        Matrix::Int8 { values, scale } => <Kernels as KernelOps>::linear_q8(
+            x,
+            values.clone().into_dispatch(),
+            scale.clone().into_dispatch(),
+            bias,
+            activation,
+            dtype,
+        ),
+    })
 }
 
 /// `residual + (x·W + bias) * gate`, float32.
@@ -405,14 +538,30 @@ pub fn linear_gated(
     residual: Tensor<2>,
     gate: Tensor<1>,
 ) -> Tensor<2> {
-    Tensor::from_dispatch(<Kernels as KernelOps>::linear_gated(
+    let (x, bias, residual, gate) = (
         x.into_dispatch(),
-        weight.matrix.clone().into_dispatch(),
         bias.into_dispatch(),
         residual.into_dispatch(),
         gate.into_dispatch(),
-        weight.layout,
-    ))
+    );
+    Tensor::from_dispatch(match &weight.matrix {
+        Matrix::Float { matrix, layout } => <Kernels as KernelOps>::linear_gated(
+            x,
+            matrix.clone().into_dispatch(),
+            bias,
+            residual,
+            gate,
+            *layout,
+        ),
+        Matrix::Int8 { values, scale } => <Kernels as KernelOps>::linear_q8_gated(
+            x,
+            values.clone().into_dispatch(),
+            scale.clone().into_dispatch(),
+            bias,
+            residual,
+            gate,
+        ),
+    })
 }
 
 /// `residual + x·W + bias`, float32.
@@ -422,13 +571,23 @@ pub fn linear_residual(
     bias: Tensor<1>,
     residual: Tensor<2>,
 ) -> Tensor<2> {
-    Tensor::from_dispatch(<Kernels as KernelOps>::linear_residual(
-        x.into_dispatch(),
-        weight.matrix.clone().into_dispatch(),
-        bias.into_dispatch(),
-        residual.into_dispatch(),
-        weight.layout,
-    ))
+    let (x, bias, residual) = (x.into_dispatch(), bias.into_dispatch(), residual.into_dispatch());
+    Tensor::from_dispatch(match &weight.matrix {
+        Matrix::Float { matrix, layout } => <Kernels as KernelOps>::linear_residual(
+            x,
+            matrix.clone().into_dispatch(),
+            bias,
+            residual,
+            *layout,
+        ),
+        Matrix::Int8 { values, scale } => <Kernels as KernelOps>::linear_q8_residual(
+            x,
+            values.clone().into_dispatch(),
+            scale.clone().into_dispatch(),
+            bias,
+            residual,
+        ),
+    })
 }
 
 /// `LayerNorm(x) * mul + add` over the rows of `x`; `mul`, `add` `[width]` float32.

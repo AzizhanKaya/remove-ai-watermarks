@@ -4,7 +4,8 @@ Last updated: 2026-11-26. The Python package in `../src/remove_ai_watermarks` is
 behavioral oracle; every number below comes from differential golden tests or
 side-by-side CLI runs against it. Measured findings, speed tables and hazards live
 in [findings.md](findings.md); the user-file video trial is in
-[video-synthid-trial-2026-11.md](video-synthid-trial-2026-11.md).
+[video-synthid-trial-2026-11.md](video-synthid-trial-2026-11.md); the Wan 2.2 TI2V-5B port
+plan and TODO list are in [wan22-port-plan.md](wan22-port-plan.md).
 
 ## Priorities agreed with the user
 

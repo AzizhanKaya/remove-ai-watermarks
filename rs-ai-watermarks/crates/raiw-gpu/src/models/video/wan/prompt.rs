@@ -96,7 +96,7 @@ impl PromptEmbedding {
     /// elsewhere).
     pub fn from_values(values: Vec<f32>) -> Result<Self> {
         let tokens = values.len() / TEXT_DIM;
-        if values.len() % TEXT_DIM != 0 || !(1..=TEXT_TOKENS).contains(&tokens) {
+        if !values.len().is_multiple_of(TEXT_DIM) || !(1..=TEXT_TOKENS).contains(&tokens) {
             return Err(GpuError::Input(format!(
                 "prompt embedding holds {} values, expected [1..={TEXT_TOKENS}, {TEXT_DIM}]",
                 values.len()

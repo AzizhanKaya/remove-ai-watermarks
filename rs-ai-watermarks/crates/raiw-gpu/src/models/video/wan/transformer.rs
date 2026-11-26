@@ -18,29 +18,21 @@ use burn::tensor::{Device, Tensor, TensorData, s};
 
 use crate::device::ComputeDevice;
 use crate::error::{GpuError, Result};
-use crate::hub::{Fetch, Hub};
+use crate::hub::{Fetch, Hub, HubFile};
 use crate::io::read_finite;
 use crate::layers::Linear;
 use crate::weights::StateDict;
 
 use super::attention::{LayerNorm, RmsNorm, scaled_dot_product};
+use super::config::TransformerConfig;
 #[cfg(feature = "gpu-runtime")]
 use super::fused::{CrossKv, FusedBlock, Precision, RopeTables};
 use super::prompt::{PromptEmbedding, TEXT_DIM};
 use super::rope::Rope;
-use super::{LATENT_CHANNELS, TRANSFORMER_CONFIG, TRANSFORMER_SHARDS};
+use super::{TRANSFORMER_CONFIG, TRANSFORMER_SHARDS};
 
-pub const DIM: usize = 1536;
-pub const HEADS: usize = 12;
-pub const HEAD_DIM: usize = DIM / HEADS;
-pub const FFN_DIM: usize = 8960;
-pub const LAYERS: usize = 30;
-const FREQ_DIM: usize = 256;
 const EPS: f64 = 1e-6;
-/// Spatial patch side (the time patch is 1).
-pub const PATCH: usize = 2;
-const PATCH_FEATURES: usize = LATENT_CHANNELS * PATCH * PATCH;
-/// Tokens per feed-forward chunk, bounding the `[tokens, 8960]` intermediate.
+/// Tokens per feed-forward chunk, bounding the `[tokens, ffn_dim]` intermediate.
 const FFN_TOKENS: usize = 4096;
 
 /// Where transformer block weights live between forwards, and which ops run them.
@@ -87,26 +79,36 @@ struct Attention {
     to_out: Linear,
     norm_q: RmsNorm,
     norm_k: RmsNorm,
+    heads: usize,
+    head_dim: usize,
 }
 
 impl Attention {
-    fn load(state: &mut StateDict, prefix: &str, device: &Device) -> Result<Self> {
+    fn load(
+        state: &mut StateDict,
+        prefix: &str,
+        config: &TransformerConfig,
+        device: &Device,
+    ) -> Result<Self> {
+        let dim = config.dim();
         let linear = |state: &mut StateDict, name: &str| {
-            Linear::load(state, &format!("{prefix}.{name}"), DIM, DIM, device)
+            Linear::load(state, &format!("{prefix}.{name}"), dim, dim, device)
         };
         Ok(Self {
             to_q: linear(state, "to_q")?,
             to_k: linear(state, "to_k")?,
             to_v: linear(state, "to_v")?,
             to_out: linear(state, "to_out.0")?,
-            norm_q: RmsNorm::load(state, &format!("{prefix}.norm_q"), DIM, EPS, device)?,
-            norm_k: RmsNorm::load(state, &format!("{prefix}.norm_k"), DIM, EPS, device)?,
+            norm_q: RmsNorm::load(state, &format!("{prefix}.norm_q"), dim, EPS, device)?,
+            norm_k: RmsNorm::load(state, &format!("{prefix}.norm_k"), dim, EPS, device)?,
+            heads: config.heads,
+            head_dim: config.head_dim,
         })
     }
 
-    fn heads(x: Tensor<2>) -> Tensor<3> {
+    fn split_heads(&self, x: Tensor<2>) -> Tensor<3> {
         let tokens = x.dims()[0];
-        x.reshape([tokens, HEADS, HEAD_DIM])
+        x.reshape([tokens, self.heads, self.head_dim])
     }
 
     /// `[tokens, heads, head_dim]` -> `[1, heads, tokens, head_dim]`.
@@ -116,15 +118,16 @@ impl Attention {
 
     fn project_out(&self, out: Tensor<4>) -> Tensor<2> {
         let tokens = out.dims()[2];
+        let merged = out.squeeze_dim::<3>(0).swap_dims(0, 1);
         self.to_out
-            .forward(out.squeeze_dim::<3>(0).swap_dims(0, 1).reshape([tokens, DIM]))
+            .forward(merged.reshape([tokens, self.heads * self.head_dim]))
     }
 
     /// Self-attention with RoPE on queries and keys.
     fn self_attention(&self, x: Tensor<2>, rope: &Rope) -> Tensor<2> {
-        let q = rope.apply(Self::heads(self.norm_q.forward(self.to_q.forward(x.clone()))));
-        let k = rope.apply(Self::heads(self.norm_k.forward(self.to_k.forward(x.clone()))));
-        let v = Self::heads(self.to_v.forward(x));
+        let q = rope.apply(self.split_heads(self.norm_q.forward(self.to_q.forward(x.clone()))));
+        let k = rope.apply(self.split_heads(self.norm_k.forward(self.to_k.forward(x.clone()))));
+        let v = self.split_heads(self.to_v.forward(x));
         self.project_out(scaled_dot_product(
             Self::batched(q),
             Self::batched(k),
@@ -134,9 +137,9 @@ impl Attention {
 
     /// Cross-attention from the tokens to the projected text context.
     fn cross_attention(&self, x: Tensor<2>, context: &Tensor<2>) -> Tensor<2> {
-        let q = Self::heads(self.norm_q.forward(self.to_q.forward(x)));
-        let k = Self::heads(self.norm_k.forward(self.to_k.forward(context.clone())));
-        let v = Self::heads(self.to_v.forward(context.clone()));
+        let q = self.split_heads(self.norm_q.forward(self.to_q.forward(x)));
+        let k = self.split_heads(self.norm_k.forward(self.to_k.forward(context.clone())));
+        let v = self.split_heads(self.to_v.forward(context.clone()));
         self.project_out(scaled_dot_product(
             Self::batched(q),
             Self::batched(k),
@@ -159,16 +162,22 @@ struct Block {
 }
 
 impl Block {
-    fn load(state: &mut StateDict, prefix: &str, device: &Device) -> Result<Self> {
-        let table: Tensor<3> = state.tensor(&format!("{prefix}.scale_shift_table"), [1, 6, DIM], device)?;
+    fn load(
+        state: &mut StateDict,
+        prefix: &str,
+        config: &TransformerConfig,
+        device: &Device,
+    ) -> Result<Self> {
+        let (dim, ffn) = (config.dim(), config.ffn_dim);
+        let table: Tensor<3> = state.tensor(&format!("{prefix}.scale_shift_table"), [1, 6, dim], device)?;
         Ok(Self {
-            table: table.reshape([6, DIM]),
-            norm: LayerNorm::plain(DIM, EPS, device),
-            attn1: Attention::load(state, &format!("{prefix}.attn1"), device)?,
-            norm2: LayerNorm::load(state, &format!("{prefix}.norm2"), DIM, EPS, device)?,
-            attn2: Attention::load(state, &format!("{prefix}.attn2"), device)?,
-            ffn_in: Linear::load(state, &format!("{prefix}.ffn.net.0.proj"), DIM, FFN_DIM, device)?,
-            ffn_out: Linear::load(state, &format!("{prefix}.ffn.net.2"), FFN_DIM, DIM, device)?,
+            table: table.reshape([6, dim]),
+            norm: LayerNorm::plain(dim, EPS, device),
+            attn1: Attention::load(state, &format!("{prefix}.attn1"), config, device)?,
+            norm2: LayerNorm::load(state, &format!("{prefix}.norm2"), dim, EPS, device)?,
+            attn2: Attention::load(state, &format!("{prefix}.attn2"), config, device)?,
+            ffn_in: Linear::load(state, &format!("{prefix}.ffn.net.0.proj"), dim, ffn, device)?,
+            ffn_out: Linear::load(state, &format!("{prefix}.ffn.net.2"), ffn, dim, device)?,
         })
     }
 
@@ -204,9 +213,23 @@ enum Blocks {
     Fused(Vec<FusedBlock>),
 }
 
-/// `WanTransformer3DModel` from `Wan-AI/Wan2.1-T2V-1.3B-Diffusers` (`transformer/`).
+/// The pinned `transformer/` files of one Wan checkpoint.
+#[derive(Debug, Clone, Copy)]
+pub struct TransformerFiles {
+    pub config: HubFile<'static>,
+    pub shards: &'static [HubFile<'static>],
+}
+
+/// `Wan-AI/Wan2.1-T2V-1.3B-Diffusers`.
+pub const WAN21_TRANSFORMER: TransformerFiles = TransformerFiles {
+    config: TRANSFORMER_CONFIG,
+    shards: &TRANSFORMER_SHARDS,
+};
+
+/// `WanTransformer3DModel` (`transformer/` of a Wan 2.1 or 2.2 Diffusers checkpoint).
 #[derive(Debug, Clone)]
 pub struct WanTransformer {
+    config: TransformerConfig,
     patch: Linear,
     time_1: Linear,
     time_2: Linear,
@@ -228,14 +251,27 @@ impl WanTransformer {
         Self::load_from_hub(&Hub::from_env(), Fetch::Download, device, residency)
     }
 
+    /// The pinned Wan 2.1 1.3B transformer.
     pub fn load_from_hub(
         hub: &Hub,
         fetch: Fetch,
         device: &ComputeDevice,
         residency: BlockResidency,
     ) -> Result<Self> {
-        let config = hub.resolve(&TRANSFORMER_CONFIG, fetch)?;
-        let shards = TRANSFORMER_SHARDS
+        Self::load_files(hub, fetch, &WAN21_TRANSFORMER, device, residency)
+    }
+
+    /// The pinned transformer `files` of any supported checkpoint.
+    pub fn load_files(
+        hub: &Hub,
+        fetch: Fetch,
+        files: &TransformerFiles,
+        device: &ComputeDevice,
+        residency: BlockResidency,
+    ) -> Result<Self> {
+        let config = hub.resolve(&files.config, fetch)?;
+        let shards = files
+            .shards
             .iter()
             .map(|file| hub.resolve(file, fetch))
             .collect::<Result<Vec<_>>>()?;
@@ -248,48 +284,54 @@ impl WanTransformer {
                 "pinned Wan transformer artifacts must share one snapshot directory".to_owned(),
             ));
         }
-        Self::from_shards(shards, device, residency)
+        Self::from_shards(TransformerConfig::from_file(&config)?, shards, device, residency)
     }
 
     /// Load local `transformer/*.safetensors` shards without digest checks.
     pub fn from_shards(
+        config: TransformerConfig,
         shards: Vec<PathBuf>,
         device: &ComputeDevice,
         residency: BlockResidency,
     ) -> Result<Self> {
-        Self::from_shards_truncated(shards, device, residency, LAYERS)
+        Self::from_shards_truncated(config, shards, device, residency, config.layers)
     }
 
     /// [`Self::from_shards`] keeping only the first `layers` blocks: a smaller model for
     /// comparing block engines against each other (its output is not Wan's).
     pub fn from_shards_truncated(
+        config: TransformerConfig,
         shards: Vec<PathBuf>,
         device: &ComputeDevice,
         residency: BlockResidency,
         layers: usize,
     ) -> Result<Self> {
-        let layers = layers.min(LAYERS);
+        let layers = layers.min(config.layers);
         let burn = device.burn();
+        let (dim, features, patch) = (config.dim(), config.patch_features(), config.patch());
         let mut state = StateDict::from_safetensors_shards(&shards, |name| !name.starts_with("blocks."))?;
-        let patch = state.take("patch_embedding.weight", &[DIM, LATENT_CHANNELS, 1, PATCH, PATCH])?;
-        let patch_bias = state.tensor("patch_embedding.bias", [DIM], burn)?;
-        let patch = Linear::from_host(patch, PATCH_FEATURES, DIM, Some(patch_bias), burn);
+        let patch_weight = state.take(
+            "patch_embedding.weight",
+            &[dim, config.in_channels, 1, patch, patch],
+        )?;
+        let patch_bias = state.tensor("patch_embedding.bias", [dim], burn)?;
+        let patch = Linear::from_host(patch_weight, features, dim, Some(patch_bias), burn);
         let linear = |state: &mut StateDict, name: &str, input: usize, output: usize| {
             Linear::load(state, &format!("condition_embedder.{name}"), input, output, burn)
         };
-        let time_1 = linear(&mut state, "time_embedder.linear_1", FREQ_DIM, DIM)?;
-        let time_2 = linear(&mut state, "time_embedder.linear_2", DIM, DIM)?;
-        let time_proj = linear(&mut state, "time_proj", DIM, 6 * DIM)?;
-        let text_1 = linear(&mut state, "text_embedder.linear_1", TEXT_DIM, DIM)?;
-        let text_2 = linear(&mut state, "text_embedder.linear_2", DIM, DIM)?;
-        let out_table: Tensor<3> = state.tensor("scale_shift_table", [1, 2, DIM], burn)?;
-        let proj_out = Linear::load(&mut state, "proj_out", DIM, PATCH_FEATURES, burn)?;
+        let time_1 = linear(&mut state, "time_embedder.linear_1", config.freq_dim, dim)?;
+        let time_2 = linear(&mut state, "time_embedder.linear_2", dim, dim)?;
+        let time_proj = linear(&mut state, "time_proj", dim, 6 * dim)?;
+        let text_1 = linear(&mut state, "text_embedder.linear_1", config.text_dim, dim)?;
+        let text_2 = linear(&mut state, "text_embedder.linear_2", dim, dim)?;
+        let out_table: Tensor<3> = state.tensor("scale_shift_table", [1, 2, dim], burn)?;
+        let proj_out = Linear::load(&mut state, "proj_out", dim, config.out_channels * 4, burn)?;
         state.finish()?;
         let blocks = match residency {
             BlockResidency::Streamed => Blocks::Streamed(shards),
             BlockResidency::Resident => Blocks::Resident(
                 (0..layers)
-                    .map(|i| load_block(&shards, i, burn))
+                    .map(|i| load_block(&shards, i, &config, burn))
                     .collect::<Result<Vec<_>>>()?,
             ),
             #[cfg(feature = "gpu-runtime")]
@@ -303,8 +345,13 @@ impl WanTransformer {
                     (0..layers)
                         .map(|i| {
                             let mut state = read_block(&shards, i)?;
-                            let block =
-                                FusedBlock::load(&mut state, &format!("blocks.{i}"), precision, burn)?;
+                            let block = FusedBlock::load(
+                                &mut state,
+                                &format!("blocks.{i}"),
+                                &config,
+                                precision,
+                                burn,
+                            )?;
                             state.finish()?;
                             Ok(block)
                         })
@@ -313,14 +360,15 @@ impl WanTransformer {
             }
         };
         Ok(Self {
+            config,
             patch,
             time_1,
             time_2,
             time_proj,
             text_1,
             text_2,
-            out_table: out_table.reshape([2, DIM]),
-            norm_out: LayerNorm::plain(DIM, EPS, burn),
+            out_table: out_table.reshape([2, dim]),
+            norm_out: LayerNorm::plain(dim, EPS, burn),
             proj_out,
             blocks,
             layers,
@@ -330,6 +378,10 @@ impl WanTransformer {
 
     pub fn device(&self) -> &ComputeDevice {
         &self.device
+    }
+
+    pub fn config(&self) -> &TransformerConfig {
+        &self.config
     }
 
     /// `condition_embedder.text_embedder(prompt_embeds)`, reused by every denoising step.
@@ -375,7 +427,7 @@ impl WanTransformer {
         linear.forward(x)
     }
 
-    /// Flow velocity for latents `[16, T, H, W]` (`H`, `W` even) at an integer `timestep`.
+    /// Flow velocity for latents `[C, T, H, W]` (`H`, `W` even) at an integer `timestep`.
     pub fn forward(
         &self,
         latents: &[f32],
@@ -383,36 +435,36 @@ impl WanTransformer {
         timestep: f32,
         context: &TextContext,
     ) -> Result<Vec<f32>> {
-        if frames == 0 || height == 0 || width == 0 || height % PATCH != 0 || width % PATCH != 0 {
+        let (channels, patch, dim) = (self.config.in_channels, self.config.patch(), self.config.dim());
+        if frames == 0 || height == 0 || width == 0 || height % patch != 0 || width % patch != 0 {
             return Err(GpuError::Input(format!(
                 "Wan transformer latents need even nonzero sides, got {frames}x{height}x{width}"
             )));
         }
-        if latents.len() != LATENT_CHANNELS * frames * height * width {
+        if latents.len() != channels * frames * height * width {
             return Err(GpuError::Input(format!(
-                "Wan transformer latents hold {} values, expected {LATENT_CHANNELS}x{frames}x{height}x{width}",
+                "Wan transformer latents hold {} values, expected {channels}x{frames}x{height}x{width}",
                 latents.len()
             )));
         }
         let burn = self.device.burn();
-        let (rows, cols) = (height / PATCH, width / PATCH);
+        let (rows, cols) = (height / patch, width / patch);
         let tokens = frames * rows * cols;
         let x: Tensor<6> = Tensor::from_data(
-            TensorData::new(
-                latents.to_vec(),
-                [LATENT_CHANNELS, frames, rows, PATCH, cols, PATCH],
-            ),
+            TensorData::new(latents.to_vec(), [channels, frames, rows, patch, cols, patch]),
             burn,
         );
-        let patches = x.permute([1, 2, 4, 0, 3, 5]).reshape([tokens, PATCH_FEATURES]);
+        let patches = x
+            .permute([1, 2, 4, 0, 3, 5])
+            .reshape([tokens, self.config.patch_features()]);
         let mut h = self.token_linear(&self.patch, patches);
         let temb = self.time_embedding(timestep);
-        let modulation = self.time_proj.forward(silu(temb.clone())).reshape([6, DIM]);
+        let modulation = self.time_proj.forward(silu(temb.clone())).reshape([6, dim]);
         let grid = (frames, rows, cols);
         match &self.blocks {
             #[cfg(feature = "gpu-runtime")]
             Blocks::Fused(blocks) => {
-                let rope = RopeTables::new(grid, burn);
+                let rope = RopeTables::new(grid, self.config.head_dim, burn);
                 for (block, cross) in blocks.iter().zip(&context.cross) {
                     h = block.forward(h, cross, &modulation, &rope);
                 }
@@ -426,9 +478,9 @@ impl WanTransformer {
         let h = self.output_norm(h, shift, scale);
         let out = self
             .token_linear(&self.proj_out, h)
-            .reshape([frames, rows, cols, PATCH, PATCH, LATENT_CHANNELS])
+            .reshape([frames, rows, cols, patch, patch, channels])
             .permute([5, 0, 1, 3, 2, 4])
-            .reshape([LATENT_CHANNELS, frames, height, width]);
+            .reshape([channels, frames, height, width]);
         read_finite(out)
     }
 
@@ -436,7 +488,8 @@ impl WanTransformer {
     fn output_norm(&self, h: Tensor<2>, shift: Tensor<2>, scale: Tensor<2>) -> Tensor<2> {
         #[cfg(feature = "gpu-runtime")]
         if self.is_fused() {
-            let (shift, scale) = (shift.reshape([DIM]), scale.reshape([DIM]));
+            let dim = self.config.dim();
+            let (shift, scale) = (shift.reshape([dim]), scale.reshape([dim]));
             return crate::kernels::modulated_layer_norm(
                 h,
                 scale.add_scalar(1.0),
@@ -457,7 +510,7 @@ impl WanTransformer {
         grid: (usize, usize, usize),
     ) -> Result<Tensor<2>> {
         let burn = self.device.burn();
-        let rope = Rope::new(HEAD_DIM, grid, burn);
+        let rope = Rope::new(self.config.head_dim, grid, burn);
         let modulation = modulation.clone();
         match &self.blocks {
             Blocks::Resident(blocks) => {
@@ -483,7 +536,7 @@ impl WanTransformer {
                         let mut state = receiver.recv().map_err(|_| {
                             GpuError::Config("Wan transformer block reader stopped".to_owned())
                         })??;
-                        let block = Block::load(&mut state, &format!("blocks.{i}"), burn)?;
+                        let block = Block::load(&mut state, &format!("blocks.{i}"), &self.config, burn)?;
                         state.finish()?;
                         h = block.forward(h, &context.hidden, &modulation, &rope);
                         // Finish this block before the next upload so only one is resident
@@ -500,7 +553,8 @@ impl WanTransformer {
 
     /// `time_embedder(timesteps_proj(t))`: flipped sinusoids, Linear, SiLU, Linear -> `[1, dim]`.
     fn time_embedding(&self, timestep: f32) -> Tensor<2> {
-        let half = FREQ_DIM / 2;
+        let freq_dim = self.config.freq_dim;
+        let half = freq_dim / 2;
         let log_period = -(10_000f64.ln()) as f32;
         let args: Vec<f32> = (0..half)
             .map(|i| timestep * (log_period * i as f32 / half as f32).exp())
@@ -510,7 +564,7 @@ impl WanTransformer {
             .map(|a| a.cos())
             .chain(args.iter().map(|a| a.sin()))
             .collect();
-        let x: Tensor<2> = Tensor::from_data(TensorData::new(sinusoid, [1, FREQ_DIM]), self.device.burn());
+        let x: Tensor<2> = Tensor::from_data(TensorData::new(sinusoid, [1, freq_dim]), self.device.burn());
         self.time_2.forward(silu(self.time_1.forward(x)))
     }
 }
@@ -521,9 +575,14 @@ fn read_block(shards: &[PathBuf], index: usize) -> Result<StateDict> {
     StateDict::from_safetensors_shards(shards, |name| name.starts_with(&scope))
 }
 
-fn load_block(shards: &[PathBuf], index: usize, device: &Device) -> Result<Block> {
+fn load_block(
+    shards: &[PathBuf],
+    index: usize,
+    config: &TransformerConfig,
+    device: &Device,
+) -> Result<Block> {
     let mut state = read_block(shards, index)?;
-    let block = Block::load(&mut state, &format!("blocks.{index}"), device)?;
+    let block = Block::load(&mut state, &format!("blocks.{index}"), config, device)?;
     state.finish()?;
     Ok(block)
 }
