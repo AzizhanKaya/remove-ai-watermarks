@@ -40,6 +40,20 @@ the local `encoder=Lavf63.16.100` tag, no audio. GPU at 99%, 4.3 GB VRAM, proces
   mark; a silent video is common and the only processing trace in the container is
   the ffmpeg `encoder` tag the source already had.
 
+## Wan 2.1 run on the RX 5500 XT (2026-11-26)
+
+- Prompt cache: `video_wan`'s own cold-miss branch (`encode_prompt`, bfloat16, CPU) with
+  UMT5-XXL disk-offloaded through accelerate (3 GiB CPU budget, ~4 GB RSS); 31 min download
+  (22.7 GB at ~12 MB/s), 70 s to load and encode. The cache is `[1, 226, 4096]` (sha256
+  `54269002…27ecc1`), which exposed the Rust reader's 512-row assumption (fixed).
+- `video all --invisible --profile wan21-synthid` (Rust release, fused f16 kernels):
+  `_clean_wan21`, 480×854, 24 fps, 313 frames, **61 min** (five 81-frame windows, 17-frame
+  overlaps). PSNR 36.3 dB vs source (min 33.6). Natural skin without the 2D VAE blotches,
+  faithful face and motion, no visible seam at the window crossfades.
+- A 17-frame smoke run with a random prompt embedding looked smeared and plastic: the
+  conditioning matters, so smoke tests must use the real cache.
+- Not yet checked on synthid.com.
+
 ## Where we stopped
 
 1. **Waiting on the user:** test `_clean_n012_trim_denoised` (and optionally
