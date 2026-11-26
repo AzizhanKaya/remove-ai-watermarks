@@ -825,8 +825,7 @@ fn run_invisible_profile<T: VaePixel>(
     if WAN_EXPERIMENTAL_PROFILES.contains(&profile) {
         let wan = runtime
             .neural
-            .wan
-            .as_ref()
+            .wan_for(profile)
             .ok_or_else(|| VideoError::Unavailable("The Wan 2.1 profile needs the Wan runtime".into()))?;
         let output = video_output(source, output, "Experimental Wan 2.1 processing")?;
         let wan_options = WanOptions {

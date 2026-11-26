@@ -54,21 +54,28 @@ pub const WAN_EXPERIMENTAL_PROFILES: &[&str] = &[
     "wan21-seedance",
     "wan21-synthid-experimental",
     "wan21-seedance-experimental",
+    "wan22-synthid",
+    "wan22-synthid-experimental",
 ];
+/// Rust-only Wan 2.2 TI2V 5B profiles (the Python package has no Wan 2.2 path).
+pub const WAN22_EXPERIMENTAL_PROFILES: &[&str] = &["wan22-synthid", "wan22-synthid-experimental"];
 pub const VIDEO_INVISIBLE_PROFILES: &[&str] = &[
     "auto",
     "synthid",
     "seedance",
     "wan21-synthid",
     "wan21-seedance",
+    "wan22-synthid",
     "seedance-experimental",
     "wan21-synthid-experimental",
     "wan21-seedance-experimental",
+    "wan22-synthid-experimental",
 ];
 pub const VIDEO_PROFILE_ALIASES: &[(&str, &str)] = &[
     ("seedance", "seedance-experimental"),
     ("wan21-synthid", "wan21-synthid-experimental"),
     ("wan21-seedance", "wan21-seedance-experimental"),
+    ("wan22-synthid", "wan22-synthid-experimental"),
 ];
 pub const VIDEO_ENCODERS: &[&str] = &["software", "auto", "videotoolbox", "nvenc"];
 pub const ALL_PRESETS: &[&str] = &["lossless-fast", "balanced", "deep-clean"];

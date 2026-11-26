@@ -33,10 +33,10 @@ SUITE = "gpu_wan"
 REPO, REVISION = video_wan.WAN21_MODEL_ID, video_wan.WAN21_MODEL_REVISION
 
 
-def shards() -> list[str]:
-    index = hf_hub_download(REPO, "transformer/diffusion_pytorch_model.safetensors.index.json", revision=REVISION)
+def shards(repo: str = REPO, revision: str = REVISION) -> list[str]:
+    index = hf_hub_download(repo, "transformer/diffusion_pytorch_model.safetensors.index.json", revision=revision)
     names = sorted(set(json.loads(Path(index).read_text())["weight_map"].values()))
-    return [hf_hub_download(REPO, f"transformer/{name}", revision=REVISION) for name in names]
+    return [hf_hub_download(repo, f"transformer/{name}", revision=revision) for name in names]
 
 
 def tensors(paths: list[str], keep) -> dict[str, torch.Tensor]:
@@ -50,14 +50,14 @@ def tensors(paths: list[str], keep) -> dict[str, torch.Tensor]:
 class StreamedTransformer:
     """`WanTransformer3DModel.forward` with the block weights loaded one at a time."""
 
-    def __init__(self) -> None:
+    def __init__(self, repo: str = REPO, revision: str = REVISION) -> None:
         from diffusers.models.transformers.transformer_wan import WanTransformer3DModel
 
-        config = WanTransformer3DModel.load_config(REPO, subfolder="transformer", revision=REVISION)
+        config = WanTransformer3DModel.load_config(repo, subfolder="transformer", revision=revision)
         self.layers = config["num_layers"]
         config["num_layers"] = 1
         self.model = WanTransformer3DModel.from_config(config).eval()
-        self.paths = shards()
+        self.paths = shards(repo, revision)
         missing, unexpected = self.model.load_state_dict(
             tensors(self.paths, lambda key: not key.startswith("blocks.")), strict=False
         )
@@ -135,11 +135,12 @@ def prompt_reader_case() -> dict[str, object]:
     }
 
 
-def transformer_cases() -> dict[str, object]:
-    oracle = StreamedTransformer()
+def transformer_cases(oracle: StreamedTransformer | None = None) -> dict[str, object]:
+    oracle = oracle or StreamedTransformer()
+    channels = oracle.model.config.in_channels
     frames, height, width, seed = 3, 8, 12, 71
-    latents = torch.from_numpy(synthetic_signal(16 * frames * height * width, 977, seed)).reshape(
-        1, 16, frames, height, width
+    latents = torch.from_numpy(synthetic_signal(channels * frames * height * width, 977, seed)).reshape(
+        1, channels, frames, height, width
     )
     context = torch.from_numpy(synthetic_signal(512 * 4096, 977, 70)).reshape(1, 512, 4096)
     with torch.inference_mode():

@@ -477,6 +477,30 @@ impl DenseWeight {
         }
     }
 
+    /// A copy on `device` (host parking of resident weights between pipeline stages).
+    #[must_use]
+    pub fn to_device(&self, device: &Device) -> Self {
+        let matrix = match &self.matrix {
+            Matrix::Float { matrix, layout } => Matrix::Float {
+                matrix: matrix.clone().to_device(device),
+                layout: *layout,
+            },
+            Matrix::Int8 { values, scale } => {
+                let values = values.clone().to_device(device);
+                Matrix::Int8 {
+                    // a cross-backend move may widen the int dtype again
+                    values: if values.dtype() == DType::I8 {
+                        values
+                    } else {
+                        values.cast(DType::I8)
+                    },
+                    scale: scale.clone().to_device(device),
+                }
+            }
+        };
+        Self { matrix }
+    }
+
     /// The dtype the activations must share (f16 for int8 weights).
     pub fn dtype(&self) -> DType {
         match &self.matrix {

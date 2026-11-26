@@ -73,6 +73,7 @@ pub fn backends(device: &str) -> Result<NeuralBackends> {
             Arc::clone(&device),
         )?)),
         wan: Some(Arc::new(BurnWan::new(Arc::clone(&device)))),
+        wan22: Some(Arc::new(BurnWan::wan22(Arc::clone(&device)))),
         messages: Some(Arc::new(BurnMessageModels::new(device))),
     })
 }

@@ -1,4 +1,5 @@
-//! Wan 2.1 T2V 1.3B video-to-video regeneration (`video_wan.py`, the `wan21-*` profiles).
+//! Wan 2.1 T2V 1.3B video-to-video regeneration (`video_wan.py`, the `wan21-*` profiles), plus
+//! the Wan 2.2 TI2V 5B models it generalizes to ([`config`], `docs/wan22-port-plan.md`).
 //!
 //! - [`vae3d`]: `AutoencoderKLWan` with causal time caching and Wan's own spatial tiling.
 //! - [`transformer`]: `WanTransformer3DModel` (patchify, 3-D RoPE self-attention, text
@@ -24,14 +25,16 @@ pub mod vae3d;
 
 use crate::hub::HubFile;
 
-pub use config::TransformerConfig;
+pub use config::{TransformerConfig, VaeConfig};
 #[cfg(feature = "gpu-runtime")]
 pub use fused::Precision;
-pub use pipeline::WanPipeline;
+pub use pipeline::{WAN21_T2V_1_3B, WAN22_TI2V_5B, WanModel, WanPipeline};
 pub use prompt::PromptEmbedding;
 pub use scheduler::UniPcScheduler;
-pub use transformer::{BlockResidency, TextContext, TransformerFiles, WAN21_TRANSFORMER, WanTransformer};
-pub use vae3d::WanVae;
+pub use transformer::{
+    BlockResidency, TextContext, TransformerFiles, WAN21_TRANSFORMER, WAN22_TRANSFORMER, WanTransformer,
+};
+pub use vae3d::{VaeFiles, WAN21_VAE, WAN22_VAE, WanVae};
 
 pub const MODEL_REPOSITORY: &str = "Wan-AI/Wan2.1-T2V-1.3B-Diffusers";
 pub const MODEL_REVISION: &str = "0fad780a534b6463e45facd96134c9f345acfa5b";
@@ -81,3 +84,48 @@ pub const SCHEDULER_CONFIG: HubFile<'static> = pinned(
     "scheduler/scheduler_config.json",
     "3fed2abbd9bbc301a74db01947198057ec5049808910dccab320925bf27bea6e",
 );
+
+// Wan 2.2 TI2V 5B (Rust-only experimental; Python has no Wan 2.2 path)
+pub const WAN22_REPOSITORY: &str = "Wan-AI/Wan2.2-TI2V-5B-Diffusers";
+pub const WAN22_REVISION: &str = "b8fff7315c768468a5333511427288870b2e9635";
+/// `scheduler_config.json` default of the 5B checkpoint.
+pub const WAN22_FLOW_SHIFT: f64 = 5.0;
+
+const fn pinned22(filename: &'static str, sha256: &'static str) -> HubFile<'static> {
+    HubFile::new(WAN22_REPOSITORY, WAN22_REVISION, filename).with_sha256(sha256)
+}
+
+pub const WAN22_VAE_CONFIG: HubFile<'static> = pinned22(
+    "vae/config.json",
+    "d996c340fe9a7df5d7371f76a7d8d6956f6c98256080074d8434fa5eeac11360",
+);
+pub const WAN22_VAE_CHECKPOINT: HubFile<'static> = pinned22(
+    "vae/diffusion_pytorch_model.safetensors",
+    "62cd18f19438e35b32ac63020e2852f566e9b02f46b6cdbd87972a356e3c6f4b",
+);
+pub const WAN22_TRANSFORMER_CONFIG: HubFile<'static> = pinned22(
+    "transformer/config.json",
+    "dc00d9866e72cf77db6b531aaa33be4dc7148fef9338442bd0ae9181f7075e9b",
+);
+pub const WAN22_TRANSFORMER_SHARDS: [HubFile<'static>; 5] = [
+    pinned22(
+        "transformer/diffusion_pytorch_model-00001-of-00005.safetensors",
+        "511bec832a201caa410d09c5ce7dbbf8ad2708c345d82038f684fc74cce982be",
+    ),
+    pinned22(
+        "transformer/diffusion_pytorch_model-00002-of-00005.safetensors",
+        "7c42724912b1911429125dc50c0e9a49ccbada5a601b657d4ed2e15e7597c193",
+    ),
+    pinned22(
+        "transformer/diffusion_pytorch_model-00003-of-00005.safetensors",
+        "e9c3d0c76de786566382f8258101fea973ae37681c6e9fe0e5fe1fb93b806424",
+    ),
+    pinned22(
+        "transformer/diffusion_pytorch_model-00004-of-00005.safetensors",
+        "a331121771790939678db6f585553fd5184609f7d02593c699a4d241b0d834c5",
+    ),
+    pinned22(
+        "transformer/diffusion_pytorch_model-00005-of-00005.safetensors",
+        "78b655685c47efdb2349f36826bb101264e9f212a16325d584aeb5f53c88e719",
+    ),
+];

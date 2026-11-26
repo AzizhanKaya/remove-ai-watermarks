@@ -1,4 +1,5 @@
-//! `WanTransformer3DModel` (Wan 2.1 T2V 1.3B): 1x2x2 patches, 30 blocks of RoPE self-attention,
+//! `WanTransformer3DModel` (Wan 2.1 T2V 1.3B, Wan 2.2 TI2V 5B from [`TransformerConfig`]):
+//! 1x2x2 patches, 30 blocks of RoPE self-attention,
 //! text cross-attention and a GELU feed-forward, each modulated by the timestep (adaLN).
 //!
 //! Two block engines share the embeddings and the output head:
@@ -29,7 +30,7 @@ use super::config::TransformerConfig;
 use super::fused::{CrossKv, FusedBlock, Precision, RopeTables};
 use super::prompt::{PromptEmbedding, TEXT_DIM};
 use super::rope::Rope;
-use super::{TRANSFORMER_CONFIG, TRANSFORMER_SHARDS};
+use super::{TRANSFORMER_CONFIG, TRANSFORMER_SHARDS, WAN22_TRANSFORMER_CONFIG, WAN22_TRANSFORMER_SHARDS};
 
 const EPS: f64 = 1e-6;
 /// Tokens per feed-forward chunk, bounding the `[tokens, ffn_dim]` intermediate.
@@ -48,9 +49,23 @@ pub enum BlockResidency {
     /// kernels (flash attention, fused GEMM epilogues and norms).
     #[cfg(feature = "gpu-runtime")]
     Fused(Precision),
+    /// [`Self::Fused`] blocks kept in host memory and on the GPU only between
+    /// [`WanTransformer::unpark`] and [`WanTransformer::park`]: Wan 2.2's 5 GB of int8 blocks
+    /// and its 2.7 GB VAE take turns on an 8 GB card.
+    #[cfg(feature = "gpu-runtime")]
+    Swapped(Precision),
 }
 
 impl BlockResidency {
+    /// Whether the transformer leaves the device between denoising passes.
+    pub fn swaps(self) -> bool {
+        #[cfg(feature = "gpu-runtime")]
+        if let Self::Swapped(_) = self {
+            return true;
+        }
+        false
+    }
+
     /// The fastest residency `device` runs: fused f16 kernels on a GPU, streamed burn ops on CPU.
     pub fn for_device(device: &ComputeDevice) -> Self {
         #[cfg(feature = "gpu-runtime")]
@@ -226,6 +241,12 @@ pub const WAN21_TRANSFORMER: TransformerFiles = TransformerFiles {
     shards: &TRANSFORMER_SHARDS,
 };
 
+/// `Wan-AI/Wan2.2-TI2V-5B-Diffusers` (19 GB float32; resident on 8 GB only as `Int8`).
+pub const WAN22_TRANSFORMER: TransformerFiles = TransformerFiles {
+    config: WAN22_TRANSFORMER_CONFIG,
+    shards: &WAN22_TRANSFORMER_SHARDS,
+};
+
 /// `WanTransformer3DModel` (`transformer/` of a Wan 2.1 or 2.2 Diffusers checkpoint).
 #[derive(Debug, Clone)]
 pub struct WanTransformer {
@@ -240,6 +261,9 @@ pub struct WanTransformer {
     norm_out: LayerNorm,
     proj_out: Linear,
     blocks: Blocks,
+    /// The host copy of [`BlockResidency::Swapped`] blocks.
+    #[cfg(feature = "gpu-runtime")]
+    parked: Option<Vec<FusedBlock>>,
     /// Blocks run per forward (30 unless truncated for engine comparisons).
     layers: usize,
     device: ComputeDevice,
@@ -327,6 +351,8 @@ impl WanTransformer {
         let out_table: Tensor<3> = state.tensor("scale_shift_table", [1, 2, dim], burn)?;
         let proj_out = Linear::load(&mut state, "proj_out", dim, config.out_channels * 4, burn)?;
         state.finish()?;
+        #[cfg(feature = "gpu-runtime")]
+        let mut parked = None;
         let blocks = match residency {
             BlockResidency::Streamed => Blocks::Streamed(shards),
             BlockResidency::Resident => Blocks::Resident(
@@ -335,28 +361,34 @@ impl WanTransformer {
                     .collect::<Result<Vec<_>>>()?,
             ),
             #[cfg(feature = "gpu-runtime")]
-            BlockResidency::Fused(precision) => {
+            BlockResidency::Fused(precision) | BlockResidency::Swapped(precision) => {
                 if !device.is_gpu() {
                     return Err(GpuError::Config(
                         "fused Wan blocks run on the GPU kernels; use Streamed on the CPU".to_owned(),
                     ));
                 }
-                Blocks::Fused(
-                    (0..layers)
-                        .map(|i| {
-                            let mut state = read_block(&shards, i)?;
-                            let block = FusedBlock::load(
-                                &mut state,
-                                &format!("blocks.{i}"),
-                                &config,
-                                precision,
-                                burn,
-                            )?;
-                            state.finish()?;
-                            Ok(block)
+                let swapped = residency.swaps();
+                let blocks = (0..layers)
+                    .map(|i| {
+                        let mut state = read_block(&shards, i)?;
+                        // built on the GPU (the f16 packing runs a kernel), then parked
+                        let block =
+                            FusedBlock::load(&mut state, &format!("blocks.{i}"), &config, precision, burn)?;
+                        state.finish()?;
+                        Ok(if swapped {
+                            block.to_device(&Device::flex())
+                        } else {
+                            block
                         })
-                        .collect::<Result<Vec<_>>>()?,
-                )
+                    })
+                    .collect::<Result<Vec<_>>>()?;
+                if swapped {
+                    parked = Some(blocks);
+                    burn.memory_cleanup();
+                    Blocks::Fused(Vec::new())
+                } else {
+                    Blocks::Fused(blocks)
+                }
             }
         };
         Ok(Self {
@@ -371,6 +403,8 @@ impl WanTransformer {
             norm_out: LayerNorm::plain(dim, EPS, burn),
             proj_out,
             blocks,
+            #[cfg(feature = "gpu-runtime")]
+            parked,
             layers,
             device: device.clone(),
         })
@@ -378,6 +412,38 @@ impl WanTransformer {
 
     pub fn device(&self) -> &ComputeDevice {
         &self.device
+    }
+
+    /// Upload the host copy of [`BlockResidency::Swapped`] blocks (a no-op otherwise or when
+    /// already uploaded).
+    pub fn unpark(&mut self) {
+        #[cfg(feature = "gpu-runtime")]
+        if let (Blocks::Fused(blocks), Some(host)) = (&mut self.blocks, &self.parked)
+            && blocks.is_empty()
+        {
+            let burn = self.device.burn();
+            *blocks = host.iter().map(|block| block.to_device(burn)).collect();
+        }
+    }
+
+    /// Free the device copy of [`BlockResidency::Swapped`] blocks (a no-op otherwise).
+    pub fn park(&mut self) {
+        #[cfg(feature = "gpu-runtime")]
+        if let (Blocks::Fused(blocks), Some(_)) = (&mut self.blocks, &self.parked)
+            && !blocks.is_empty()
+        {
+            blocks.clear();
+            self.device.burn().memory_cleanup();
+        }
+    }
+
+    /// True while swapped blocks are off the device (forwards fail until [`Self::unpark`]).
+    pub fn is_parked(&self) -> bool {
+        #[cfg(feature = "gpu-runtime")]
+        if let Blocks::Fused(blocks) = &self.blocks {
+            return blocks.is_empty();
+        }
+        false
     }
 
     pub fn config(&self) -> &TransformerConfig {
@@ -393,8 +459,13 @@ impl WanTransformer {
         let hidden = self.text_2.forward(gelu_approximate(self.text_1.forward(embeds)));
         TextContext {
             #[cfg(feature = "gpu-runtime")]
-            cross: match &self.blocks {
-                Blocks::Fused(blocks) => blocks.iter().map(|block| block.cross_kv(&hidden)).collect(),
+            cross: match (&self.blocks, &self.parked) {
+                // parked blocks visit the device one at a time
+                (Blocks::Fused(blocks), Some(host)) if blocks.is_empty() => host
+                    .iter()
+                    .map(|block| block.to_device(self.device.burn()).cross_kv(&hidden))
+                    .collect(),
+                (Blocks::Fused(blocks), _) => blocks.iter().map(|block| block.cross_kv(&hidden)).collect(),
                 _ => Vec::new(),
             },
             hidden,
@@ -446,6 +517,11 @@ impl WanTransformer {
                 "Wan transformer latents hold {} values, expected {channels}x{frames}x{height}x{width}",
                 latents.len()
             )));
+        }
+        if self.is_parked() {
+            return Err(GpuError::Config(
+                "swapped Wan transformer blocks are parked; unpark them first".to_owned(),
+            ));
         }
         let burn = self.device.burn();
         let (rows, cols) = (height / patch, width / patch);

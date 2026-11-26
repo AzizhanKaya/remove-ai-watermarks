@@ -203,6 +203,7 @@ choices!(VideoProfile {
     Auto = "auto", Synthid = "synthid", Seedance = "seedance", Wan21Synthid = "wan21-synthid",
     Wan21Seedance = "wan21-seedance", SeedanceExperimental = "seedance-experimental",
     Wan21SynthidExperimental = "wan21-synthid-experimental", Wan21SeedanceExperimental = "wan21-seedance-experimental",
+    Wan22Synthid = "wan22-synthid", Wan22SynthidExperimental = "wan22-synthid-experimental",
 });
 choices!(RewriterBackend { Transformers = "transformers", Mlx = "mlx", Ollama = "ollama" });
 

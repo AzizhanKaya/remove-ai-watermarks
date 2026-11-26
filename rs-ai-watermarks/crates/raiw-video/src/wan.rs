@@ -36,6 +36,13 @@ pub const WAN21_MPS_OVERLAP_FRAMES: usize = 9;
 pub const WAN21_NATIVE_MAX_PIXELS: usize = 1920 * 1080;
 pub const WAN21_MIN_CUDA_VRAM_BYTES: u64 = 8 * 1024 * 1024 * 1024;
 pub const WAN21_HIGH_VRAM_BYTES: u64 = 16 * 1024 * 1024 * 1024;
+// Rust-only Wan 2.2 TI2V 5B (`wan22-*` profiles)
+pub const WAN22_MODEL_ID: &str = "Wan-AI/Wan2.2-TI2V-5B-Diffusers";
+pub const WAN22_MODEL_REVISION: &str = "b8fff7315c768468a5333511427288870b2e9635";
+/// Not oracle-calibrated yet: Wan 2.1's SynthID strength as the starting point.
+pub const WAN22_SYNTHID_STRENGTH: f64 = 0.38;
+/// 16x VAE times the 2x2 transformer patch.
+pub const WAN22_SPATIAL_MULTIPLE: usize = 32;
 
 /// One `WanVideoToVideoPipeline` call (guidance off, `output_type="np"`).
 #[derive(Clone, Debug, PartialEq)]
@@ -60,6 +67,10 @@ pub trait WanPipeline: Send + Sync + fmt::Debug {
     }
     /// Regenerate padded RGB `[0, 1]` HWC frames (`1 + 4k` of them) into RGB `[0, 1]` frames.
     fn generate(&self, frames: &[Mat<f32>], call: &WanCall<'_>) -> Result<Vec<Mat<f32>>>;
+    /// Window sides are padded to this multiple (one latent patch).
+    fn spatial_multiple(&self) -> usize {
+        WAN21_SPATIAL_MULTIPLE
+    }
 }
 
 /// `profile_strength`: the calibrated flow-matching denoising strength.
@@ -67,9 +78,19 @@ pub fn profile_strength(profile: &str) -> Result<f64> {
     match profile {
         "wan21-synthid" | "wan21-synthid-experimental" => Ok(WAN21_SYNTHID_STRENGTH),
         "wan21-seedance" | "wan21-seedance-experimental" => Ok(WAN21_SEEDANCE_STRENGTH),
+        "wan22-synthid" | "wan22-synthid-experimental" => Ok(WAN22_SYNTHID_STRENGTH),
         _ => Err(VideoError::value(
             "profile must be wan21-synthid-experimental or wan21-seedance-experimental",
         )),
+    }
+}
+
+/// The pinned `(model, revision)` a Wan profile runs.
+pub fn profile_model(profile: &str) -> (&'static str, &'static str) {
+    if profile.starts_with("wan22-") {
+        (WAN22_MODEL_ID, WAN22_MODEL_REVISION)
+    } else {
+        (WAN21_MODEL_ID, WAN21_MODEL_REVISION)
     }
 }
 
@@ -151,16 +172,14 @@ pub fn effective_overlap_frames(overlap_frames: usize, chunk: usize, resolved_de
     }
 }
 
-/// `_wan_guide_size`: a 1080p-bounded, 16-aligned guide for larger sources.
-pub fn wan_guide_size(width: usize, height: usize) -> Option<(usize, usize)> {
+/// `_wan_guide_size`: a 1080p-bounded guide for larger sources, aligned to `multiple` (16 for
+/// Wan 2.1).
+pub fn wan_guide_size(width: usize, height: usize, multiple: usize) -> Option<(usize, usize)> {
     if width * height <= WAN21_NATIVE_MAX_PIXELS {
         return None;
     }
     let scale = (WAN21_NATIVE_MAX_PIXELS as f64 / (width * height) as f64).sqrt();
-    let fit = |v: usize| {
-        ((v as f64 * scale) as usize / WAN21_SPATIAL_MULTIPLE * WAN21_SPATIAL_MULTIPLE)
-            .max(WAN21_SPATIAL_MULTIPLE)
-    };
+    let fit = |v: usize| ((v as f64 * scale) as usize / multiple * multiple).max(multiple);
     Some((fit(width), fit(height)))
 }
 
@@ -187,7 +206,8 @@ struct WindowCall<'a> {
 /// `_run_wan_window`: pad one window, run 3D diffusion, crop back, restore guides.
 fn run_window<T: VaePixel>(window: &[Mat<T>], call: WindowCall<'_>, seed: u64) -> Result<Vec<Mat<T>>> {
     let (orig_w, orig_h) = call.native;
-    let guide = wan_guide_size(orig_w, orig_h);
+    let multiple = call.wan.spatial_multiple();
+    let guide = wan_guide_size(orig_w, orig_h, multiple);
     let (work_w, work_h) = guide.unwrap_or((orig_w, orig_h));
     let work: Vec<Mat<T>> = match guide {
         Some((w, h)) => window
@@ -196,8 +216,8 @@ fn run_window<T: VaePixel>(window: &[Mat<T>], call: WindowCall<'_>, seed: u64) -
             .collect::<std::result::Result<_, _>>()?,
         None => window.to_vec(),
     };
-    let pad_h = (WAN21_SPATIAL_MULTIPLE - work_h % WAN21_SPATIAL_MULTIPLE) % WAN21_SPATIAL_MULTIPLE;
-    let pad_w = (WAN21_SPATIAL_MULTIPLE - work_w % WAN21_SPATIAL_MULTIPLE) % WAN21_SPATIAL_MULTIPLE;
+    let pad_h = (multiple - work_h % multiple) % multiple;
+    let pad_w = (multiple - work_w % multiple) % multiple;
     let (top, left) = (pad_h / 2, pad_w / 2);
     let (target_h, target_w) = (work_h + pad_h, work_w + pad_w);
     let peak = T::PEAK as f32;
@@ -516,7 +536,7 @@ pub fn regenerate_wan_experimental<T: VaePixel>(
         return Err(VideoError::value("inference_steps must be >= 1"));
     }
     validate_window_args(options.windowing.chunk_frames, options.windowing.overlap_frames)?;
-    if wan.model() != WAN21_MODEL_ID || wan.revision() != WAN21_MODEL_REVISION {
+    if (wan.model(), wan.revision()) != profile_model(&options.profile) {
         return Err(VideoError::value(
             "The supplied Wan 2.1 runtime does not match the pinned model and revision",
         ));

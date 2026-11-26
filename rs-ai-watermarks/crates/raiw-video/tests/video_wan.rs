@@ -140,8 +140,9 @@ fn windows_overlap_with_a_raised_cosine_blend() {
 #[test]
 fn window_sizes_and_eligibility_follow_python() {
     let wan = FakeWan::pinned();
-    assert_eq!(wan_guide_size(1920, 1080), None);
-    assert_eq!(wan_guide_size(3840, 2160), Some((1920, 1072)));
+    assert_eq!(wan_guide_size(1920, 1080, 16), None);
+    assert_eq!(wan_guide_size(3840, 2160, 16), Some((1920, 1072)));
+    assert_eq!(wan_guide_size(3840, 2160, 32), Some((1920, 1056)));
     assert_eq!(effective_chunk_frames(193, 17, (1280, 720), "cuda", &wan), 193);
     assert_eq!(effective_chunk_frames(193, 17, (1920, 1080), "cuda", &wan), 81);
     assert_eq!(effective_chunk_frames(193, 17, (640, 360), "mps", &wan), 33);

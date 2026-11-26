@@ -85,6 +85,13 @@ impl Dense {
         })
     }
 
+    fn to_device(&self, device: &Device) -> Self {
+        Self {
+            weight: self.weight.to_device(device),
+            bias: self.bias.clone().to_device(device),
+        }
+    }
+
     fn apply(&self, x: Tensor<2>, activation: Activation, dtype: DType) -> Tensor<2> {
         kernels::linear(x, &self.weight, self.bias.clone(), activation, dtype)
     }
@@ -198,6 +205,32 @@ impl FusedBlock {
             ffn_out,
             dtype,
         })
+    }
+
+    /// A copy on `device`: [`super::BlockResidency::Swapped`] keeps blocks on the host and
+    /// uploads them only while the transformer runs.
+    #[must_use]
+    pub fn to_device(&self, device: &Device) -> Self {
+        let vector = |t: &Tensor<1>| t.clone().to_device(device);
+        Self {
+            table: self.table.clone().to_device(device),
+            dim: self.dim,
+            heads: self.heads,
+            qkv: self.qkv.to_device(device),
+            norm_q: vector(&self.norm_q),
+            norm_k: vector(&self.norm_k),
+            out: self.out.to_device(device),
+            norm2_weight: vector(&self.norm2_weight),
+            norm2_bias: vector(&self.norm2_bias),
+            cross_q: self.cross_q.to_device(device),
+            cross_kv: self.cross_kv.to_device(device),
+            cross_norm_q: vector(&self.cross_norm_q),
+            cross_norm_k: vector(&self.cross_norm_k),
+            cross_out: self.cross_out.to_device(device),
+            ffn_in: self.ffn_in.to_device(device),
+            ffn_out: self.ffn_out.to_device(device),
+            dtype: self.dtype,
+        }
     }
 
     /// Project the text context `[text tokens, dim]` (float32) to this block's keys and values.

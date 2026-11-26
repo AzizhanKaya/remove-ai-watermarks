@@ -353,6 +353,7 @@ pub fn video_profile_label(profile: &str) -> &'static str {
         "seedance" | "seedance-experimental" | "seedance-texture-v1" => "the Seedance profile",
         "wan21-synthid" | "wan21-synthid-experimental" => "the CUDA 3D Wan 2.1 SynthID profile",
         "wan21-seedance" | "wan21-seedance-experimental" => "the CUDA 3D Wan 2.1 Seedance profile",
+        "wan22-synthid" | "wan22-synthid-experimental" => "the 3D Wan 2.2 SynthID profile (Rust-only)",
         _ => "the calibrated SynthID-removal profile",
     }
 }

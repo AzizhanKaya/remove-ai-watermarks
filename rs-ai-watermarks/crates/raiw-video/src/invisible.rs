@@ -12,7 +12,9 @@ use std::fmt;
 use std::path::Path;
 use std::sync::Arc;
 
-use raiw_core::constants::{VIDEO_INVISIBLE_PROFILES, VIDEO_PROFILE_ALIASES, WAN_EXPERIMENTAL_PROFILES};
+use raiw_core::constants::{
+    VIDEO_INVISIBLE_PROFILES, VIDEO_PROFILE_ALIASES, WAN_EXPERIMENTAL_PROFILES, WAN22_EXPERIMENTAL_PROFILES,
+};
 use raiw_cv::resize::Resizable;
 use raiw_cv::{Border, ColorConversion, Interpolation, Mat, add_weighted, cvt_color, gaussian_blur, resize};
 use raiw_metadata::AiMetadata;
@@ -75,7 +77,20 @@ pub trait VideoVae: Send + Sync + fmt::Debug {
 pub struct NeuralBackends {
     pub vae: Option<Arc<dyn VideoVae>>,
     pub wan: Option<Arc<dyn WanPipeline>>,
+    /// Wan 2.2 TI2V 5B for the Rust-only `wan22-*` profiles.
+    pub wan22: Option<Arc<dyn WanPipeline>>,
     pub messages: Option<Arc<dyn VideoMessageModels>>,
+}
+
+impl NeuralBackends {
+    /// The Wan runtime a `wan21-*` or `wan22-*` profile runs on.
+    pub fn wan_for(&self, profile: &str) -> Option<&Arc<dyn WanPipeline>> {
+        if WAN22_EXPERIMENTAL_PROFILES.contains(&profile) {
+            self.wan22.as_ref()
+        } else {
+            self.wan.as_ref()
+        }
+    }
 }
 
 pub(crate) fn unavailable(what: &str) -> VideoError {
@@ -202,7 +217,11 @@ pub fn validate_video_profile(options: &InvisibleOptions, enabled: InvisibleMode
     }
     let fixed_quality = matches!(
         profile,
-        "auto" | "seedance-experimental" | "wan21-synthid-experimental" | "wan21-seedance-experimental"
+        "auto"
+            | "seedance-experimental"
+            | "wan21-synthid-experimental"
+            | "wan21-seedance-experimental"
+            | "wan22-synthid-experimental"
     );
     if options.quality != "delivery" && (!enabled_bool || !fixed_quality) {
         return Err(VideoError::value(
@@ -761,6 +780,9 @@ fn drive<T: VaePixel>(
 /// Profile dispatch when the neural backend is absent.
 pub fn require_profile_backend(neural: &NeuralBackends, profile: &str) -> Result<()> {
     match profile {
+        p if WAN22_EXPERIMENTAL_PROFILES.contains(&p) && neural.wan22.is_none() => {
+            Err(unavailable("The Wan 2.2 profile"))
+        }
         p if WAN_EXPERIMENTAL_PROFILES.contains(&p) && neural.wan.is_none() => {
             Err(unavailable("The Wan 2.1 profile"))
         }

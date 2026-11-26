@@ -46,42 +46,46 @@ timestep in video-to-video, where every token shares one t.
   - Accuracy: the int8 linear is off by 4-6e-4; Int8 fused blocks drift 1.34e-2 from float32
     (diffusers bf16 drifts 1.48e-2).
   - Speed: ~4.8 TFLOP/s.
-- [x] VAE golden generator `tools/goldens/gpu_wan22_vae.py` (fp32, CPU, no tiling).
+- [x] Goldens from diffusers float32 on CPU (`goldens/gpu_wan22/`):
+  - `gpu_wan22_vae.py`: two untiled clips.
+  - `gpu_wan22_transformer.py`: the block-streamed oracle of `gpu_wan_transformer.py`.
+  - `gpu_wan22_pipeline.py`: `_run_wan_window` with `flow_shift` 5. diffusers'
+    `WanVideoToVideoPipeline` derives its spatial factor as 8, so the script sets it to 16.
+- [x] VAE (`vae3d.rs`, `VaeConfig` from `vae/config.json`):
+  - Patchify (channel `c·4 + pw·2 + ph`).
+  - `AvgDown3D` / `DupUp3D` shortcuts with `first_chunk`, residual down/up blocks,
+    `upsample_out_dim`, `decoder_base_dim`, 48-channel statistics, output clamp.
+  - Matches diffusers: latents 3.5e-6, decoded 2.4e-5 (CPU and GPU). Untiled, as diffusers runs it.
+- [x] Transformer: `WAN22_TRANSFORMER` pins the 5 shards. Streamed float32 matches diffusers to
+  2.9-7.2e-6. Resident `Int8` is off by 2.3% of the peak `|out|` (Wan 2.1: 3.1%), in line with
+  diffusers' own bf16 drift per block.
+- [x] Pipeline: `WanModel` (`WAN21_T2V_1_3B`, `WAN22_TI2V_5B`) carries the files, the flow
+  shift and the residency. Latent statistics, spatial factor and multiple (16 / 32) come from
+  the configs.
+- [x] Memory staging, `BlockResidency::Swapped(Precision)`:
+  - The int8 blocks live in host memory (~5 GB RAM) and upload for each denoising pass.
+  - The VAE reloads from its checkpoint (no re-hash) for each encode and decode.
+  - `memory_cleanup()` frees the pool between stages.
+  - On Wan 2.1, `Swapped(F16)` reproduces `Fused(F16)` exactly (same levels) and adds ~3 s per
+    window.
+- [x] CLI: `--profile wan22-synthid` (alias of `wan22-synthid-experimental`), Rust-only. It runs
+  on `NeuralBackends::wan22` (`BurnWan::wan22`, swapped int8 on a GPU), with strength 0.38 (not
+  oracle-calibrated yet).
 
 ## To do, in order
 
-1. **VAE goldens:** run `gpu_wan22_vae.py` (~3 GB RSS) to produce `goldens/gpu_wan22/vae.json`.
-2. **VAE port:** generalize `vae3d.rs` behind a `VaeConfig` read from `vae/config.json`.
-   - Patchify and unpatchify, with channel order `c·4 + pw·2 + ph`.
-   - `AvgDown3D` and `DupUp3D` shortcuts, including the `first_chunk` handling.
-   - Residual down blocks (`down_blocks.{i}.resnets` / `.downsampler` / `avg_shortcut`) and up
-     blocks (`up_blocks.{i}.resnets` / `.upsampler`, `upsample_out_dim`).
-   - `decoder_base_dim` 256 and the 48-channel latents mean/std.
-   - Clamp the output to [-1, 1].
-   - Conv kernels on every causal conv. Measure memory without tiling, then decide on tiling.
-3. **Transformer goldens:** a diffusers block-streamed script for 2.2 (like
-   `gpu_wan_transformer.py`) on a small grid. Pin the 5 shards with sha256 in a
-   `WAN22_TRANSFORMER` `TransformerFiles`. Test Int8 and F16 blocks; full F16 needs ~10 GB, so
-   use truncated layers.
-4. **Pipeline:** generalize `pipeline.rs` with the latent channel count, spatial factor and
-   multiple, latents mean/std, and flow shift (decide whether 5 holds at strength ≤ 0.4). Reuse
-   the prompt cache (see above).
-5. **Memory staging:** the int8 transformer (5 GB) plus the fp32 VAE (2.7 GB) plus activations
-   do not fit in 8 GB.
-   - Stage per clip: encode every window, drop the VAE, load the transformer, denoise every
-     window, drop it, then decode.
-   - Write an int8 cache file (~5 GB) once, so a run does not re-read and re-quantize 19 GB of
-     float32 shards.
-   - Load shard by shard to keep RSS ≤ ~5 GB, and measure peak VRAM and RSS.
-6. **CLI profile:** a Rust-only experimental `wan22-*` profile in raiw-video and the CLI. Mark
-   it as having no Python oracle.
-7. **Timing on the user clip:**
+1. **Pipeline parity on the GPU:** `wan22_pipeline_matches_run_wan_window` (Streamed f32
+   and Swapped Int8 against the diffusers window).
+2. **Speed:** loading hashes and reads 19 GB of float32 shards on every run.
+   - Write an int8 cache file (~5 GB) once.
+   - Measure peak VRAM and RSS of a 480p window.
+3. **Timing on the user clip:**
    - Estimate at 480p for an 81-frame window (8190 tokens): ~107 TFLOP per forward, which is
      ~25 s at 4.5 TFLOP/s, or ~3 min for 7 steps, plus the VAE.
    - TI2V-5B's native size is 1280×704, which needs ~3× the compute per window.
-8. **SynthID calibration:** the user checks a strength sweep on synthid.com (starting at 0.38,
+4. **SynthID calibration:** the user checks a strength sweep on synthid.com (starting at 0.38,
    then lower for fidelity). Record the sha256 and verdicts in the trial doc.
-9. **Optional:**
+5. **Optional:**
    - Fold the VAE's RMS norm + SiLU into the conv input load.
    - Per-group int8 (g = 128) if the drift shows.
    - f16 VAE weights if memory is tight.
