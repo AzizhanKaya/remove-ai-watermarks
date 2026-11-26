@@ -24,7 +24,7 @@ use super::scheduler::UniPcScheduler;
 use super::transformer::{
     BlockResidency, TextContext, TransformerFiles, WAN21_TRANSFORMER, WAN22_TRANSFORMER, WanTransformer,
 };
-use super::vae3d::{VaeFiles, WAN21_VAE, WAN22_VAE, WanVae};
+use super::vae3d::{VaeFiles, VaeTiles, WAN21_VAE, WAN22_VAE, WanVae};
 use super::{FLOW_SHIFT, TEMPORAL_FACTOR, WAN22_FLOW_SHIFT};
 
 /// One supported checkpoint: its pinned VAE and transformer and its scheduler shift.
@@ -35,6 +35,11 @@ pub struct WanModel {
     pub flow_shift: f64,
     /// Too large for f16 blocks next to the VAE on 8 GB: int8 blocks swapped with the VAE.
     pub swapped: bool,
+    /// VAE tiling: diffusers' default tiles, as `video_wan.py` enables them for Wan 2.1 (Wan
+    /// 2.2's causal caches alone take ~3 GB untiled at 480p).
+    pub vae_tiles: Option<VaeTiles>,
+    /// Encode tiles, when they differ from [`Self::vae_tiles`].
+    pub vae_encode_tiles: Option<VaeTiles>,
 }
 
 impl WanModel {
@@ -54,6 +59,8 @@ pub const WAN21_T2V_1_3B: WanModel = WanModel {
     transformer: WAN21_TRANSFORMER,
     flow_shift: FLOW_SHIFT,
     swapped: false,
+    vae_tiles: Some(VaeTiles::DIFFUSERS),
+    vae_encode_tiles: Some(VaeTiles::DIFFUSERS),
 };
 
 /// `Wan-AI/Wan2.2-TI2V-5B-Diffusers` with its scheduler's default shift (Rust-only).
@@ -62,7 +69,17 @@ pub const WAN22_TI2V_5B: WanModel = WanModel {
     transformer: WAN22_TRANSFORMER,
     flow_shift: WAN22_FLOW_SHIFT,
     swapped: true,
+    vae_tiles: Some(VaeTiles::DIFFUSERS),
+    vae_encode_tiles: Some(VaeTiles::WAN22_ENCODE),
 };
+
+impl WanModel {
+    /// `vae` with this model's tiling.
+    pub fn tile(&self, vae: WanVae) -> WanVae {
+        vae.with_tiles(self.vae_tiles)
+            .with_encode_tiles(self.vae_encode_tiles)
+    }
+}
 
 /// The VAE on the device for good, or reloaded from its checkpoint for each encode and decode.
 #[derive(Debug, Clone)]
@@ -72,6 +89,7 @@ enum VaeSlot {
     Reloaded {
         config: VaeConfig,
         checkpoint: PathBuf,
+        model: WanModel,
         device: ComputeDevice,
     },
 }
@@ -91,9 +109,10 @@ impl VaeSlot {
             Self::Reloaded {
                 config,
                 checkpoint,
+                model,
                 device,
             } => {
-                let vae = WanVae::from_checkpoint(config.clone(), checkpoint, device)?;
+                let vae = model.tile(WanVae::from_checkpoint(config.clone(), checkpoint, device)?);
                 let out = stage(&vae);
                 drop(vae);
                 device.burn().memory_cleanup();
@@ -173,10 +192,11 @@ impl WanPipeline {
             VaeSlot::Reloaded {
                 config,
                 checkpoint,
+                model: *model,
                 device: device.clone(),
             }
         } else {
-            VaeSlot::Resident(WanVae::load_files(hub, fetch, &model.vae, device)?)
+            VaeSlot::Resident(model.tile(WanVae::load_files(hub, fetch, &model.vae, device)?))
         };
         let transformer = WanTransformer::load_files(hub, fetch, &model.transformer, device, residency)?;
         Ok(Self::assemble(vae, transformer, prompt, model.flow_shift))

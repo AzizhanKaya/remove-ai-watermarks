@@ -374,6 +374,8 @@ pub fn linear(
             (DType::F32, DType::F16) => launch!(f32, f16),
             other => panic!("linear supports f16/f32 storage, got {other:?}"),
         }
+        let rows = (row_blocks - first).min(per_dispatch) * tile.block_rows();
+        super::submit_heavy(&client, 2 * rows * n * k);
     }
     out
 }

@@ -17,6 +17,18 @@ pub mod gemm;
 pub mod hgemm;
 pub mod norm;
 
+/// Launched work after which a launcher submits: amdgpu's watchdog times a whole submission,
+/// and cubecl packs up to 32 dispatches into one (`CUBECL_WGPU_MAX_TASKS`).
+const SUBMIT_FLOPS: usize = 100_000_000_000;
+
+/// Submit `client`'s queued dispatches after a launch of `flops`; a failure resurfaces at the
+/// next readback.
+fn submit_heavy(client: &cubecl::client::Client, flops: usize) {
+    if flops >= SUBMIT_FLOPS {
+        let _ = client.flush();
+    }
+}
+
 use burn::backend::tensor::{FloatTensor, IntTensor};
 use burn::backend::{Backend, Dispatch, backend_extension};
 use burn::tensor::{DType, Device, Int, Shape, Tensor, TensorData};

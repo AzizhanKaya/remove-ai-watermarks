@@ -1,6 +1,6 @@
 # Port status and resume points
 
-Last updated: 2026-11-26. The Python package in `../src/remove_ai_watermarks` is the
+Last updated: 2026-11-27. The Python package in `../src/remove_ai_watermarks` is the
 behavioral oracle; every number below comes from differential golden tests or
 side-by-side CLI runs against it. Measured findings, speed tables and hazards live
 in [findings.md](findings.md); the user-file video trial is in
@@ -75,6 +75,27 @@ Results (480p; `tests/wan.rs` `wan_480p_timing`, `fused_blocks_match_reference_b
 Follow-ups: the f32 conv kernel tops out near 3 TFLOP/s (ACO splits its shared vec4 reads into
 two `ds_read_b64`); a packed-f16 Q·Kᵀ variant was slower (pair reads plus a 38 KB footprint
 halve occupancy) and was dropped; the VAE's RMS norm + SiLU could fold into the conv input load.
+
+## Wan 2.2 TI2V-5B (2026-11-27, Rust-only)
+
+Plan, results and TODO: [wan22-port-plan.md](wan22-port-plan.md).
+
+- `WanModel` (`WAN21_T2V_1_3B`, `WAN22_TI2V_5B`) selects the pinned files; the VAE and
+  transformer read their geometry from `config.json`.
+- Parity against diffusers float32 (`goldens/gpu_wan22/`):
+  - VAE: latents 3.5e-6, decoded 2.4e-5.
+  - Transformer (streamed f32): 7.2e-6.
+  - Pipeline window (streamed f32): 1 level.
+- `BlockResidency::Swapped(Int8)` is the GPU default for the 5B model:
+  - Int8 blocks (5 GB) live in host RAM and upload for each denoising pass; the VAE
+    (2.7 GB) reloads per stage.
+  - The pipeline window is within max 10, mean 0.66 levels.
+  - The VAE decodes with diffusers' 256/192 tiles and encodes with 128/96 tiles. Untiled
+    480p fills 8 GB and triggers ring timeouts (see findings).
+  - Int8 blocks are built on the host; the load leaves the GPU idle.
+- Resume point: rerun the user clip with `--profile wan22-synthid` and the GPU test suite.
+  Both are in "Where it stopped" of the plan.
+- CLI: `video all --invisible --profile wan22-synthid` (strength 0.38, not yet calibrated).
 
 ## GPU speed work: checkpoint of 2026-11-26 (compiles, NOT yet tested on the GPU)
 

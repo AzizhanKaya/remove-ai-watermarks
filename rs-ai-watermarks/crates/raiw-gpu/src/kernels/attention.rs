@@ -488,6 +488,8 @@ pub fn flash_attention_with(
             DType::F16 => launch!(f16),
             other => panic!("flash attention supports f32 and f16, got {other:?}"),
         }
+        let launched = (blocks - first).min(blocks_per_dispatch);
+        super::submit_heavy(&client, launched * heads * block_flops);
     }
     out
 }

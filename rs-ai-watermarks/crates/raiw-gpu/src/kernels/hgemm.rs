@@ -339,6 +339,8 @@ pub fn linear(
             (DType::I8, DType::F32) => launch!(i8, f32),
             other => panic!("packed GEMM writes f16 or f32, got {other:?}"),
         }
+        let rows = (row_blocks - first).min(per_dispatch) * BLOCK_ROWS;
+        super::submit_heavy(&client, 2 * rows * n * k);
     }
     out
 }

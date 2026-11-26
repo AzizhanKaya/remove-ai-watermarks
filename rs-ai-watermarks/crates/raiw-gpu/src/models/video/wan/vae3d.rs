@@ -5,8 +5,8 @@
 //! is a sum of per-time-tap `Conv2d` calls on the chunked im2col path, and a [`TimeCache`]
 //! carries the last two input frames of every convolution across chunks exactly like
 //! diffusers' `feat_cache`: the encoder sees the first frame alone and then chunks of four,
-//! the decoder one latent frame at a time. Wan 2.1 clips wider or taller than 256 px use Wan's
-//! own `tiled_encode`/`tiled_decode` geometry (256 px tiles, 192 px stride), as `video_wan.py`
+//! the decoder one latent frame at a time. Clips wider or taller than a tile use Wan's own
+//! `tiled_encode`/`tiled_decode` geometry ([`VaeTiles`]; 256 px tiles, 192 px stride), as `video_wan.py`
 //! enables tiling and slicing.
 //!
 //! Wan 2.2 patchifies 2x2 pixels into 12 channels and wraps every level in a parameter-free
@@ -28,31 +28,12 @@ use crate::weights::{HostTensor, StateDict};
 
 use super::attention::scaled_dot_product;
 use super::config::VaeConfig;
-use super::{
-    SPATIAL_FACTOR, TEMPORAL_FACTOR, VAE_CHECKPOINT, VAE_CONFIG, WAN22_VAE_CHECKPOINT, WAN22_VAE_CONFIG,
-};
+use super::{TEMPORAL_FACTOR, VAE_CHECKPOINT, VAE_CONFIG, WAN22_VAE_CHECKPOINT, WAN22_VAE_CONFIG};
 #[cfg(feature = "gpu-runtime")]
 use crate::kernels::{self, ConvShape};
 
 /// `CACHE_T`: frames each causal convolution remembers from the previous chunk.
 const CACHE_FRAMES: usize = 2;
-// Wan 2.1 tiling geometry (8x spatial factor)
-const TILE_SAMPLE: usize = 256;
-const TILE_SAMPLE_STRIDE: usize = 192;
-const TILE_LATENT: usize = TILE_SAMPLE / SPATIAL_FACTOR;
-const TILE_LATENT_STRIDE: usize = TILE_SAMPLE_STRIDE / SPATIAL_FACTOR;
-const ENCODE_TILING: Tiling = Tiling {
-    tile: TILE_SAMPLE,
-    stride: TILE_SAMPLE_STRIDE,
-    blend: TILE_LATENT - TILE_LATENT_STRIDE,
-    limit: TILE_LATENT_STRIDE,
-};
-const DECODE_TILING: Tiling = Tiling {
-    tile: TILE_LATENT,
-    stride: TILE_LATENT_STRIDE,
-    blend: TILE_SAMPLE - TILE_SAMPLE_STRIDE,
-    limit: TILE_SAMPLE_STRIDE,
-};
 
 /// A checkpoint's pinned `vae/config.json` and weights.
 #[derive(Debug, Clone, Copy)]
@@ -250,8 +231,9 @@ impl CausalConv3d {
     ) -> Result<Self> {
         let weight = state.take(&format!("{prefix}.weight"), &[output, input, k_t, k_s, k_s])?;
         let bias: Tensor<1> = state.tensor(&format!("{prefix}.bias"), [output], device)?;
+        // time-strided convs (1x1 in space, so cheap) run stride 1 and keep every other frame
         #[cfg(feature = "gpu-runtime")]
-        if stride == 1 && 2 * p_s + 1 == k_s && use_kernels(device) {
+        if (stride == 1 || k_s == 1) && 2 * p_s + 1 == k_s && use_kernels(device) {
             let shape = ConvShape {
                 in_channels: input,
                 out_channels: output,
@@ -340,7 +322,14 @@ impl CausalConv3d {
                 }
                 _ => (x, self.pad),
             };
-            return conv.forward(x, zeros, residual);
+            if self.stride == 1 {
+                return conv.forward(x, zeros, residual);
+            }
+            debug_assert!(residual.is_none(), "strided convs take no residual");
+            let y = conv.forward(x, zeros, None);
+            let frames = y.dims()[0];
+            let step = self.stride as isize;
+            return y.slice(s![0..frames;step]);
         }
         let out = self.forward_taps(x, cache);
         match residual {
@@ -514,26 +503,69 @@ impl ResidualBlock {
     }
 }
 
+/// A 1x1 convolution over `[T, C, H, W]` from a `[out, in, 1, 1]` weight: the conv kernel on
+/// a GPU (burn's matmul autotune on full-frame shapes can outlast the GPU watchdog), else a
+/// channel matmul.
+#[derive(Debug, Clone)]
+enum Mix {
+    Matmul(Pointwise),
+    #[cfg(feature = "gpu-runtime")]
+    Kernel(KernelConv),
+}
+
+impl Mix {
+    fn load(
+        state: &mut StateDict,
+        name: &str,
+        (input, output): (usize, usize),
+        device: &Device,
+    ) -> Result<Self> {
+        let w = state.take(&format!("{name}.weight"), &[output, input, 1, 1])?;
+        let bias = state.tensor(&format!("{name}.bias"), [output], device)?;
+        #[cfg(feature = "gpu-runtime")]
+        if use_kernels(device) {
+            let shape = ConvShape {
+                in_channels: input,
+                out_channels: output,
+                time_kernel: 1,
+                kernel: 1,
+                padding: 0,
+                upsample: false,
+            };
+            return Ok(Self::Kernel(KernelConv::new(&w.data, bias, shape, device)));
+        }
+        let w = Tensor::from_data(TensorData::new(w.data, [output, input]), device);
+        Ok(Self::Matmul(Pointwise::from_parts(w, Some(bias))))
+    }
+
+    fn forward(&self, x: Tensor<4>) -> Tensor<4> {
+        match self {
+            Self::Matmul(pointwise) => pointwise.forward(x),
+            #[cfg(feature = "gpu-runtime")]
+            Self::Kernel(conv) => conv.forward(x, 0, None),
+        }
+    }
+}
+
 /// `WanAttentionBlock`: single-head spatial self-attention within each frame.
 #[derive(Debug, Clone)]
 struct FrameAttention {
     norm: ChannelRmsNorm,
-    qkv: Pointwise,
-    proj: Pointwise,
+    qkv: Mix,
+    proj: Mix,
     channels: usize,
 }
 
 impl FrameAttention {
     fn load(state: &mut StateDict, prefix: &str, channels: usize, device: &Device) -> Result<Self> {
-        let mut pointwise = |name: &str, out: usize| -> Result<Pointwise> {
-            let w = state.take(&format!("{prefix}.{name}.weight"), &[out, channels, 1, 1])?;
-            let bias = state.tensor(&format!("{prefix}.{name}.bias"), [out], device)?;
-            let w = Tensor::from_data(TensorData::new(w.data, [out, channels]), device);
-            Ok(Pointwise::from_parts(w, Some(bias)))
-        };
         Ok(Self {
-            qkv: pointwise("to_qkv", 3 * channels)?,
-            proj: pointwise("proj", channels)?,
+            qkv: Mix::load(
+                state,
+                &format!("{prefix}.to_qkv"),
+                (channels, 3 * channels),
+                device,
+            )?,
+            proj: Mix::load(state, &format!("{prefix}.proj"), (channels, channels), device)?,
             norm: ChannelRmsNorm::load(state, &format!("{prefix}.norm"), channels, true, device)?,
             channels,
         })
@@ -544,8 +576,13 @@ impl FrameAttention {
         let qkv = self
             .qkv
             .forward(self.norm.forward(x.clone()))
-            .reshape([t, 3 * c, h * w])
-            .swap_dims(1, 2);
+            .reshape([t, 3 * c, h * w]);
+        #[cfg(feature = "gpu-runtime")]
+        if matches!(self.qkv, Mix::Kernel(_)) && (h * w).is_multiple_of(4) && c.is_multiple_of(4) {
+            let out = attend_frames(&qkv, c).reshape([t, c, h, w]);
+            return x + self.proj.forward(out);
+        }
+        let qkv = qkv.swap_dims(1, 2);
         let head = |i: usize| {
             qkv.clone()
                 .slice(s![.., .., i * self.channels..(i + 1) * self.channels])
@@ -557,6 +594,45 @@ impl FrameAttention {
             .reshape([t, c, h, w]);
         x + self.proj.forward(out)
     }
+}
+
+/// Per-frame `softmax(q·kᵀ / √c)·v` of `[T, 3c, tokens]` projections on the GEMM kernel,
+/// returning `[T, c, tokens]`.
+#[cfg(feature = "gpu-runtime")]
+fn attend_frames(qkv: &Tensor<3>, c: usize) -> Tensor<3> {
+    use burn::tensor::DType;
+    use burn::tensor::activation::softmax;
+    use kernels::{Activation, DenseWeight};
+
+    let [frames, _, tokens] = qkv.dims();
+    let device = qkv.device();
+    let scale = 1.0 / (c as f64).sqrt();
+    let outs = (0..frames)
+        .map(|f| {
+            let frame = qkv.clone().slice(s![f..f + 1]).reshape([3 * c, tokens]);
+            let part = |i: usize| frame.clone().slice(s![i * c..(i + 1) * c]);
+            let q = part(0).transpose().mul_scalar(scale);
+            // keys `[tokens, c]` and values `[c, tokens]` are PyTorch-layout `[out, in]` weights
+            let keys = DenseWeight::torch(part(1).transpose());
+            let scores = kernels::linear(
+                q,
+                &keys,
+                Tensor::zeros([tokens], &device),
+                Activation::Identity,
+                DType::F32,
+            );
+            let values = DenseWeight::torch(part(2));
+            kernels::linear(
+                softmax(scores, 1),
+                &values,
+                Tensor::zeros([c], &device),
+                Activation::Identity,
+                DType::F32,
+            )
+            .transpose()
+        })
+        .collect();
+    Tensor::stack(outs, 0)
 }
 
 /// `WanMidBlock`: resnet, attention, resnet.
@@ -586,13 +662,38 @@ impl MidBlock {
 #[derive(Debug, Clone)]
 enum Resample {
     Down {
-        conv: Conv2d,
+        conv: DownConv,
         time: Option<CausalConv3d>,
     },
     Up {
         conv: UpConv,
         time: Option<CausalConv3d>,
     },
+}
+
+/// The down path's `ZeroPad2d((0, 1, 0, 1))` + stride-2 3x3 convolution.
+#[derive(Debug, Clone)]
+enum DownConv {
+    Plain(Conv2d),
+    /// The stride-1 "same" kernel conv at odd rows and columns: output `(y, x)` reads input
+    /// `2y..2y + 3`, the rows past the edge being the zero padding (4x the FLOPs of the
+    /// strided conv, but no im2col matmul and its autotune).
+    #[cfg(feature = "gpu-runtime")]
+    Kernel(KernelConv),
+}
+
+impl DownConv {
+    fn forward(&self, x: Tensor<4>) -> Tensor<4> {
+        match self {
+            Self::Plain(conv) => conv.forward_padded(x, [(0, 1), (0, 1)]),
+            #[cfg(feature = "gpu-runtime")]
+            Self::Kernel(conv) => {
+                let y = conv.forward(x, 0, None);
+                let [_, _, h, w] = y.dims();
+                y.slice(s![.., .., 1..h;2, 1..w;2])
+            }
+        }
+    }
 }
 
 /// The up path's 3x3 convolution of the 2x nearest-upsampled frames.
@@ -622,8 +723,13 @@ impl Resample {
         temporal: bool,
         device: &Device,
     ) -> Result<Self> {
-        let spec = Conv2dSpec::new(dim, dim, 3).stride(2);
-        let conv = Conv2d::load(state, &format!("{prefix}.resample.1"), spec, device)?;
+        let name = format!("{prefix}.resample.1");
+        let conv = if use_kernels(device) {
+            down_kernel(state, &name, dim, device)?
+        } else {
+            let spec = Conv2dSpec::new(dim, dim, 3).stride(2);
+            DownConv::Plain(Conv2d::load(state, &name, spec, device)?)
+        };
         let time = temporal
             .then(|| {
                 CausalConv3d::load(
@@ -678,7 +784,7 @@ impl Resample {
     fn forward(&self, x: Tensor<4>, cache: &mut TimeCache) -> Tensor<4> {
         match self {
             Self::Down { conv, time } => {
-                let x = conv.forward_padded(x, [(0, 1), (0, 1)]);
+                let x = conv.forward(x);
                 match time {
                     Some(time) => downsample_time(time, x, cache),
                     None => x,
@@ -717,6 +823,31 @@ fn up_kernel(
 
 #[cfg(not(feature = "gpu-runtime"))]
 fn up_kernel(_: &mut StateDict, _: &str, _: (usize, usize), _: &Device) -> Result<UpConv> {
+    unreachable!("kernels are off without gpu-runtime")
+}
+
+#[cfg(feature = "gpu-runtime")]
+fn down_kernel(state: &mut StateDict, name: &str, dim: usize, device: &Device) -> Result<DownConv> {
+    let shape = ConvShape {
+        in_channels: dim,
+        out_channels: dim,
+        time_kernel: 1,
+        kernel: 3,
+        padding: 1,
+        upsample: false,
+    };
+    let weight = state.take(&format!("{name}.weight"), &[dim, dim, 3, 3])?;
+    let bias = state.tensor(&format!("{name}.bias"), [dim], device)?;
+    Ok(DownConv::Kernel(KernelConv::new(
+        &weight.data,
+        bias,
+        shape,
+        device,
+    )))
+}
+
+#[cfg(not(feature = "gpu-runtime"))]
+fn down_kernel(_: &mut StateDict, _: &str, _: usize, _: &Device) -> Result<DownConv> {
     unreachable!("kernels are off without gpu-runtime")
 }
 
@@ -985,6 +1116,9 @@ struct Decoder {
     conv_in: CausalConv3d,
     mid: MidBlock,
     blocks: Vec<Stage>,
+    /// Blocks up to the last temporal upsample; the rest are causal in time only through their
+    /// caches, so they run frame by frame (a quarter of the full-size activations).
+    temporal_blocks: usize,
     norm_out: ChannelRmsNorm,
     conv_out: CausalConv3d,
 }
@@ -999,6 +1133,7 @@ impl Decoder {
         let conv_in = CausalConv3d::cube(state, "decoder.conv_in", config.z_dim, dims[0], device)?;
         let mid = MidBlock::load(state, "decoder.mid_block", dims[0], device)?;
         let mut blocks = Vec::new();
+        let mut temporal_blocks = 0;
         for (i, pair) in dims.windows(2).enumerate() {
             let output = pair[1];
             // Wan 2.1 halves the channels in each upsampler and so feeds half to the next block
@@ -1009,6 +1144,9 @@ impl Decoder {
             };
             let up = i + 1 < mult.len();
             let temporal = up && config.time_downsample[config.time_downsample.len() - 1 - i];
+            if temporal {
+                temporal_blocks = i + 1;
+            }
             let prefix = format!("decoder.up_blocks.{i}");
             let resnets = load_resnets(
                 state,
@@ -1041,6 +1179,7 @@ impl Decoder {
             conv_in,
             mid,
             blocks,
+            temporal_blocks,
             norm_out: ChannelRmsNorm::load(state, "decoder.norm_out", out, false, device)?,
             conv_out: CausalConv3d::cube(state, "decoder.conv_out", out, config.out_channels, device)?,
         })
@@ -1048,36 +1187,91 @@ impl Decoder {
 
     fn forward(&self, x: Tensor<4>, cache: &mut TimeCache, first_chunk: bool) -> Tensor<4> {
         let x = self.mid.forward(self.conv_in.forward_cached(x, cache), cache);
-        let x = self
-            .blocks
+        let (temporal, spatial) = self.blocks.split_at(self.temporal_blocks);
+        let x = temporal
             .iter()
             .fold(x, |x, stage| stage.forward(x, cache, first_chunk));
-        self.conv_out
-            .forward_cached(silu(self.norm_out.forward(x)), cache)
+        // each frame revisits the same cache slots, in order, as the whole chunk would
+        let start = cache.cursor;
+        let frames = x.dims()[0];
+        let outs = (0..frames)
+            .map(|f| {
+                cache.cursor = start;
+                let y = spatial.iter().fold(x.clone().slice(s![f..f + 1]), |y, stage| {
+                    stage.forward(y, cache, first_chunk)
+                });
+                self.conv_out
+                    .forward_cached(silu(self.norm_out.forward(y)), cache)
+            })
+            .collect();
+        Tensor::cat(outs, 0)
     }
 }
 
-/// `patchify`: `[T, C, H, W]` -> `[T, C·p², H / p, W / p]`, channel `c·p² + pw·p + ph`.
-fn patchify(x: Tensor<4>, p: usize) -> Tensor<4> {
+/// `patchify` of a time-major `[T·C, H, W]` plane: `[T·C·p², H / p, W / p]`, channel
+/// `c·p² + pw·p + ph` within each frame.
+fn patchify(plane: &Plane, p: usize) -> Plane {
     if p == 1 {
-        return x;
+        return plane.clone();
     }
-    let [t, c, h, w] = x.dims();
-    x.reshape([t, c, h / p, p, w / p, p])
-        .permute([0, 1, 5, 3, 2, 4])
-        .reshape([t, c * p * p, h / p, w / p])
+    let (h, w) = (plane.height / p, plane.width / p);
+    let mut data = vec![0.0f32; plane.data.len()];
+    for (k, src) in plane.data.chunks_exact(plane.height * plane.width).enumerate() {
+        for (py, px) in (0..p).flat_map(|py| (0..p).map(move |px| (py, px))) {
+            let channel = (k * p + px) * p + py;
+            let dst = &mut data[channel * h * w..(channel + 1) * h * w];
+            for (y, row) in dst.chunks_exact_mut(w).enumerate() {
+                let line = &src[(y * p + py) * plane.width..];
+                for (x, value) in row.iter_mut().enumerate() {
+                    *value = line[x * p + px];
+                }
+            }
+        }
+    }
+    Plane::new(plane.channels * p * p, h, w, data)
 }
 
 /// `unpatchify`, the inverse of [`patchify`].
-fn unpatchify(x: Tensor<4>, p: usize) -> Tensor<4> {
+fn unpatchify(plane: &Plane, p: usize) -> Plane {
     if p == 1 {
-        return x;
+        return plane.clone();
     }
-    let [t, c, h, w] = x.dims();
-    let c = c / (p * p);
-    x.reshape([t, c, p, p, h, w])
-        .permute([0, 1, 4, 3, 5, 2])
-        .reshape([t, c, h * p, w * p])
+    let (h, w) = (plane.height, plane.width);
+    let (height, width) = (h * p, w * p);
+    let mut data = vec![0.0f32; plane.data.len()];
+    for (channel, src) in plane.data.chunks_exact(h * w).enumerate() {
+        let (k, px, py) = (channel / (p * p), channel / p % p, channel % p);
+        let dst = &mut data[k * height * width..(k + 1) * height * width];
+        for (y, row) in src.chunks_exact(w).enumerate() {
+            let line = &mut dst[(y * p + py) * width..];
+            for (x, &value) in row.iter().enumerate() {
+                line[x * p + px] = value;
+            }
+        }
+    }
+    Plane::new(plane.channels / (p * p), height, width, data)
+}
+
+/// `enable_tiling(tile_sample_min_*=sample, tile_sample_stride_*=stride)`: square tiles in
+/// input pixels.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct VaeTiles {
+    pub sample: usize,
+    pub stride: usize,
+}
+
+impl VaeTiles {
+    /// diffusers' defaults (what `video_wan.py` runs Wan 2.1 with).
+    pub const DIFFUSERS: Self = Self {
+        sample: 256,
+        stride: 192,
+    };
+    /// Wan 2.2 encode tiles: diffusers' default covers 512 px of the patchified clip, which with
+    /// the transformer's resident remainder overflows 8 GB at 480p.
+    pub const WAN22_ENCODE: Self = Self {
+        sample: 128,
+        stride: 96,
+    };
 }
 
 /// `AutoencoderKLWan` from a Wan 2.1 or Wan 2.2 Diffusers checkpoint (`vae/`).
@@ -1088,7 +1282,9 @@ pub struct WanVae {
     decoder: Decoder,
     quant_conv: CausalConv3d,
     post_quant_conv: CausalConv3d,
-    tiling: bool,
+    /// Decode tiles (and encode tiles unless [`Self::with_encode_tiles`] set others).
+    tiles: Option<VaeTiles>,
+    encode_tiles: Option<VaeTiles>,
     device: ComputeDevice,
 }
 
@@ -1133,7 +1329,8 @@ impl WanVae {
         state.finish()?;
         Ok(Self {
             // diffusers leaves tiling off; `video_wan.py` enables it for Wan 2.1
-            tiling: config.patch() == 1,
+            tiles: (config.patch() == 1).then_some(VaeTiles::DIFFUSERS),
+            encode_tiles: (config.patch() == 1).then_some(VaeTiles::DIFFUSERS),
             config,
             encoder,
             decoder,
@@ -1161,29 +1358,67 @@ impl WanVae {
         self.config.spatial_factor()
     }
 
-    /// `enable_tiling()` (on by default for Wan 2.1, as `video_wan.py` loads it; Wan 2.2's
-    /// patchified tiling is not ported).
+    /// `enable_tiling(...)` with `tiles`, or `disable_tiling()` (Wan 2.1 loads with
+    /// [`VaeTiles::DIFFUSERS`] as `video_wan.py` does, Wan 2.2 untiled as diffusers does).
     #[must_use]
-    pub fn with_tiling(mut self, tiling: bool) -> Self {
-        self.tiling = tiling;
+    pub fn with_tiles(mut self, tiles: Option<VaeTiles>) -> Self {
+        self.set_tiles(tiles);
         self
     }
 
-    pub fn set_tiling(&mut self, tiling: bool) {
-        self.tiling = tiling;
+    pub fn set_tiles(&mut self, tiles: Option<VaeTiles>) {
+        self.tiles = tiles;
+        self.encode_tiles = tiles;
     }
 
-    /// Whether a `(height, width)` clip runs tiled, `limit` being the untiled side limit.
-    fn tiled(&self, (height, width): (usize, usize), limit: usize) -> Result<bool> {
-        if !self.tiling || (height <= limit && width <= limit) {
-            return Ok(false);
-        }
+    /// Encode with other tiles than decode: each pass then runs as diffusers would with its
+    /// own `enable_tiling` (diffusers' encode tiles are in patchified pixels, so they cover
+    /// `patch²` times the area of its decode tiles).
+    #[must_use]
+    pub fn with_encode_tiles(mut self, tiles: Option<VaeTiles>) -> Self {
+        self.encode_tiles = tiles;
+        self
+    }
+
+    pub fn tiles(&self) -> Option<VaeTiles> {
+        self.tiles
+    }
+
+    /// `tiled_encode`'s geometry over the patchified clip (tiles in patchified pixels, blended
+    /// in latents), when a side exceeds the tile.
+    fn encode_tiling(&self, (height, width): (usize, usize)) -> Option<Tiling> {
+        let tiles = self
+            .encode_tiles
+            .filter(|t| height > t.sample || width > t.sample)?;
+        let factor = self.spatial_factor() / self.config.patch();
+        Some(Tiling {
+            tile: tiles.sample,
+            stride: tiles.stride,
+            blend: tiles.sample / factor - tiles.stride / factor,
+            limit: tiles.stride / factor,
+        })
+    }
+
+    /// `tiled_decode`'s geometry over latents (blended in patchified pixels).
+    fn decode_tiling(&self, (height, width): (usize, usize)) -> Option<Tiling> {
+        let (factor, patch) = (self.spatial_factor(), self.config.patch());
+        let tiles = self
+            .tiles
+            .filter(|t| height > t.sample / factor || width > t.sample / factor)?;
+        Some(Tiling {
+            tile: tiles.sample / factor,
+            stride: tiles.stride / factor,
+            blend: tiles.sample / patch - tiles.stride / patch,
+            limit: tiles.stride / patch,
+        })
+    }
+
+    /// Return the pool pages a chunk left free: untiled Wan 2.2 frames allocate in sizes the
+    /// next chunk's pages would not fit, and the reserve otherwise nears the card's capacity.
+    fn release_pages(&self) {
         if self.config.patch() > 1 {
-            return Err(GpuError::Config(
-                "tiling is not ported for the patchified (Wan 2.2) VAE".to_owned(),
-            ));
+            self.device.burn().memory_cleanup();
         }
-        Ok(true)
     }
 
     /// `encode(video).latent_dist.mode()` of `1 + 4k` RGB frames in `[-1, 1]`, `[T, 3, H, W]`.
@@ -1198,11 +1433,13 @@ impl WanVae {
                 "Wan VAE encodes 1 + 4k frames, got {count}"
             )));
         }
-        let input = Plane::new(count * 3, height, width, frames.to_vec());
-        let moments = if self.tiled((height, width), TILE_SAMPLE)? {
-            run_tiled(&input, ENCODE_TILING, |tile| self.encode_plane(tile, count))?
-        } else {
-            self.encode_plane(&input, count)?
+        let input = patchify(
+            &Plane::new(count * 3, height, width, frames.to_vec()),
+            self.config.patch(),
+        );
+        let moments = match self.encode_tiling((height, width)) {
+            Some(tiling) => run_tiled(&input, tiling, |tile| self.encode_plane(tile, count))?,
+            None => self.encode_plane(&input, count)?,
         };
         let latent_frames = 1 + (count - 1) / TEMPORAL_FACTOR;
         let (h, w) = (height / f, width / f);
@@ -1224,13 +1461,11 @@ impl WanVae {
         check_clip(latents.len(), latent_frames, z, height, width, 1)?;
         let time_major = swap_time_channels(latents, z, latent_frames, height * width);
         let input = Plane::new(latent_frames * z, height, width, time_major);
-        let mut decoded = if self.tiled((height, width), TILE_LATENT)? {
-            run_tiled(&input, DECODE_TILING, |tile| {
-                self.decode_plane(tile, latent_frames)
-            })?
-        } else {
-            self.decode_plane(&input, latent_frames)?
+        let decoded = match self.decode_tiling((height, width)) {
+            Some(tiling) => run_tiled(&input, tiling, |tile| self.decode_plane(tile, latent_frames))?,
+            None => self.decode_plane(&input, latent_frames)?,
         };
+        let mut decoded = unpatchify(&decoded, self.config.patch());
         let frames = 1 + TEMPORAL_FACTOR * (latent_frames - 1);
         check_assembled(&decoded, frames * 3, height * f, width * f)?;
         for value in &mut decoded.data {
@@ -1239,15 +1474,15 @@ impl WanVae {
         Ok(decoded.data)
     }
 
-    /// Encoder + `quant_conv` means of one (tile of a) clip, time-major `[T', z, h, w]`.
+    /// Encoder + `quant_conv` means of one (tile of a) patchified clip, time-major `[T', z, h, w]`.
     fn encode_plane(&self, input: &Plane, count: usize) -> Result<Plane> {
         let (h, w) = (input.height, input.width);
-        let (f, z) = (self.spatial_factor(), self.latent_channels());
+        let (z, channels) = (self.latent_channels(), self.config.in_channels);
+        let factor = self.spatial_factor() / self.config.patch();
         let clip: Tensor<4> = Tensor::from_data(
-            TensorData::new(input.data.clone(), [count, 3, h, w]),
+            TensorData::new(input.data.clone(), [count, channels, h, w]),
             self.device.burn(),
         );
-        let clip = patchify(clip, self.config.patch());
         let mut cache = TimeCache::default();
         let mut data = Vec::new();
         let mut start = 0;
@@ -1260,16 +1495,18 @@ impl WanVae {
                 None,
             );
             data.extend(read_finite(moments.slice(s![.., 0..z]))?);
+            self.release_pages();
             start = end;
         }
         let latent_frames = 1 + (count - 1) / TEMPORAL_FACTOR;
-        Ok(Plane::new(latent_frames * z, h / f, w / f, data))
+        Ok(Plane::new(latent_frames * z, h / factor, w / factor, data))
     }
 
-    /// `post_quant_conv` + decoder of one (tile of a) latent clip, time-major `[T, 3, H, W]`.
+    /// `post_quant_conv` + decoder of one (tile of a) latent clip, time-major and still
+    /// patchified: `[T, C·p², H / p, W / p]`.
     fn decode_plane(&self, input: &Plane, latent_frames: usize) -> Result<Plane> {
         let (h, w) = (input.height, input.width);
-        let (f, patch) = (self.spatial_factor(), self.config.patch());
+        let factor = self.spatial_factor() / self.config.patch();
         let z: Tensor<4> = Tensor::from_data(
             TensorData::new(input.data.clone(), [latent_frames, self.latent_channels(), h, w]),
             self.device.burn(),
@@ -1282,10 +1519,16 @@ impl WanVae {
             let frames = self
                 .decoder
                 .forward(z.clone().slice(s![i..i + 1]), &mut cache, i == 0);
-            data.extend(read_finite(unpatchify(frames, patch))?);
+            data.extend(read_finite(frames)?);
+            self.release_pages();
         }
         let frames = 1 + TEMPORAL_FACTOR * (latent_frames - 1);
-        Ok(Plane::new(frames * 3, h * f, w * f, data))
+        Ok(Plane::new(
+            frames * self.config.out_channels,
+            h * factor,
+            w * factor,
+            data,
+        ))
     }
 }
 
@@ -1367,13 +1610,18 @@ mod tests {
 
     #[test]
     fn patchify_orders_channels_like_diffusers() {
-        let device = Device::flex();
         // One 2x2 frame [[a, b], [c, d]] -> channels `pw·2 + ph`: a, c, b, d
-        let x = Tensor::<4>::from_floats([[[[1.0, 2.0], [3.0, 4.0]]]], &device);
-        let packed = patchify(x.clone(), 2);
-        assert_eq!(packed.dims(), [1, 4, 1, 1]);
-        assert_eq!(read_f32(packed.clone()).unwrap(), vec![1.0, 3.0, 2.0, 4.0]);
-        assert_eq!(read_f32(unpatchify(packed, 2)).unwrap(), read_f32(x).unwrap());
+        let frame = Plane::new(1, 2, 2, vec![1.0, 2.0, 3.0, 4.0]);
+        let packed = patchify(&frame, 2);
+        assert_eq!((packed.channels, packed.height, packed.width), (4, 1, 1));
+        assert_eq!(packed.data, [1.0, 3.0, 2.0, 4.0]);
+        // Two frames of two channels at 4x6 round-trip
+        let clip = Plane::new(4, 4, 6, (0..96).map(|v| v as f32).collect());
+        let packed = patchify(&clip, 2);
+        assert_eq!((packed.channels, packed.height, packed.width), (16, 2, 3));
+        // channel 4: frame 0, channel 1 (values 24..48), even rows and columns
+        assert_eq!(packed.data[4 * 6..5 * 6], [24.0, 26.0, 28.0, 36.0, 38.0, 40.0]);
+        assert_eq!(unpatchify(&packed, 2).data, clip.data);
     }
 
     #[test]

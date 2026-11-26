@@ -92,6 +92,21 @@ Not yet at parity:
   the stored count. The cache can be produced without 12 GB of RAM by loading UMT5-XXL with
   accelerate disk offload (`device_map="auto"`, a 3 GiB CPU budget): same `encode_prompt`, ~4 GB
   RSS, 23 GB download.
+- Wan 2.2 VAE (2026-11-27): the GPU hit three ring timeouts before the VAE fit 8 GB.
+  Each time the driver reset the ring and the desktop survived.
+  - burn's matmul autotune again outlasted the watchdog, this time on the untiled VAE's im2col
+    down-convs and mid-block attention. The GPU VAE now runs these on the kernels: stride-2
+    convs as stride-1 kernel convs subsampled, 1x1 projections on the conv kernel, and
+    attention as two GEMM-kernel products.
+  - amdgpu times a whole submission, and cubecl packs up to 32 dispatches into one
+    (`CUBECL_WGPU_MAX_TASKS`). Every kernel launcher now flushes after ≥ 100 GFLOP.
+  - Near-full VRAM (> ~7.5 GiB of 8) evicts buffers to GTT and stalls jobs past the
+    watchdog. The causal caches alone take ~3 GB untiled at 480p, so Wan 2.2 decodes with
+    diffusers' 256/192 tiles and decoder stages after the last temporal upsample run frame by
+    frame.
+  - For memory experiments, poll `mem_info_vram_used` and kill the process before the card
+    fills: a killed process frees its VRAM without a reset. Match the process with
+    `pkill -x <comm>`; `pkill -f` matches the watching shell too.
 - earlyoom killed a model test and the user's desktop app while three workers
   ran model tests with full swap.
 - wgpu cannot report VRAM, so `vram_below` returns true and `--profile auto` never

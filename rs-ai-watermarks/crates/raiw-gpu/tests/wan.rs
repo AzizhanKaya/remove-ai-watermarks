@@ -13,7 +13,7 @@ use raiw_core::testing::{fixture, golden};
 use raiw_gpu::models::video::wan::pipeline::{bgr_u8_to_unit, unit_to_bgr_u8};
 use raiw_gpu::models::video::wan::prompt::DEFAULT_PROMPT;
 use raiw_gpu::models::video::wan::{
-    BlockResidency, PromptEmbedding, TransformerFiles, UniPcScheduler, VaeFiles, WAN21_T2V_1_3B,
+    BlockResidency, PromptEmbedding, TransformerFiles, UniPcScheduler, VaeFiles, VaeTiles, WAN21_T2V_1_3B,
     WAN21_TRANSFORMER, WAN21_VAE, WAN22_TI2V_5B, WAN22_TRANSFORMER, WAN22_VAE, WanModel, WanPipeline,
     WanTransformer, WanVae,
 };
@@ -124,13 +124,20 @@ fn wan22_vae_matches_diffusers() {
 fn vae_parity(suite: &str, files: &VaeFiles, label: &str) {
     let golden = golden(suite, "vae");
     for device in devices() {
-        let Some(vae) = loaded(
+        let Some(mut vae) = loaded(
             WanVae::load_files(&Hub::from_env(), fetch(), files, &device),
             label,
         ) else {
             return;
         };
+        let default_tiles = vae.tiles();
         for (name, case) in golden["cases"].as_object().unwrap() {
+            // cases recorded with `enable_tiling(...)` carry their tile and stride
+            let tiles = case["input"].get("tiles").map(|t| VaeTiles {
+                sample: dim(t, "sample"),
+                stride: dim(t, "stride"),
+            });
+            vae.set_tiles(tiles.or(default_tiles));
             let (pixels, frames, height, width) = clip(&case["input"]);
             let start = Instant::now();
             let latents = vae.encode(&pixels, frames, height, width).unwrap();
@@ -367,33 +374,58 @@ fn wan_480p_timing() {
     let hub = Hub::from_env();
     // RAIW_WAN_MODEL=wan22 times Wan 2.2 TI2V 5B (int8 blocks by default) instead of Wan 2.1
     let wan22 = std::env::var("RAIW_WAN_MODEL").as_deref() == Ok("wan22");
-    let (vae_files, transformer_files) = if wan22 {
-        (&WAN22_VAE, &WAN22_TRANSFORMER)
-    } else {
-        (&WAN21_VAE, &WAN21_TRANSFORMER)
-    };
+    let model = if wan22 { &WAN22_TI2V_5B } else { &WAN21_T2V_1_3B };
+    let (vae_files, transformer_files) = (&model.vae, &model.transformer);
     let Some(vae) = loaded(WanVae::load_files(&hub, fetch(), vae_files, &device), "Wan VAE") else {
         return;
     };
-    let (height, width) = (480, 832);
+    let vae = model.tile(vae);
+    // RAIW_WAN_SIZE="480x864" overrides the clip size
+    let (height, width) = std::env::var("RAIW_WAN_SIZE").ok().map_or((480, 832), |v| {
+        let (h, w) = v.split_once('x').unwrap();
+        (h.parse().unwrap(), w.parse().unwrap())
+    });
     let factor = vae.spatial_factor();
+    // wall-clock phase marks, to line up with an external VRAM sampler
+    let mark = |phase: &str| {
+        let now = std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .unwrap();
+        println!("phase {phase} at {:.1}", now.as_secs_f64());
+    };
     for frames in [1usize, 5] {
         let pixels = synthetic_signal(frames * 3 * height * width, 977, 3);
+        mark(&format!("encode {frames}"));
         let start = Instant::now();
         let latents = vae.encode(&pixels, frames, height, width).unwrap();
         let encode = start.elapsed().as_secs_f64();
         let latent_frames = 1 + (frames - 1) / 4;
+        mark(&format!("decode {frames}"));
         let start = Instant::now();
         vae.decode(&latents, latent_frames, height / factor, width / factor)
             .unwrap();
         let decode = start.elapsed().as_secs_f64();
-        println!("wan vae {frames}x{height}x{width} on {device}: encode {encode:.2}s decode {decode:.2}s");
+        let pool = device.burn().memory_pool_usage().map_or_else(String::new, |u| {
+            format!(
+                " (pool: {:.2} GiB live, {:.2} GiB reserved)",
+                u.bytes_in_use as f64 / f64::from(1 << 30),
+                u.bytes_reserved as f64 / f64::from(1 << 30)
+            )
+        });
+        println!(
+            "wan vae {frames}x{height}x{width} on {device}: encode {encode:.2}s decode {decode:.2}s{pool}"
+        );
     }
     drop(vae);
     device.burn().memory_cleanup();
     // RAIW_WAN_RESIDENCY=streamed|fused-f32|int8 overrides the default (fused f16 on a GPU,
     // int8 for Wan 2.2); RAIW_WAN_FRAMES="1,5,21" picks the latent frame counts (21 = one
-    // 81-frame window)
+    // 81-frame window, "none" times the VAE only)
+    let frames: Vec<usize> = match std::env::var("RAIW_WAN_FRAMES").as_deref() {
+        Ok("none") => return,
+        Ok(list) => list.split(',').map(|f| f.trim().parse().unwrap()).collect(),
+        Err(_) => vec![1, 3, 5],
+    };
     let residency = match std::env::var("RAIW_WAN_RESIDENCY").as_deref() {
         Ok("streamed") => BlockResidency::Streamed,
         #[cfg(feature = "gpu-runtime")]
@@ -417,10 +449,6 @@ fn wan_480p_timing() {
     let text = transformer.encode_text(&prompt);
     let (rows, cols) = (height / factor, width / factor);
     let channels = transformer.config().in_channels;
-    let frames: Vec<usize> = std::env::var("RAIW_WAN_FRAMES").ok().map_or_else(
-        || vec![1, 3, 5],
-        |v| v.split(',').map(|f| f.trim().parse().unwrap()).collect(),
-    );
     for latent_frames in frames {
         let latents = synthetic_signal(channels * latent_frames * rows * cols, 977, 4);
         let tokens = latent_frames * rows * cols / 4;

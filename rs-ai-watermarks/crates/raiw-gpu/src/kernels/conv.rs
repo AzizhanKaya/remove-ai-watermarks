@@ -444,7 +444,8 @@ pub fn causal_conv3d(
         shape.out_channels.div_ceil(2 * VECTOR * tc) as u32,
     );
     for first in (0..out_frames).step_by(per_dispatch) {
-        let count = CubeCount::Static(blocks.0, blocks.1, (out_frames - first).min(per_dispatch) as u32);
+        let frames = (out_frames - first).min(per_dispatch);
+        let count = CubeCount::Static(blocks.0, blocks.1, frames as u32);
         conv_kernel::launch::<f32>(
             &x.client,
             count,
@@ -464,6 +465,7 @@ pub fn causal_conv3d(
             shape,
             tc,
         );
+        super::submit_heavy(&x.client, frames * frame_flops);
     }
     out
 }

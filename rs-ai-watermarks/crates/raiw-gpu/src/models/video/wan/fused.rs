@@ -235,12 +235,21 @@ impl FusedBlock {
 
     /// Project the text context `[text tokens, dim]` (float32) to this block's keys and values.
     pub fn cross_kv(&self, text: &Tensor<2>) -> CrossKv {
+        self.project_text(&self.cross_kv, self.cross_norm_k.clone(), text)
+    }
+
+    /// [`Self::cross_kv`] of a block parked on another device: only its key/value projection
+    /// visits `device`.
+    pub fn cross_kv_on(&self, text: &Tensor<2>, device: &Device) -> CrossKv {
+        let dense = self.cross_kv.to_device(device);
+        self.project_text(&dense, self.cross_norm_k.clone().to_device(device), text)
+    }
+
+    fn project_text(&self, cross_kv: &Dense, norm_k: Tensor<1>, text: &Tensor<2>) -> CrossKv {
         let dim = self.dim;
-        let kv = self
-            .cross_kv
-            .apply(store(text.clone(), self.dtype), Activation::Identity, self.dtype);
+        let kv = cross_kv.apply(store(text.clone(), self.dtype), Activation::Identity, self.dtype);
         CrossKv {
-            k: kernels::rms_norm(kv.clone(), self.cross_norm_k.clone(), 0, dim, EPS, self.dtype),
+            k: kernels::rms_norm(kv.clone(), norm_k, 0, dim, EPS, self.dtype),
             v: kv.slice(s![.., dim..2 * dim]),
         }
     }

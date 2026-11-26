@@ -1,6 +1,6 @@
 # Wan 2.2 TI2V-5B port plan
 
-Last updated: 2026-11-26. Wan 2.1 T2V-1.3B regenerations at strength 0.38 pass synthid.com
+Last updated: 2026-11-27. Wan 2.1 T2V-1.3B regenerations at strength 0.38 pass synthid.com
 but look soft and unnatural ([video-synthid-trial-2026-11.md](video-synthid-trial-2026-11.md)).
 Wan 2.2 TI2V-5B is the strongest Wan that fits the 8 GB RX 5500 XT, and only with int8 weights.
 Python has no Wan 2.2 path, so the oracle is diffusers 0.43 itself (oracle venv), and the
@@ -47,7 +47,8 @@ timestep in video-to-video, where every token shares one t.
     (diffusers bf16 drifts 1.48e-2).
   - Speed: ~4.8 TFLOP/s.
 - [x] Goldens from diffusers float32 on CPU (`goldens/gpu_wan22/`):
-  - `gpu_wan22_vae.py`: two untiled clips.
+  - `gpu_wan22_vae.py`: two untiled clips, and two tiled ones (diffusers' 256/192 and 512/480
+    `enable_tiling`).
   - `gpu_wan22_transformer.py`: the block-streamed oracle of `gpu_wan_transformer.py`.
   - `gpu_wan22_pipeline.py`: `_run_wan_window` with `flow_shift` 5. diffusers'
     `WanVideoToVideoPipeline` derives its spatial factor as 8, so the script sets it to 16.
@@ -55,7 +56,25 @@ timestep in video-to-video, where every token shares one t.
   - Patchify (channel `c·4 + pw·2 + ph`).
   - `AvgDown3D` / `DupUp3D` shortcuts with `first_chunk`, residual down/up blocks,
     `upsample_out_dim`, `decoder_base_dim`, 48-channel statistics, output clamp.
-  - Matches diffusers: latents 3.5e-6, decoded 2.4e-5 (CPU and GPU). Untiled, as diffusers runs it.
+  - Matches diffusers: latents 3.5e-6, decoded 2.4e-5 (CPU and GPU).
+  - `VaeTiles` mirrors `tiled_encode`/`tiled_decode` for both models (patchified tiles, latent
+    blends for encode; latent tiles, patchified blends for decode). It matches diffusers'
+    tiled output to 4.5e-6 / 1.5e-5.
+  - On the GPU no burn matmul runs (the autotune outlasted the watchdog on full frames):
+    - stride-2 convs run as subsampled stride-1 kernel convs;
+    - the 1x1 projections run on the conv kernel;
+    - mid-block attention runs on the GEMM kernel.
+  - Decoder stages after the last temporal upsample run frame by frame.
+  - Memory at 480×864: untiled, the 30 causal caches alone take ~3 GB and the card fills
+    (ring timeouts).
+    - diffusers' encode tiles are in patchified pixels, so its 256 px default covers 512 px
+      of the frame. Next to the transformer's resident remainder (~0.45 GiB) that still
+      overflowed in the CLI.
+    - Encode tiles are therefore separate (`with_encode_tiles`): Wan 2.2 encodes with 128/96
+      (`VaeTiles::WAN22_ENCODE`) and decodes with diffusers' 256/192.
+    - Each pass equals diffusers run with that `enable_tiling`.
+    - 5 frames: encode 6.3 s at 3.7 GiB peak, decode 25.2 s at 4.0 GiB peak (desktop
+      included).
 - [x] Transformer: `WAN22_TRANSFORMER` pins the 5 shards. Streamed float32 matches diffusers to
   2.9-7.2e-6. Resident `Int8` is off by 2.3% of the peak `|out|` (Wan 2.1: 3.1%), in line with
   diffusers' own bf16 drift per block.
@@ -64,6 +83,11 @@ timestep in video-to-video, where every token shares one t.
   the configs.
 - [x] Memory staging, `BlockResidency::Swapped(Precision)`:
   - The int8 blocks live in host memory (~5 GB RAM) and upload for each denoising pass.
+  - Int8 blocks are quantized and built on the host. Building them on the GPU and parking
+    them left the pool growing ~180 MB per block (7.9 GiB at the end of the load). f16 blocks
+    still build on the GPU, since the packing runs a kernel, with a cleanup after each.
+  - Parked blocks project the prompt's cross-attention keys/values by uploading only that
+    projection (`FusedBlock::cross_kv_on`).
   - The VAE reloads from its checkpoint (no re-hash) for each encode and decode.
   - `memory_cleanup()` frees the pool between stages.
   - On Wan 2.1, `Swapped(F16)` reproduces `Fused(F16)` exactly (same levels) and adds ~3 s per
@@ -72,20 +96,49 @@ timestep in video-to-video, where every token shares one t.
   on `NeuralBackends::wan22` (`BurnWan::wan22`, swapped int8 on a GPU), with strength 0.38 (not
   oracle-calibrated yet).
 
+- [x] Pipeline parity on the GPU (`wan22_pipeline_matches_run_wan_window`): Streamed f32 is
+  within 1 level of the diffusers window; Swapped Int8 is within max 10, mean 0.66 levels.
+- [x] Kernel launchers submit after ≥ 100 GFLOP: amdgpu times whole submissions, and cubecl
+  packs up to 32 dispatches into one.
+- [x] Measured at 480p:
+  - Transformer, int8, one 81-frame window (8190 tokens): 20.8 s per forward, ~2.4 min for
+    7 steps (Wan 2.1 f16: ~12.5 min per window). Load: 78 s.
+  - Peak VRAM in the transformer stage: 6.1 GiB.
+
+- [x] Ring-timeout safety for experiments: poll `mem_info_vram_used` and `pkill -x` the
+  process before the card fills (`docs/findings.md`).
+
+## Where it stopped (2026-11-27)
+
+- The user clip (`hf_20261124_221145_…mp4`, 480×854, 313 frames) was running with
+  `video all --invisible --profile wan22-synthid` at this checkpoint. Its output would be
+  `~/Downloads/…_clean_wan22.mp4`; if that file is missing, the run did not finish.
+  - Two earlier attempts were killed by the VRAM switch: block loading on the GPU, then
+    256 px encode tiles. Both are fixed above.
+  - The third ran cleanly through window 1: load 94 s with the GPU idle, denoise peak
+    6.6 GiB, then decode.
+  - Command, from `rs-ai-watermarks/`:
+    `HF_HUB_OFFLINE=1 ./target/release/rs-ai-watermarks video all --invisible --profile wan22-synthid <src> -o <src>_clean_wan22.mp4`.
+    Build first with `cargo build --release -p rs-ai-watermarks --no-default-features --features metadata,video,gpu`.
+- GPU tests not rerun after the kernel submit split and the swapped host loading (the GPU
+  was busy with the clip): `cargo test --release -p raiw-gpu --features wgpu --test wan --
+  --test-threads=1`, in particular `pipeline_matches_run_wan_window` and both transformer
+  parity tests. VAE parity (all 6 cases) and the unit tests pass.
+
 ## To do, in order
 
-1. **Pipeline parity on the GPU:** `wan22_pipeline_matches_run_wan_window` (Streamed f32
-   and Swapped Int8 against the diffusers window).
-2. **Speed:** loading hashes and reads 19 GB of float32 shards on every run.
-   - Write an int8 cache file (~5 GB) once.
-   - Measure peak VRAM and RSS of a 480p window.
-3. **Timing on the user clip:**
-   - Estimate at 480p for an 81-frame window (8190 tokens): ~107 TFLOP per forward, which is
-     ~25 s at 4.5 TFLOP/s, or ~3 min for 7 steps, plus the VAE.
+1. **User clip:** rerun the command above (~1 h), then compare it with `_clean_wan21` and send
+   it to the user for synthid.com.
+2. **Speed:**
+   - Loading hashes and reads 19 GB of float32 shards on every run. Write an int8 cache file
+     (~5 GB) once.
+   - Decode is now the slowest stage (~20 s per latent frame, tiled). Remove the `DupUp`
+     repeat/permute copies with a gather kernel, fuse the shortcut into the upsample conv's
+     residual, and give the conv kernel a real stride instead of subsampling.
    - TI2V-5B's native size is 1280×704, which needs ~3× the compute per window.
-4. **SynthID calibration:** the user checks a strength sweep on synthid.com (starting at 0.38,
+3. **SynthID calibration:** the user checks a strength sweep on synthid.com (starting at 0.38,
    then lower for fidelity). Record the sha256 and verdicts in the trial doc.
-5. **Optional:**
+4. **Optional:**
    - Fold the VAE's RMS norm + SiLU into the conv input load.
    - Per-group int8 (g = 128) if the drift shows.
    - f16 VAE weights if memory is tight.

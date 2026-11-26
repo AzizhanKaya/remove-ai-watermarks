@@ -368,18 +368,27 @@ impl WanTransformer {
                     ));
                 }
                 let swapped = residency.swaps();
+                // int8 quantizes on the host, so swapped int8 blocks never touch the GPU here;
+                // the f16 packing runs a kernel, so those are built there and parked
+                let host = Device::flex();
+                let home = if swapped && precision == Precision::Int8 {
+                    &host
+                } else {
+                    burn
+                };
                 let blocks = (0..layers)
                     .map(|i| {
                         let mut state = read_block(&shards, i)?;
-                        // built on the GPU (the f16 packing runs a kernel), then parked
                         let block =
-                            FusedBlock::load(&mut state, &format!("blocks.{i}"), &config, precision, burn)?;
+                            FusedBlock::load(&mut state, &format!("blocks.{i}"), &config, precision, home)?;
                         state.finish()?;
-                        Ok(if swapped {
-                            block.to_device(&Device::flex())
-                        } else {
-                            block
-                        })
+                        if !swapped || home == &host {
+                            return Ok(block);
+                        }
+                        let parked = block.to_device(&host);
+                        drop(block);
+                        burn.memory_cleanup();
+                        Ok(parked)
                     })
                     .collect::<Result<Vec<_>>>()?;
                 if swapped {
@@ -460,10 +469,9 @@ impl WanTransformer {
         TextContext {
             #[cfg(feature = "gpu-runtime")]
             cross: match (&self.blocks, &self.parked) {
-                // parked blocks visit the device one at a time
                 (Blocks::Fused(blocks), Some(host)) if blocks.is_empty() => host
                     .iter()
-                    .map(|block| block.to_device(self.device.burn()).cross_kv(&hidden))
+                    .map(|block| block.cross_kv_on(&hidden, self.device.burn()))
                     .collect(),
                 (Blocks::Fused(blocks), _) => blocks.iter().map(|block| block.cross_kv(&hidden)).collect(),
                 _ => Vec::new(),

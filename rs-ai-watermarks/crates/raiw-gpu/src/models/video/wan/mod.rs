@@ -34,7 +34,7 @@ pub use scheduler::UniPcScheduler;
 pub use transformer::{
     BlockResidency, TextContext, TransformerFiles, WAN21_TRANSFORMER, WAN22_TRANSFORMER, WanTransformer,
 };
-pub use vae3d::{VaeFiles, WAN21_VAE, WAN22_VAE, WanVae};
+pub use vae3d::{VaeFiles, VaeTiles, WAN21_VAE, WAN22_VAE, WanVae};
 
 pub const MODEL_REPOSITORY: &str = "Wan-AI/Wan2.1-T2V-1.3B-Diffusers";
 pub const MODEL_REVISION: &str = "0fad780a534b6463e45facd96134c9f345acfa5b";
