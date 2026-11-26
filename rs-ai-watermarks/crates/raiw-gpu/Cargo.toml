@@ -17,8 +17,16 @@ vulkan = ["wgpu"]
 metal = ["wgpu", "burn/metal"]
 cuda = ["burn/cuda", "gpu-runtime"]
 rocm = ["burn/rocm", "gpu-runtime"]
-# Fusion, autotuning, and on-disk autotune/kernel caches shared by every CubeCL backend
-gpu-runtime = ["burn/fusion", "burn/autotune", "burn/persistence", "burn/cubecl"]
+# Fusion, autotuning, on-disk autotune/kernel caches, and the hand-written CubeCL kernels
+gpu-runtime = [
+    "burn/fusion",
+    "burn/autotune",
+    "burn/persistence",
+    "burn/cubecl",
+    "burn/extension",
+    "dep:burn-cubecl",
+    "dep:cubecl",
+]
 
 [dependencies]
 raiw-core.workspace = true
@@ -29,6 +37,8 @@ tracing.workspace = true
 # burn-flex runs single-threaded scalar code without rayon and simd
 burn = { workspace = true, features = ["std", "flex", "rayon", "simd"] }
 burn-store = { workspace = true, features = ["std", "pytorch", "safetensors"] }
+burn-cubecl = { workspace = true, optional = true, features = ["std", "fusion"] }
+cubecl = { workspace = true, optional = true, features = ["std"] }
 crc32fast.workspace = true
 half.workspace = true
 realfft.workspace = true

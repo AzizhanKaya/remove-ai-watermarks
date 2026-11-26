@@ -295,24 +295,43 @@ fn wan_480p_timing() {
         println!("wan vae {frames}x{height}x{width} on {device}: encode {encode:.2}s decode {decode:.2}s");
     }
     drop(vae);
-    let transformer = WanTransformer::load_from_hub(&hub, fetch(), &device, BlockResidency::Streamed);
+    // RAIW_WAN_RESIDENCY=streamed|fused-f32 overrides the device default (fused f16 on a GPU);
+    // RAIW_WAN_FRAMES="1,5,21" picks the latent frame counts (21 = one 81-frame window)
+    let residency = match std::env::var("RAIW_WAN_RESIDENCY").as_deref() {
+        Ok("streamed") => BlockResidency::Streamed,
+        #[cfg(feature = "gpu-runtime")]
+        Ok("fused-f32") => BlockResidency::Fused(raiw_gpu::models::video::wan::Precision::F32),
+        _ => BlockResidency::for_device(&device),
+    };
+    let start = Instant::now();
+    let transformer = WanTransformer::load_from_hub(&hub, fetch(), &device, residency);
     let Some(transformer) = loaded(transformer, "Wan transformer") else {
         return;
     };
+    println!(
+        "wan transformer {residency:?} load: {:.1}s",
+        start.elapsed().as_secs_f64()
+    );
     let prompt = PromptEmbedding::from_values(synthetic_signal(512 * 4096, 977, 70)).unwrap();
     let text = transformer.encode_text(&prompt);
     let (rows, cols) = (height / 8, width / 8);
-    for latent_frames in [1usize, 3, 5] {
+    let frames: Vec<usize> = std::env::var("RAIW_WAN_FRAMES").ok().map_or_else(
+        || vec![1, 3, 5],
+        |v| v.split(',').map(|f| f.trim().parse().unwrap()).collect(),
+    );
+    for latent_frames in frames {
         let latents = synthetic_signal(16 * latent_frames * rows * cols, 977, 4);
-        let start = Instant::now();
-        transformer
-            .forward(&latents, (latent_frames, rows, cols), 618.0, &text)
-            .unwrap();
         let tokens = latent_frames * rows * cols / 4;
-        println!(
-            "wan transformer {latent_frames} latent frames ({tokens} tokens) on {device}: {:.2}s",
-            start.elapsed().as_secs_f64()
-        );
+        for pass in ["cold", "warm"] {
+            let start = Instant::now();
+            transformer
+                .forward(&latents, (latent_frames, rows, cols), 618.0, &text)
+                .unwrap();
+            println!(
+                "wan transformer {latent_frames} latent frames ({tokens} tokens) {pass} on {device}: {:.2}s",
+                start.elapsed().as_secs_f64()
+            );
+        }
     }
 }
 
@@ -343,4 +362,60 @@ fn transformer_block_streaming_timing() {
 
 fn dim_at(shape: &Value, i: usize) -> usize {
     shape[i].as_u64().unwrap() as usize
+}
+
+fn cached_shards() -> Option<Vec<std::path::PathBuf>> {
+    let hub = Hub::from_env();
+    let shards: Vec<_> = raiw_gpu::models::video::wan::TRANSFORMER_SHARDS
+        .iter()
+        .filter_map(|file| hub.cached(file))
+        .collect();
+    (shards.len() == 2).then_some(shards)
+}
+
+/// Max |a - b| over max |b|.
+fn relative_diff(actual: &[f32], expected: &[f32]) -> f64 {
+    let scale = expected.iter().fold(1e-12f64, |m, x| m.max(f64::from(x.abs())));
+    let diff = actual
+        .iter()
+        .zip(expected)
+        .fold(0.0f64, |m, (a, b)| m.max(f64::from((a - b).abs())));
+    diff / scale
+}
+
+/// The fused kernel blocks against the burn-op blocks on the checkpoint's first blocks.
+#[cfg(feature = "gpu-runtime")]
+#[test]
+fn fused_blocks_match_reference_blocks() {
+    use raiw_gpu::models::video::wan::Precision;
+    let Some(device) = devices().into_iter().find(raiw_gpu::ComputeDevice::is_gpu) else {
+        return;
+    };
+    let Some(shards) = cached_shards() else {
+        eprintln!("skipping: transformer shards not cached");
+        return;
+    };
+    let layers = 3;
+    // 3 x 10 x 13 = 390 tokens: partial attention and GEMM tiles on every axis
+    let (frames, height, width) = (3, 20, 26);
+    let latents = synthetic_signal(16 * frames * height * width, 977, 4);
+    let prompt = PromptEmbedding::from_values(synthetic_signal(512 * 4096, 977, 70)).unwrap();
+    let run = |residency| {
+        let model =
+            WanTransformer::from_shards_truncated(shards.clone(), &device, residency, layers).unwrap();
+        let text = model.encode_text(&prompt);
+        let start = Instant::now();
+        let out = model
+            .forward(&latents, (frames, height, width), 618.0, &text)
+            .unwrap();
+        (out, start.elapsed().as_secs_f64())
+    };
+    let (reference, seconds) = run(BlockResidency::Resident);
+    eprintln!("reference {layers} blocks: {seconds:.2}s");
+    for (precision, limit) in [(Precision::F32, 1e-4), (Precision::F16, 2e-2)] {
+        let (fused, seconds) = run(BlockResidency::Fused(precision));
+        let diff = relative_diff(&fused, &reference);
+        eprintln!("fused {precision:?} {layers} blocks: relative diff {diff:.2e} ({seconds:.2}s)");
+        assert!(diff <= limit, "{precision:?}: relative diff {diff}");
+    }
 }

@@ -24,6 +24,8 @@ use crate::weights::{HostTensor, StateDict};
 
 use super::attention::scaled_dot_product;
 use super::{LATENT_CHANNELS, SPATIAL_FACTOR, TEMPORAL_FACTOR, VAE_CHECKPOINT, VAE_CONFIG};
+#[cfg(feature = "gpu-runtime")]
+use crate::kernels::{self, ConvShape};
 
 const BASE_DIM: usize = 96;
 const DIM_MULT: [usize; 4] = [1, 2, 4, 4];
@@ -151,6 +153,9 @@ impl Pointwise {
 enum Taps {
     Spatial(Vec<Conv2d>),
     Pointwise(Vec<Pointwise>),
+    /// Every tap at once through the CubeCL implicit-GEMM kernel (stride 1, GPU).
+    #[cfg(feature = "gpu-runtime")]
+    Kernel(Box<KernelConv>),
 }
 
 impl Taps {
@@ -158,6 +163,8 @@ impl Taps {
         match self {
             Self::Spatial(taps) => taps.len(),
             Self::Pointwise(taps) => taps.len(),
+            #[cfg(feature = "gpu-runtime")]
+            Self::Kernel(conv) => conv.shape.time_kernel,
         }
     }
 
@@ -165,8 +172,48 @@ impl Taps {
         match self {
             Self::Spatial(taps) => taps[k].forward(x),
             Self::Pointwise(taps) => taps[k].forward(x),
+            #[cfg(feature = "gpu-runtime")]
+            Self::Kernel(_) => unreachable!("kernel convolutions run all taps at once"),
         }
     }
+}
+
+/// A stride-1 convolution on the CubeCL kernel: `[K, C_out]` weight, bias, geometry.
+#[cfg(feature = "gpu-runtime")]
+#[derive(Debug, Clone)]
+struct KernelConv {
+    weight: Tensor<2>,
+    bias: Tensor<1>,
+    shape: ConvShape,
+}
+
+#[cfg(feature = "gpu-runtime")]
+impl KernelConv {
+    /// From a PyTorch `[C_out, C_in, k_t, k_s, k_s]` (or `[C_out, C_in, k_s, k_s]`) weight.
+    fn new(weight: &[f32], bias: Tensor<1>, shape: ConvShape, device: &Device) -> Self {
+        let matrix = kernels::conv_weight(weight, &shape);
+        let weight = Tensor::from_data(
+            TensorData::new(matrix, [shape.depth(), shape.weight_stride()]),
+            device,
+        );
+        Self { weight, bias, shape }
+    }
+
+    fn forward(&self, x: Tensor<4>, zeros: usize, residual: Option<Tensor<4>>) -> Tensor<4> {
+        kernels::causal_conv3d(
+            x,
+            self.weight.clone(),
+            self.bias.clone(),
+            residual,
+            zeros,
+            self.shape,
+        )
+    }
+}
+
+/// Whether convolutions on `device` run the CubeCL kernels (any GPU in a GPU build).
+fn use_kernels(device: &Device) -> bool {
+    cfg!(feature = "gpu-runtime") && *device != Device::flex()
 }
 
 /// `WanCausalConv3d`: `2 * pad_t` zero (or cached) frames in front, none behind.
@@ -190,6 +237,22 @@ impl CausalConv3d {
     ) -> Result<Self> {
         let weight = state.take(&format!("{prefix}.weight"), &[output, input, k_t, k_s, k_s])?;
         let bias: Tensor<1> = state.tensor(&format!("{prefix}.bias"), [output], device)?;
+        #[cfg(feature = "gpu-runtime")]
+        if stride == 1 && 2 * p_s + 1 == k_s && use_kernels(device) {
+            let shape = ConvShape {
+                in_channels: input,
+                out_channels: output,
+                time_kernel: k_t,
+                kernel: k_s,
+                padding: p_s,
+                upsample: false,
+            };
+            return Ok(Self {
+                taps: Taps::Kernel(Box::new(KernelConv::new(&weight.data, bias, shape, device))),
+                stride,
+                pad: 2 * p_t,
+            });
+        }
         let tap = |k: usize| {
             let data = time_tap(&weight, k, (input, output), (k_t, k_s));
             (data, (k + 1 == k_t).then(|| bias.clone()))
@@ -245,6 +308,36 @@ impl CausalConv3d {
 
     /// Convolve `x` preceded by `cache` frames (if any) and the remaining zero padding.
     fn forward(&self, x: Tensor<4>, cache: Option<&Tensor<4>>) -> Tensor<4> {
+        self.forward_with(x, cache, None)
+    }
+
+    /// [`Self::forward`] plus `residual` (fused into the kernel's epilogue on the GPU).
+    fn forward_with(
+        &self,
+        x: Tensor<4>,
+        cache: Option<&Tensor<4>>,
+        residual: Option<Tensor<4>>,
+    ) -> Tensor<4> {
+        #[cfg(feature = "gpu-runtime")]
+        if let Taps::Kernel(conv) = &self.taps {
+            let (x, zeros) = match cache {
+                Some(prefix) if self.pad > 0 => {
+                    let zeros = self.pad.saturating_sub(prefix.dims()[0]);
+                    (Tensor::cat(vec![prefix.clone(), x], 0), zeros)
+                }
+                _ => (x, self.pad),
+            };
+            return conv.forward(x, zeros, residual);
+        }
+        let out = self.forward_taps(x, cache);
+        match residual {
+            Some(residual) => out + residual,
+            None => out,
+        }
+    }
+
+    /// The per-time-tap sum of frame convolutions.
+    fn forward_taps(&self, x: Tensor<4>, cache: Option<&Tensor<4>>) -> Tensor<4> {
         let (x, zeros) = match cache {
             Some(prefix) if self.pad > 0 => {
                 let cached = prefix.dims()[0];
@@ -298,9 +391,18 @@ impl CausalConv3d {
 
     /// A cached call: consume one slot and leave this chunk's tail in it.
     fn forward_cached(&self, x: Tensor<4>, cache: &mut TimeCache) -> Tensor<4> {
+        self.forward_cached_with(x, cache, None)
+    }
+
+    fn forward_cached_with(
+        &self,
+        x: Tensor<4>,
+        cache: &mut TimeCache,
+        residual: Option<Tensor<4>>,
+    ) -> Tensor<4> {
         let slot = cache.next();
         let tail = cache_tail(&x, slot.frames());
-        let out = self.forward(x, slot.frames());
+        let out = self.forward_with(x, slot.frames(), residual);
         *slot = Slot::tail(tail);
         out
     }
@@ -394,8 +496,8 @@ impl ResidualBlock {
             None => x.clone(),
         };
         let x = self.conv1.forward_cached(silu(self.norm1.forward(x)), cache);
-        let x = self.conv2.forward_cached(silu(self.norm2.forward(x)), cache);
-        x + h
+        self.conv2
+            .forward_cached_with(silu(self.norm2.forward(x)), cache, Some(h))
     }
 }
 
@@ -475,9 +577,28 @@ enum Resample {
         time: Option<CausalConv3d>,
     },
     Up {
-        conv: Conv2d,
+        conv: UpConv,
         time: Option<CausalConv3d>,
     },
+}
+
+/// The up path's 3x3 convolution of the 2x nearest-upsampled frames.
+#[derive(Debug, Clone)]
+enum UpConv {
+    Plain(Conv2d),
+    /// Reads the input through the upsampling, so the 4x frames are never materialized.
+    #[cfg(feature = "gpu-runtime")]
+    Kernel(KernelConv),
+}
+
+impl UpConv {
+    fn forward(&self, x: Tensor<4>) -> Tensor<4> {
+        match self {
+            Self::Plain(conv) => conv.forward(upsample_nearest2(x)),
+            #[cfg(feature = "gpu-runtime")]
+            Self::Kernel(conv) => conv.forward(x, 0, None),
+        }
+    }
 }
 
 impl Resample {
@@ -513,8 +634,17 @@ impl Resample {
         temporal: bool,
         device: &Device,
     ) -> Result<Self> {
-        let spec = Conv2dSpec::new(dim, dim / 2, 3).padding(1);
-        let conv = Conv2d::load(state, &format!("{prefix}.resample.1"), spec, device)?;
+        let name = format!("{prefix}.resample.1");
+        let conv = if use_kernels(device) {
+            up_kernel(state, &name, dim, device)?
+        } else {
+            UpConv::Plain(Conv2d::load(
+                state,
+                &name,
+                Conv2dSpec::new(dim, dim / 2, 3).padding(1),
+                device,
+            )?)
+        };
         let time = temporal
             .then(|| {
                 CausalConv3d::load(
@@ -545,10 +675,30 @@ impl Resample {
                     Some(time) => upsample_time(time, x, cache),
                     None => x,
                 };
-                conv.forward(upsample_nearest2(x))
+                conv.forward(x)
             }
         }
     }
+}
+
+#[cfg(feature = "gpu-runtime")]
+fn up_kernel(state: &mut StateDict, name: &str, dim: usize, device: &Device) -> Result<UpConv> {
+    let shape = ConvShape {
+        in_channels: dim,
+        out_channels: dim / 2,
+        time_kernel: 1,
+        kernel: 3,
+        padding: 1,
+        upsample: true,
+    };
+    let weight = state.take(&format!("{name}.weight"), &[dim / 2, dim, 3, 3])?;
+    let bias = state.tensor(&format!("{name}.bias"), [dim / 2], device)?;
+    Ok(UpConv::Kernel(KernelConv::new(&weight.data, bias, shape, device)))
+}
+
+#[cfg(not(feature = "gpu-runtime"))]
+fn up_kernel(_: &mut StateDict, _: &str, _: usize, _: &Device) -> Result<UpConv> {
+    unreachable!("kernels are off without gpu-runtime")
 }
 
 /// `downsample3d`: the first chunk passes through; later ones convolve with the last cached frame.

@@ -24,6 +24,8 @@ pub mod dsp;
 pub mod error;
 pub mod hub;
 pub mod io;
+#[cfg(feature = "gpu-runtime")]
+pub mod kernels;
 pub mod layers;
 pub mod models;
 pub mod rng;

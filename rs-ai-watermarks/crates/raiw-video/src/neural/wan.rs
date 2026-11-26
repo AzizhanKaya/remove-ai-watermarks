@@ -89,7 +89,7 @@ impl WanPipeline for BurnWan {
                 &Hub::from_env(),
                 Fetch::Download,
                 device,
-                BlockResidency::Streamed,
+                BlockResidency::for_device(device),
                 None,
             )?);
         }

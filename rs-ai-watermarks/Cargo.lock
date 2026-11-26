@@ -6350,8 +6350,10 @@ version = "0.75.0"
 dependencies = [
  "base64 0.23.1",
  "burn",
+ "burn-cubecl",
  "burn-store",
  "crc32fast",
+ "cubecl",
  "half",
  "raiw-core",
  "realfft",

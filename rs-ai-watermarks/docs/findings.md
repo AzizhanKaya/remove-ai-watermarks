@@ -63,8 +63,8 @@ Not yet at parity:
   65-73 s vs 16.8 s. Strided/depthwise convs still use burn's direct kernels.
 - GPU cold start: every process re-loads weights and recompiles wgpu kernels
   (10-20 s); nothing is cached across processes yet.
-- Wan 2.1: blocks are streamed (5.7 GB fp32 does not fit next to the desktop), so
-  an 81-frame 480p window is projected at ~40 min.
+- Wan 2.1 on the CubeCL kernels (see status.md): one 81-frame 480p window ≈ 12.5 min
+  (transformer 62 s per step x 7, VAE ≈ 5 min); the f32 streamed path projected ~49 min.
 
 ## Hazards learned the hard way
 
@@ -73,8 +73,18 @@ Not yet at parity:
 - Running all ten SilentCipher layers as one fused graph corrupted the output at
   71 frames; flushing after each layer fixes it.
 - burn's fused `attention` kept RADV compiling for over 7 minutes with the GPU
-  idle; Wan uses a plain chunked softmax(QKᵀ)V instead (≤ 32 MB of scores per
-  dispatch).
+  idle; the burn-op Wan path uses a plain chunked softmax(QKᵀ)V (≤ 32 MB of scores per
+  dispatch) and the GPU path its own flash-attention kernel.
+- Autotuning burn's matmul on `[8192x1536]·[1536x8960]` (the Wan feed-forward) ran a
+  candidate past the amdgpu ring timeout ("ring gfx_0.0.0 timeout", ring reset, no
+  recovery needed). The Wan GPU path therefore never calls burn's matmul on token-sized
+  shapes: its GEMM/conv kernels use fixed tiles and split dispatches.
+- RADV/ACO on RDNA1: `fma(f32(h), f32(h), acc)` becomes `v_fma_mix_f32` (f16 storage costs no
+  conversions), 2-wide f16 FMAs become `v_pk_fma_f16` (splats via `op_sel`), shared vec4 reads
+  stay two `ds_read_b64`, and `if`-guarded loads cost a branch each (use `select` with a
+  clamped index); `RADV_DEBUG=shaders,shaderstats MESA_SHADER_CACHE_DISABLE=true` dumps ISA.
+- CubeCL `Slice::with_vector_size` on a shared buffer produced wrong values when reused as
+  f16 pairs; keep one element type per shared allocation.
 - earlyoom killed a model test and the user's desktop app while three workers
   ran model tests with full swap.
 - wgpu cannot report VRAM, so `vram_below` returns true and `--profile auto` never

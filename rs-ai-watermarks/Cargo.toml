@@ -73,6 +73,9 @@ hound = "3.5.1"
 # GPU (burn: wgpu runs on Vulkan, Metal, DX12 and WebGPU, so AMD, NVIDIA, Intel and Apple GPUs share one path)
 burn = { version = "0.22.1", default-features = false }
 burn-store = { version = "0.22.1", default-features = false }
+# Hand-written kernels (same versions burn 0.22.1 builds on)
+burn-cubecl = { version = "0.22.1", default-features = false }
+cubecl = { version = "0.11.4", default-features = false }
 
 # Tests
 approx = "0.5.1"

@@ -75,4 +75,16 @@ impl Linear {
     pub fn output(&self) -> usize {
         self.weight.dims()[1]
     }
+
+    /// The weight in PyTorch's `[out, in]` layout (the uploaded buffer, no copy).
+    pub fn torch_weight(&self) -> Tensor<2> {
+        self.weight.clone().transpose()
+    }
+
+    /// The bias, or zeros when the layer has none.
+    pub fn bias_or_zeros(&self) -> Tensor<1> {
+        self.bias
+            .clone()
+            .unwrap_or_else(|| Tensor::zeros([self.output()], &self.weight.device()))
+    }
 }

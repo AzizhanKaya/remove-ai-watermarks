@@ -1,10 +1,14 @@
 //! `WanTransformer3DModel` (Wan 2.1 T2V 1.3B): 1x2x2 patches, 30 blocks of RoPE self-attention,
 //! text cross-attention and a GELU feed-forward, each modulated by the timestep (adaLN).
 //!
-//! The float32 checkpoint is 5.7 GB, more than an 8 GB display GPU holds next to activations,
-//! so blocks are either resident or streamed: each forward memory-maps the shards and uploads
-//! one block at a time. Token-wise work runs in bounded chunks and attention through
-//! [`scaled_dot_product`], so no dispatch grows with the clip.
+//! Two block engines share the embeddings and the output head:
+//!
+//! - burn ops in float32 ([`BlockResidency::Streamed`] / [`BlockResidency::Resident`]), the
+//!   CPU and parity path. The 5.7 GB float32 checkpoint does not fit next to activations on an
+//!   8 GB display GPU, so streamed blocks are memory-mapped and uploaded one at a time;
+//!   token-wise work runs in bounded chunks and attention through [`scaled_dot_product`].
+//! - [`BlockResidency::Fused`] on a GPU: every block resident at f16 (or f32) and run by the
+//!   CubeCL kernels ([`super::fused`]).
 
 use std::path::PathBuf;
 use std::sync::mpsc::sync_channel;
@@ -20,6 +24,8 @@ use crate::layers::Linear;
 use crate::weights::StateDict;
 
 use super::attention::{LayerNorm, RmsNorm, scaled_dot_product};
+#[cfg(feature = "gpu-runtime")]
+use super::fused::{CrossKv, FusedBlock, Precision, RopeTables};
 use super::prompt::{PromptEmbedding, TEXT_DIM, TEXT_TOKENS};
 use super::rope::Rope;
 use super::{LATENT_CHANNELS, TRANSFORMER_CONFIG, TRANSFORMER_SHARDS};
@@ -37,20 +43,40 @@ const PATCH_FEATURES: usize = LATENT_CHANNELS * PATCH * PATCH;
 /// Tokens per feed-forward chunk, bounding the `[tokens, 8960]` intermediate.
 const FFN_TOKENS: usize = 4096;
 
-/// Where transformer block weights live between forwards.
+/// Where transformer block weights live between forwards, and which ops run them.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
 pub enum BlockResidency {
-    /// Memory-map the shards and upload one block at a time on every forward (~190 MB peak).
+    /// burn ops in float32; memory-map the shards and upload one block at a time on every
+    /// forward (~190 MB peak).
     #[default]
     Streamed,
-    /// Keep all 30 blocks on the device (5.5 GB of float32).
+    /// burn ops in float32 with all 30 blocks on the device (5.5 GB).
     Resident,
+    /// GPU only: all blocks resident at `Precision` (2.7 GB at f16) and run by the CubeCL
+    /// kernels (flash attention, fused GEMM epilogues and norms).
+    #[cfg(feature = "gpu-runtime")]
+    Fused(Precision),
 }
 
-/// The prompt embedding projected by `condition_embedder.text_embedder`, `[512, 1536]`.
+impl BlockResidency {
+    /// The fastest residency `device` runs: fused f16 kernels on a GPU, streamed burn ops on CPU.
+    pub fn for_device(device: &ComputeDevice) -> Self {
+        #[cfg(feature = "gpu-runtime")]
+        if device.is_gpu() {
+            return Self::Fused(Precision::F16);
+        }
+        let _ = device;
+        Self::Streamed
+    }
+}
+
+/// The prompt embedding projected by `condition_embedder.text_embedder`, `[512, 1536]`, plus
+/// each fused block's cross-attention keys and values.
 #[derive(Debug, Clone)]
 pub struct TextContext {
     hidden: Tensor<2>,
+    #[cfg(feature = "gpu-runtime")]
+    cross: Vec<CrossKv>,
 }
 
 #[derive(Debug, Clone)]
@@ -174,6 +200,8 @@ impl Block {
 enum Blocks {
     Resident(Vec<Block>),
     Streamed(Vec<PathBuf>),
+    #[cfg(feature = "gpu-runtime")]
+    Fused(Vec<FusedBlock>),
 }
 
 /// `WanTransformer3DModel` from `Wan-AI/Wan2.1-T2V-1.3B-Diffusers` (`transformer/`).
@@ -189,6 +217,8 @@ pub struct WanTransformer {
     norm_out: LayerNorm,
     proj_out: Linear,
     blocks: Blocks,
+    /// Blocks run per forward (30 unless truncated for engine comparisons).
+    layers: usize,
     device: ComputeDevice,
 }
 
@@ -227,6 +257,18 @@ impl WanTransformer {
         device: &ComputeDevice,
         residency: BlockResidency,
     ) -> Result<Self> {
+        Self::from_shards_truncated(shards, device, residency, LAYERS)
+    }
+
+    /// [`Self::from_shards`] keeping only the first `layers` blocks: a smaller model for
+    /// comparing block engines against each other (its output is not Wan's).
+    pub fn from_shards_truncated(
+        shards: Vec<PathBuf>,
+        device: &ComputeDevice,
+        residency: BlockResidency,
+        layers: usize,
+    ) -> Result<Self> {
+        let layers = layers.min(LAYERS);
         let burn = device.burn();
         let mut state = StateDict::from_safetensors_shards(&shards, |name| !name.starts_with("blocks."))?;
         let patch = state.take("patch_embedding.weight", &[DIM, LATENT_CHANNELS, 1, PATCH, PATCH])?;
@@ -246,10 +288,29 @@ impl WanTransformer {
         let blocks = match residency {
             BlockResidency::Streamed => Blocks::Streamed(shards),
             BlockResidency::Resident => Blocks::Resident(
-                (0..LAYERS)
+                (0..layers)
                     .map(|i| load_block(&shards, i, burn))
                     .collect::<Result<Vec<_>>>()?,
             ),
+            #[cfg(feature = "gpu-runtime")]
+            BlockResidency::Fused(precision) => {
+                if !device.is_gpu() {
+                    return Err(GpuError::Config(
+                        "fused Wan blocks run on the GPU kernels; use Streamed on the CPU".to_owned(),
+                    ));
+                }
+                Blocks::Fused(
+                    (0..layers)
+                        .map(|i| {
+                            let mut state = read_block(&shards, i)?;
+                            let block =
+                                FusedBlock::load(&mut state, &format!("blocks.{i}"), precision, burn)?;
+                            state.finish()?;
+                            Ok(block)
+                        })
+                        .collect::<Result<Vec<_>>>()?,
+                )
+            }
         };
         Ok(Self {
             patch,
@@ -262,6 +323,7 @@ impl WanTransformer {
             norm_out: LayerNorm::plain(DIM, EPS, burn),
             proj_out,
             blocks,
+            layers,
             device: device.clone(),
         })
     }
@@ -276,9 +338,41 @@ impl WanTransformer {
             TensorData::new(prompt.values().to_vec(), [TEXT_TOKENS, TEXT_DIM]),
             self.device.burn(),
         );
+        let hidden = self.text_2.forward(gelu_approximate(self.text_1.forward(embeds)));
         TextContext {
-            hidden: self.text_2.forward(gelu_approximate(self.text_1.forward(embeds))),
+            #[cfg(feature = "gpu-runtime")]
+            cross: match &self.blocks {
+                Blocks::Fused(blocks) => blocks.iter().map(|block| block.cross_kv(&hidden)).collect(),
+                _ => Vec::new(),
+            },
+            hidden,
         }
+    }
+
+    /// True when the blocks run on the fused GPU kernels.
+    pub fn is_fused(&self) -> bool {
+        #[cfg(feature = "gpu-runtime")]
+        if let Blocks::Fused(_) = self.blocks {
+            return true;
+        }
+        false
+    }
+
+    /// `x·wᵀ + b` for the token-wise embeddings: the GEMM kernel on the fused path (burn's
+    /// autotuned matmul on 30k-token shapes can exceed the GPU ring timeout).
+    #[cfg_attr(not(feature = "gpu-runtime"), allow(clippy::unused_self))]
+    fn token_linear(&self, linear: &Linear, x: Tensor<2>) -> Tensor<2> {
+        #[cfg(feature = "gpu-runtime")]
+        if self.is_fused() {
+            return crate::kernels::linear(
+                x,
+                &crate::kernels::DenseWeight::torch(linear.torch_weight()),
+                linear.bias_or_zeros(),
+                crate::kernels::Activation::Identity,
+                burn::tensor::DType::F32,
+            );
+        }
+        linear.forward(x)
     }
 
     /// Flow velocity for latents `[16, T, H, W]` (`H`, `W` even) at an integer `timestep`.
@@ -311,10 +405,60 @@ impl WanTransformer {
             burn,
         );
         let patches = x.permute([1, 2, 4, 0, 3, 5]).reshape([tokens, PATCH_FEATURES]);
-        let mut h = self.patch.forward(patches);
-        let rope = Rope::new(HEAD_DIM, (frames, rows, cols), burn);
+        let mut h = self.token_linear(&self.patch, patches);
         let temb = self.time_embedding(timestep);
         let modulation = self.time_proj.forward(silu(temb.clone())).reshape([6, DIM]);
+        let grid = (frames, rows, cols);
+        match &self.blocks {
+            #[cfg(feature = "gpu-runtime")]
+            Blocks::Fused(blocks) => {
+                let rope = RopeTables::new(grid, burn);
+                for (block, cross) in blocks.iter().zip(&context.cross) {
+                    h = block.forward(h, cross, &modulation, &rope);
+                }
+            }
+            Blocks::Resident(_) | Blocks::Streamed(_) => {
+                h = self.reference_blocks(h, context, &modulation, grid)?;
+            }
+        }
+        let table = self.out_table.clone() + temb;
+        let (shift, scale) = (table.clone().slice(s![0..1]), table.slice(s![1..2]));
+        let h = self.output_norm(h, shift, scale);
+        let out = self
+            .token_linear(&self.proj_out, h)
+            .reshape([frames, rows, cols, PATCH, PATCH, LATENT_CHANNELS])
+            .permute([5, 0, 1, 3, 2, 4])
+            .reshape([LATENT_CHANNELS, frames, height, width]);
+        read_finite(out)
+    }
+
+    /// `norm_out(h) * (1 + scale) + shift`.
+    fn output_norm(&self, h: Tensor<2>, shift: Tensor<2>, scale: Tensor<2>) -> Tensor<2> {
+        #[cfg(feature = "gpu-runtime")]
+        if self.is_fused() {
+            let (shift, scale) = (shift.reshape([DIM]), scale.reshape([DIM]));
+            return crate::kernels::modulated_layer_norm(
+                h,
+                scale.add_scalar(1.0),
+                shift,
+                EPS as f32,
+                burn::tensor::DType::F32,
+            );
+        }
+        self.norm_out.forward(h) * scale.add_scalar(1.0) + shift
+    }
+
+    /// The burn-op blocks, resident or streamed one at a time from the shards.
+    fn reference_blocks(
+        &self,
+        mut h: Tensor<2>,
+        context: &TextContext,
+        modulation: &Tensor<2>,
+        grid: (usize, usize, usize),
+    ) -> Result<Tensor<2>> {
+        let burn = self.device.burn();
+        let rope = Rope::new(HEAD_DIM, grid, burn);
+        let modulation = modulation.clone();
         match &self.blocks {
             Blocks::Resident(blocks) => {
                 for block in blocks {
@@ -322,11 +466,12 @@ impl WanTransformer {
                 }
             }
             Blocks::Streamed(shards) => {
+                let layers = self.layers;
                 h = std::thread::scope(|scope| -> Result<Tensor<2>> {
                     // A reader thread maps the next block while the device runs this one
                     let (sender, receiver) = sync_channel(1);
                     scope.spawn(move || {
-                        for i in 0..LAYERS {
+                        for i in 0..layers {
                             let state = read_block(shards, i);
                             let failed = state.is_err();
                             if sender.send(state).is_err() || failed {
@@ -334,7 +479,7 @@ impl WanTransformer {
                             }
                         }
                     });
-                    for i in 0..LAYERS {
+                    for i in 0..layers {
                         let mut state = receiver.recv().map_err(|_| {
                             GpuError::Config("Wan transformer block reader stopped".to_owned())
                         })??;
@@ -347,17 +492,10 @@ impl WanTransformer {
                     Ok(h)
                 })?;
             }
+            #[cfg(feature = "gpu-runtime")]
+            Blocks::Fused(_) => unreachable!("fused blocks run in forward"),
         }
-        let table = self.out_table.clone() + temb;
-        let (shift, scale) = (table.clone().slice(s![0..1]), table.slice(s![1..2]));
-        let h = self.norm_out.forward(h) * scale.add_scalar(1.0) + shift;
-        let out = self
-            .proj_out
-            .forward(h)
-            .reshape([frames, rows, cols, PATCH, PATCH, LATENT_CHANNELS])
-            .permute([5, 0, 1, 3, 2, 4])
-            .reshape([LATENT_CHANNELS, frames, height, width]);
-        read_finite(out)
+        Ok(h)
     }
 
     /// `time_embedder(timesteps_proj(t))`: flipped sinusoids, Linear, SiLU, Linear -> `[1, dim]`.

@@ -27,7 +27,7 @@ in [findings.md](findings.md); the user-file video trial is in
 | `raiw-metadata` | Done for video/audio containers (byte-identical strips); images match except WebP re-save and two `info:exif` record fields | 12.0k / 18 | Exact libwebp 1.6 encoder and Pillow `Exif.tobytes` writer; truncated GIF/BMP/TIFF message wording |
 | `raiw-cv` | Done; OpenCV 4.10-exact on almost every op | 10.4k / 21 | DIS optical flow (only image regeneration alignment needs it); LINE_AA thick circle; speed (see findings) |
 | `raiw-video` | Done: phases 1-5 | 19.0k / 51 | `video all --invisible` fused path not golden-compared; Wan never run on real weights |
-| `raiw-gpu` | Done: 7 audio models, SD VAE (+tiling), VideoSeal/PixelSeal/ChunkySeal, Wan 2.1 VAE/DiT/UniPC/pipeline | 11.4k / 68 | Speed work in progress (fp16 VAE, batching, conv path, persistent kernel cache; then Wan fp16-resident + faster attention) |
+| `raiw-gpu` | Done: 7 audio models, SD VAE (+tiling), VideoSeal/PixelSeal/ChunkySeal, Wan 2.1 VAE/DiT/UniPC/pipeline; CubeCL kernels (`kernels/`) drive the Wan DiT (`Fused(F16)`) and VAE convolutions on GPUs | 14.5k / 75 | Speed work in progress (fp16 SD VAE, batching, conv path, persistent kernel cache); Wan kernel follow-ups below |
 | `raiw-audio` | DSP/IO/quality/policy done; burn models wired behind `gpu` | 10.9k / 84 | Speed (models 2-6x slower than Python); SilentCipher on non-44.1 kHz (soxr resampler); wire raiw-metadata into `MetadataSeam`; WavMark/Perth/SNAC/EnCodec not run on real models end to end |
 | `raiw-text` | ~90% | 13.8k / 77 | clippy/fmt, CLI wiring, `score_synthid_text` (needs a burn LM), burn generation backend; compressed `encode_innamark` bytes differ from CPython zlib |
 | `raiw-pixel` | DWT-DCT and InvisMark done (bit-exact) | 3.0k / 38 | Declare `mod pillow; mod jpeg; pub mod trustmark;` in `lib.rs`, add goldens `pixel_trustmark.py`/`pixel_jpeg.py`; `pixel_evidence` not started |
@@ -37,6 +37,43 @@ in [findings.md](findings.md); the user-file video trial is in
 | `raiw-regen` | Not started | — | Image diffusion profiles (Qwen-Image, SDXL, Z-Image, Chroma) |
 | `raiw-mcp` | Done (17 tests live in the facade crate) | 1.8k | — |
 | `rs-ai-watermarks` (CLI) | `metadata`, every `video` command, `mcp` wired | 2.3k / 21 | Wire `identify`, `visible`, `erase`, `invisible`, `all`, `batch`, `text`, `audio`, `classify-source` as their crates finish; add the image options hidden by the first Click dump (`all`: `--backend`, `--sensitivity`, `--pipeline`; `batch`: `--preset`, `--backend`, `--sensitivity`, `--vendor`, `--pipeline`; `text all`: `--rewriter-backend`) |
+
+## Wan 2.1 CubeCL kernels (2026-11-26, tested on the RX 5500 XT)
+
+`crates/raiw-gpu/src/kernels/` holds hand-written CubeCL kernels behind a burn backend
+extension (`#[backend_extension(Cube, Fusion)]`, so they queue lazily in the fusion stream):
+
+| Kernel | What | RX 5500 XT |
+| --- | --- | --- |
+| `attention` | FlashAttention-2 forward, row-major `[tokens, heads·128]`, f16 or f32 storage, f32 Q·Kᵀ/softmax, P·V in packed f16 over 16 keys | 4.6 TFLOP/s f16 (old chunked burn path 0.24) |
+| `hgemm` | packed-f16 `x·W + b` for `[in, out]` f16 weights, GELU / gated-residual epilogues | 4.6-4.9 TFLOP/s (burn f32 matmul 1.8) |
+| `gemm` | register-tiled `x·Wᵀ + b` for PyTorch `[out, in]` weights (f32 parity path) | 2.8 f32, 4.0 f16 |
+| `norm` | LayerNorm + adaLN modulation; RMSNorm + RoPE reading a QKV column window | memory-bound |
+| `conv` | causal 3-D conv as an implicit GEMM (no im2col), bias + residual + 2x upsampling fused | 2.8-3.1 TFLOP/s f32 (im2col path 1.0-1.8) |
+
+No kernel autotunes and every launcher splits its dispatches (≤ 0.1 s each). Tile sweeps:
+`cargo test --release -p raiw-gpu --test dit_kernels -- --ignored --nocapture --test-threads=1`.
+
+Wiring: `BlockResidency::Fused(Precision)` keeps all 30 blocks resident (2.7 GB at f16) and
+runs them on the kernels; `BlockResidency::for_device` picks `Fused(F16)` on a GPU and
+raiw-video uses it. The VAE takes the conv kernel for every stride-1 causal conv and the
+up-resample conv whenever the device is a GPU (float32, as in Python).
+
+Results (480p; `tests/wan.rs` `wan_480p_timing`, `fused_blocks_match_reference_blocks`):
+
+- Transformer forward, 21 latent frames (one 81-frame window, 32 760 tokens): 62 s warm
+  (previous streamed f32 path projected ~300 s); 7 800 tokens: 6.9 s. Python on this machine
+  (diffusers, torch CPU fp32, 12 threads): 2.53 s per block at 7 800 tokens, ~76 s per forward.
+- VAE, 5 frames: encode 11.8 → 7.4 s, decode 20.8 → 12.6 s (decode is now conv-bound; Wan's
+  256 px tiling, kept for parity, roughly doubles its work at 480x832).
+- One 81-frame window (7 steps): ~49 min → ~12.5 min projected.
+- Accuracy: fused F32 blocks match the burn-op blocks to 2.7e-6 (relative); fused F16 drifts
+  1.8e-3 from them, while diffusers' own bfloat16 path drifts 1.5e-2 from float32 on the same
+  inputs. VAE and full-pipeline goldens unchanged (latents 4e-6, pipeline ≤ 1 u8 level).
+
+Follow-ups: the f32 conv kernel tops out near 3 TFLOP/s (ACO splits its shared vec4 reads into
+two `ds_read_b64`); a packed-f16 Q·Kᵀ variant was slower (pair reads plus a 38 KB footprint
+halve occupancy) and was dropped; the VAE's RMS norm + SiLU could fold into the conv input load.
 
 ## GPU speed work: checkpoint of 2026-11-26 (compiles, NOT yet tested on the GPU)
 

@@ -12,6 +12,8 @@
 //! MPS); parity is pinned against the diffusers modules in float32 on CPU.
 
 pub mod attention;
+#[cfg(feature = "gpu-runtime")]
+pub mod fused;
 pub mod pipeline;
 pub mod prompt;
 pub mod rope;
@@ -21,6 +23,8 @@ pub mod vae3d;
 
 use crate::hub::HubFile;
 
+#[cfg(feature = "gpu-runtime")]
+pub use fused::Precision;
 pub use pipeline::WanPipeline;
 pub use prompt::PromptEmbedding;
 pub use scheduler::UniPcScheduler;
